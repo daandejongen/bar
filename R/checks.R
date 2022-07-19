@@ -1,27 +1,28 @@
-check_data <- function(y, z){
-  error_numeric(y)
-  error_numeric(z)
+check_all <- function(y, z, d, p0, p1, r) {
+  check_data(y, z)
+  check_dp(d, p0, p1)
+  check_r(r)
+}
+
+check_data <- function(y, z) {
+  if (!is.numeric(y)) error_numeric(y)
+  if (!is.numeric(z)) error_numeric(z)
 
   if (length(y) != length(z)) {
-    stop("`y` and z` must be of equal length",
-         call.=FALSE)
+    stop(paste0("y and z must be of equal length:\n",
+                "Currently, y is of length ", length(y),
+                " and z is of length ", length(z), "."),
+         call.=FALSE
+         )
   }
 }
 
-check_dp <- function(d, p) {
-  error_numeric(d)
-  error_numeric(p)
+check_dp <- function(d, p0, p1) {
+  if (!is.numeric(d)) error_numeric(d)
+  if (!is.numeric(p0)) error_numeric(p0)
+  if (!is.numeric(p1)) error_numeric(p1)
 
-  if (length(p) != 2) {
-    stop(paste0("You must provide exactly two orders, ",
-                "one for each regime. \n",
-                "You specified ",
-                length(p),
-                " orders.")
-    )
-  }
-
-  if (d > max(p)) {
+  if (d > max(p0, p1)) {
     stop("The delay `d` cannot exceed the largest order.",
          call.=FALSE)
   }
@@ -33,10 +34,7 @@ check_dp <- function(d, p) {
 }
 
 check_r <- function(r, z, method) {
-  error_numeric(r)
-  method <- arg.match("quantile",
-                      "custom",
-                      "none")
+  if (!is.numeric(r)) error_numeric(r)
 
   if (length(r) != 2) {
     stop(paste0("You must provide exactly two values for r.\n",
@@ -60,17 +58,38 @@ check_r <- function(r, z, method) {
   }
 }
 
-is_whole <- function(x, tol=.Machine$double.eps) {
-  return(abs(round(x) - x) < tol)
-}
-
-error_numeric <- function(x) {
-  if (!is.numeric(x)) {
-    stop(paste0(quote(x),
-                " should be numeric, ",
-                "you provided an object of type ",
-                typeof(x), "."),
+check_search <- function(search) {
+  if (!is.character(search)) {
+    stop(paste0("search should be an object of type character,\n",
+                "you provided an object of type ", type(search)),
          call.=FALSE
     )
   }
+
+  s <- tryCatch(
+    error = function() {
+      stop("search must be one of these: none, quantile, custom.",
+           call.=FALSE)
+    },
+    match.arg(
+      arg=search,
+      choices=c("none", "quantile", "custom")
+    )
+  )
+
+  return(s)
+}
+
+
+is_whole <- function(x, tol=.Machine$double.eps) {
+  whole <- all(abs(round(x) - x) < tol)
+  return(whole)
+}
+
+error_numeric <- function(x) {
+  stop(paste0(substitute(x), " should be numeric, ",
+              "you provided an object of type ",
+              typeof(x), "."),
+       call.=FALSE
+  )
 }
