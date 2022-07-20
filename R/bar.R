@@ -14,14 +14,21 @@
 #' @examples
 #' a <- 1
 bar <- function(y, z=y, d, p, r, search) {
-  check_all(y, z, d, p0, p1, r) #only checks with errors
-  search <- check_search(search) #checks AND returns match.arg()
+  # Check AND return match.arg() for `search`
+  search <- check_search(search)
+  # Checks for correct arguments that throw an error
+  check_data(y, z)
+  check_dp(d, p0, p1)
+  check_r(r)
 
+
+  # Some data preparation
   p_max <- max(p0, p1)
   y_eff <- y[(p+1):length(y)]
   n_eff <- length(y_eff)
-
   x <- create_x(y, p_max)
-  g <- matrix(r, nrow=1, ncol=2)
-  g <- if (search=="none") g else create_grid(z, r, search)
+  g <- if (search=="none") matrix(r, ncol=2) else create_grid(z, r, search)
+
+
+
 }
