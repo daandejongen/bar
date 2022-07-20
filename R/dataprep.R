@@ -1,7 +1,7 @@
 create_x <- function(y, p_max) {
   n <- length(y)
   x <- rep(1, n)
-  for (i in 1:p) cbind(x, y[(p_max-i+1):(nT-i)])
+  for (i in 1:p) cbind(x, y[(p_max-i+1):(n-i)])
   return(x)
 }
 

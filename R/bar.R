@@ -13,14 +13,13 @@
 #'
 #' @examples
 #' a <- 1
-bar <- function(y, z=y, d, p, r, search) {
+bar <- function(y, z=y, d, p0, p1, r, search) {
   # Check AND return match.arg() for `search`
   search <- check_search(search)
   # Checks for correct arguments that throw an error
   check_data(y, z)
   check_dp(d, p0, p1)
   check_r(r)
-
 
   # Some data preparation
   p_max <- max(p0, p1)

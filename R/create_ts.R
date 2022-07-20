@@ -8,6 +8,8 @@ ts_hys <- function(z, r0, r1) {
 }
 
 ts_reg <- function(H, init) {
+  # init, initial value, is needed when starting regime is unknown, but
+  # when known, the value of init cannot alter the correct R in any way.
   R <- c(init, H)
   for (i in 2:length(R)) if (R[i-1] == -1) R[i] <- R[i-1]
   R <- R[-1]
