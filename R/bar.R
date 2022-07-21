@@ -13,7 +13,7 @@
 #'
 #' @examples
 #' a <- 1
-bar <- function(y, z=y, d, p0, p1, r, search) {
+bar <- function(y, z = y, d, p0, p1, r, search) {
   # Check AND return match.arg() for `search`
   search <- check_search(search)
   # Checks for correct arguments that throw an error
@@ -22,12 +22,14 @@ bar <- function(y, z=y, d, p0, p1, r, search) {
   check_r(r)
 
   # Some data preparation
-  p_max <- max(p0, p1)
-  y_eff <- y[(p+1):length(y)]
-  n_eff <- length(y_eff)
-  x <- create_x(y, p_max)
-  g <- if (search=="none") matrix(r, ncol=2) else create_grid(z, r, search)
+  p <- max(p0, p1)
+  x <- create_x(y, p)
 
+  n <- length(y)
+  select <- select_obs(n, d, p)
+  y_eff <- y[select$eff]
+  z_del <- z[select$del]
 
+  grid <- create_grid(z = z_del, r_bounds = r, search = search)
 
 }
