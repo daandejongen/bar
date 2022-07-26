@@ -27,13 +27,12 @@ barfit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
 
   p <- max(p0, p1)
   n <- length(y)
-  s <- select_obs(n, d, p)
+  s <- select_obs(n, d_max = max(d), p)
   y_eff <- y[s$eff]
-  z_del <- z[s$del]
   x <- create_x(y = y, eff = s$eff, p = p)
 
-  grid <- create_grid(z = z_del, d = d, r_bounds = r, search = search)
-
+  grid <- create_grid(z = z, d = d, r_bounds = r, search = search)
+  delays <-
 
 
 }
