@@ -1,4 +1,3 @@
-# Function to create n - p by p + 1 matrix of lagged predictors
 select_obs <- function(n, d, p) {
   a <- max(d, p) + 1 # Time index of first effective observation
   effective <- a:n
@@ -6,6 +5,7 @@ select_obs <- function(n, d, p) {
   return(list(eff = effective, del = delayed))
 }
 
+# Function to create n - p by p + 1 matrix of lagged predictors
 create_x <- function(y, eff, p) {
   x <- matrix(1, nrow = length(eff), ncol = 1)
 

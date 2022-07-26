@@ -50,13 +50,13 @@ check_search <- function(search) {
 
   s <- tryCatch(
     error = function(cond) {
-      stop("search must be one of these: none, quantile, custom.",
+      stop("search must be one of these: none, quantile, scale",
            call.=FALSE
            )
     },
     match.arg(
       arg=search,
-      choices=c("none", "quantile", "custom")
+      choices=c("none", "quantile", "scale")
     )
   )
 

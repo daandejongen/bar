@@ -6,14 +6,18 @@
 #' @param p0 A vector with one or more values for the order of regime 0.
 #' @param p1 A vector with one or more values for the order of regime 1.
 #' @param r A numeric vector of length 2 with (boundary) threshold values
-#' @param search
+#' @param search What type of boundary values of r are specified to find
+#' optimal threshold values: "quantile" for quantile values, "scale" for
+#' values on the scale of z, "none" if r is fixed
+#'
 #'
 #' @return An object of class bar.
 #' @export
 #'
 #' @examples
 #' a <- 1
-bar <- function(y, z = y, d, p0, p1, r, search) {
+barfit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
+                   r = c(.1, .9), search = "quantile") {
   # Check AND return match.arg() for `search`
   search <- check_search(search)
   # Checks for correct arguments that throw an error
@@ -21,14 +25,12 @@ bar <- function(y, z = y, d, p0, p1, r, search) {
   check_dp(d, p0, p1)
   check_r(r)
 
-  # Some data preparation
   p <- max(p0, p1)
-  x <- create_x(y, p)
-
   n <- length(y)
-  select <- select_obs(n, d, p)
-  y_eff <- y[select$eff]
-  z_del <- z[select$del]
+  s <- select_obs(n, d, p)
+  y_eff <- y[s$eff]
+  z_del <- z[s$del]
+  x <- create_x(y = y, eff = s$eff, p = p)
 
   grid <- create_grid(z = z_del, r_bounds = r, search = search)
 
