@@ -20,21 +20,37 @@ create_x <- function(y, eff, p) {
   return(x)
 }
 
-create_grid <- function(z, r_bounds, search) {
+get_z_values <- function(search, r_bounds) {
+  a <- if (search == "quantile") quantile(z, r_bounds) else r_bounds
+  z_val <- sort(unique(z[z >= a[1] & z <= a[2]]))
+  return(z_val)
+}
+
+create_grid <- function(z, d, r_bounds, search) {
   if (search == "none") {
     return(matrix(r, ncol=2))
   }
 
-  a <- if (search == "quantile") quantile(z, r_bounds) else r_bounds
-  z_val <- sort(unique(z[z >= a[1] & z <= a[2]]))
+  z_values <- get_z_values(search, r_bounds)
+  r_neq <- t(combn(z_values, 2))
+  r_eq  <- matrix(z_values, nrow = length(z_val), ncol = 2, byrow = FALSE)
+  grid <- rbind(r_neq, r_eq)
+  grid <- cbind(grid, rep(NA, times = nrow(grid)))
+  colnames(grid) <- c("r0", "r1", "rss")
 
-  r_neq <- t(combn(z_val, 2))
-  r_eq  <- matrix(z_val, nrow = length(z_val), ncol = 2, byrow = FALSE)
-  grid  <- rbind(r_neq, r_eq)
+  grid <- add_delay(grid, d)
 
   return(grid)
 }
 
-
+add_delay <- function(grid, delay) {
+  ld <- length(delay)
+  A <- array(data = rep(grid, times = ld),
+             dim = c(dim(grid), ld))
+  dimnames(A) <- list(NULL,
+                      colnames(grid),
+                      paste0("d", delay))
+  return(A)
+}
 
 

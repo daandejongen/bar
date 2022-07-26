@@ -1,9 +1,12 @@
+
+
 # Residual sum of squares (rss)
 compute_rss <- function(y, x, R, p0, p1, n) {
   X <- create_X(x, R, p0, p1, n)
   coef <- solve(t(X) %*% X) %*% t(X) %*% y
-  rss <- t(y - X %*% coef) %*% (y - X %*% coef)
-  return(list(rss = rss, coef = coef))
+  res <- y - X %*% coef
+  rss <- t(res) %*% (res)
+  return(list(rss = rss, coef = coef, res = res))
 }
 
 # Helper function to create the design matrix

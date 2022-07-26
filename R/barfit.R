@@ -32,6 +32,8 @@ barfit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
   z_del <- z[s$del]
   x <- create_x(y = y, eff = s$eff, p = p)
 
-  grid <- create_grid(z = z_del, r_bounds = r, search = search)
+  grid <- create_grid(z = z_del, d = d, r_bounds = r, search = search)
+
+
 
 }
