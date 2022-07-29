@@ -6,8 +6,7 @@ check_data <- function(y, z) {
     stop(paste0("y and z must be of equal length:\n
                 Currently, y is of length ", length(y),
                 " and z is of length ", length(z), "."),
-         call.=FALSE
-         )
+         call. = FALSE)
   }
 }
 
@@ -17,12 +16,9 @@ check_dp <- function(d, p0, p1) {
   if (!is.numeric(p1)) error_numeric(p1)
 
   if (!all(is_whole(c(p0, p1, d)))) {
-    stop("`p0`, `p1` and `d` should be whole numbers.", call.=FALSE)
+    stop("`p0`, `p1` and `d` should be whole numbers.", call. = FALSE)
   }
 
-  if (d > max(p0, p1)) {
-    stop("The delay `d` cannot exceed the largest order.", call.=FALSE)
-  }
 }
 
 check_r <- function(r) {
@@ -30,22 +26,21 @@ check_r <- function(r) {
 
   if (length(r) != 2) {
     stop(paste0("You must provide exactly two values for r.\n
-                You specified ", length(r), " values."), call.=FALSE)
+                You specified ", length(r), " values."), call. = FALSE)
   }
 
   if (r[1] > r[2]) {
     stop(paste0("The first threshold value should be smaller or equal
-                than the second one."), call.=FALSE)
+                than the second one."), call. = FALSE)
   }
 }
 
 check_search <- function(search) {
   if (!is.character(search)) {
     stop(paste0("search should be an object of type character,\n
-                you provided an object of type ", typeof(search)
+                you provided an object of type ", typeof(search), "."
                 ),
-         call.=FALSE
-         )
+         call. = FALSE)
   }
 
   s <- tryCatch(
@@ -55,12 +50,62 @@ check_search <- function(search) {
            )
     },
     match.arg(
-      arg=search,
-      choices=c("none", "quantile", "scale")
+      arg = search,
+      choices = c("none", "quantile", "scale")
     )
   )
 
   return(s)
+}
+
+
+check_sim_input <- function(z, d, r, phi, psi, resvar, init_vals,
+                            start_regime) {
+
+  if (!is.numeric(z))         error_numeric(z)
+  if (!is.numeric(phi))       error_numeric(phi)
+  if (!is.numeric(psi))       error_numeric(psi)
+  if (!is.numeric(resvar))    error_numeric(resvar)
+  if (!is.numeric(init_vals) && !is.null(init_vals)) error_numeric(init_vals)
+
+  check_r(r)
+
+  if (!all(c(phi, psi) > -1 & c(phi, psi) < 1)) {
+    stop("Autoregressive coefficients in 'phi' and 'psi' must
+         be between -1 and 1.", call. = FALSE)
+  }
+
+  if (resvar[1] < 0 || resvar[2] < 0) {
+    stop("Residual variances in 'resvar' cannot be negative.",
+         call. = FALSE)
+  }
+
+  p <- max(get_order(phi), get_order(psi), d)
+
+  if (!is.null(init_vals)) {
+    if (p < length(init_vals)) {
+      stop("Too many initial values provided.", call. = FALSE)
+    }
+    if (p > length(init_vals)) {
+      print(c(p, init_vals))
+      stop("Too few initial values provided.", call. = FALSE)
+    }
+  }
+
+  if (!is_whole(d)) {
+    stop("d must be a whole number.", call. = FALSE)
+  }
+
+  start_unknown <- r[1] < z[p+1-d] && r[2] > z[p+1-d]
+  if (start_unknown && is.null(start_regime)) {
+    stop("A starting regime is needed, but not provided.\n
+         The first value of z (delayed), z[max order - d + 1],
+         falls in the hysteresis zone (r[1], r[2]).",
+         call. = FALSE)
+  }
+  if (start_unknown && ! start_regime %in% c(0, 1)) {
+    stop("The starting regime must be 0 or 1.", call. = FALSE)
+  }
 }
 
 # Helpers

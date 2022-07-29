@@ -10,4 +10,3 @@ test_that("design matrix is correct", {
                      nrow = 3, byrow = TRUE)
   expect_equal(actual, expected)
 })
-

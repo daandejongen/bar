@@ -1,10 +1,11 @@
 test_that("lagged matrix is correct", {
   # Simple case
   y <- 1:6
-  n <- length(y)
-  p <- 3
-  eff <- select_obs(n = n, d = 2, p = p)$eff
-  actual <- create_x_2(y = y, eff = eff, p = p)
+  p0 <- 3
+  p1 <- 1
+  d <-  2
+
+  actual <- create_x(y, d, p0, p1)
 
   expected <- matrix(c(1, 3, 2, 1,
                        1, 4, 3, 2,
@@ -13,21 +14,23 @@ test_that("lagged matrix is correct", {
   expect_equal(actual, expected)
 
   # The edge case where the max order is zero
-  expect_equal(create_x(y = 1:5, p = 0),
+  expect_equal(create_x(y = 1:5, d = 0, p0 = 0, p1 = 0),
                matrix(1, nrow = 5, ncol = 1))
 })
 
 test_that("y_eff and z_del are equally long", {
-  n <- 100
-  d <- 5
-  p <- 3
-  x <- select_obs(n, d, p)
-  expect_equal(length(x$eff), length(x$del))
+  y <- 1:100
+  d <- c(2, 3, 5)
+  p0 <- 3
+  p1 <- 2
+  eff <- time_eff(y, d, p0, p1)
+  del <- time_del(y, d, p0, p1, d_sel = 3)
+  expect_equal(length(eff), length(del))
 })
 
 
 test_that("search grid is correct", {
-  actual   <- create_grid(z = 1:3, r_bounds = c(1, 3), search = "custom")
+  actual <- create_grid_r(z = 1:3, r_bounds = c(1, 3), search = "scale")
   expected <- matrix(c(1, 2,
                        1, 3,
                        2, 3,
@@ -36,9 +39,6 @@ test_that("search grid is correct", {
                        3, 3),
                      ncol = 2, byrow = TRUE)
   expect_equal(actual, expected)
-
-  actual_2 <- create_grid(z = 3:1, r_bounds = c(0, 1), search = "quantile")
-  expect_equal(actual_2, expected)
 })
 
 

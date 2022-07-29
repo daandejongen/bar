@@ -13,9 +13,9 @@ barfit(y, z = y, d = 1, p0 = 1, p1 = 1, r = c(0.1, 0.9), search = "quantile")
 
 \item{d}{A vector with one or more values for the delay parameter.}
 
-\item{p0}{A vector with one or more values for the order of regime 0.}
+\item{p0}{The order of regime 0.}
 
-\item{p1}{A vector with one or more values for the order of regime 1.}
+\item{p1}{The order of regime 1.}
 
 \item{r}{A numeric vector of length 2 with (boundary) threshold values}
 

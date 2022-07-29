@@ -3,8 +3,8 @@
 #' @param y A numeric vector representing the outcome time series.
 #' @param z A numeric vector representing the threshold time series.
 #' @param d A vector with one or more values for the delay parameter.
-#' @param p0 A vector with one or more values for the order of regime 0.
-#' @param p1 A vector with one or more values for the order of regime 1.
+#' @param p0 The order of regime 0.
+#' @param p1 The order of regime 1.
 #' @param r A numeric vector of length 2 with (boundary) threshold values
 #' @param search What type of boundary values of r are specified to find
 #' optimal threshold values: "quantile" for quantile values, "scale" for
@@ -18,6 +18,7 @@
 #' a <- 1
 barfit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
                    r = c(.1, .9), search = "quantile") {
+  # Checks ---------------------------------------------------------------
   # Check AND return match.arg() for `search`
   search <- check_search(search)
   # Checks for correct arguments that throw an error
@@ -25,14 +26,28 @@ barfit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
   check_dp(d, p0, p1)
   check_r(r)
 
-  p <- max(p0, p1)
-  n <- length(y)
-  s <- select_obs(n, d_max = max(d), p)
-  y_eff <- y[s$eff]
-  x <- create_x(y = y, eff = s$eff, p = p)
+  # Preps ----------------------------------------------------------------
+  x     <- create_x(y, d, p0, p1)
+  eff   <- time_eff(y, d, p0, p1)
+  y_eff <- y[eff]
+  grid  <- create_grid(z, r, search)
+  grid  <- add_d(d, grid)
 
-  grid <- create_grid(z = z, d = d, r_bounds = r, search = search)
-  delays <-
+  # Optimization of d, r0, r1, and  starting regime ----------------------
+  optim <- optimize_grid(y_eff, eff, x, z, p0, p1, grid)
+  optim <- select_min_d(optim)
 
+  # Final solution -------------------------------------------------------
+  # For the selection of r0 and r1 in the matrix of estimates, we
+  # can just select the first row, since they yield equivalent R time series
+  # and thus identical results.
+  d     <- optim$est[1, "d", drop = TRUE]
+  z_del <- z[eff - d]
+  r0    <- optim$est[1, "r0", drop = TRUE]
+  r1    <- optim$est[1, "r1", drop = TRUE]
+  H     <- ts_hys(z = z_del, r0, r1)
+  R     <- optim$R_est[1, , drop = TRUE]
+  fit   <- fit(y_eff, x, p0, p1, R)
 
+  return(list(optim, fit))
 }
