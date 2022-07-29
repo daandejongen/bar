@@ -1,11 +1,14 @@
-optimize_grid <- function(y, eff, x, z, p0, p1, grid) {
+optim_grid <- function(y, eff, x, z, p0, p1, grid) {
   # The high-level optimizer, first creates matrix of possible R
   # time series based on the search grid, then selects optimal rows.
   Rs <- get_Rs(y, eff, x, z, p0, p1, grid)
   optim <- optim_R(y, x, p0, p1, Rs)
 
-  return(est = grid[optim$argsmin, , drop = FALSE],
-         R_est = Rs[optim$argsmin, , drop = FALSE])
+  # For R_est, we can select the first argsmin, since they will all be
+  # the same
+  return(list(est = grid[optim$argsmin, , drop = FALSE],
+              R_est = Rs[optim$argsmin[1], , drop = TRUE])
+         )
 }
 
 

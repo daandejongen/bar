@@ -30,24 +30,15 @@ barfit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
   x     <- create_x(y, d, p0, p1)
   eff   <- time_eff(y, d, p0, p1)
   y_eff <- y[eff]
-  grid  <- create_grid(z, r, search)
+  grid  <- create_grid_r(z, r, search)
   grid  <- add_d(d, grid)
 
   # Optimization of d, r0, r1, and  starting regime ----------------------
-  optim <- optimize_grid(y_eff, eff, x, z, p0, p1, grid)
-  optim <- select_min_d(optim)
+  optim <- optim_grid(y_eff, eff, x, z, p0, p1, grid)
+  optim$est <- select_min_d(optim$est)
 
   # Final solution -------------------------------------------------------
-  # For the selection of r0 and r1 in the matrix of estimates, we
-  # can just select the first row, since they yield equivalent R time series
-  # and thus identical results.
-  d     <- optim$est[1, "d", drop = TRUE]
-  z_del <- z[eff - d]
-  r0    <- optim$est[1, "r0", drop = TRUE]
-  r1    <- optim$est[1, "r1", drop = TRUE]
-  H     <- ts_hys(z = z_del, r0, r1)
-  R     <- optim$R_est[1, , drop = TRUE]
-  fit   <- fit(y_eff, x, p0, p1, R)
+  bar <- new_bar(optim, eff, y_eff, x, z, p0, p1)
 
-  return(list(optim, fit))
+  invisible(bar)
 }

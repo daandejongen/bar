@@ -70,7 +70,7 @@ check_sim_input <- function(z, d, r, phi, psi, resvar, init_vals,
 
   check_r(r)
 
-  if (!all(c(phi, psi) > -1 & c(phi, psi) < 1)) {
+  if (!all(c(phi[-1], psi[-1]) > -1 & c(phi[-1], psi[-1]) < 1)) {
     stop("Autoregressive coefficients in 'phi' and 'psi' must
          be between -1 and 1.", call. = FALSE)
   }

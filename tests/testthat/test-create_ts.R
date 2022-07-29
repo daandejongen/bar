@@ -15,6 +15,4 @@ test_that("regime time series is correct", {
   actual   <- ts_reg(as.integer(c(-1, 1, -1, 0, -1)), start = 0)
   expected <- as.integer(c(0, 1, 1, 0, 0))
   expect_equal(actual, expected)
-
-  expect_error(ts_reg(H = c(-1L, 0L)), "Initial values for")
 })
