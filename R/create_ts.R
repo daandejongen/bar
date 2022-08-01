@@ -2,7 +2,7 @@ ts_hys <- function(z, r0, r1) {
   # -1 indicates the hysteresis zone, 0 and 1 the
   # lower and upper regime, respectively
   H  <- rep(-1L, length(z))
-  H  <- H + (z <= r0) + (z >= r1) * 2L
+  H  <- H + (z <= r0) + (z > r1) * 2L
 
   return(H)
 }
@@ -21,6 +21,7 @@ ts_reg <- function(H, start = NULL) {
 }
 
 
+#' @importFrom stats rnorm
 AR <- function(x, coe, resvar) {
   # One time step AR simulation
   pred <- x %*% coe

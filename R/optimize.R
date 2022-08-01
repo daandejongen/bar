@@ -5,7 +5,8 @@ optim_grid <- function(y, eff, x, z, p0, p1, grid) {
   optim <- optim_R(y, x, p0, p1, Rs)
 
   # For R_est, we can select the first argsmin, since they will all be
-  # the same
+  # the same. We return this vector to capture the starting regime that
+  # the model used in case of unsure start.
   return(list(est = grid[optim$argsmin, , drop = FALSE],
               R_est = Rs[optim$argsmin[1], , drop = TRUE])
          )
@@ -16,7 +17,7 @@ select_min_d <- function(M) {
   # If multiple delay values yield the same optimal solution,
   # the smallest value for d is selected.
   sel <- which(M[, "d"] == min(M[, "d"]))
-  return(M[sel, ])
+  return(M[sel, , drop = FALSE])
 }
 
 

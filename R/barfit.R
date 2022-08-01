@@ -40,5 +40,5 @@ barfit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
   # Final solution -------------------------------------------------------
   bar <- new_bar(optim, eff, y_eff, x, z, p0, p1)
 
-  invisible(bar)
+  return(bar)
 }
