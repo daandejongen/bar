@@ -29,17 +29,6 @@ test_that("y_eff and z_del are equally long", {
 })
 
 
-test_that("search grid is correct", {
-  actual <- create_grid_r(z = 1:3, r_bounds = c(1, 3), search = "scale")
-  expected <- matrix(c(1, 2,
-                       1, 3,
-                       2, 3,
-                       1, 1,
-                       2, 2,
-                       3, 3),
-                     ncol = 2, byrow = TRUE)
-  expect_equal(actual, expected)
-})
 
 
 

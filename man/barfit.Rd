@@ -4,7 +4,16 @@
 \alias{barfit}
 \title{Estimating a buffered autoregressive model with Least Squares estimation.}
 \usage{
-barfit(y, z = y, d = 1, p0 = 1, p1 = 1, r = c(0.1, 0.9), search = "quantile")
+barfit(
+  y,
+  z = y,
+  d = 1,
+  p0 = 1,
+  p1 = 1,
+  r = c(0.1, 0.9),
+  r_search = "quantile",
+  r_select
+)
 }
 \arguments{
 \item{y}{A numeric vector representing the outcome time series.}

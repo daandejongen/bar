@@ -6,9 +6,11 @@
 #' @param p0 The order of regime 0.
 #' @param p1 The order of regime 1.
 #' @param r A numeric vector of length 2 with (boundary) threshold values
-#' @param search What type of boundary values of r are specified to find
+#' @param r_search What type of boundary values of r are specified to find
 #' optimal threshold values: "quantile" for quantile values, "scale" for
-#' values on the scale of z, "none" if r is fixed
+#' values on the scale of z, "none" if r is fixed.
+#' @param r_select When multiple pairs of thresholds yield the same residual
+#' sums of squares, which one should be selected? Options: "widest" and "smallest".
 #'
 #'
 #' @return An object of class bar.
@@ -17,28 +19,21 @@
 #' @examples
 #' a <- 1
 barfit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
-                   r = c(.1, .9), search = "quantile") {
-  # Checks ---------------------------------------------------------------
-  # Check AND return match.arg() for `search`
-  search <- check_search(search)
-  # Checks for correct arguments that throw an error
+                   r = c(.1, .9), r_search = "quantile", r_select = "widest") {
+
+  search <- check_search_r(r_search, r)
+  select <- check_r_select(r_select)
   check_data(y, z)
   check_dp(d, p0, p1)
-  check_r(r)
 
-  # Preps ----------------------------------------------------------------
   x     <- create_x(y, d, p0, p1)
   eff   <- time_eff(y, d, p0, p1)
-  y_eff <- y[eff]
-  grid  <- create_grid_r(z, r, search)
-  grid  <- add_d(d, grid)
+  grid  <- gridmaker(z, r, search, d, eff)
+  n_search <- nrow(grid)
 
-  # Optimization of d, r0, r1, and  starting regime ----------------------
-  optim <- optim_grid(y_eff, eff, x, z, p0, p1, grid)
-  optim$est <- select_min_d(optim$est)
+  optim <- optim_grid(y[eff], eff, x, z, p0, p1, grid)
 
-  # Final solution -------------------------------------------------------
-  bar <- new_bar(optim, eff, y_eff, x, z, p0, p1)
+  bar   <- new_bar(y[eff], eff, x, z, p0, p1, optim, select, n_search)
 
   return(bar)
 }

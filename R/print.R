@@ -1,25 +1,24 @@
 #' @export
 print.bar <- function(x) {
 
-  n <- unname(attr(x, "n"))
-  coe <- round(attr(x, "coe"), 2)
-  rv <- attr(x, "resvar")
+  print(str(x))
+  return()
 
-  d <- attr(x, "d")
-  r0 <- round(attr(x, "r")[1, 1], 2)
-  r1 <- round(attr(x, "r")[1, 2], 2)
+  n   <- unname(x$n)
+  coe <- round(x[["coefficients"]], 2)
+  r0  <- round(x[["tresholds"]][1], 2)
+  r1  <- round(x[["tresholds"]][2], 2)
 
   cat(paste0("BAR model fitted on ", n[1], " observations."),
       "\n\n",
-      "if R[t] = 0:\n", make_formula(coe[1, , drop = TRUE], rv[1]),
+      "if R[t] = 0:\n", make_formula(coe[1, , drop = TRUE], x$rv[1]),
       "\n\n",
-      "if R[t] = 1:\n", make_formula(coe[2, , drop = TRUE], rv[2]),
+      "if R[t] = 1:\n", make_formula(coe[2, , drop = TRUE], x$rv[2]),
       "\n\n",
-      hys_switch(d, r0, r1),
+      hys_switch(x$d, r0, r1),
       "\n\n",
       " and e[t] ~ N(0, 1)."
   )
-
 }
 
 

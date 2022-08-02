@@ -27,4 +27,3 @@ create_X <- function(x, p0, p1, R) {
   return(X)
 }
 
-s

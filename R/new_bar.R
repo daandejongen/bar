@@ -1,42 +1,37 @@
-new_bar <- function(optim, eff, y, x, z, p0, p1) {
+new_bar <- function(y, eff, x, z, p0, p1, optim, select, n_search) {
 
-  regnames <- paste0("regime", 0:1)
+  optim_d <- select_min_d(optim)
+  optim_r <- select_r(optim_d, select)
 
-  R    <- optim$R_est
-  X    <- create_X(x, p0, p1, R)
-  fit  <- fit(y, X)
+  d    <- optim_d[1 , "d"]
+  r    <- optim_r[, c("r0", "r1")]
+  z    <- z[eff - d]
+  H    <- ts_hys(z, r[1], r[2])
+  R    <- ts_reg(H, start = optim_r[1, "s"])
+  fit  <- fit(y, create_X(x, p0, p1, R))
   coe  <- coe_to_matrix(fit$coe, p0, p1)
-  rv   <- estimate_resvar(R, fit$res)
-  names(rv) <- regnames
+  rv   <- regname(estimate_resvar(R, fit$res))
+  p    <- regname(c(p0, p1))
+  rss  <- fit$rss
+  n    <- c(length(y), sum(1-R), sum(R))
+  names(n) <- c("total", paste0("regime", 0:1))
 
-  zdrH <- get_zdrH(optim, eff, z)
-
-  orders <- c(p0, p1)
-  names(orders) <- regnames
-
-  rss <- fit$rss
-  names(rss) <- "rss"
-
-  n <- c(length(y), sum(1-R), sum(R))
-  names(n) <- c("total", regnames)
+  data <- data.frame(y = y, z = z, hysteresis = (H == -1), regime = R)
 
   bar <- structure(
-    list(),
+    list(data         = data,
+         residuals    = fit$res,
+         coefficients = coe,
+         delay        = d,
+         thresholds   = r,
+         orders       = p,
+         resvar       = rv,
+         rss          = fit$rss,
+         n            = n,
+         equiv_pars   = optim
+         ),
     class   = "bar",
-    y_eff   = y,
-    eff     = eff,
-    x       = x,
-    z_del   = zdrH$z,
-    H       = zdrH$H,
-    R       = R,
-    res     = fit$res,
-    d       = zdrH$d,
-    r       = zdrH$r,
-    coe     = coe,
-    resvar  = rv,
-    orders  = orders,
-    rss     = fit$rss,
-    n       = n
+    n_grid_search = n_search
     )
 
   return(bar)
@@ -45,20 +40,10 @@ new_bar <- function(optim, eff, y, x, z, p0, p1) {
 
 # Helpers
 
-get_zdrH <- function(optim, eff, z) {
-  # For the selection of r0 and r1 in the matrix of estimates, we
-  # can just select the first row, since they yield equivalent R
-  # time series and thus identical results.
-  d     <- optim$est[1, "d", drop = TRUE]
-  z_del <- z[eff - d]
-
-  r     <- optim$est[, c("r0", "r1"), drop = FALSE]
-  f     <- function(z, r) ts_hys(z, r[1L], r[2L])
-  H     <- t(apply(r, 1, FUN = f, z = z_del))
-
-  return(list(z_del = z_del, d = d, r = r, H = H))
+regname <- function(x) {
+  names(x) <- paste0("regime", 0:1)
+  return(x)
 }
-
 
 coe_to_matrix <- function(coe, p0, p1) {
   nc <- 1L + max(p0, p1)

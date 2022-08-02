@@ -8,11 +8,11 @@ plot.bar <- function(x, y = NULL,
   r <- attr(x, "r")
   mar <- 0.1 * abs(max(y) - min(y))
 
-  plot(NA,
-       xlab = xlab,
-       ylab = ylab,
+  plot(x = time,
+       y = y,
        xlim = c(eff[1], eff[length(eff)]),
        ylim = c(min(y)-mar, max(y)+mar),
+       col = "white",
        ...
        )
 
@@ -22,7 +22,7 @@ plot.bar <- function(x, y = NULL,
     lwd = 10
     )
 
-  lines(y,
+  lines(time, y,
         lwd = 3,
         col = "#428bca")
 
