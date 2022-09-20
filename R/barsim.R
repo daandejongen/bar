@@ -40,7 +40,6 @@ barsim <- function(r, d, phi, psi, resvar,
   init_R <- rep(start_regime, times = a)
 
   z_del <- z[time_del(y = z, d = d, p0, p1, d_sel = d)]
-  return(z)
 
   H     <- ts_hys(z_del, r0 = r[1], r1 = r[2])
   R     <- c(init_R, ts_reg(H, start = start_regime))

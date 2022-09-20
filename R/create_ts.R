@@ -23,6 +23,8 @@ ts_reg <- function(H, start = NULL) {
 }
 
 
+
+
 #' @importFrom stats rnorm
 AR <- function(x, coe, resvar) {
   # One time step AR simulation
