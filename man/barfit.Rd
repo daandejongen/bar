@@ -12,7 +12,7 @@ barfit(
   p1 = 1,
   r = c(0.1, 0.9),
   r_search = "quantile",
-  r_select
+  r_select = "widest"
 )
 }
 \arguments{
@@ -28,9 +28,12 @@ barfit(
 
 \item{r}{A numeric vector of length 2 with (boundary) threshold values}
 
-\item{search}{What type of boundary values of r are specified to find
+\item{r_search}{What type of boundary values of r are specified to find
 optimal threshold values: "quantile" for quantile values, "scale" for
-values on the scale of z, "none" if r is fixed}
+values on the scale of z, "none" if r is fixed.}
+
+\item{r_select}{When multiple pairs of thresholds yield the same residual
+sums of squares, which one should be selected? Options: "widest" and "smallest".}
 }
 \value{
 An object of class bar.

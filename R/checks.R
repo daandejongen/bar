@@ -57,7 +57,7 @@ check_search_r <- function(search, r) {
   }
 
   if (! all(r0 <= r1)) {
-    stop(paste0("The first threshold value should (always) ",
+    stop(paste0("The first threshold value should ",
                 "be smaller or equal than the second one."), call. = FALSE)
   }
 
@@ -131,6 +131,37 @@ check_sim_input <- function(z, d, r, phi, psi, resvar, init_vals,
     stop("The starting regime 'start_regime' must be 0 or 1.", call. = FALSE)
   }
 }
+
+
+check_zsim_input <- function(r, length, n_switches, start_regime) {
+  if (!is.numeric(r))            error_numeric(r)
+  if (!is.numeric(length))       error_numeric(length)
+  if (!is.numeric(n_switches))   error_numeric(n_switches)
+  if (!is.numeric(start_regime)) error_numeric(start_regime)
+
+  check_search_r(search = "none", r = r)
+
+  if (!is_whole(length)) {
+    stop("'length' should be a whole number.", call. = FALSE)
+  }
+
+  if (!is_whole(n_switches)) {
+    stop("'n_switches' should be a whole number.", call. = FALSE)
+  }
+
+  if (length < 1) {
+    stop(paste0("'length' should be positive."), call. = FALSE)
+  }
+
+  if (n_switches < 0) {
+    stop(paste0("'n_switches' should be non-negative."), call. = FALSE)
+  }
+
+  if (! start_regime %in% c(0,1)) {
+    stop("'start_regime' should be 0 or 1.", call. = FALSE)
+  }
+}
+
 
 # Helpers
 

@@ -15,6 +15,27 @@ optim_grid <- function(y, eff, x, z, p0, p1, grid) {
 }
 
 
+optim_grid2 <- function(y, eff, x, z, p0, p1, grid) {
+  results <- numeric(nrow(grid))
+  prev <- rep(-9L, times = length(eff))
+
+  for (i in 1:nrow(grid)) {
+    H <- ts_hys(z[eff - grid[i, "d"]], grid[i, "r0"], grid[i, "r1"])
+    R <- ts_reg(H, start = grid[i, "s"])
+    if (all(R == prev)) {
+      results[i] <- results[i-1]
+    } else {
+      X <- create_X(x, p0, p1, R)
+      results[i] <-fit(y, X)$rss
+    }
+    prev <- R
+  }
+  argsmin <- which(results == min(results))
+
+  return(grid[argsmin, , drop = FALSE])
+}
+
+
 select_min_d <- function(M) {
   # If multiple delay values yield the same optimal solution,
   # the smallest value for d is selected.

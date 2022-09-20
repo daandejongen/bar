@@ -42,23 +42,38 @@ add_d <- function(d, grid) {
 
 
 add_start <- function(grid, z, eff) {
-  start_known <- get_start_known(grid[, 1], grid[, 2], grid[, 3], z, eff)
-  grid <- unname(cbind(grid, start_known))
+  starts <- apply(grid, MARGIN = 1, FUN = get_start, z = z, eff = eff)
+  grid <- unname(cbind(grid, starts))
 
-  grid_unknown <- grid[!start_known, ]
-  grid_unknown[, 4] <- 1 # alternative start
+  grid[starts == -1L, 4] <- 0L
+  grid_unknown <- grid[starts == -1L, ]
+  grid_unknown[, 4] <- 1L # alternative start
 
   return(rbind(grid, grid_unknown))
 }
 
 
-get_start_known <- function(ds, r0s, r1s, z, eff) {
-  ifelse(z[eff[1] - ds] <= r0s | z[eff[1] - ds] > r1s,
-         yes = 9L, no = 0L)
+get_start <- function(g, z, eff) {
+  d <- g[1]
+  r0 <- g[2]
+  r1 <- g[3]
+  go_back <- d
+
+  # If max(p0, p1) > d, and z[eff[1] - d] is in the hysteresis zone,
+  # we have some observations at the start of z that may inform us about
+  # the starting regime, e.g. if z[eff[1] - d - 1] > r1
+  while (go_back <= eff[1] - 1) {
+    zi <- z[eff[1] - go_back]
+    if (zi <= r0) {
+      return(0L)
+    } else if (zi <= r1) {
+      go_back <- go_back + 1
+    } else {
+      return(1L)
+    }
+  }
+  return(-1L)
 }
-
-
-
 
 
 

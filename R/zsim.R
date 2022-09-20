@@ -1,33 +1,4 @@
-simulate_y <- function(y, eff, R, phi, psi, resvar) {
-
-  for (i in eff) {
-
-    if (R[i] == 0L) {
-      x <- lag_obs(y, i, get_order(phi))
-      y[i] <- AR(x, phi, resvar[1])
-    }
-
-    if (R[i] == 1L) {
-      x <- lag_obs(y, i, get_order(psi))
-      y[i] <- AR(x, psi, resvar[2])
-    }
-
-  }
-
-  return(y)
-}
-
-
-get_init_vals <- function(coe, resvar, len) {
-  # Random observations based on the AR model of the starting regime
-  coe_0 <- coe[2:length(coe)]
-  mean  <- coe[1] / (1 - sum(coe_0))
-  var   <- resvar / (1 - coe_0 %*% coe_0)
-  return(rnorm(n = len, mean = mean, sd = sqrt(var)))
-}
-
-
-simulate_z <- function(r, length, n_switches, start_regime) {
+zsim <- function(r, length, n_switches, start_regime) {
   dist <- r[2] - r[1]
   max  <- r[2] + dist
   min  <- r[1] - dist
@@ -51,11 +22,10 @@ simulate_z <- function(r, length, n_switches, start_regime) {
   return(values)
 }
 
-
 get_sw_pnts <- function(length, n_switches) {
   sw_space <- length %/% (n_switches + 1)
   sw_pnts  <- sw_space * 1:n_switches
-  max_noise <- sw_space %/% (length %/% 50)
+  max_noise <- sw_space %/% 4
   noise <- sample(-max_noise:max_noise, size = n_switches, replace = TRUE)
 
   return(sw_pnts + noise)
@@ -74,6 +44,7 @@ cross <- function(arg) {
   # Delete the last one
   return(all[-length(all)])
 }
+
 
 
 

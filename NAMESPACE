@@ -3,6 +3,7 @@
 S3method(coef,bar)
 S3method(fitted,bar)
 S3method(nobs,bar)
+S3method(plot,bardata)
 S3method(print,bar)
 S3method(residuals,bar)
 S3method(summary,bar)

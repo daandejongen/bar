@@ -1,31 +1,59 @@
 #' @export
 print.bar <- function(x) {
 
-  print(str(x))
-  return()
-
   n   <- unname(x$n)
-  coe <- round(x[["coefficients"]], 2)
-  r0  <- round(x[["tresholds"]][1], 2)
-  r1  <- round(x[["tresholds"]][2], 2)
+  coe <- round(x$coefficients, 2)
+  r0  <- round(x$thresholds[1], 2)
+  r1  <- round(x$thresholds[2], 2)
 
   cat(paste0("BAR model fitted on ", n[1], " observations."),
       "\n\n",
-      "if R[t] = 0:\n", make_formula(coe[1, , drop = TRUE], x$rv[1]),
+      "if R[t] = 0:\n", make_formula(coe[1, , drop = TRUE], x$resvar[1]),
       "\n\n",
-      "if R[t] = 1:\n", make_formula(coe[2, , drop = TRUE], x$rv[2]),
+      "if R[t] = 1:\n", make_formula(coe[2, , drop = TRUE], x$resvar[2]),
       "\n\n",
-      hys_switch(x$d, r0, r1),
+      hys_switch(x$delay, r0, r1),
       "\n\n",
       " and e[t] ~ N(0, 1)."
   )
 }
 
 
+#' @export
+summary.bar <- function(x) {
+
+  n <- unname(x$n)
+
+  coe <- x$coefficients
+  res_stat <- round(quantile(x$residuals, c(0, .25, .5, .75, 1)), 3)
+  names(res_stat) <- c("min", "1q", "median", "3q", "max")
+
+  cat(paste0("BAR model fitted on ", n[1], " observations,",
+             " of which\n", n[2], " observations in regime 0 and\n",
+             n[3], " observations in regime 1.\n")
+  )
+
+  cat("\nEstimated thresholds:\n")
+  print(round(x$thresholds, 3))
+
+  cat("\nEstimated model coefficients:\n")
+  print(round(coe, 3))
+
+  cat("\nEstimated residual variances:\n")
+  print(round(x$resvar, 3))
+
+  cat("\nResiduals: \n")
+  print(res_stat)
+
+  cat("\nModel aic:\n")
+  cat(x$aic)
+}
+
+
 # Helpers
 
 make_formula <- function(coe, rv) {
-  coe <- coe[coe != 0]
+  coe <- coe[!is.na(coe)]
   p <- length(coe) - 1
   lags_str <- if (p == 0) NULL else paste0("y[t-", 1:p, "]")
 

@@ -31,9 +31,9 @@ barfit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
   grid  <- gridmaker(z, r, search, d, eff)
   n_search <- nrow(grid)
 
-  optim <- optim_grid(y[eff], eff, x, z, p0, p1, grid)
+  optim <- optim_grid2(y[eff], eff, x, z, p0, p1, grid)
 
-  bar   <- new_bar(y[eff], eff, x, z, p0, p1, optim, select, n_search)
+  bar   <- new_bar(y, eff, x, z, p0, p1, optim, select, n_search)
 
   return(bar)
 }

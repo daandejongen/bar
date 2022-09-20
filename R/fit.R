@@ -16,6 +16,7 @@ fit <- function(y, X) {
               res = res[ , 1, drop = TRUE]))
 }
 
+
 estimate_resvar <- function(R, res) {
 
   n0 <- sum(1-R)
@@ -27,6 +28,11 @@ estimate_resvar <- function(R, res) {
   resvar1 <- (res1 %*% res1) / n1
 
   return(c(resvar0, resvar1))
+}
+
+
+compute_aic <- function(rv, n0, n1, p0, p1) {
+  value <- n0*log(rv[1]) + 2*(p0+2) + n1*log(rv[2]) + 2*(p1+2)
 }
 
 

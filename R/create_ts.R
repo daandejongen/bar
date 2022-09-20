@@ -15,6 +15,7 @@ ts_reg <- function(H, start = NULL) {
   loop_over <- which(H == -1)
 
   R <- c(start, H)
+  # The + 1 is because we added a start, so the indices need to shift one
   for (i in loop_over + 1) if (R[i] == -1L) R[i] <- R[i-1]
   R <- R[-1]
 

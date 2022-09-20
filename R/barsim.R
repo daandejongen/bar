@@ -16,29 +16,58 @@
 #' @export
 #'
 #' @examples
-barsim <- function(z, d, r, phi, psi, resvar = c(1, 1),
-                   init_vals = NULL,
-                   start_regime = NULL) {
-  a <- n_ineff(get_order(psi), get_order(phi), d)
+barsim <- function(r, d, phi, psi, resvar,
+                   init_vals    = NULL,
+                   start_regime = 0,
+                   z            = NULL,
+                   length       = NULL,
+                   n_switches   = NULL) {
 
-  if (missing(init_vals)){
-    init_vals <- rep(0, times = a)
+  if (is.null(z)) {
+    check_zsim_input(r, length, n_switches, start_regime)
+    z <- simulate_z(r, length, n_switches, start_regime)
   }
-  init_R <- rep(9L, times = a)
 
   check_sim_input(z, d, r, phi, psi, resvar, init_vals, start_regime)
+  p0 <- get_order(phi)
+  p1 <- get_order(psi)
+  a  <- n_ineff(p0, p1, d)
 
-  p0    <- get_order(phi)
-  p1    <- get_order(psi)
+  if (is.null(init_vals)){
+    coe <- if (start_regime == 0) phi else psi
+    init_vals <- get_init_vals(coe, resvar[start_regime + 1], a)
+  }
+  init_R <- rep(start_regime, times = a)
+
   z_del <- z[time_del(y = z, d = d, p0, p1, d_sel = d)]
+  return(z)
+
   H     <- ts_hys(z_del, r0 = r[1], r1 = r[2])
   R     <- c(init_R, ts_reg(H, start = start_regime))
   eff   <- time_eff(z, d, p0, p1)
-  y     <- c(init_vals, eff)
+  y     <- c(init_vals, eff) # Placeholder, just to have the correct length
 
-  y <- simulate(y, eff, R, phi, psi, resvar)
+  y     <- simulate_y(y, eff, R, phi, psi, resvar)
+  true  <- name_true_vals(d, r, phi, psi, resvar)
 
-  return(y)
+  data  <- new_bardata(y = y,
+                       z = z,
+                       H = c(rep(NA, a), H == -1),
+                       R = R,
+                       r = r,
+                       n_ineff = a)
+
+  return(list(data = data, true_vals = true))
+}
+
+
+name_true_vals <- function(d, r, phi, psi, resvar) {
+  names(d) <- "delay"
+  names(r) <- c("r0", "r1")
+  names(phi) <- paste0("phi", 0:(length(phi)-1))
+  names(psi) <- paste0("psi", 0:(length(psi)-1))
+  names(resvar) <- paste0("regime", 0:1)
+  return(list(d = d, r = r, phi = phi, psi = psi, resvar = resvar))
 }
 
 
