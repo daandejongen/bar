@@ -1,4 +1,4 @@
-gridmaker <- function(z, r_bounds, search, d, eff) {
+create_grid <- function(z, r_bounds, search, d, eff) {
   grid <- create_grid_r(z, r_bounds, search)
   grid <- add_d(d, grid)
   grid <- add_start(grid, z, eff)
@@ -24,14 +24,6 @@ create_grid_r <- function(z, r_bounds, search) {
 }
 
 
-#' @importFrom stats quantile
-get_z_values <- function(z, search, r_bounds) {
-  a <- if (search == "quantile") quantile(z, r_bounds) else r_bounds
-  z_val <- sort(unique(z[z >= a[1] & z <= a[2]]))
-  return(z_val)
-}
-
-
 add_d <- function(d, grid) {
   r0s <- rep(grid[, 1], times = length(d))
   r1s <- rep(grid[, 2], times = length(d))
@@ -50,6 +42,16 @@ add_start <- function(grid, z, eff) {
   grid_unknown[, 4] <- 1L # alternative start
 
   return(rbind(grid, grid_unknown))
+}
+
+
+# Helpers
+
+#' @importFrom stats quantile
+get_z_values <- function(z, search, r_bounds) {
+  a <- if (search == "quantile") quantile(z, r_bounds) else r_bounds
+  z_val <- sort(unique(z[z >= a[1] & z <= a[2]]))
+  return(z_val)
 }
 
 

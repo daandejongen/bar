@@ -1,21 +1,4 @@
 optim_grid <- function(y, eff, x, z, p0, p1, grid) {
-
-  get_rss <- function(g) {
-    H <- ts_hys(z[eff - g[1]], g[2], g[3])
-    R <- ts_reg(H, start = g[4])
-    X <- create_X(x, p0, p1, R)
-    return(fit(y, X)$rss)
-  }
-
-  results <- apply(X = grid, MARGIN = 1, FUN = get_rss)
-
-  argsmin <- which(results == min(results))
-
-  return(grid[argsmin, , drop = FALSE])
-}
-
-
-optim_grid2 <- function(y, eff, x, z, p0, p1, grid) {
   results <- numeric(nrow(grid))
   prev <- rep(-9L, times = length(eff))
 
@@ -26,7 +9,7 @@ optim_grid2 <- function(y, eff, x, z, p0, p1, grid) {
       results[i] <- results[i-1]
     } else {
       X <- create_X(x, p0, p1, R)
-      results[i] <-fit(y, X)$rss
+      results[i] <- fit(y, X)$rss
     }
     prev <- R
   }

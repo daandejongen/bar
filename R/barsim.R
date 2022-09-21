@@ -40,13 +40,11 @@ barsim <- function(r, d, phi, psi, resvar,
   init_R <- rep(start_regime, times = a)
 
   z_del <- z[time_del(y = z, d = d, p0, p1, d_sel = d)]
-
   H     <- ts_hys(z_del, r0 = r[1], r1 = r[2])
   R     <- c(init_R, ts_reg(H, start = start_regime))
   eff   <- time_eff(z, d, p0, p1)
-  y     <- c(init_vals, eff) # Placeholder, just to have the correct length
-
-  y     <- simulate_y(y, eff, R, phi, psi, resvar)
+  y_    <- c(init_vals, eff) # Placeholder, just to have the correct length
+  y     <- simulate_y(y_, eff, R, phi, psi, resvar)
   true  <- name_true_vals(d, r, phi, psi, resvar)
 
   data  <- new_bardata(y = y,
@@ -61,8 +59,8 @@ barsim <- function(r, d, phi, psi, resvar,
 
 
 name_true_vals <- function(d, r, phi, psi, resvar) {
-  names(d) <- "delay"
-  names(r) <- c("r0", "r1")
+  names(d)   <- "delay"
+  names(r)   <- c("r0", "r1")
   names(phi) <- paste0("phi", 0:(length(phi)-1))
   names(psi) <- paste0("psi", 0:(length(psi)-1))
   names(resvar) <- paste0("regime", 0:1)

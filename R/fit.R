@@ -1,13 +1,5 @@
 fit <- function(y, X) {
-  coe <- tryCatch(
-    error = function(cond) NULL,
-    solve(t(X) %*% X) %*% t(X) %*% y
-  )
-
-  if (is.null(coe)){
-    return(list(rss = Inf, coe = NA, res = NA))
-  }
-
+  coe <- solve(t(X) %*% X) %*% t(X) %*% y
   res <- y - X %*% coe
   rss <- t(res) %*% (res)
 
