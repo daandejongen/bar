@@ -3,8 +3,8 @@ new_bar <- function(y, eff, x, z, p0, p1, optim, select, n_search) {
   optim_d <- select_min_d(optim)
   optim_r <- select_r(optim_d, select)
 
-  a    <- n_ineff(d, p0, p1)
   d    <- optim_d[1 , "d"]
+  a    <- n_ineff(d, p0, p1)
   r    <- optim_r[, c("r0", "r1")]
   z_del<- z[eff - d]
   H    <- ts_hys(z_del, r[1], r[2])
@@ -21,10 +21,10 @@ new_bar <- function(y, eff, x, z, p0, p1, optim, select, n_search) {
   p        <- regname(c(p0, p1))
   names(n) <- c("total", paste0("regime", 0:1))
 
-  data <- new_bardata(y = y,
-                      z = z,
-                      H = c(rep(NA, a), H == -1),
-                      R = c(rep(NA, a), R),
+  data <- new_bardata(y = y[eff],
+                      z = z_del,
+                      H = H == -1,
+                      R = R,
                       r = r,
                       n_ineff = a)
 

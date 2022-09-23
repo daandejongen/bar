@@ -17,7 +17,9 @@ n_ineff <- function(d, p0, p1) {
 }
 
 
-lag_obs <- function(y, i, p) {
+lag_obs <- function(y, t, p) {
+  # Returns the values of the lagged predictor, i.e., y[t-1], ..., y[t-p]
+  # adds a 1 at the start for the constant predictor (the intercept)
   return(if (p == 0) 1 else c(1, y[(i-1):(i-p)]))
 }
 
@@ -25,3 +27,10 @@ lag_obs <- function(y, i, p) {
 get_order <- function(coe) {
   return(length(coe) - 1)
 }
+
+
+#' @export
+get_sw_pnts <- function(R) {
+  return(which(c(FALSE, R[2:n] - R[1:(n-1)] != 0)))
+}
+

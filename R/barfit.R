@@ -28,7 +28,7 @@ barfit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
 
   x     <- create_x(y, d, p0, p1)
   eff   <- time_eff(y, d, p0, p1)
-  grid  <- gridmaker(z, r, search, d, eff)
+  grid  <- create_grid(z, r, search, d, eff)
   n_search <- nrow(grid)
 
   optim <- optim_grid(y[eff], eff, x, z, p0, p1, grid)
