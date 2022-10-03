@@ -3,6 +3,7 @@ plot.bardata <- function(x, y = NULL, ...) {
   y <- x$y
   z <- x$z
   R <- x$R
+  H <- x$H
   r <- attr(x, "r")
   n_ineff <- attr(x, "n_ineff")
   col_reg1 <- "grey80"
@@ -16,6 +17,8 @@ plot.bardata <- function(x, y = NULL, ...) {
   sw_pnts_mat <- get_sw_pnts_mat(R)
 
   make_zplot(time, z, r, R, n_ineff, col_reg1, sw_pnts_mat)
+
+  make_Hplot(H, get_minmax(z)[1])
 
   par(mar = c(4.1, 4.1, 0, 2.1))
 
@@ -51,8 +54,15 @@ make_yplot <- function(time, y, R, n_ineff, col_reg1, sw_pnts_mat) {
 }
 
 
+make_Hplot <- function(H, height) {
+  sw_pnts_mat <- get_sw_pnts_mat(H)
+  segments(x0 = sw_pnts_mat[, 1], y0 = height,
+           x1 = sw_pnts_mat[, 2], y1 = height,
+           lwd = 15, col = "blue2", lend = "butt")
+}
+
+
 rect_all <- function(R, x, col_reg1, n_ineff, sw_pnts_mat) {
-  rect_bg(R, x, col_reg1)
   rect_reg(R, x, col_reg1, sw_pnts_mat)
   rect_ineff(x, n_ineff)
 }
@@ -69,24 +79,13 @@ rect_reg <- function(R, x, col_reg1, sw_pnts_mat) {
   # We want to always draw regime rectangles from 1 to 2, 3 to 4, ...
   # so the rectangle color is the color of on the starting regime
   # and we chose the background color the opposite color.
-  rect_col <- c(col_reg1, "white")[2 - R[1]]
 
   ybottom <- rep(get_minmax(x)[1], times = nrow(sw_pnts_mat))
   ytop    <- rep(get_minmax(x)[2], times = nrow(sw_pnts_mat))
 
   rect(sw_pnts_mat[, 1], ybottom, sw_pnts_mat[, 2], ytop,
-       col = rect_col, border = NA)
+       col = col_reg1, border = NA)
 }
-
-
-
-rect_bg <- function(R, x, col_reg1) {
-  col_bg <- c("white", col_reg1)[2 - R[1]]
-
-  rect(1, get_minmax(x)[1], length(R), get_minmax(x)[2],
-       col = col_bg, border = NA)
-}
-
 
 
 get_minmax <- function(x) {
@@ -113,7 +112,15 @@ get_sw_pnts_mat <- function(R) {
   # We put them in a matrix (by row) to have a from and a to column.
   n <- length(sw_pnts)
   even <- n %% 2 == 0
-  points <- if (even) c(1, sw_pnts, length(R)) else  c(1, sw_pnts)
+  start_with_1 <- R[!is.na(R)][1] == TRUE
+
+  if (even) {
+    if (start_with_1) points <- c(1, sw_pnts, length(R))
+    else points <- sw_pnts
+  } else {
+    if (start_with_1) points <- c(1, sw_pnts)
+    else points <- c(sw_pnts, length(R))
+  }
 
   sw_pnts_mat <- matrix(points, ncol = 2, byrow = TRUE)
 
