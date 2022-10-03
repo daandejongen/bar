@@ -13,8 +13,6 @@ plot.bardata <- function(x, y = NULL, ...) {
              mfrow = c(2, 1))
   on.exit(par(old), add = TRUE)
 
-
-
   sw_pnts_mat <- get_sw_pnts_mat(R)
 
   make_zplot(time, z, r, R, n_ineff, col_reg1, sw_pnts_mat)
@@ -73,8 +71,8 @@ rect_reg <- function(R, x, col_reg1, sw_pnts_mat) {
   # and we chose the background color the opposite color.
   rect_col <- c(col_reg1, "white")[2 - R[1]]
 
-  ybottom <- rep(get_minmax(x)[1], times = n - uneven)
-  ytop    <- rep(get_minmax(x)[2], times = n - uneven)
+  ybottom <- rep(get_minmax(x)[1], times = nrow(sw_pnts_mat))
+  ytop    <- rep(get_minmax(x)[2], times = nrow(sw_pnts_mat))
 
   rect(sw_pnts_mat[, 1], ybottom, sw_pnts_mat[, 2], ytop,
        col = rect_col, border = NA)
@@ -114,8 +112,10 @@ get_sw_pnts_mat <- function(R) {
   # We delete the last sw_point if there are an uneven number of them.
   # We put them in a matrix (by row) to have a from and a to column.
   n <- length(sw_pnts)
-  uneven <- n %% 2 != 0
-  sw_pnts_mat <- matrix(sw_pnts[1:(n-uneven)], ncol = 2, byrow = TRUE)
+  even <- n %% 2 == 0
+  points <- if (even) c(1, sw_pnts, length(R)) else  c(1, sw_pnts)
+
+  sw_pnts_mat <- matrix(points, ncol = 2, byrow = TRUE)
 
   return(sw_pnts_mat)
 }

@@ -36,6 +36,9 @@ summary.bar <- function(x) {
   cat("\nEstimated thresholds:\n")
   print(round(x$thresholds, 3))
 
+  cat("\nEstimated delay:\n")
+  cat(x$delay, "\n")
+
   cat("\nEstimated model coefficients:\n")
   print(round(coe, 3))
 
