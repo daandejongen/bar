@@ -19,21 +19,20 @@
 #' @examples
 #' a <- 1
 barfit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
-                   r = c(.1, .9), r_search = "quantile", r_select = "widest") {
+                   r = c(.1, .9), r_type = "quantile", r_select = "widest") {
 
-  search <- check_search_r(r_search, r)
-  select <- check_r_select(r_select)
-  check_data(y, z)
-  check_dp(d, p0, p1)
+  check_output <- check_barfit_input(y, z, d, p0, p1, r, r_type, r_select)
+  r_type       <- check_output[1]
+  r_select     <- check_output[2]
 
   x     <- create_x(y, d, p0, p1)
   eff   <- time_eff(y, d, p0, p1)
-  grid  <- create_grid(z, r, search, d, eff)
+  grid  <- create_grid(z, r, r_type, d, eff)
   n_search <- nrow(grid)
 
   optim <- optim_grid(y[eff], eff, x, z, p0, p1, grid)
 
-  bar   <- new_bar(y, eff, x, z, p0, p1, optim, select, n_search)
+  bar   <- new_bar(y, eff, x, z, p0, p1, optim, r_select, n_search)
 
   return(bar)
 }

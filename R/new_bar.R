@@ -14,6 +14,9 @@ new_bar <- function(y, eff, x, z, p0, p1, optim, select, n_search) {
   n    <- c(length(eff), sum(1-R), sum(R))
   rv   <- estimate_resvar(R, fit$res)
   aic  <- compute_aic(rv, n[2], n[3], p0, p1)
+  aicc <- compute_aicc(rv, n[2], n[3], p0, p1)
+  bic  <- compute_bic(rv, n[2], n[3], p0, p1)
+  ic   <- c("aic" = aic, "aicc" = aicc, "bic" = bic)
 
   rss  <- fit$rss
 
@@ -37,7 +40,7 @@ new_bar <- function(y, eff, x, z, p0, p1, optim, select, n_search) {
          orders       = p,
          resvar       = rv,
          rss          = fit$rss,
-         aic          = aic,
+         ic           = ic,
          n            = n,
          equiv_pars   = optim
          ),

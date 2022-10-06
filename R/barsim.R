@@ -16,12 +16,12 @@
 #' @export
 #'
 #' @examples
-barsim <- function(r, d, phi, psi, resvar,
+barsim <- function(r, d, phi_R0, phi_R1, resvar,
                    init_vals    = NULL,
-                   start_regime = 0,
                    z            = NULL,
                    length       = NULL,
-                   n_switches   = NULL) {
+                   n_switches   = NULL,
+                   start_regime = NULL) {
 
   if (is.null(z)) {
     check_zsim_input(r, length, n_switches, start_regime)

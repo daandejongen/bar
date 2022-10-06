@@ -1,69 +1,105 @@
-check_data <- function(y, z) {
+check_barfit_input <- function(y, z, d, p0, p1, r, r_type, r_select) {
+  r_type   <- check_r_type(r_type)
+  r_select <- check_r_select(r_select)
+  check_yz(y, z)
+  check_whole_nn(d)
+  check_whole_nn(p0)
+  check_whole_nn(p1)
+  check_r(r)
+  check_rz(r, r_type, z)
+
+  return(c(r_type, r_select))
+}
+
+check_barsim_input <- function(r, d, phi_R0, phi_R1, resvar, init_vals,
+                               z, n_t, n_switches, start_regime) {
+  check_r(r)
+  check_whole_nn(d)
+  check_phi(phi_R0, R01 = 0)
+  check_phi(phi_R1, R01 = 1)
+  check_resvar(resvar)
+  check_init_vals(init_vals, phi_R0, phi_R1, d)
+  check_start_regime(start_regime)
+  if (is.null(z)) {
+    check_n_t_switches(n_t, n_switches, r)
+  } else {
+    check_z(z, start_regime)
+  }
+}
+
+check_yz <- function(y, z) {
   if (!is.numeric(y)) error_numeric(y)
   if (!is.numeric(z)) error_numeric(z)
 
   if (length(y) != length(z)) {
-    stop(paste0("'y' and 'z' must be of equal length:\n",
+    stop(paste0("'y' and 'z' must be of equal length.\n",
                 "Currently, 'y' has length ", length(y),
                 " and 'z' has length ", length(z), "."),
          call. = FALSE)
   }
 }
 
-check_dp <- function(d, p0, p1) {
-  if (!is.numeric(d))  error_numeric(d)
-  if (!is.numeric(p0)) error_numeric(p0)
-  if (!is.numeric(p1)) error_numeric(p1)
-
-  if (!all(is_whole(c(p0, p1, d)))) {
-    stop("'p0', 'p1' and 'd' should be whole numbers.", call. = FALSE)
-  }
-
+check_whole_nn <- function(x) {
+  if (!is.numeric(x)) error_numeric(x)
+  if (!is_whole(x))   error_whole(x)
+  if (x < 0)          error_nonnegative(x)
 }
 
-
-check_search_r <- function(search, r) {
+check_r <- function(r) {
   if (!is.numeric(r)) error_numeric(r)
 
-  s <- tryCatch(
-    error = function(cond) {
-      stop("'search' must be one of these: none, quantile, custom, scale",
-           call. = FALSE)
-    },
-    match.arg(
-      arg = search,
-      choices = c("none", "quantile", "custom", "scale")
-    )
-  )
-
-  if (s == "custom") {
-
-    if (!is.matrix(r) || ncol(r) != 2) {
-      stop("If 'search' is custom, 'r' should be a matrix with two columns.",
-           call. = FALSE)
-    }
-    r0 <- r[, 1, drop = TRUE]
-    r0 <- r[, 2, drop = TRUE]
-
-  } else {
-
+  if (is.vector(r)) {
     if (length(r) != 2) {
-      stop(paste0("You must provide exactly two values for r.\n
-                You specified ", length(r), " values."), call. = FALSE)
+      stop(paste0("If 'r' is a vector, its length must be 2. You provided ",
+                  "a vector of length ", length(r), "."),
+           call. = FALSE)
     }
-    r0 <- r[1]
-    r1 <- r[2]
-
+    if (r[1] >= r[2]) {
+      stop(paste0("The second threshold value must be larger than or ",
+                  "equal to the first."), call. = FALSE)
+    }
   }
 
-  if (! all(r0 <= r1)) {
-    stop(paste0("The first threshold value should ",
-                "be smaller or equal than the second one."), call. = FALSE)
+  if (is.matrix(r)) {
+    if (ncol(r) != 2) {
+      stop(paste0("If 'r' is a matrix, it must have 2 columns. \n You ",
+                  "provided a matrix with ", ncol(r), " columns."),
+           call. = FALSE)
+    }
+    if (! all(r[, 1] <= r[, 2])) {
+      stop(paste0("The second threshold value should be always larger ",
+                  "than or equal to the first."), call. = FALSE)
+    }
   }
-
-  return(s)
 }
 
+check_r_type <- function(r_type) {
+  r_type <- tryCatch(
+    error = function(cond) {
+      stop("'r_type' must be 'quantile' or 'scale'",
+           call. = FALSE)
+    },
+    # The match.arg() function is used to give users the option to
+    # abbreviate the argument.
+    match.arg(
+      arg = r_type,
+      choices = c("quantile", "scale")
+    )
+  )
+  return(r_type)
+}
+
+check_rz <- function(r, r_type, z) {
+  if (r_type == "quantile" && !all(0 <= r & r <= 1)) {
+    stop("'r_type' is quantile, so the values of 'r' must be in [0, 1].",
+         call. = FALSE)
+  }
+
+  if (r_type == "scale" && !all(min(z) <= r & r <= max(z))) {
+    stop(paste0("'r_type' is scale, so the values of 'r' must be in in ",
+                "the range of 'z'."), call. = FALSE)
+  }
+}
 
 check_r_select <- function(r_select) {
   r_select <- tryCatch(
@@ -78,90 +114,76 @@ check_r_select <- function(r_select) {
   )
 }
 
-
-check_sim_input <- function(z, d, r, phi, psi, resvar, init_vals,
-                            start_regime) {
-
-  if (!is.numeric(z))         error_numeric(z)
-  if (!is.numeric(phi))       error_numeric(phi)
-  if (!is.numeric(psi))       error_numeric(psi)
-  if (!is.numeric(resvar))    error_numeric(resvar)
-  if (!is.numeric(r))         error_numeric(r)
-  if (!is.numeric(init_vals) && !is.null(init_vals)) error_numeric(init_vals)
-
-  if (r[1] > r[2]) {
-    stop(paste0("The first threshold value should (always) ",
-                "be smaller or equal than the second one."), call. = FALSE)
-  }
-
-  if (!all(c(phi[-1], psi[-1]) > -1 & c(phi[-1], psi[-1]) < 1)) {
-    stop("Autoregressive coefficients in 'phi' and 'psi' must
-         be between -1 and 1.", call. = FALSE)
-  }
-
-  if (resvar[1] < 0 || resvar[2] < 0) {
-    stop("Residual variances in 'resvar' cannot be negative.",
+check_resvar <- function(resvar) {
+  if (!is.numeric(resvar)) error_numeric(resvar)
+  if (length(resvar != 2)) {
+    stop(paste0("You must provide exactly one residual variance for ",
+                "each regime.\nYou provided ", length(resvar), " values."),
          call. = FALSE)
   }
-
-  p <- max(get_order(phi), get_order(psi), d)
-
-  if (!is.null(init_vals)) {
-    if (p < length(init_vals)) {
-      stop("Too many initial values provided in 'init_vals'.", call. = FALSE)
-    }
-    if (p > length(init_vals)) {
-      print(c(p, init_vals))
-      stop("Too few initial values provided in 'init_vals'.", call. = FALSE)
-    }
-  }
-
-  if (!is_whole(d)) {
-    stop("'d' must be a whole number.", call. = FALSE)
-  }
-
-  start_unknown <- r[1] < z[p+1-d] && r[2] > z[p+1-d]
-  if (start_unknown && is.null(start_regime)) {
-    stop("A starting regime is needed, but not provided.\n
-         The first value of 'z' (delayed)
-         falls in the hysteresis zone (r[1], r[2]).",
-         call. = FALSE)
-  }
-  if (start_unknown && ! start_regime %in% c(0, 1)) {
-    stop("The starting regime 'start_regime' must be 0 or 1.", call. = FALSE)
+  if (!all(resvar > 0)) {
+    stop("Values in 'resvar' should be postitive.", call. = FALSE)
   }
 }
 
-
-check_zsim_input <- function(r, length, n_switches, start_regime) {
-  if (!is.numeric(r))            error_numeric(r)
-  if (!is.numeric(length))       error_numeric(length)
-  if (!is.numeric(n_switches))   error_numeric(n_switches)
-  if (!is.numeric(start_regime)) error_numeric(start_regime)
-
-  check_search_r(search = "none", r = r)
-
-  if (!is_whole(length)) {
-    stop("'length' should be a whole number.", call. = FALSE)
-  }
-
-  if (!is_whole(n_switches)) {
-    stop("'n_switches' should be a whole number.", call. = FALSE)
-  }
-
-  if (length < 1) {
-    stop(paste0("'length' should be positive."), call. = FALSE)
-  }
-
-  if (n_switches < 0) {
-    stop(paste0("'n_switches' should be non-negative."), call. = FALSE)
-  }
-
-  if (! start_regime %in% c(0,1)) {
-    stop("'start_regime' should be 0 or 1.", call. = FALSE)
+check_phi <- function(phi, R01) {
+  if (!is.numeric(phi)) error_numeric(phi)
+  S <- sum(phi[-1])
+  if (S >= 1) {
+    if (S == 1) {
+      warning(paste0("The AR process in regime ", R01, " is non-stationary,\n",
+                     "because it has a unit root."), call. = FALSE)
+    }
+    if (S > 1) {
+      warning(paste0("The AR process in regime ", R01, " is non-stationary,\n",
+                     "because it has a explosive root."), call. = FALSE)
+    }
   }
 }
 
+check_init_vals <- function(init_vals, phi_R0, phi_R1, d) {
+  if (is.null(init_vals)) return()
+  if (!is.numeric(init_vals)) error_numeric(init_vals)
+  a <- max(c(get_order(phi_R0), get_order(phi_R1), d))
+  if (a != length(init_vals)) {
+    stop(paste0("Too few or many initial values provided in 'init_vals'.\n",
+                "since max{p0, p1, d} = ", a, "values were needed but ",
+                length(init_vals), " were given."), call. = FALSE)
+  }
+}
+
+check_start_regime <- function(start_regime) {
+  if (is.null(start_regime)) return()
+  if (! (start_regime %in% c(0, 1))) {
+    stop("'start_regime' must be 0 or 1.", call. = FALSE)
+  }
+}
+
+check_n_t_switches <- function(n_t, n_switches, r) {
+  check_whole_nn(n_t)
+  check_whole_nn(n_switches)
+  if (n_switches >= n_t) {
+    stop(paste0(n_switches, " switches are not possible if the length of\n",
+                "the time series is ", n_t))
+  }
+}
+
+check_z <- function(z, r, phi_R0, phi_R1, d, start_regime) {
+  if (!is.numeric(z)) error_numeric(z)
+
+  # For the first observation of y that is predicted, y[a + 1],
+  # we can use observations 1, ..., a + 1 - d to infer about the regime
+  # at time point a + 1
+  a <- max(c(phi_R0, phi_R1, d))
+  first_obs <- (a + 1) - d
+  if (all(first_z > r[1] & first_z <= r[2]) && is.null(start_regime)) {
+    stop(paste0("Observation(s) ",
+                paste(1:first_obs, sep = ", "),
+                " fall in the hysteresis zone, but no starting regime
+                was given. "),
+         call. = FALSE)
+  }
+}
 
 # Helpers
 
@@ -170,12 +192,22 @@ is_whole <- function(x, tol = .Machine$double.eps) {
   return(whole)
 }
 
+error_whole <- function(x) {
+  err <- structure(
+    list(
+      message = paste0("'", substitute(x), "' must be a whole number."),
+      call = NULL
+    ),
+    class = c("not_whole", "error", "condition")
+  )
+  stop(err)
+}
 
 error_numeric <- function(x) {
   err <- structure(
     list(
-      message = paste0("'", substitute(x), "' should be numeric, ",
-                       "you provided an object of type ",
+      message = paste0("'", substitute(x), "' must be numeric. ",
+                       "You provided an object of type ",
                        typeof(x), "."),
       call = NULL
     ),
@@ -183,3 +215,15 @@ error_numeric <- function(x) {
   )
   stop(err)
 }
+
+error_nonnegative <- function(x) {
+  err <- structure(
+    list(
+      message = paste0("'", substitute(x), "' must be non-negative."),
+      call = NULL
+    ),
+    class = c("not_nonnegative", "error", "condition")
+  )
+  stop(err)
+}
+

@@ -11,7 +11,7 @@ create_grid <- function(z, r_bounds, search, d, eff) {
 #' @importFrom utils combn
 create_grid_r <- function(z, r_bounds, search) {
 
-  if (search %in% c("none", "custom")) {
+  if (search == "custom") {
     return(matrix(r_bounds, ncol = 2))
   }
 

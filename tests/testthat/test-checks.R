@@ -1,32 +1,24 @@
 test_that("unequal length of y and z throws error", {
   y <- numeric(1)
   z <- numeric(2)
-  expect_error(check_data(y, z), "y and z must be of equal length")
+  expect_error(check_data(y, z), "must be of equal length")
 })
-
 
 test_that("delay and orders should be whole numbers", {
   expect_error(check_dp(d = 1, p0 = 1.5, p1 = 9), "whole numbers")
 })
 
-
-test_that("r should contain two numbers", {
-  expect_error(check_search_r("none", r = 1), "provide exactly two values")
-  expect_error(check_search_r("scale", r = 1:3), "provide exactly two values")
+test_that("delay and orders should be non-negative", {
+  expect_error(check_dp(d = 1, p0 = -1, p1 = 0), "non-negative")
 })
 
-
-test_that("rL is smaller than rU", {
-  expect_error(check_search_r("custom", r = c(3, 2)), "The first threshold")
-})
-
-
-test_that("search is of type char", {
-  expect_error(check_search(TRUE), "an object of type character")
-})
-
-test_that("search is restricted to certain choices", {
-  expect_error(check_search("blabla"), "search must be one of")
+test_that("invalid r throws correct error.", {
+  expect_error(check_r_type("q", r = 1), "length must be 2")
+  expect_error(check_r_type("q", r = matrix(1, ncol = 3)), "2 columns")
+  expect_error(check_r_type("q", r = c(2, 1)), "larger than")
+  expect_error(check_r_type("quar", r = c(1, 2)), "must be")
+  expect_error(check_r_type("q", r = c(1, 2)), "so the values")
+  expect_error(check_r_type("s", r = c(1, 9), z = 1:4), "so the values")
 })
 
 test_that("Simulation inputs must be valid", {
