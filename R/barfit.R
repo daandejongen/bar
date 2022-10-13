@@ -25,14 +25,13 @@ barfit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
   r_type       <- check_output[1]
   r_select     <- check_output[2]
 
-  x     <- create_x(y, d, p0, p1)
-  eff   <- time_eff(y, d, p0, p1)
-  grid  <- create_grid(z, r, r_type, d, eff)
-  n_search <- nrow(grid)
+  eff   <- time_eff(y, max(d), max(p0), max(p1))
+  x     <- create_x(y, eff, max(p0), max(p1))
 
+  grid  <- create_grid(z, r, r_type, d, eff)
   optim <- optim_grid(y[eff], eff, x, z, p0, p1, grid)
 
-  bar   <- new_bar(y, eff, x, z, p0, p1, optim, r_select, n_search)
+  bar   <- new_bar(y, eff, x, z, p0, p1, optim, r_select)
 
   return(bar)
 }

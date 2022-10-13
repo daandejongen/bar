@@ -19,22 +19,20 @@
 barsim <- function(r, d, phi_R0, phi_R1, resvar,
                    init_vals    = NULL,
                    z            = NULL,
-                   length       = NULL,
+                   n_t          = NULL,
                    n_switches   = NULL,
                    start_regime = NULL) {
 
-  if (is.null(z)) {
-    check_zsim_input(r, length, n_switches, start_regime)
-    z <- simulate_z(r, length, n_switches, start_regime)
-  }
+  check_barsim_input(r, d, phi_R0, phi_R1, resvar, init_vals,
+                     z, n_t, n_switches, start_regime)
 
-  check_sim_input(z, d, r, phi, psi, resvar, init_vals, start_regime)
-  p0 <- get_order(phi)
-  p1 <- get_order(psi)
+  z <- if (is.null(z)) simulate_z(r, n_t, n_switches, start_regime)
+  p0 <- get_order(phi_R0)
+  p1 <- get_order(phi_R1)
   a  <- n_ineff(p0, p1, d)
 
   if (is.null(init_vals)){
-    coe <- if (start_regime == 0) phi else psi
+    coe <- if (start_regime == 0) phi_R0 else phi_R1
     init_vals <- get_init_vals(coe, resvar[start_regime + 1], a)
   }
   init_R <- rep(start_regime, times = a)
@@ -44,8 +42,8 @@ barsim <- function(r, d, phi_R0, phi_R1, resvar,
   R     <- c(init_R, ts_reg(H, start = start_regime))
   eff   <- time_eff(z, d, p0, p1)
   y_    <- c(init_vals, eff) # Placeholder, just to have the correct length
-  y     <- simulate_y(y_, eff, R, phi, psi, resvar)
-  true  <- name_true_vals(d, r, phi, psi, resvar)
+  y     <- simulate_y(y_, eff, R, phi_R0, phi_R1, resvar)
+  true  <- name_true_vals(d, r, phi_R1, phi_R1, resvar)
 
   data  <- new_bardata(y = y,
                        z = z,
@@ -61,8 +59,8 @@ barsim <- function(r, d, phi_R0, phi_R1, resvar,
 name_true_vals <- function(d, r, phi, psi, resvar) {
   names(d)   <- "delay"
   names(r)   <- c("r0", "r1")
-  names(phi) <- paste0("phi", 0:(length(phi)-1))
-  names(psi) <- paste0("psi", 0:(length(psi)-1))
+  names(phi) <- paste0("phi_R0_", 0:(length(phi)-1))
+  names(psi) <- paste0("phi_R1_", 0:(length(psi)-1))
   names(resvar) <- paste0("regime", 0:1)
   return(list(d = d, r = r, phi = phi, psi = psi, resvar = resvar))
 }

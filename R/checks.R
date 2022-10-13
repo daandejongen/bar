@@ -116,7 +116,7 @@ check_r_select <- function(r_select) {
 
 check_resvar <- function(resvar) {
   if (!is.numeric(resvar)) error_numeric(resvar)
-  if (length(resvar != 2)) {
+  if (length(resvar) != 2) {
     stop(paste0("You must provide exactly one residual variance for ",
                 "each regime.\nYou provided ", length(resvar), " values."),
          call. = FALSE)
@@ -136,7 +136,7 @@ check_phi <- function(phi, R01) {
     }
     if (S > 1) {
       warning(paste0("The AR process in regime ", R01, " is non-stationary,\n",
-                     "because it has a explosive root."), call. = FALSE)
+                     "because it has an explosive root."), call. = FALSE)
     }
   }
 }

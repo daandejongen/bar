@@ -18,16 +18,6 @@ ts_reg <- function(H, start = NULL) {
 }
 
 
-#' @importFrom stats rnorm
-AR <- function(x, coe, resvar) {
-  # One time step AR simulation.
-  pred <- x %*% coe
-  resi <- rnorm(1, 0, sqrt(resvar))
-
-  return(pred + resi)
-}
-
-
 
 
 

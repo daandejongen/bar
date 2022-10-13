@@ -6,13 +6,17 @@ new_bar <- function(y, eff, x, z, p0, p1, optim, select, n_search) {
   d    <- optim_d[1 , "d"]
   a    <- n_ineff(d, p0, p1)
   r    <- optim_r[, c("r0", "r1")]
+
   z_del<- z[eff - d]
   H    <- ts_hys(z_del, r[1], r[2])
   R    <- ts_reg(H, start = optim_r[1, "s"])
+
   fit  <- fit(y[eff], create_X(x, p0, p1, R))
   coe  <- coe_to_matrix(fit$coe, p0, p1)
+
   n    <- c(length(eff), sum(1-R), sum(R))
   rv   <- estimate_resvar(R, fit$res)
+
   aic  <- compute_aic(rv, n[2], n[3], p0, p1)
   aicc <- compute_aicc(rv, n[2], n[3], p0, p1)
   bic  <- compute_bic(rv, n[2], n[3], p0, p1)
@@ -44,8 +48,7 @@ new_bar <- function(y, eff, x, z, p0, p1, optim, select, n_search) {
          n            = n,
          equiv_pars   = optim
          ),
-    class = "bar",
-    n_grid_search = n_search
+    class = "bar"
     )
 
   return(bar)

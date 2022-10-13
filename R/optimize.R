@@ -15,7 +15,7 @@ optim_grid <- function(y, eff, x, z, p0, p1, grid) {
   }
   argsmin <- which(results == min(results))
 
-  return(grid[argsmin, , drop = FALSE])
+  return(list(est = grid[argsmin, , drop = FALSE], min_rss = min(results)))
 }
 
 

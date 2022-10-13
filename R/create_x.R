@@ -1,6 +1,4 @@
-create_x <- function(y, d, p0, p1) {
-  # Function to create n - p by p + 1 matrix of lagged predictors
-  eff <- time_eff(y, d, p0, p1)
+create_x <- function(y, eff, p0, p1) {
   x <- matrix(1, nrow = length(eff), ncol = 1)
 
   p <- max(p0, p1)
@@ -10,7 +8,7 @@ create_x <- function(y, d, p0, p1) {
   }
 
   for (i in 1:p) {
-    x <- cbind(x, y[eff-i])
+    x <- cbind(x, y[eff - i])
   }
 
   return(x)
@@ -26,4 +24,7 @@ create_X <- function(x, p0, p1, R) {
   X  <- cbind(x0 * R0, x1 * R1)
   return(X)
 }
+
+
+
 
