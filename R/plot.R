@@ -1,5 +1,5 @@
 #' @export
-plot.bardata <- function(x, y = NULL, ...) {
+plot.hystar_data <- function(x, y = NULL, ...) {
   y <- x$y
   z <- x$z
   R <- x$R

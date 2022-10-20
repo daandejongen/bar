@@ -1,24 +1,23 @@
-simulate_y <- function(y, eff, R, phi, psi, resvar) {
-  p0 <- get_order(phi)
-  p1 <- get_order(psi)
+simulate_y <- function(y, eff, R, phi_R0, phi_R1, resvar) {
+  p0 <- get_order(phi_R0)
+  p1 <- get_order(phi_R1)
 
   for (t in eff) {
 
     if (R[t] == 0L) {
       x <- lag_obs(y, t, p0)
-      y[t] <- AR(x, phi, resvar[1])
+      y[t] <- AR(x, phi_R0, resvar[1])
     }
 
     if (R[t] == 1L) {
       x <- lag_obs(y, t, p1)
-      y[t] <- AR(x, psi, resvar[2])
+      y[t] <- AR(x, phi_R1, resvar[2])
     }
 
   }
 
   return(y)
 }
-
 
 simulate_z <- function(r, n_t, n_switches, start_regime) {
   # The idea is to create a z-variable that moves around the
@@ -57,7 +56,6 @@ simulate_z <- function(r, n_t, n_switches, start_regime) {
   return(c(values, z[n_t]))
 }
 
-
 #' @importFrom stats rnorm
 AR <- function(x, coe, resvar) {
   # One time step AR simulation.
@@ -67,9 +65,7 @@ AR <- function(x, coe, resvar) {
   return(pred + resi)
 }
 
-
 # Helpers:
-
 get_init_vals <- function(coe, resvar, len) {
   # Random observations based on the AR model of the starting regime
   coe_0 <- coe[2:length(coe)]
@@ -77,7 +73,6 @@ get_init_vals <- function(coe, resvar, len) {
   var   <- resvar / (1 - coe_0 %*% coe_0)
   return(rnorm(n = len, mean = mean, sd = sqrt(var)))
 }
-
 
 get_ret_pnts <- function(length, n_switches) {
   # Returns the time indices where 'z' should turn.
@@ -88,7 +83,6 @@ get_ret_pnts <- function(length, n_switches) {
 
   return(pnts + noise)
 }
-
 
 cross <- function(arg) {
   # Function to connect two points in time X value space.
@@ -107,6 +101,3 @@ cross <- function(arg) {
   # Delete the last one
   return(values)
 }
-
-
-

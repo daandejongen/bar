@@ -16,16 +16,17 @@
 #' @export
 #'
 #' @examples
-barsim <- function(r, d, phi_R0, phi_R1, resvar,
-                   init_vals    = NULL,
-                   z            = NULL,
-                   n_t          = NULL,
-                   n_switches   = NULL,
-                   start_regime = NULL) {
+hystar_sim <- function(r, d, phi_R0, phi_R1, resvar,
+                   init_vals     = NULL,
+                   z             = NULL,
+                   n_t           = NULL,
+                   n_switches    = NULL,
+                   start_regime  = NULL) {
 
-  check_barsim_input(r, d, phi_R0, phi_R1, resvar, init_vals,
+  check_hystar_sim_input(r, d, phi_R0, phi_R1, resvar, init_vals,
                      z, n_t, n_switches, start_regime)
 
+  if (is.matrix(r)) r <- r[1, , drop = TRUE]
   z <- if (is.null(z)) simulate_z(r, n_t, n_switches, start_regime)
   p0 <- get_order(phi_R0)
   p1 <- get_order(phi_R1)
@@ -43,6 +44,7 @@ barsim <- function(r, d, phi_R0, phi_R1, resvar,
   eff   <- time_eff(z, d, p0, p1)
   y_    <- c(init_vals, eff) # Placeholder, just to have the correct length
   y     <- simulate_y(y_, eff, R, phi_R0, phi_R1, resvar)
+
   true  <- name_true_vals(d, r, phi_R1, phi_R1, resvar)
 
   data  <- new_bardata(y = y,

@@ -28,7 +28,7 @@ select_min_d <- function(M) {
 
 
 select_r <- function(M, select) {
-  dist <- apply(X = M[, 2:3], MARGIN = 1, FUN = sum)
+  dist <- apply(X = M[, 2:3, drop = FALSE], MARGIN = 1, FUN = sum)
   # If there are multiple pairs that are the widest (smallest),
   # which.max (which.min) makes sure that only one is selected
   if (select == "widest")   row_select <- which.max(dist)

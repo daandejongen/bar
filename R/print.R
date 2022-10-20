@@ -1,16 +1,18 @@
 #' @export
-print.bar <- function(x) {
+print.hystar <- function(x) {
 
   n   <- unname(x$n)
-  coe <- round(x$coefficients, 2)
+  coe <- split_coe(x$coefficients, x$orders[1], x$orders[2])
+  coe0 <- round(coe$coe0, 2)
+  coe1 <- round(coe$coe1, 2)
   r0  <- round(x$thresholds[1], 2)
   r1  <- round(x$thresholds[2], 2)
 
-  cat(paste0("BAR model fitted on ", n[1], " observations."),
+  cat(paste0("hysTAR model fitted on ", n[1], " observations."),
       "\n\n",
-      "if R[t] = 0:\n", make_formula(coe[1, , drop = TRUE], x$resvar[1]),
+      "if R[t] = 0:\n", make_formula(coe0, x$resvar[1]),
       "\n\n",
-      "if R[t] = 1:\n", make_formula(coe[2, , drop = TRUE], x$resvar[2]),
+      "if R[t] = 1:\n", make_formula(coe1, x$resvar[2]),
       "\n\n",
       hys_switch(x$delay, r0, r1),
       "\n\n",
@@ -18,17 +20,22 @@ print.bar <- function(x) {
   )
 }
 
-
 #' @export
-summary.bar <- function(x) {
+summary.hystar <- function(x) {
 
   n <- unname(x$n)
 
-  coe <- x$coefficients
+  coe <- create_coe_matrix_SE_p(coe = x$coefficients,
+                                y = x$data$y,
+                                R = x$data$R,
+                                rv = x$resvar,
+                                p0 = x$orders[1],
+                                p1 = x$orders[2])
+
   res_stat <- round(quantile(x$residuals, c(0, .25, .5, .75, 1)), 3)
   names(res_stat) <- c("min", "1q", "median", "3q", "max")
 
-  cat(paste0("BAR model fitted on ", n[1], " observations,",
+  cat(paste0("hysTAR model fitted on ", n[1], " observations,",
              " of which\n", n[2], " observations in regime 0 and\n",
              n[3], " observations in regime 1.\n")
   )
@@ -48,15 +55,12 @@ summary.bar <- function(x) {
   cat("\nResiduals: \n")
   print(res_stat)
 
-  cat("\nModel aic:\n")
-  cat(x$aic)
+  cat("\nInformation criteria:\n")
+  print(x$ic)
 }
 
-
 # Helpers
-
 make_formula <- function(coe, rv) {
-  coe <- coe[!is.na(coe)]
   p <- length(coe) - 1
   lags_str <- if (p == 0) NULL else paste0("y[t-", 1:p, "]")
 
@@ -69,7 +73,6 @@ make_formula <- function(coe, rv) {
   paste0(a, b, " + ", round(sqrt(rv), 2), " e[t]")
 }
 
-
 hys_switch <- function(d, r0, r1) {
   ztd <- paste0("z[t-", d, "]")
   paste0("Where:\n",
@@ -77,8 +80,3 @@ hys_switch <- function(d, r0, r1) {
          "R[t] = R[t-1] \t if ", r0, " < ", ztd, " <= ", r1, "\n",
          "R[t] = 1 \t if ", r1, " < ", ztd)
 }
-
-
-
-
-

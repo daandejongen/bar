@@ -12,7 +12,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // get_regimes
 IntegerVector get_regimes(IntegerVector H);
-RcppExport SEXP _bar_get_regimes(SEXP HSEXP) {
+RcppExport SEXP _hystar_get_regimes(SEXP HSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -23,11 +23,11 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_bar_get_regimes", (DL_FUNC) &_bar_get_regimes, 1},
+    {"_hystar_get_regimes", (DL_FUNC) &_hystar_get_regimes, 1},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_bar(DllInfo *dll) {
+RcppExport void R_init_hystar(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

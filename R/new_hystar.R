@@ -1,4 +1,4 @@
-new_bar <- function(y, eff, x, z, p0, p1, optim, select, n_search) {
+new_hystar <- function(y, eff, x, z, p0, p1, optim, select, n_search) {
 
   optim_d <- select_min_d(optim)
   optim_r <- select_r(optim_d, select)
@@ -12,7 +12,9 @@ new_bar <- function(y, eff, x, z, p0, p1, optim, select, n_search) {
   R    <- ts_reg(H, start = optim_r[1, "s"])
 
   fit  <- fit(y[eff], create_X(x, p0, p1, R))
-  coe  <- coe_to_matrix(fit$coe, p0, p1)
+
+  coe  <- fit$coe
+  names(coe) <- c(paste0("R0_phi", 0:p0), paste0("R1_phi", 0:p1))
 
   n    <- c(length(eff), sum(1-R), sum(R))
   rv   <- estimate_resvar(R, fit$res)
@@ -28,14 +30,14 @@ new_bar <- function(y, eff, x, z, p0, p1, optim, select, n_search) {
   p        <- regname(c(p0, p1))
   names(n) <- c("total", paste0("regime", 0:1))
 
-  data <- new_bardata(y = y[eff],
+  data <- new_hystar_data(y = y[eff],
                       z = z_del,
                       H = H == -1,
                       R = R,
                       r = r,
                       n_ineff = a)
 
-  bar <- structure(
+  hystar <- structure(
     list(data         = data,
          residuals    = fit$res,
          coefficients = coe,
@@ -48,36 +50,25 @@ new_bar <- function(y, eff, x, z, p0, p1, optim, select, n_search) {
          n            = n,
          equiv_pars   = optim
          ),
-    class = "bar"
+    class = "hystar"
     )
 
-  return(bar)
+  return(hystar)
 }
 
 
-# Helpers
-regname <- function(x) {
-  names(x) <- paste0("regime", 0:1)
-  return(x)
+new_hystar_data <- function(y, z, H, R, r, n_ineff) {
+
+  out <- structure(
+    data.frame(y = y, z = z, H = H, R = R),
+    class = "hystar_data",
+    r = r, n_ineff = n_ineff
+  )
+
+  return(out)
 }
 
 
-coe_to_matrix <- function(coe, p0, p1) {
-  nc <- 1L + max(p0, p1)
-
-  zeros0 <- rep(NA, nc - (p0 + 1L))
-  zeros1 <- rep(NA, nc - (p1 + 1L))
-
-  coe0 <- c(coe[1:(1 + p0)], zeros0)
-  coe1 <- c(coe[(p0+2):(p0+p1+2)], zeros1)
-
-  C <- matrix(c(coe0, coe1), nrow = 2, byrow = TRUE)
-
-  colnames(C) <- c("constant", paste0("Lag ", 1:(nc-1)))
-  rownames(C) <- paste0("regime", 0:1)
-
-  return(C)
-}
 
 
 

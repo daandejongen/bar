@@ -1,4 +1,4 @@
-check_barfit_input <- function(y, z, d, p0, p1, r, r_type, r_select) {
+check_hystar_fit_input <- function(y, z, d, p0, p1, r, r_type, r_select) {
   r_type   <- check_r_type(r_type)
   r_select <- check_r_select(r_select)
   check_yz(y, z)
@@ -11,8 +11,8 @@ check_barfit_input <- function(y, z, d, p0, p1, r, r_type, r_select) {
   return(c(r_type, r_select))
 }
 
-check_barsim_input <- function(r, d, phi_R0, phi_R1, resvar, init_vals,
-                               z, n_t, n_switches, start_regime) {
+check_hystar_sim_input <- function(r, d, phi_R0, phi_R1, resvar, init_vals,
+                               z, n_t, n_switches, self_exciting, start_regime) {
   check_r(r)
   check_whole_nn(d)
   check_phi(phi_R0, R01 = 0)
@@ -20,10 +20,21 @@ check_barsim_input <- function(r, d, phi_R0, phi_R1, resvar, init_vals,
   check_resvar(resvar)
   check_init_vals(init_vals, phi_R0, phi_R1, d)
   check_start_regime(start_regime)
+
+  # With respect to z, n_t, n_switches, self_exciting, start_regime, the user
+  # has three options:
+  # 1. provide z;
+  # 2. z = NULL. And provide n_t, self_exciting and start_regime;
+  # 3. z = NULL. And provide n_t, n_switches and start_regime.
+
   if (is.null(z)) {
+    check_whole_nn(n_t)
     check_n_t_switches(n_t, n_switches, r)
-  } else {
-    check_z(z, start_regime)
+  }
+
+  if (!is.null(z)) {
+    check_z_compatible(z, n_t, n_switches)
+    check_z(z, r, phi_R0, phi_R1, d, start_regime)
   }
 }
 
@@ -55,8 +66,9 @@ check_r <- function(r) {
            call. = FALSE)
     }
     if (r[1] >= r[2]) {
-      stop(paste0("The second threshold value must be larger than or ",
-                  "equal to the first."), call. = FALSE)
+      stop(paste0("If 'r' is a vector, it must represent an interval. ",
+                  "However, the second value is now smaller than the first."),
+           call. = FALSE)
     }
   }
 
@@ -168,6 +180,18 @@ check_n_t_switches <- function(n_t, n_switches, r) {
   }
 }
 
+check_z_compatible <- function(z, n_t, n_switches) {
+  if (!is.null(n_t) && n_t != length(z)) {
+    warning(paste0("'n_t' is ignored, because a time series for 'z' ",
+                   "of a different length was provided."))
+  }
+
+  if (!is.null(n_switches)) {
+    warning(paste0("'n_switches' is ignored, because a time series for 'z' ",
+                   "was provided."))
+  }
+}
+
 check_z <- function(z, r, phi_R0, phi_R1, d, start_regime) {
   if (!is.numeric(z)) error_numeric(z)
 
@@ -182,11 +206,15 @@ check_z <- function(z, r, phi_R0, phi_R1, d, start_regime) {
                 " fall in the hysteresis zone, but no starting regime
                 was given. "),
          call. = FALSE)
+  } else {
+    if (!is.null(start_regime)) {
+      warning(paste0("'start_regime' was ignored, because it could be inferred ",
+                     "from 'z' and 'r'."))
+    }
   }
 }
 
 # Helpers
-
 is_whole <- function(x, tol = .Machine$double.eps) {
   whole <- all(abs(round(x) - x) < tol)
   return(whole)
