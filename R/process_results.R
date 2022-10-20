@@ -1,6 +1,5 @@
 create_coe_matrix <- function(coe, p0, p1) {
   coes <- split_coe(coe, p0, p1)
-
   coes_eq_length <- complete_shorter_coe(coes$coe0, coes$coe1)
 
   C <- matrix(c(coes_eq_length$coe0,
@@ -37,7 +36,7 @@ split_coe <- function(coe, p0, p1) {
   # We are given one vector of coefficients, but from this only it is unclear
   # where the coefficients of regime 0 stop and regime 1 starts.
   # With the orders we can split this vector at the right place, note that
-  # the number of coefficients is one more than the order because of phi0.
+  # the number of coefficients is one less than the order because of phi0.
   nc0 <- p0 + 1L
   nc1 <- p1 + 1L
 
