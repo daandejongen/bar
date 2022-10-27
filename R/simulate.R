@@ -40,7 +40,7 @@ simulate_cossin <- function(start_regime, n_switches, n_t, form) {
   f <- if (form == "cosine") function(x) cos(x) else function (x) -sin(x)
   out <- valence * f(time * n_switches * pi / (n_t - 1))
 
-  return(out)
+  return(round(out, 3))
 }
 
 #' @importFrom stats rnorm

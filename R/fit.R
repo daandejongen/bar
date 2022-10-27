@@ -16,10 +16,10 @@ estimate_resvar <- function(R, res) {
   res0 <- res * (1-R)
   res1 <- res * R
 
-  resvar0 <- (res0 %*% res0) / n0
-  resvar1 <- (res1 %*% res1) / n1
+  resvar <- c((res0 %*% res0) / n0, (res1 %*% res1) / n1)
+  names(resvar) <- paste0("Regime", 0:1)
 
-  return(c(resvar0, resvar1))
+  return(resvar)
 }
 
 

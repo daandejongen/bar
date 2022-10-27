@@ -1,4 +1,6 @@
-check_hystar_fit_input <- function(y, z, d, p0, p1, r, r_type, r_select) {
+check_hystar_fit_input <- function(y, z, d, p0, p1,
+                                   r, r_type, r_select,
+                                   ic_method) {
   r_type   <- check_r_type(r_type)
   r_select <- check_r_select(r_select)
   check_yz(y, z)
@@ -7,8 +9,9 @@ check_hystar_fit_input <- function(y, z, d, p0, p1, r, r_type, r_select) {
   check_whole_nn(p1)
   check_r(r)
   check_rz(r, r_type, z)
+  ic_method <- check_ic_method(ic_method)
 
-  return(c(r_type, r_select))
+  return(c(r_type, r_select, ic_method))
 }
 
 check_yz <- function(y, z) {
@@ -53,16 +56,18 @@ check_r <- function(r) {
 }
 
 check_r_type <- function(r_type) {
+  choices <- c("quantile", "scale")
   r_type <- tryCatch(
     error = function(cond) {
-      stop("'r_type' must be 'quantile' or 'scale'",
+      stop(paste0("'r_type' must be one of these:\n",
+                  paste0(choices, collapse = ", "), "."),
            call. = FALSE)
     },
     # The match.arg() function is used to give users the option to
     # abbreviate the argument.
     match.arg(
       arg = r_type,
-      choices = c("quantile", "scale")
+      choices = choices
     )
   )
   return(r_type)
@@ -81,17 +86,35 @@ check_rz <- function(r, r_type, z) {
 }
 
 check_r_select <- function(r_select) {
+  choices <- c("widest", "smallest")
   r_select <- tryCatch(
     error = function(cond) {
-      stop("'r_select' must be one of these: widest, smallest",
+      stop(paste0("'r_select' must be one of these:\n",
+                  paste0(choices, collapse = ", "), "."),
            call. = FALSE)
     },
     match.arg(
       arg = r_select,
-      choices = c("widest", "smallest")
+      choices = choices
     )
   )
 
   return(r_select)
 }
 
+check_ic_method <- function(ic_method) {
+  choices <- c("aic", "aicc", "bic")
+  ic_method <- tryCatch(
+    error = function(cond) {
+      stop(paste0("'ic_method' must be one of these:\n",
+                  paste0(choices, collapse = ", "), "."),
+           call. = FALSE)
+    },
+    match.arg(
+      arg = ic_method,
+      choices = choices
+    )
+  )
+
+  return(ic_method)
+}

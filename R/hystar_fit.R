@@ -64,18 +64,28 @@
 #' summary(model)
 #' plot(model$data)
 hystar_fit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
-                       r = c(.1, .9), r_type = "quantile", r_select = "smallest") {
+                       r = c(.1, .9), r_type = "quantile",
+                       r_select = "smallest", ic_method = "bic") {
 
-  check_input <- check_hystar_fit_input(y, z, d, p0, p1, r, r_type, r_select)
-  r_type      <- check_input[1]
-  r_select    <- check_input[2]
+  check_input <- check_hystar_fit_input(y, z, d, p0, p1,
+                                        r, r_type,
+                                        r_select, ic_method)
+  r_type <- check_input[1]
+  r_select <- check_input[2]
+  ic_method <- check_input[3]
 
-  eff         <- time_eff(y, max(d), max(p0), max(p1))
-  x           <- create_x(y, eff, max(p0), max(p1))
-  grid        <- create_grid(z, r, r_type, d, eff)
-  optim       <- optim_grid(y[eff], eff, x, z, p0, p1, grid)$est
+  eff <- time_eff(y, max(d), max(p0), max(p1))
+  x <- create_x(y, eff, max(p0), max(p1))
+  grid <- if (is.matrix(r)) r else create_grid(z, r, r_type, d, eff)
+  p_options <- create_p_options(p0, p1)
 
-  bar         <- new_hystar(y, eff, x, z, p0, p1, optim, r_select)
+  OPT <- optim_p(y, x, z, eff, grid, p_options, r_select, ic_method)
+  est <- OPT$est
+  equiv <- OPT$equiv
+  model <- run_model(y, x, z, eff, est["p0"], est["p1"],
+                   est["d"], est["r0"], est["r1"], est["s"],
+                   return_HR = TRUE)
+  hystar <- new_hystar(y, x, z, eff, est, model, equiv)
 
-  return(bar)
+  return(hystar)
 }

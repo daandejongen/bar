@@ -6,7 +6,7 @@ is_whole <- function(x, tol = .Machine$double.eps) {
 check_whole_nn <- function(x) {
   if (!is.numeric(x)) error_numeric(x)
   if (!is_whole(x))   error_whole(x)
-  if (x < 0)          error_nonnegative(x)
+  if (!all(x >= 0))   error_nonnegative(x)
 }
 
 error_whole <- function(x) {

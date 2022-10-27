@@ -6,8 +6,11 @@ check_hystar_sim_input <- function(z, z_sim, r, d, phi_R0, phi_R1, resvar,
   check_phi(phi_R1, R01 = 1)
   check_resvar(resvar)
   check_init_vals(init_vals, phi_R0, phi_R1, d)
+  check_start_regime(start_regime)
   p <- max(get_order(phi_R0), get_order(phi_R0))
-  check_z(z, r, p, d, start_regime)
+  start <- check_z_start(z, r, p, d, start_regime)
+
+  return(start)
 }
 
 check_z_sim_input <- function(start_regime, n_switches, n_t, form, scale) {
@@ -68,6 +71,7 @@ check_start_regime <- function(start_regime) {
   if (! (start_regime %in% c(0, 1))) {
     stop("'start_regime' must be 0 or 1.", call. = FALSE)
   }
+
 }
 
 check_n_t_switches <- function(n_t, n_switches) {
@@ -79,15 +83,12 @@ check_n_t_switches <- function(n_t, n_switches) {
   }
 }
 
-check_z <- function(z, r, p, d, start_regime) {
+check_z_start <- function(z, r, p, d, start_regime) {
   if (!is.numeric(z)) error_numeric(z)
 
-  # For the first observation of y that is predicted, y[a + 1],
-  # we can use observations 1, ..., a + 1 - d to infer about the regime
-  # at time point a + 1
-  first_obs <- (max(d, p) + 1) - d
+  start <- get_start(g = c(d, r[1], r[2]), z, time_eff(z, d, p, p))
 
-  if (all(first_obs > r[1] & first_obs <= r[2]) && is.null(start_regime)) {
+  if (start == -1) {
     stop(paste0("Observation(s) ",
                 paste(1:first_obs, sep = ", "),
                 " fall in the hysteresis zone, but no starting regime
@@ -100,6 +101,7 @@ check_z <- function(z, r, p, d, start_regime) {
     }
   }
 
+  return(start)
 }
 
 check_form <- function(form) {

@@ -17,8 +17,8 @@ create_x <- function(y, eff, p0, p1) {
 
 create_X <- function(x, p0, p1, R) {
   n  <- nrow(x)
-  R0 <- matrix(rep(1L-R, p0+1), nrow = n, byrow = FALSE)
-  R1 <- matrix(rep(R,    p1+1), nrow = n, byrow = FALSE)
+  R0 <- matrix(rep(1L - R, p0 + 1), nrow = n, byrow = FALSE)
+  R1 <- matrix(rep(R, p1 + 1), nrow = n, byrow = FALSE)
   x0 <- x[, 1:(p0+1)]
   x1 <- x[, 1:(p1+1)]
   X  <- cbind(x0 * R0, x1 * R1)

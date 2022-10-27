@@ -11,10 +11,6 @@ create_grid <- function(z, r_bounds, search, d, eff) {
 #' @importFrom utils combn
 create_grid_r <- function(z, r_bounds, search) {
 
-  if (search == "custom") {
-    return(matrix(r_bounds, ncol = 2))
-  }
-
   z_values <- get_z_values(z, search, r_bounds)
   r_neq <- t(combn(z_values, 2))
   r_eq  <- matrix(z_values, nrow = length(z_values), ncol = 2, byrow = FALSE)

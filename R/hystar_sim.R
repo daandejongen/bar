@@ -59,8 +59,8 @@
 hystar_sim <- function(z, r, d, phi_R0, phi_R1, resvar,
                        init_vals = NULL, start_regime = NULL) {
 
-  check_hystar_sim_input(z, z_sim, r, d, phi_R0, phi_R1, resvar,
-                         init_vals, start_regime)
+  start_regime <- check_hystar_sim_input(z, z_sim, r, d, phi_R0, phi_R1, resvar,
+                                         init_vals, start_regime)
 
   if (is.matrix(r)) r <- r[1, , drop = TRUE]
 
@@ -86,10 +86,10 @@ hystar_sim <- function(z, r, d, phi_R0, phi_R1, resvar,
 
   data  <- new_hystar_data(y = y,
                        z = z,
-                       H = c(rep(NA, a), H == -1),
+                       H = c(rep(NA, k), H == -1),
                        R = R,
                        r = r,
-                       n_ineff = a)
+                       n_ineff = k)
 
   return(list(data = data, true_values = true))
 }
