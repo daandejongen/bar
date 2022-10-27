@@ -5,17 +5,14 @@ time_eff <- function(y, d, p0, p1) {
   return(b:n)
 }
 
-
 time_del <- function(y, d, p0, p1, d_sel) {
   # Time points of the delayed observations
   return(time_eff(y, d, p0, p1) - d_sel)
 }
 
-
 n_ineff <- function(d, p0, p1) {
   return(max(d, p0, p1))
 }
-
 
 lag_obs <- function(y, t, p) {
   # Returns the values of the lagged predictor, i.e., y[t-1], ..., y[t-p]
@@ -23,13 +20,10 @@ lag_obs <- function(y, t, p) {
   return(if (p == 0) 1 else c(1, y[(t-1):(t-p)]))
 }
 
-
 get_order <- function(coe) {
   return(length(coe) - 1)
 }
 
-
-#' @export
 get_sw_pnts <- function(R) {
   n <- length(R)
   return(which(c(FALSE, R[2:n] - R[1:(n-1)] != 0)))

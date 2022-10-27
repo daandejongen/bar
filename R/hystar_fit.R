@@ -37,9 +37,7 @@
 #'     of the delay parameter. Defaults to 1.
 #' @param p0 A numeric vector with one or more values for the search space
 #'     of the autoregressive order of Regime 0. Defaults to 1.
-#' @param p1 A numeric vector with one or more values for the search space
-#'     of the autoregressive order of Regime 1. By default equal to p0.
-#'     Defaults to `p0`.
+#' @param p1 Same as `p0`, but for regime 1.
 #' @param r A vector or a matrix. If `r` is a vector, its length must be 2,
 #'     such that it represents the interval in which the threshold value
 #'     should be searched. If `r` is a matrix, it must have two columns,
@@ -65,7 +63,7 @@
 #' model <- barfit(y = y, z = z, d = c(1, 3), p0 = 1:4, p1 = 2)
 #' summary(model)
 #' plot(model$data)
-hystar_fit <- function(y, z = y, d = 1, p0 = 1, p1 = p1,
+hystar_fit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
                        r = c(.1, .9), r_type = "quantile", r_select = "smallest") {
 
   check_input <- check_hystar_fit_input(y, z, d, p0, p1, r, r_type, r_select)
@@ -77,7 +75,7 @@ hystar_fit <- function(y, z = y, d = 1, p0 = 1, p1 = p1,
   grid        <- create_grid(z, r, r_type, d, eff)
   optim       <- optim_grid(y[eff], eff, x, z, p0, p1, grid)$est
 
-  bar         <- new_bar(y, eff, x, z, p0, p1, optim, r_select)
+  bar         <- new_hystar(y, eff, x, z, p0, p1, optim, r_select)
 
   return(bar)
 }

@@ -21,4 +21,3 @@ ts_reg <- function(H, start = NULL) {
 
 
 
-
