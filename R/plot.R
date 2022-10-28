@@ -127,3 +127,8 @@ get_sw_pnts_mat <- function(R) {
   return(sw_pnts_mat)
 }
 
+get_sw_pnts <- function(R) {
+  n <- length(R)
+  return(which(c(FALSE, R[2:n] - R[1:(n-1)] != 0)))
+}
+

@@ -1,24 +1,19 @@
-y_sim <- function(y, eff, R, phi_R0, phi_R1, resvar) {
-  p0 <- get_order(phi_R0)
-  p1 <- get_order(phi_R1)
-
-  for (t in eff) {
-
-    if (R[t] == 0L) {
-      x <- lag_obs(y, t, p0)
-      y[t] <- AR(x, phi_R0, resvar[1])
-    }
-
-    if (R[t] == 1L) {
-      x <- lag_obs(y, t, p1)
-      y[t] <- AR(x, phi_R1, resvar[2])
-    }
-
-  }
-
-  return(y)
-}
-
+#' Simulate the threshold/control variable Z
+#'
+#' @description blabla
+#'
+#' @details The number of switches `n_switches` can differ ultimately based on r and d.
+#'
+#' @param start_regime
+#' @param n_switches
+#' @param n_t
+#' @param form
+#' @param scale
+#'
+#' @return
+#' @export
+#'
+#' @examples
 z_sim <- function(start_regime, n_switches, n_t,
                   form = "cosine", scale = c(-1, 1)) {
 
@@ -42,6 +37,29 @@ simulate_cossin <- function(start_regime, n_switches, n_t, form) {
 
   return(round(out, 3))
 }
+
+y_sim <- function(y, eff, R, phi_R0, phi_R1, resvar) {
+  p0 <- get_order(phi_R0)
+  p1 <- get_order(phi_R1)
+
+  for (t in eff) {
+
+    if (R[t] == 0L) {
+      x <- lag_obs(y, t, p0)
+      y[t] <- AR(x, phi_R0, resvar[1])
+    }
+
+    if (R[t] == 1L) {
+      x <- lag_obs(y, t, p1)
+      y[t] <- AR(x, phi_R1, resvar[2])
+    }
+
+  }
+
+  return(y)
+}
+
+
 
 #' @importFrom stats rnorm
 AR <- function(x, coe, resvar) {

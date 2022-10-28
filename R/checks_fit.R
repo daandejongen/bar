@@ -19,9 +19,9 @@ check_yz <- function(y, z) {
   if (!is.numeric(z)) error_numeric(z)
 
   if (length(y) != length(z)) {
-    stop(paste0("'y' and 'z' must be of equal length.\n",
-                "Currently, 'y' has length ", length(y),
-                " and 'z' has length ", length(z), "."),
+    stop(paste0("`y` and `z` must be of equal length.\n",
+                "Currently, `y` has length ", length(y),
+                " and `z` has length ", length(z), "."),
          call. = FALSE)
   }
 }
@@ -31,12 +31,12 @@ check_r <- function(r) {
 
   if (is.vector(r)) {
     if (length(r) != 2) {
-      stop(paste0("If 'r' is a vector, its length must be 2. You provided ",
+      stop(paste0("If `r` is a vector, its length must be 2. You provided ",
                   "a vector of length ", length(r), "."),
            call. = FALSE)
     }
     if (r[1] >= r[2]) {
-      stop(paste0("If 'r' is a vector, it must represent an interval. ",
+      stop(paste0("If `r` is a vector, it must represent an interval. ",
                   "However, the second value is now smaller than the first."),
            call. = FALSE)
     }
@@ -44,7 +44,7 @@ check_r <- function(r) {
 
   if (is.matrix(r)) {
     if (ncol(r) != 2) {
-      stop(paste0("If 'r' is a matrix, it must have 2 columns. \n You ",
+      stop(paste0("If `r` is a matrix, it must have 2 columns. \n You ",
                   "provided a matrix with ", ncol(r), " columns."),
            call. = FALSE)
     }
@@ -59,7 +59,7 @@ check_r_type <- function(r_type) {
   choices <- c("quantile", "scale")
   r_type <- tryCatch(
     error = function(cond) {
-      stop(paste0("'r_type' must be one of these:\n",
+      stop(paste0("`r_type` must be one of these: ",
                   paste0(choices, collapse = ", "), "."),
            call. = FALSE)
     },
@@ -75,7 +75,7 @@ check_r_type <- function(r_type) {
 
 check_rz <- function(r, r_type, z) {
   if (r_type == "quantile" && !all(0 <= r & r <= 1)) {
-    stop("'r_type' is quantile, so the values of 'r' must be in [0, 1].",
+    stop("`r_type` is quantile, so the values of 'r' must be in [0, 1].",
          call. = FALSE)
   }
 
@@ -89,7 +89,7 @@ check_r_select <- function(r_select) {
   choices <- c("widest", "smallest")
   r_select <- tryCatch(
     error = function(cond) {
-      stop(paste0("'r_select' must be one of these:\n",
+      stop(paste0("'r_select' must be one of these: ",
                   paste0(choices, collapse = ", "), "."),
            call. = FALSE)
     },
@@ -106,7 +106,7 @@ check_ic_method <- function(ic_method) {
   choices <- c("aic", "aicc", "bic")
   ic_method <- tryCatch(
     error = function(cond) {
-      stop(paste0("'ic_method' must be one of these:\n",
+      stop(paste0("'ic_method' must be one of these: ",
                   paste0(choices, collapse = ", "), "."),
            call. = FALSE)
     },

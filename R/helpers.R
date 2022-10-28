@@ -24,8 +24,3 @@ get_order <- function(coe) {
   return(length(coe) - 1)
 }
 
-get_sw_pnts <- function(R) {
-  n <- length(R)
-  return(which(c(FALSE, R[2:n] - R[1:(n-1)] != 0)))
-}
-
