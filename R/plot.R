@@ -102,24 +102,21 @@ get_minmax <- function(x) {
 
 
 get_sw_pnts_mat <- function(R) {
-  # Where are switches from 0 (1) to 1 (0)?
-  # We use the lagged version of R, so we add the first time
-  # point again (in which there can be no switch by definition).
   n <- length(R)
   sw_pnts <- get_sw_pnts(R)
 
   # We delete the last sw_point if there are an uneven number of them.
   # We put them in a matrix (by row) to have a from and a to column.
-  n <- length(sw_pnts)
-  even <- n %% 2 == 0
+  n_sw <- length(sw_pnts)
+  even <- n_sw %% 2 == 0
   start_with_1 <- R[!is.na(R)][1] == TRUE
 
   if (even) {
-    if (start_with_1) points <- c(1, sw_pnts, length(R))
+    if (start_with_1) points <- c(1, sw_pnts, n)
     else points <- sw_pnts
   } else {
     if (start_with_1) points <- c(1, sw_pnts)
-    else points <- c(sw_pnts, length(R))
+    else points <- c(sw_pnts, n)
   }
 
   sw_pnts_mat <- matrix(points, ncol = 2, byrow = TRUE)
@@ -128,6 +125,9 @@ get_sw_pnts_mat <- function(R) {
 }
 
 get_sw_pnts <- function(R) {
+  # Where are switches from 0 (1) to 1 (0)?
+  # We use the lagged version of R, so we add the first time
+  # point again (in which there can be no switch by definition).
   n <- length(R)
   return(which(c(FALSE, R[2:n] - R[1:(n-1)] != 0)))
 }

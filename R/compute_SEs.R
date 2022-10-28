@@ -25,12 +25,10 @@ compute_SEs <- function(y, R, rv, p0, p1) {
   return(SEs)
 }
 
-
 #' @importFrom stats pnorm
 compute_p_values <- function(coe, SEs) {
   return(2 * pnorm(abs(coe), mean = 0, sd = SEs, lower.tail = FALSE))
 }
-
 
 #' @importFrom stats qnorm
 compute_CIs <- function(coe, SEs, alpha) {
@@ -41,12 +39,11 @@ compute_CIs <- function(coe, SEs, alpha) {
               ncol = 2, byrow = FALSE)
 
   colnames(M) <- c(paste0(round(100 * alpha / 2, 1), "%"),
-                   paste0(round(1 - 100 * alpha / 2, 1), "%"))
+                   paste0(round(100 - 100 * alpha / 2, 1), "%"))
   rownames(M) <- names(coe)
 
   return(M)
 }
-
 
 compute_acov_vec <- function(y, p) {
   n <- length(y)
@@ -60,7 +57,6 @@ compute_acov_vec <- function(y, p) {
 
   return(acov)
 }
-
 
 create_acov_mat <- function(acov_vec, y) {
   n <- length(acov_vec) + 1

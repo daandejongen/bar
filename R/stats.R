@@ -19,13 +19,13 @@ residuals.hystar <- function(object) {
 confint.hystar <- function(object, parm, level = 0.95, ...) {
   if (missing(parm)) parm <- 1:length(object$coefficients)
   coe <- object$coefficients[parm]
-  SEs <- compute_SEs(y = object$data$y,
-                     R = object$data$R,
+  SEs <- compute_SEs(y = object$data$y[object$eff],
+                     R = object$data$R[object$eff],
                      rv = object$resvar,
                      p0 = object$orders[1],
                      p1 = object$orders[2])[parm]
 
-  alpha <-  1 - level
+  alpha <- 1 - level
 
   CIs <- compute_CIs(coe, SEs, alpha = alpha)
 

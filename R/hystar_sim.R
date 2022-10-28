@@ -59,7 +59,7 @@
 hystar_sim <- function(z, r, d, phi_R0, phi_R1, resvar,
                        init_vals = NULL, start_regime = NULL) {
 
-  start_regime <- check_hystar_sim_input(z, z_sim, r, d, phi_R0, phi_R1, resvar,
+  start_regime <- check_hystar_sim_input(z, r, d, phi_R0, phi_R1, resvar,
                                          init_vals, start_regime)
 
   if (is.matrix(r)) r <- r[1, , drop = TRUE]

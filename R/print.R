@@ -26,8 +26,8 @@ summary.hystar <- function(x) {
   n <- unname(x$n)
 
   coe <- create_coe_matrix_SE_p(coe = x$coefficients,
-                                y = x$data$y,
-                                R = x$data$R,
+                                y = x$data$y[x$eff],
+                                R = x$data$R[x$eff],
                                 rv = x$resvar,
                                 p0 = x$orders[1],
                                 p1 = x$orders[2])

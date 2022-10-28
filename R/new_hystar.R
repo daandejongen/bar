@@ -23,6 +23,7 @@ new_hystar <- function(y, x, z, eff, est, model, equiv) {
          rss          = model$fit$rss,
          ic           = model$ic,
          n            = n,
+         eff          = eff,
          equiv_pars   = equiv
          ),
     class = "hystar"

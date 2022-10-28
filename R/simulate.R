@@ -3,6 +3,7 @@
 #' @description blabla
 #'
 #' @details The number of switches `n_switches` can differ ultimately based on r and d.
+#' and if starting regime is weird. (only for sine function)
 #'
 #' @param start_regime
 #' @param n_switches
@@ -71,7 +72,6 @@ AR <- function(x, coe, resvar) {
 }
 
 # Helpers:
-
 get_init_vals <- function(coe, resvar, len) {
   # Random observations based on the AR model of the starting regime
   coe_0 <- if (length(coe) == 1) 0 else coe[2:length(coe)]
