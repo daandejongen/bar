@@ -22,10 +22,11 @@
 #'     \end{cases}
 #' }
 #'
-#' @details
-#' # Simulation of z
-#' # Why initial values are needed.
+#' @details Simulation of z. Why initial values are needed.
 #'
+#' @param z A numeric vector representing the observed time series of the threshold
+#' variable. The length of `z` determines the length of the outcome time series \eqn{y_t}.
+#' When not provided, a \eqn{z_t} time series will be simulated, see Details.
 #' @param r A numeric vector of length 2, representing the threshold values \eqn{r_0} and \eqn{r_1}.
 #' @param d A number in \eqn{\{1, 2, \dots\}} representing the value of the delay parameter.
 #' @param phi_R0 A vector containing the constant and autoregressive parameters
@@ -39,11 +40,6 @@
 #' are simulated from \eqn{\mathcal{N(\mu_i, \sigma_{(i)}^2)}}, where
 #' \eqn{\mu_y = \mathbb{E}(Y_t|R_t=i) = \frac{\phi_0^{(0)}}{1 - \phi_1^{(0)} - \cdots - \phi_{p_i}^{(0)}}}
 #' and \eqn{i} is the starting regime.
-#' @param z Optionally, a numeric vector representing the observed time series of the threshold
-#' variable. The length of `z` determines the length of the outcome time series \eqn{y_t}.
-#' When not provided, a \eqn{z_t} time series will be simulated, see Details.
-#' @param n_t If `z` is not provided, the length of the outcome time series \eqn{y_t}.
-#' @param n_switches If `z` is not provided, the number
 #' @param start_regime
 #'
 #' @return A list with `$data` (an `hystar_data` object) and a

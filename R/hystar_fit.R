@@ -38,12 +38,17 @@
 #' @param p0 A numeric vector with one or more values for the search space
 #'     of the autoregressive order of Regime 0. Defaults to 1.
 #' @param p1 Same as `p0`, but for regime 1.
+#' @param p_select Which information criterion should be minimized to select
+#' the orders p0 and p1. Choices:
+#' * "aic" (Akaike Information Criterion)
+#' * "aicc" (Corrected Akaike Information Criterion)
+#' * "bic" (default, Bayesian Information Criterion)
 #' @param r A vector or a matrix. If `r` is a vector, its length must be 2,
 #'     such that it represents the interval in which the threshold value
 #'     should be searched. If `r` is a matrix, it must have two columns,
 #'     such that each row represents a pair \eqn{r_0 \le r_1} to test.
 #'     You can use a matrix with one row if you don't want to estimate
-#'     the thresholds. Defaults to \eqn{(0.1, 0.9)}.
+#'     the thresholds. Defaults to `c(.1, .9)`.
 #' @param r_type What type of values are given in `r`:
 #'
 #' * `"quantile"` (default) for quantile values and
@@ -51,32 +56,69 @@
 #'
 #' @param r_select When multiple pairs of thresholds yield the same residual
 #'     sums of squares, which one should be selected? Options:
-#'
 #' * `"smallest"` (default): \eqn{\mathrm{argmin}_{r_0, r_1} \{|r_0 - r_1|\} },
 #' * `"widest"`: \eqn{\mathrm{argmax}_{r_0, r_1} \{|r_0 - r_1|\} }.
 #'
-#' @return An object of class [bar].
+#' @return An object of S3 class `hystar`, which is a list containing the following
+#' items:
+#' * `$data`. A `data.frame` of class `hystar_data`, containing
+#'     * `y`, the outcome variable
+#'     * `z`, the threshold variable
+#'     * `H`, a logical vector that indicates at which time points the hysteresis
+#' effect is happening. Note that this vector starts with NA(s), since the first
+#' \eqn{\max\{p_0, p_1, d\}} values are not predicted in the HysTAR model.
+#'     * `R`, the regime indicator vector. (Also starts with missing(s).)
+#'
+#' * `$residuals`. Also accessible with the `residuals()` S3 method.
+#' * `$coefficients`, a named vector with the estimated coefficients.
+#' With the `residuals()` S3 method, the residuals are represented in a matrix.
+#' Use the `confint()` method to get the confidence intervals of the estimates.
+#' * `$delay`, a named scalar with the estimate for the delay parameter.
+#' * `$thresholds`, a named vector with the estimates of the tresholds.
+#' * `$orders`, a named vector with the estimates of the orders.
+#' * `$resvar`, a named vector with the estimates of the residual variances.
+#' * `$rss`, the minimized residual sum of squares.
+#' * `$ic`, a named vector with the aic, the corrected aic and the bic.
+#' * `$n`, a named vector with the total effective observations and the
+#' effective obeservations in regime 0 and regime 1.
+#' * `$eff`, a vector with the time indicators of the effective observations.
+#' * `$equiv`, a matrix containing equivalent estimates for \eqn{d, p_0} and \eqn{p_1},
+#' i.e., estimates that imply exactly the same regime indicator vector, and
+#' as a result the same minimal residual sum of squares.
+#'
+#' S3 methods:
+#' *  The `hystar_data` class has a `plot()` method.
+#' * `summary()`, this also provides the p-values and standard errors for the
+#' estimates of
+#' \eqn{\phi_0^{(0)}, \dots, \phi_{p_0}^{(0)}, \phi_0^{(1)}, \dots, \phi_{p_1}^{(0)}}.
+#' * `print()`
+#' * `coef()`
+#' * `confint()`
+#' * `residuals()`
+#' * `fitted()`
+#' * `nobs()`
+#'
 #' @export
 #'
-#'
 #' @examples
-#' model <- barfit(y = y, z = z, d = c(1, 3), p0 = 1:4, p1 = 2)
+#' model <- hystar_fit(y = y, z = z, d = c(1, 3), p0 = 1:4, p1 = 2)
 #' summary(model)
 #' plot(model$data)
-hystar_fit <- function(y, z = y, d = 1, p0 = 1, p1 = 1,
-                       r = c(.1, .9), r_type = "quantile",
-                       r_select = "smallest", ic_method = "bic") {
+hystar_fit <- function(y, z = y, d = 1,
+                       p0 = 1, p1 = 1, p_select = "bic",
+                       r = c(.1, .9), r_type = "quantile", r_select = "smallest",
+                       thin = TRUE) {
 
-  check_input <- check_hystar_fit_input(y, z, d, p0, p1,
-                                        r, r_type,
-                                        r_select, ic_method)
+  check_input <- check_hystar_fit_input(y, z, d,
+                                        p0, p1, p_select,
+                                        r, r_type, r_select)
   r_type <- check_input[1]
   r_select <- check_input[2]
   ic_method <- check_input[3]
 
   eff <- time_eff(y, max(d), max(p0), max(p1))
   x <- create_x(y, eff, max(p0), max(p1))
-  grid <- if (is.matrix(r)) r else create_grid(z, r, r_type, d, eff)
+  grid <- if (is.matrix(r)) r else create_grid(z, r, r_type, d, eff, thin)
   p_options <- create_p_options(p0, p1)
 
   OPT <- optim_p(y, x, z, eff, grid, p_options, r_select, ic_method)

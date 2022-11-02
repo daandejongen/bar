@@ -5,20 +5,22 @@
 \title{Simulating data from the hysTAR model}
 \usage{
 hystar_sim(
+  z,
   r,
   d,
   phi_R0,
   phi_R1,
   resvar,
   init_vals = NULL,
-  z = NULL,
-  n_t = NULL,
-  n_switches = NULL,
   start_regime = NULL
 )
 }
 \arguments{
-\item{r}{A vector of length 2, representing the threshold values \eqn{r_0} and \eqn{r_1}.}
+\item{z}{A numeric vector representing the observed time series of the threshold
+variable. The length of \code{z} determines the length of the outcome time series \eqn{y_t}.
+When not provided, a \eqn{z_t} time series will be simulated, see Details.}
+
+\item{r}{A numeric vector of length 2, representing the threshold values \eqn{r_0} and \eqn{r_1}.}
 
 \item{d}{A number in \eqn{\{1, 2, \dots\}} representing the value of the delay parameter.}
 
@@ -38,6 +40,14 @@ are simulated from \eqn{\mathcal{N(\mu_i, \sigma_{(i)}^2)}}, where
 and \eqn{i} is the starting regime.}
 
 \item{start_regime}{}
+}
+\value{
+A list with \verb{$data} (an \code{hystar_data} object) and a
+\itemize{
+\item \verb{$data}, an \code{hystar_data} object, and
+\item \verb{$true_values}, a list containing the parameter values that were used to
+generate the data.
+}
 }
 \description{
 The hysTAR model is defined as:
@@ -60,4 +70,10 @@ where
     1 & \mathrm{if} \, z_{t-d} \in (r_1, \infty), \\
     \end{cases}
 }
+}
+\details{
+Simulation of z. Why initial values are needed.
+}
+\examples{
+1
 }

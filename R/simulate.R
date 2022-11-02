@@ -5,16 +5,16 @@
 #' @details The number of switches `n_switches` can differ ultimately based on r and d.
 #' and if starting regime is weird. (only for sine function)
 #'
-#' @param start_regime
-#' @param n_switches
-#' @param n_t
-#' @param form
-#' @param scale
+#' @param start_regime a
+#' @param n_switches a
+#' @param n_t a
+#' @param form a
+#' @param scale a
 #'
-#' @return
+#' @return a
 #' @export
 #'
-#' @examples
+#' @examples 1
 z_sim <- function(start_regime, n_switches, n_t,
                   form = "cosine", scale = c(-1, 1)) {
 

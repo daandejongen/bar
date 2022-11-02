@@ -1,6 +1,5 @@
-check_hystar_fit_input <- function(y, z, d, p0, p1,
-                                   r, r_type, r_select,
-                                   ic_method) {
+check_hystar_fit_input <- function(y, z, d, p0, p1, ic_method,
+                                   r, r_type, r_select) {
   r_type   <- check_r_type(r_type)
   r_select <- check_r_select(r_select)
   check_yz(y, z)
@@ -56,6 +55,7 @@ check_r <- function(r) {
 }
 
 check_r_type <- function(r_type) {
+  r_type <- tolower(r_type)
   choices <- c("quantile", "scale")
   r_type <- tryCatch(
     error = function(cond) {
@@ -86,6 +86,7 @@ check_rz <- function(r, r_type, z) {
 }
 
 check_r_select <- function(r_select) {
+  r_select <- tolower(r_select)
   choices <- c("widest", "smallest")
   r_select <- tryCatch(
     error = function(cond) {
@@ -103,6 +104,7 @@ check_r_select <- function(r_select) {
 }
 
 check_ic_method <- function(ic_method) {
+  ic_method <- tolower(ic_method)
   choices <- c("aic", "aicc", "bic")
   ic_method <- tryCatch(
     error = function(cond) {
