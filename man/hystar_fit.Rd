@@ -69,9 +69,9 @@ items:
 \item \code{y}, the outcome variable
 \item \code{z}, the threshold variable
 \item \code{H}, a logical vector that indicates at which time points the hysteresis
-effect is happening. Note that this vector starts with NA(s), since the first
+effect is happening. Note that this vector starts with \code{NA}(s), since the first
 \eqn{\max\{p_0, p_1, d\}} values are not predicted in the HysTAR model.
-\item \code{R}, the regime indicator vector. (Also starts with missing(s).)
+\item \code{R}, the regime indicator vector. (Also starts with \code{NA}(s).)
 }
 \item \verb{$residuals}. Also accessible with the \code{residuals()} S3 method.
 \item \verb{$coefficients}, a named vector with the estimated coefficients.
@@ -96,7 +96,7 @@ S3 methods:
 \item The \code{hystar_data} class has a \code{plot()} method.
 \item \code{summary()}, this also provides the p-values and standard errors for the
 estimates of
-\eqn{\phi_0^{(0)}, \dots, \phi_{p_0}^{(0)}, \phi_0^{(1)}, \dots, \phi_{p_1}^{(0)}}.
+\eqn{\phi_0^{(0)}, \dots, \phi_{p_0}^{(0)}, \phi_0^{(1)}, \dots, \phi_{p_1}^{(1)}}.
 \item \code{print()}
 \item \code{coef()}
 \item \code{confint()}

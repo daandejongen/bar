@@ -65,9 +65,9 @@
 #'     * `y`, the outcome variable
 #'     * `z`, the threshold variable
 #'     * `H`, a logical vector that indicates at which time points the hysteresis
-#' effect is happening. Note that this vector starts with NA(s), since the first
+#' effect is happening. Note that this vector starts with `NA`(s), since the first
 #' \eqn{\max\{p_0, p_1, d\}} values are not predicted in the HysTAR model.
-#'     * `R`, the regime indicator vector. (Also starts with missing(s).)
+#'     * `R`, the regime indicator vector. (Also starts with `NA`(s).)
 #'
 #' * `$residuals`. Also accessible with the `residuals()` S3 method.
 #' * `$coefficients`, a named vector with the estimated coefficients.
@@ -90,7 +90,7 @@
 #' *  The `hystar_data` class has a `plot()` method.
 #' * `summary()`, this also provides the p-values and standard errors for the
 #' estimates of
-#' \eqn{\phi_0^{(0)}, \dots, \phi_{p_0}^{(0)}, \phi_0^{(1)}, \dots, \phi_{p_1}^{(0)}}.
+#' \eqn{\phi_0^{(0)}, \dots, \phi_{p_0}^{(0)}, \phi_0^{(1)}, \dots, \phi_{p_1}^{(1)}}.
 #' * `print()`
 #' * `coef()`
 #' * `confint()`

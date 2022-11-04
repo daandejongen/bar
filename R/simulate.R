@@ -39,28 +39,53 @@ simulate_cossin <- function(start_regime, n_switches, n_t, form) {
   return(round(out, 3))
 }
 
-y_sim <- function(y, eff, R, phi_R0, phi_R1, resvar) {
+y_sim <- function(R, phi_R0, phi_R1, resvar) {
+  n <- length(R)
+  start_regime <- R[1]
+  n_burn_in <- 50
   p0 <- get_order(phi_R0)
   p1 <- get_order(phi_R1)
 
-  for (t in eff) {
+  coe_burn_in <- if (start_regime == 0) phi_R0 else phi_R1
+  burn_in <- create_burn_in(n_burn_in, coe_burn_in, resvar[start_regime + 1])
 
-    if (R[t] == 0L) {
+  y <- c(burn_in, numeric(n))
+
+  for (i in seq_len(n)) {
+    t <- n_burn_in + i
+
+    if (R[i] == 0L) {
       x <- lag_obs(y, t, p0)
       y[t] <- AR(x, phi_R0, resvar[1])
     }
 
-    if (R[t] == 1L) {
+    if (R[i] == 1L) {
       x <- lag_obs(y, t, p1)
       y[t] <- AR(x, phi_R1, resvar[2])
     }
 
   }
 
-  return(y)
+  return(y[-(1:n_burn_in)])
 }
 
+#' @importFrom stats rnorm
+create_burn_in <- function(n, coe, resvar) {
+  # First p0 or p1 obs from unconditional distribution of starting regime
+  p <- length(coe) - 1
+  coe_0 <- if (p == 0) 0 else coe[2:length(coe)]
+  mean  <- coe[1] / (1 - sum(coe_0))
+  var   <- resvar / (1 - coe_0 %*% coe_0)
+  init <- rnorm(n = p, mean = mean, sd = sqrt(var))
 
+  out <- c(init, numeric(n))
+  for (i in seq_len(n)) {
+    t <- p + i
+    out[t] <- AR(x = lag_obs(out, t, p), coe, resvar)
+  }
+
+  return(out)
+}
 
 #' @importFrom stats rnorm
 AR <- function(x, coe, resvar) {
@@ -73,10 +98,7 @@ AR <- function(x, coe, resvar) {
 
 # Helpers:
 get_init_vals <- function(coe, resvar, len) {
-  # Random observations based on the AR model of the starting regime
-  coe_0 <- if (length(coe) == 1) 0 else coe[2:length(coe)]
-  mean  <- coe[1] / (1 - sum(coe_0))
-  var   <- resvar / (1 - coe_0 %*% coe_0)
+
   return(rnorm(n = len, mean = mean, sd = sqrt(var)))
 }
 

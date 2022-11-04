@@ -28,14 +28,14 @@ plot.hystar_data <- function(x, y = NULL, ...) {
 
 make_zplot <- function(time, z, r, R, n_ineff, col_reg1, sw_pnts_mat) {
   plot(time, z,
-       panel.first = c(rect_all(R, z, col_reg1, n_ineff, sw_pnts_mat),
+       panel.first = c(rect_reg(R, x = z, col_reg1, sw_pnts_mat),
                        abline(h = r, lty = 2, col = "black")),
        main = "BAR model", ylab = "z", xaxt = "n", yaxt = "n",
        type = "l", lwd = 2.5, col = "grey25")
 
   legend(x = get_minmax(time)[1], y = get_minmax(z)[2],
-         legend = c(paste0("regime ", 0:1), "not pred."),
-         fill = c("white", col_reg1, "#AA001137"),
+         legend = c(paste0("Regime ", 0:1), "unused", "hyst."),
+         fill = c("white", col_reg1, "red2", "blue2"),
          bg = "grey95"
   )
 
@@ -44,10 +44,11 @@ make_zplot <- function(time, z, r, R, n_ineff, col_reg1, sw_pnts_mat) {
 
 
 make_yplot <- function(time, y, R, n_ineff, col_reg1, sw_pnts_mat) {
-  plot(time, y,
-       panel.first = rect_all(R, y, col_reg1, n_ineff, sw_pnts_mat),
+  plot(time, c(rep(NA, times = n_ineff), y[(n_ineff + 1):length(y)]),
+       panel.first = rect_reg(R, x = y, col_reg1, sw_pnts_mat),
        xlab = "time", ylab = "y",
        type = "l", lwd = 2.5, col = "grey25")
+  lines(time[1:(n_ineff + 1)], y[1:(n_ineff + 1)], col = "red2", lwd = 2.5)
 
   axis(2)
   axis(1)
@@ -61,20 +62,6 @@ make_Hplot <- function(H, height) {
            lwd = 15, col = "blue2", lend = "butt")
 }
 
-
-rect_all <- function(R, x, col_reg1, n_ineff, sw_pnts_mat) {
-  rect_reg(R, x, col_reg1, sw_pnts_mat)
-  rect_ineff(x, n_ineff)
-}
-
-
-rect_ineff <- function(x, n_ineff) {
-  rect(xleft = 1, ybottom = get_minmax(x)[1],
-       xright = n_ineff, ytop = get_minmax(x)[2],
-       col = "#AA001137", border = NA)
-}
-
-
 rect_reg <- function(R, x, col_reg1, sw_pnts_mat) {
   # We want to always draw regime rectangles from 1 to 2, 3 to 4, ...
   # so the rectangle color is the color of on the starting regime
@@ -87,7 +74,6 @@ rect_reg <- function(R, x, col_reg1, sw_pnts_mat) {
        col = col_reg1, border = NA)
 }
 
-
 get_minmax <- function(x) {
   # When drawing the rectangles for regimes, we want them to cover
   # the whole y axis. By default, R adds 4% of the plotted range
@@ -99,7 +85,6 @@ get_minmax <- function(x) {
   return(c(min - dist*.04,
            max + dist*.04))
 }
-
 
 get_sw_pnts_mat <- function(R) {
   n <- length(R)

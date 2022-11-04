@@ -64,19 +64,12 @@ hystar_sim <- function(z, r, d, phi_R0, phi_R1, resvar,
   p1 <- get_order(phi_R1)
   k  <- n_ineff(p0, p1, d)
 
-  if (is.null(init_vals)){
-    coe <- if (start_regime == 0) phi_R0 else phi_R1
-    init_vals <- get_init_vals(coe, resvar[start_regime + 1], k)
-  }
-
-  init_R <- rep(start_regime, times = k)
-
   z_del <- z[time_del(y = z, d = d, p0, p1, d_sel = d)]
   H     <- ts_hys(z_del, r0 = r[1], r1 = r[2])
-  R     <- c(init_R, ts_reg(H, start = start_regime))
-  eff   <- time_eff(z, d, p0, p1)
-  y_    <- c(init_vals, eff) # Placeholder, just to have the correct length
-  y     <- y_sim(y_, eff, R, phi_R0, phi_R1, resvar)
+  R     <- c(rep(start_regime, times = k),
+             ts_reg(H, start = start_regime))
+
+  y     <- y_sim(y, R, phi_R0, phi_R1, resvar)
 
   true  <- name_true_vals(d, r, phi_R1, phi_R1, resvar)
 
