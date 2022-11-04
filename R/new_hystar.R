@@ -10,7 +10,7 @@ new_hystar <- function(y, x, z, eff, est, model, equiv) {
   data <- new_hystar_data(y = y, z = z,
                           H = c(NA_k, model$H == -1),
                           R = c(NA_k, model$R),
-                          r = est[c("r0", "r1")], n_ineff = length(y) - length(eff))
+                          r = est[c("r0", "r1")])
 
   hystar <- structure(
     list(data         = data,
@@ -32,21 +32,13 @@ new_hystar <- function(y, x, z, eff, est, model, equiv) {
   return(hystar)
 }
 
-
-new_hystar_data <- function(y, z, H, R, r, n_ineff) {
+new_hystar_data <- function(y, z, H, R, r) {
   out <- structure(
     data.frame(y = y, z = z, H = H, R = R),
     class = c("hystar_data", "data.frame"),
-    r = r, n_ineff = n_ineff
+    r = r
   )
 
   return(out)
 }
-
-
-
-
-
-
-
 

@@ -17,11 +17,9 @@ optim_p <- function(y, x, z, eff, grid, p_options, r_select, ic_method) {
   argmin <- which(p_options[, "ic"] == min(p_options[, "ic"]))
 
   return(list(est = p_options[argmin, , drop = TRUE],
-              equiv = equivs[[argmin]]
-              )
+              equiv = equivs[[argmin]])
   )
 }
-
 
 optim_grid <- function(y, eff, x, z, p0, p1, grid, r_select) {
   optims <- get_optims(y, eff, x, z, p0, p1, grid)

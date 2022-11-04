@@ -33,13 +33,10 @@
 #' \eqn{(\phi_0^{(0)}, \phi_1^{(0)}, \dots, \phi_{p_0}^{(0)})} of Regime 0.
 #' Note that the first value of this vector is always interpreted as the constant.
 #' @param phi_R1 The same as `phi_R0`, but for Regime 1.
-#' @param resvar A numeric vector of length 2 representing the residual variances
-#' \eqn{\sigma_{(0)}^2} and \eqn{\sigma_{(1)}^2}.
-#' @param init_vals Optionally, a vector of length \eqn{\max{d, p_0, p_1}} to provide the
-#' first values of the simulated \eqn{y} variable. See Details. When omitted, the first values
-#' are simulated from \eqn{\mathcal{N(\mu_i, \sigma_{(i)}^2)}}, where
-#' \eqn{\mu_y = \mathbb{E}(Y_t|R_t=i) = \frac{\phi_0^{(0)}}{1 - \phi_1^{(0)} - \cdots - \phi_{p_i}^{(0)}}}
-#' and \eqn{i} is the starting regime.
+#' @param resvar A numeric vector of length 2 representing the variances of the
+#' residuals \eqn{\sigma_{(0)}^2} and \eqn{\sigma_{(1)}^2}. The residuals are sampled
+#' from a normal distribution in the current implementation, but note that the model
+#' is defined for any i.i.d. distribution with zero mean and finite variance.
 #' @param start_regime
 #'
 #' @return A list with `$data` (an `hystar_data` object) and a
@@ -52,11 +49,9 @@
 #'
 #' @examples
 #' 1
-hystar_sim <- function(z, r, d, phi_R0, phi_R1, resvar,
-                       init_vals = NULL, start_regime = NULL) {
+hystar_sim <- function(z, r, d, phi_R0, phi_R1, resvar, start_regime = NULL) {
 
-  start_regime <- check_hystar_sim_input(z, r, d, phi_R0, phi_R1, resvar,
-                                         init_vals, start_regime)
+  start_regime <- check_hystar_sim_input(z, r, d, phi_R0, phi_R1, resvar, start_regime)
 
   if (is.matrix(r)) r <- r[1, , drop = TRUE]
 
@@ -66,19 +61,13 @@ hystar_sim <- function(z, r, d, phi_R0, phi_R1, resvar,
 
   z_del <- z[time_del(y = z, d = d, p0, p1, d_sel = d)]
   H     <- ts_hys(z_del, r0 = r[1], r1 = r[2])
-  R     <- c(rep(start_regime, times = k),
-             ts_reg(H, start = start_regime))
+  R     <- c(rep(start_regime, times = k), ts_reg(H, start = start_regime))
 
-  y     <- y_sim(y, R, phi_R0, phi_R1, resvar)
+  y     <- y_sim(R, phi_R0, phi_R1, resvar)
 
   true  <- name_true_vals(d, r, phi_R1, phi_R1, resvar)
 
-  data  <- new_hystar_data(y = y,
-                       z = z,
-                       H = c(rep(NA, k), H == -1),
-                       R = R,
-                       r = r,
-                       n_ineff = k)
+  data  <- new_hystar_data(y = y, z = z, H = c(rep(NA, k), H == -1L), R = R, r = r)
 
   return(list(data = data, true_values = true))
 }

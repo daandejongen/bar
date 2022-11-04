@@ -1,13 +1,10 @@
-check_hystar_sim_input <- function(z, r, d, phi_R0, phi_R1, resvar,
-                                   init_vals, start_regime) {
+check_hystar_sim_input <- function(z, r, d, phi_R0, phi_R1, resvar, start_regime) {
   check_z(z)
   check_r(r)
   check_whole_nn(d)
   check_phi(phi_R0, R01 = 0)
   check_phi(phi_R1, R01 = 1)
   check_resvar(resvar)
-  check_init_vals(init_vals, phi_R0, phi_R1, d)
-
   p <- max(get_order(phi_R0), get_order(phi_R0))
   start_inferred <- get_start(g = c(d, r[1], r[2]), z, time_eff(z, d, p, p))
   start <- check_start(start_inferred, start_regime)
@@ -58,17 +55,6 @@ check_phi <- function(phi, R01) {
       warning(paste0("The AR process in regime ", R01, " is non-stationary, ",
                      "because it has an explosive root."), call. = FALSE)
     }
-  }
-}
-
-check_init_vals <- function(init_vals, phi_R0, phi_R1, d) {
-  if (is.null(init_vals)) return()
-  if (!is.numeric(init_vals)) error_numeric(init_vals)
-  a <- max(c(get_order(phi_R0), get_order(phi_R1), d))
-  if (a != length(init_vals)) {
-    stop(paste0("Too few or many initial values provided in 'init_vals'.\n",
-                "since max{p0, p1, d} = ", a, "values were needed but ",
-                length(init_vals), " were given."), call. = FALSE)
   }
 }
 

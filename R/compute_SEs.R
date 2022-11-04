@@ -1,5 +1,5 @@
 compute_SEs <- function(y, R, rv, p0, p1) {
-  S0 <- create_acov_mat(compute_acov_vec(y * (1 - R), p0), y)
+  S0 <- create_acov_mat(compute_acov_vec(y * (1L - R), p0), y)
   S1 <- create_acov_mat(compute_acov_vec(y * R, p1), y)
 
   S0 <- solve(S0) * rv[1]
@@ -49,17 +49,17 @@ compute_acov_vec <- function(y, p) {
   n <- length(y)
   m <- mean(y)
   acov <- numeric(p)
-  for (i in 0:(p - 1)) {
-    a <- y[(1 + i):n]
+  for (i in 0:(p - 1L)) {
+    a <- y[(1L + i):n]
     b <- y[1:(n - i)]
-    acov[i + 1] <- sum((a - m) * (b - m)) / n
+    acov[i + 1L] <- sum((a - m) * (b - m)) / n
   }
 
   return(acov)
 }
 
 create_acov_mat <- function(acov_vec, y) {
-  n <- length(acov_vec) + 1
+  n <- length(acov_vec) + 1L
   A <- matrix(raw(), nrow = n, ncol = n)
   M <- matrix(acov_vec[abs(col(A) - row(A)) + 1L], n, n)
 

@@ -7,7 +7,6 @@ coef.hystar <- function(object) {
   return(round(M, 3))
 }
 
-
 #' @export
 #' @importFrom stats residuals
 residuals.hystar <- function(object) {
@@ -32,23 +31,16 @@ confint.hystar <- function(object, parm, level = 0.95, ...) {
   return(CIs)
 }
 
-
 #' @export
 #' @importFrom stats fitted
 fitted.hystar <- function(object) {
-  return(object$data[["y"]] - object$residuals)
+  y <- object$data$y[object$eff]
+  return(y - object$residuals)
 }
-
 
 #' @export
 #' @importFrom stats nobs
 nobs.hystar <- function(object) {
   return(object$n)
 }
-
-
-
-
-
-
 

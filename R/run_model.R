@@ -6,7 +6,7 @@ run_model <- function(y, x, z, eff,
 
   H <- ts_hys(z_del, r0_sel, r1_sel)
   R <- ts_reg(H, s_sel)
-  n0 <- sum(1 - R)
+  n0 <- sum(1L - R)
   n1 <- sum(R)
 
   X <- create_X(x, p0_sel, p1_sel, R)

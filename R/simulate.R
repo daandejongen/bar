@@ -84,7 +84,7 @@ create_burn_in <- function(n, coe, resvar) {
     out[t] <- AR(x = lag_obs(out, t, p), coe, resvar)
   }
 
-  return(out)
+  return(out[-(1:p)])
 }
 
 #' @importFrom stats rnorm

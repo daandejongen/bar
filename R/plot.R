@@ -3,63 +3,45 @@ plot.hystar_data <- function(x, y = NULL, ...) {
   y <- x$y
   z <- x$z
   R <- x$R
-  H <- x$H
   r <- attr(x, "r")
-  n_ineff <- attr(x, "n_ineff")
+  k <- sum(is.na(R))
   col_reg1 <- "grey80"
-
   time <- 1:length(y)
   # Set bottom margin for the top plot (z) to zero
   old <- par(mar = c(0, 4.1, 4.1, 2.1),
              mfrow = c(2, 1))
   on.exit(par(old), add = TRUE)
-
   sw_pnts_mat <- get_sw_pnts_mat(R)
-
-  make_zplot(time, z, r, R, n_ineff, col_reg1, sw_pnts_mat)
-
-  make_Hplot(H, get_minmax(z)[1])
-
+  make_zplot(time, z, r, R, k, col_reg1, sw_pnts_mat)
   par(mar = c(4.1, 4.1, 0, 2.1))
-
-  make_yplot(time, y, R, n_ineff, col_reg1, sw_pnts_mat)
+  make_yplot(time, y, R, k, col_reg1, sw_pnts_mat)
 }
 
-
-make_zplot <- function(time, z, r, R, n_ineff, col_reg1, sw_pnts_mat) {
+make_zplot <- function(time, z, r, R, k, col_reg1, sw_pnts_mat) {
   plot(time, z,
        panel.first = c(rect_reg(R, x = z, col_reg1, sw_pnts_mat),
+                       rect_ineff(x = z, k = k),
                        abline(h = r, lty = 2, col = "black")),
-       main = "BAR model", ylab = "z", xaxt = "n", yaxt = "n",
+       main = "HysTAR model", ylab = "z", xaxt = "n", yaxt = "n",
        type = "l", lwd = 2.5, col = "grey25")
 
+  regs <- paste0("Regime ", 0:1)
+  names <- if (k > 0 ) c(regs, "unpred.") else regs
+  fills <- if (k > 0 ) c("white", col_reg1, "#AA001137") else c("white", col_reg1)
   legend(x = get_minmax(time)[1], y = get_minmax(z)[2],
-         legend = c(paste0("Regime ", 0:1), "unused", "hyst."),
-         fill = c("white", col_reg1, "red2", "blue2"),
-         bg = "grey95"
-  )
+         legend = names, fill = fills, bg = "grey95")
 
   axis(side = 2, at = r, labels = c("r0", "r1"), las = 2)
 }
 
-
-make_yplot <- function(time, y, R, n_ineff, col_reg1, sw_pnts_mat) {
-  plot(time, c(rep(NA, times = n_ineff), y[(n_ineff + 1):length(y)]),
-       panel.first = rect_reg(R, x = y, col_reg1, sw_pnts_mat),
+make_yplot <- function(time, y, R, k, col_reg1, sw_pnts_mat) {
+  plot(time, y,
+       panel.first = c(rect_reg(R, x = y, col_reg1, sw_pnts_mat),
+                       rect_ineff(x = y, k = k)),
        xlab = "time", ylab = "y",
        type = "l", lwd = 2.5, col = "grey25")
-  lines(time[1:(n_ineff + 1)], y[1:(n_ineff + 1)], col = "red2", lwd = 2.5)
-
   axis(2)
   axis(1)
-}
-
-
-make_Hplot <- function(H, height) {
-  sw_pnts_mat <- get_sw_pnts_mat(H)
-  segments(x0 = sw_pnts_mat[, 1], y0 = height,
-           x1 = sw_pnts_mat[, 2], y1 = height,
-           lwd = 15, col = "blue2", lend = "butt")
 }
 
 rect_reg <- function(R, x, col_reg1, sw_pnts_mat) {
@@ -72,6 +54,12 @@ rect_reg <- function(R, x, col_reg1, sw_pnts_mat) {
 
   rect(sw_pnts_mat[, 1], ybottom, sw_pnts_mat[, 2], ytop,
        col = col_reg1, border = NA)
+}
+
+rect_ineff <- function(x, k) {
+  rect(xleft = 0, ybottom = get_minmax(x)[1],
+       xright = k, ytop = get_minmax(x)[2],
+       col = "#AA001137", border = NA)
 }
 
 get_minmax <- function(x) {
@@ -115,5 +103,13 @@ get_sw_pnts <- function(R) {
   # point again (in which there can be no switch by definition).
   n <- length(R)
   return(which(c(FALSE, R[2:n] - R[1:(n-1)] != 0)))
+}
+
+#Deprecated
+make_Hplot <- function(H, height) {
+  sw_pnts_mat <- get_sw_pnts_mat(H)
+  segments(x0 = sw_pnts_mat[, 1], y0 = height,
+           x1 = sw_pnts_mat[, 2], y1 = height,
+           lwd = 15, col = "blue2", lend = "butt")
 }
 

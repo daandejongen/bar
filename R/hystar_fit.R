@@ -104,8 +104,8 @@
 #' model <- hystar_fit(y = y, z = z, d = c(1, 3), p0 = 1:4, p1 = 2)
 #' summary(model)
 #' plot(model$data)
-hystar_fit <- function(y, z = y, d = 1,
-                       p0 = 1, p1 = 1, p_select = "bic",
+hystar_fit <- function(y, z = y, d = 1L,
+                       p0 = 1L, p1 = 1L, p_select = "bic",
                        r = c(.1, .9), r_type = "quantile", r_select = "smallest",
                        thin = TRUE) {
 
@@ -123,7 +123,10 @@ hystar_fit <- function(y, z = y, d = 1,
 
   OPT <- optim_p(y, x, z, eff, grid, p_options, r_select, ic_method)
   est <- OPT$est
-  equiv <- OPT$equiv
+  # We can discard the 4th column, "starts", because this will always have
+  # the same value. A different start value would always result in a different
+  # residual sum of squared residuals.
+  equiv <- OPT$equiv[, 1:3]
   model <- run_model(y, x, z, eff, est["p0"], est["p1"],
                    est["d"], est["r0"], est["r1"], est["s"],
                    return_HR = TRUE)

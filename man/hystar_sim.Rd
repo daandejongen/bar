@@ -4,16 +4,7 @@
 \alias{hystar_sim}
 \title{Simulating data from the hysTAR model}
 \usage{
-hystar_sim(
-  z,
-  r,
-  d,
-  phi_R0,
-  phi_R1,
-  resvar,
-  init_vals = NULL,
-  start_regime = NULL
-)
+hystar_sim(z, r, d, phi_R0, phi_R1, resvar, start_regime = NULL)
 }
 \arguments{
 \item{z}{A numeric vector representing the observed time series of the threshold
@@ -32,12 +23,6 @@ Note that the first value of this vector is always interpreted as the constant.}
 
 \item{resvar}{A numeric vector of length 2 representing the residual variances
 \eqn{\sigma_{(0)}^2} and \eqn{\sigma_{(1)}^2}.}
-
-\item{init_vals}{Optionally, a vector of length \eqn{\max{d, p_0, p_1}} to provide the
-first values of the simulated \eqn{y} variable. See Details. When omitted, the first values
-are simulated from \eqn{\mathcal{N(\mu_i, \sigma_{(i)}^2)}}, where
-\eqn{\mu_y = \mathbb{E}(Y_t|R_t=i) = \frac{\phi_0^{(0)}}{1 - \phi_1^{(0)} - \cdots - \phi_{p_i}^{(0)}}}
-and \eqn{i} is the starting regime.}
 
 \item{start_regime}{}
 }
