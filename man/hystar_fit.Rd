@@ -6,14 +6,12 @@
 \usage{
 hystar_fit(
   y,
-  z = y,
-  d = 1,
-  p0 = 1,
-  p1 = 1,
+  z,
+  d = 1L,
+  p0 = 1L,
+  p1 = 1L,
   p_select = "bic",
   r = c(0.1, 0.9),
-  r_type = "quantile",
-  r_select = "smallest",
   thin = TRUE
 )
 }
@@ -21,7 +19,7 @@ hystar_fit(
 \item{y}{A numeric vector representing the outcome time series.}
 
 \item{z}{A numeric vector representing the threshold time series.
-If \code{z} = \code{y} (default), the model is a hysSETAR
+If \code{z} = \code{y}, the model is a hysSETAR
 (hysteretic self-exciting threshold autoregressive) model.}
 
 \item{d}{A numeric vector with one or more values for the search space
@@ -40,25 +38,27 @@ the orders p0 and p1. Choices:
 \item "bic" (default, Bayesian Information Criterion)
 }}
 
-\item{r}{A vector or a matrix. If \code{r} is a vector, its length must be 2,
-such that it represents the interval in which the threshold value
-should be searched. If \code{r} is a matrix, it must have two columns,
+\item{r}{A vector or a matrix with search values for \eqn{r_0, r_1}.
+Defaults to \code{c(.1, .9)}.
+\itemize{
+\item If \code{r} is a vector, its length must be 2, such that it represents two quantiles
+within which the threshold value should be searched.
+\item If \code{r} is a matrix, it must have two columns,
 such that each row represents a pair \eqn{r_0 \le r_1} to test.
 You can use a matrix with one row if you don't want to estimate
-the thresholds. Defaults to \code{c(.1, .9)}.}
-
-\item{r_type}{What type of values are given in \code{r}:
-\itemize{
-\item \code{"quantile"} (default) for quantile values and
-\item \code{"scale"} for values on the scale of \code{z}.
+the thresholds. Note that the values in these matrix are not quantiles,
+but directly values on the scale of \code{z}.
 }}
 
-\item{r_select}{When multiple pairs of thresholds yield the same residual
-sums of squares, which one should be selected? Options:
-\itemize{
-\item \code{"smallest"} (default): \eqn{\mathrm{argmin}_{r_0, r_1} \{|r_0 - r_1|\} },
-\item \code{"widest"}: \eqn{\mathrm{argmax}_{r_0, r_1} \{|r_0 - r_1|\} }.
-}}
+\item{thin}{Logical, only relevant when \code{r} is a vector.
+If \code{TRUE} (default), the search values for \eqn{r} are
+\code{quantile(z, seq(r[1], r[2], by = .01))}.
+This drastically improves the speed without much
+cost of estimation precision.
+Note that this is a purely practical choice
+with no theoretical justification (yet).
+If \code{FALSE}, all observed unique values of \code{z} between
+\code{quantile(z, r[1])} and \code{quantile(z, r[2])} will be considered.}
 }
 \value{
 An object of S3 class \code{hystar}, which is a list containing the following

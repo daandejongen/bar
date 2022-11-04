@@ -21,8 +21,10 @@ Note that the first value of this vector is always interpreted as the constant.}
 
 \item{phi_R1}{The same as \code{phi_R0}, but for Regime 1.}
 
-\item{resvar}{A numeric vector of length 2 representing the residual variances
-\eqn{\sigma_{(0)}^2} and \eqn{\sigma_{(1)}^2}.}
+\item{resvar}{A numeric vector of length 2 representing the variances of the
+residuals \eqn{\sigma_{(0)}^2} and \eqn{\sigma_{(1)}^2}. The residuals are sampled
+from a normal distribution in the current implementation, but note that the model
+is defined for any i.i.d. distribution with zero mean and finite variance.}
 
 \item{start_regime}{}
 }

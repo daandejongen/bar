@@ -1,5 +1,5 @@
-create_grid <- function(z, r_bounds, search, d, eff, thin) {
-  grid <- create_grid_r(z, r_bounds, search, thin)
+create_grid <- function(z, r, d, eff, thin) {
+  grid <- if (is.matrix(r)) r else create_grid_r(z, r, thin)
   grid <- add_d(d, grid)
   grid <- add_start(grid, z, eff)
   colnames(grid) <- c("d", "r0", "r1", "s")
@@ -7,18 +7,15 @@ create_grid <- function(z, r_bounds, search, d, eff, thin) {
   return(grid)
 }
 
-
 #' @importFrom utils combn
-create_grid_r <- function(z, r_bounds, search, thin) {
-
-  z_values <- get_z_values(z, search, r_bounds, thin)
+create_grid_r <- function(z, r, thin) {
+  z_values <- get_z_values(z, r, thin)
   r_neq <- t(combn(z_values, 2))
   r_eq  <- matrix(z_values, nrow = length(z_values), ncol = 2, byrow = FALSE)
   grid <- rbind(r_neq, r_eq)
 
   return(grid)
 }
-
 
 add_d <- function(d, grid) {
   r0s <- rep(grid[, 1], times = length(d))
@@ -40,23 +37,21 @@ add_start <- function(grid, z, eff) {
   return(rbind(grid, grid_unknown))
 }
 
-
 # Helpers
-
 #' @importFrom stats quantile
-get_z_values <- function(z, search, r_bounds, thin) {
-  if (thin == TRUE) {
-    qs <- seq(from = r_bounds[1], to = r_bounds[2], by = .01)
+get_z_values <- function(z, r, thin) {
+  if (thin) {
+    qs <- seq(from = r[1], to = r[2], by = .01)
     return(quantile(z, qs))
   }
-  a <- if (search == "quantile") quantile(z, r_bounds) else r_bounds
-  z_val <- sort(unique(z[z >= a[1] & z <= a[2]]))
-  return(z_val)
+  if (!thin) {
+    a <- quantile(z, rbounds)
+    return(sort(unique(z[z >= a[1] & z <= a[2]])))
+  }
 }
 
-
 get_start <- function(g, z, eff) {
-  d <- g[1]
+  d  <- g[1]
   r0 <- g[2]
   r1 <- g[3]
   go_back <- d

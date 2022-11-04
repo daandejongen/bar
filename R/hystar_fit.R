@@ -31,7 +31,7 @@
 #'
 #' @param y A numeric vector representing the outcome time series.
 #' @param z A numeric vector representing the threshold time series.
-#'     If `z` = `y` (default), the model is a hysSETAR
+#'     If `z` = `y`, the model is a hysSETAR
 #'     (hysteretic self-exciting threshold autoregressive) model.
 #' @param d A numeric vector with one or more values for the search space
 #'     of the delay parameter. Defaults to 1.
@@ -43,21 +43,24 @@
 #' * "aic" (Akaike Information Criterion)
 #' * "aicc" (Corrected Akaike Information Criterion)
 #' * "bic" (default, Bayesian Information Criterion)
-#' @param r A vector or a matrix. If `r` is a vector, its length must be 2,
-#'     such that it represents the interval in which the threshold value
-#'     should be searched. If `r` is a matrix, it must have two columns,
+#' @param r A vector or a matrix with search values for \eqn{r_0, r_1}.
+#' Defaults to `c(.1, .9)`.
+#' * If `r` is a vector, its length must be 2, such that it represents two quantiles
+#' within which the threshold value should be searched.
+#' * If `r` is a matrix, it must have two columns,
 #'     such that each row represents a pair \eqn{r_0 \le r_1} to test.
 #'     You can use a matrix with one row if you don't want to estimate
-#'     the thresholds. Defaults to `c(.1, .9)`.
-#' @param r_type What type of values are given in `r`:
-#'
-#' * `"quantile"` (default) for quantile values and
-#' * `"scale"` for values on the scale of `z`.
-#'
-#' @param r_select When multiple pairs of thresholds yield the same residual
-#'     sums of squares, which one should be selected? Options:
-#' * `"smallest"` (default): \eqn{\mathrm{argmin}_{r_0, r_1} \{|r_0 - r_1|\} },
-#' * `"widest"`: \eqn{\mathrm{argmax}_{r_0, r_1} \{|r_0 - r_1|\} }.
+#'     the thresholds. Note that the values in these matrix are not quantiles,
+#'     but directly values on the scale of `z`.
+#' @param thin Logical, only relevant when `r` is a vector.
+#' If `TRUE` (default), the search values for \eqn{r} are
+#' `quantile(z, seq(r[1], r[2], by = .01))`.
+#' This drastically improves the speed without much
+#' cost of estimation precision.
+#' Note that this is a purely practical choice
+#' with no theoretical justification (yet).
+#' If `FALSE`, all observed unique values of `z` between
+#' `quantile(z, r[1])` and `quantile(z, r[2])` will be considered.
 #'
 #' @return An object of S3 class `hystar`, which is a list containing the following
 #' items:
@@ -104,24 +107,17 @@
 #' model <- hystar_fit(y = y, z = z, d = c(1, 3), p0 = 1:4, p1 = 2)
 #' summary(model)
 #' plot(model$data)
-hystar_fit <- function(y, z = y, d = 1L,
-                       p0 = 1L, p1 = 1L, p_select = "bic",
-                       r = c(.1, .9), r_type = "quantile", r_select = "smallest",
-                       thin = TRUE) {
+hystar_fit <- function(y, z, d = 1L, p0 = 1L, p1 = 1L, p_select = "bic",
+                       r = c(.1, .9), thin = TRUE) {
 
-  check_input <- check_hystar_fit_input(y, z, d,
-                                        p0, p1, p_select,
-                                        r, r_type, r_select)
-  r_type <- check_input[1]
-  r_select <- check_input[2]
-  ic_method <- check_input[3]
-
+  check_input <- check_hystar_fit_input(y, z, d, p0, p1, p_select, r, thin)
+  p_select <- check_input[3]
   eff <- time_eff(y, max(d), max(p0), max(p1))
   x <- create_x(y, eff, max(p0), max(p1))
-  grid <- if (is.matrix(r)) r else create_grid(z, r, r_type, d, eff, thin)
+  grid <- create_grid(z, r, d, eff, thin)
   p_options <- create_p_options(p0, p1)
 
-  OPT <- optim_p(y, x, z, eff, grid, p_options, r_select, ic_method)
+  OPT <- optim_p(y, x, z, eff, grid, p_options, p_select)
   est <- OPT$est
   # We can discard the 4th column, "starts", because this will always have
   # the same value. A different start value would always result in a different
