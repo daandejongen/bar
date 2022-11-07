@@ -79,21 +79,33 @@ hystar_sim <- function(z, r, d, phi_R0, phi_R1, resvar = c(1, 1), start_regime =
 
   y     <- y_sim(R, phi_R0, phi_R1, resvar)
 
-  true  <- name_true_vals(d, r, phi_R1, phi_R1, resvar)
+  true  <- name_true_vals(d, r, phi_R0, phi_R1, resvar)
 
-  data  <- new_hystar_data(y = y, z = z, H = c(rep(NA, k), H == -1L), R = R, r = r)
+  data  <- data.frame(y = y, z = z, H = c(rep(NA, k), H == -1L), R = R)
 
-  return(list(data = data, true_values = true))
+  out <- structure(
+    list(data = data, true_values = true),
+    class = "hystar_sim"
+  )
+
+  return(out)
 }
 
-
-name_true_vals <- function(d, r, phi, psi, resvar) {
+name_true_vals <- function(d, r, phi_R0, phi_R1, resvar) {
   names(d)   <- "delay"
   names(r)   <- c("r0", "r1")
-  names(phi) <- paste0("phi_R0_", 0:(length(phi)-1))
-  names(psi) <- paste0("phi_R1_", 0:(length(psi)-1))
+  phi <- c(phi_R0, phi_R1)
+  names(phi) <- c(paste0("phi_R0_", 0:(length(phi_R0)-1)),
+                  paste0("phi_R1_", 0:(length(phi_R1)-1)))
   names(resvar) <- paste0("regime", 0:1)
-  return(list(d = d, r = r, phi = phi, psi = psi, resvar = resvar))
+
+  return(list(d = d,
+              r = r,
+              phi = phi,
+              orders = c(get_order(phi_R0), get_order(phi_R1)),
+              resvar = resvar
+              )
+         )
 }
 
 

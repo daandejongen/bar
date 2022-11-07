@@ -129,7 +129,7 @@ hystar_fit <- function(y, z, d = 1L, p0 = 1L, p1 = 1L, p_select = "bic",
   model <- run_model(y, x, z, eff, est["p0"], est["p1"],
                    est["d"], est["r0"], est["r1"], est["s"],
                    return_HR = TRUE)
-  hystar <- new_hystar(y, x, z, eff, est, model, equiv)
+  hystar <- new_hystar_fit(y, x, z, eff, est, model, equiv)
 
   return(hystar)
 }

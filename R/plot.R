@@ -1,10 +1,22 @@
 #' @export
-plot.hystar_data <- function(x, y = NULL, ...) {
-  y <- x$y
-  z <- x$z
-  R <- x$R
-  r <- attr(x, "r")
-  k <- sum(is.na(R))
+plot.hystar_fit <- function(x, y = NULL, ...) {
+  plot_hystar(y = x$data$y,
+              z = x$data$z,
+              R = x$data$R,
+              r = x$thresholds,
+              k = sum(is.na(x$data$R)))
+}
+
+#' @export
+plot.hystar_sim <- function(x, y = NULL, ...) {
+  plot_hystar(y = x$data$y,
+              z = x$data$z,
+              R = x$data$R,
+              r = x$true_values$r,
+              k = 0)
+}
+
+plot_hystar <- function(y, z, R, r, k) {
   col_reg1 <- "grey80"
   time <- 1:length(y)
   # Set bottom margin for the top plot (z) to zero

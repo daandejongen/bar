@@ -1,4 +1,4 @@
-new_hystar <- function(y, x, z, eff, est, model, equiv) {
+new_hystar_fit <- function(y, x, z, eff, est, model, equiv) {
 
   coe <- model$fit$coe
   names(coe) <- c(paste0("R0_phi", 0:est["p0"]), paste0("R1_phi", 0:est["p1"]))
@@ -7,10 +7,9 @@ new_hystar <- function(y, x, z, eff, est, model, equiv) {
   names(n) <- c("used", paste0("regime", 0:1))
 
   NA_k <- rep(NA, times = length(y) - length(eff))
-  data <- new_hystar_data(y = y, z = z,
-                          H = c(NA_k, model$H == -1),
-                          R = c(NA_k, model$R),
-                          r = est[c("r0", "r1")])
+  data <- data.frame(y = y, z = z,
+                     H = c(NA_k, model$H == -1),
+                     R = c(NA_k, model$R))
 
   hystar <- structure(
     list(data         = data,
@@ -26,19 +25,9 @@ new_hystar <- function(y, x, z, eff, est, model, equiv) {
          eff          = eff,
          equiv_pars   = equiv
          ),
-    class = "hystar"
+    class = "hystar_fit"
     )
 
   return(hystar)
-}
-
-new_hystar_data <- function(y, z, H, R, r) {
-  out <- structure(
-    data.frame(y = y, z = z, H = H, R = R),
-    class = c("hystar_data", "data.frame"),
-    r = r
-  )
-
-  return(out)
 }
 
