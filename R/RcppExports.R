@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 get_regimes <- function(H) {
-    .Call('_hystar_get_regimes', PACKAGE = 'hystar', H)
+    .Call(`_hystar_get_regimes`, H)
 }
 

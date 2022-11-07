@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
 library(testthat)
-library(bar)
+library(hystar)
 
-test_check("bar")
+test_check("hystar")

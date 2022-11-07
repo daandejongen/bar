@@ -12,7 +12,7 @@ check_whole_nn <- function(x) {
 error_whole <- function(x) {
   err <- structure(
     list(
-      message = paste0("'", substitute(x), "' must be a whole number."),
+      message = paste0("`", substitute(x), "` must be a whole number."),
       call = NULL
     ),
     class = c("not_whole", "error", "condition")
@@ -23,7 +23,7 @@ error_whole <- function(x) {
 error_numeric <- function(x) {
   err <- structure(
     list(
-      message = paste0("'", substitute(x), "' must be numeric. ",
+      message = paste0("`", substitute(x), "` must be numeric. ",
                        "You provided an object of type ",
                        typeof(x), "."),
       call = NULL
@@ -36,7 +36,7 @@ error_numeric <- function(x) {
 error_nonnegative <- function(x) {
   err <- structure(
     list(
-      message = paste0("'", substitute(x), "' must be non-negative."),
+      message = paste0("`", substitute(x), "` must be nonnegative."),
       call = NULL
     ),
     class = c("not_nonnegative", "error", "condition")

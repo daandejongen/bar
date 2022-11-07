@@ -25,7 +25,6 @@ add_d <- function(d, grid) {
   return(grid)
 }
 
-
 add_start <- function(grid, z, eff) {
   starts <- apply(grid, MARGIN = 1, FUN = get_start, z = z, eff = eff)
   grid <- unname(cbind(grid, starts))
@@ -45,7 +44,7 @@ get_z_values <- function(z, r, thin) {
     return(quantile(z, qs))
   }
   if (!thin) {
-    a <- quantile(z, rbounds)
+    a <- quantile(z, r)
     return(sort(unique(z[z >= a[1] & z <= a[2]])))
   }
 }

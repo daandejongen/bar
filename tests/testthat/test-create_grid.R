@@ -1,26 +1,25 @@
-z <-  c(2, 1, 3)
-
-grid_r_actual <- create_grid_r(z, r_bounds = c(1, 3), search = "scale")
-grid_r_expected <- matrix(c(1, 2,
-                            1, 3,
-                            2, 3,
-                            1, 1,
-                            2, 2,
-                            3, 3),
-                          ncol = 2, byrow = TRUE)
-
-grid_d_actual <- add_d(d = 1, grid = grid_r_actual)
-grid_d_expected <- cbind(rep(1, each = 6), grid_r_expected)
-
-
 test_that("search grid for r is correct", {
+  z <- 1:3
+  grid_r_actual <- create_grid_r(z, r = c(0, 1), thin = FALSE)
+  grid_r_expected <- matrix(c(1, 2,
+                              1, 3,
+                              2, 3,
+                              1, 1,
+                              2, 2,
+                              3, 3),
+                            ncol = 2, byrow = TRUE)
+
   expect_equal(grid_r_actual, grid_r_expected)
 })
 
 test_that("d is correctly added", {
+  grid <- matrix(nrow = 2, ncol = 2)
+  grid_d_expected <- cbind(rep(c(1, 3), each = 2),
+                           matrix(nrow = 4, ncol = 2))
+  grid_d_actual <- add_d(d = c(1, 3), grid)
+
   expect_equal(grid_d_actual, grid_d_expected)
 })
-
 
 test_that("starts are correct", {
   y <- numeric(50)
@@ -55,6 +54,12 @@ test_that("starts are correct", {
 
   expect_equal(object = get_start(c(d, r0, r1), z = c(3, 3, 3, 3, 3), eff),
                expected = -1L)
+})
+
+test_that("z values are correct (with no thinning)", {
+  z <- 1:10
+  z_values <- get_z_values(z, r = c(.1, .9), thin = FALSE)
+  expect_equal(z_values, 2:9)
 })
 
 

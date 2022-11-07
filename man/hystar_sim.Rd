@@ -4,7 +4,7 @@
 \alias{hystar_sim}
 \title{Simulating data from the hysTAR model}
 \usage{
-hystar_sim(z, r, d, phi_R0, phi_R1, resvar, start_regime = NULL)
+hystar_sim(z, r, d, phi_R0, phi_R1, resvar = c(1, 1), start_regime = NULL)
 }
 \arguments{
 \item{z}{A numeric vector representing the observed time series of the threshold
@@ -17,7 +17,10 @@ When not provided, a \eqn{z_t} time series will be simulated, see Details.}
 
 \item{phi_R0}{A vector containing the constant and autoregressive parameters
 \eqn{(\phi_0^{(0)}, \phi_1^{(0)}, \dots, \phi_{p_0}^{(0)})} of Regime 0.
-Note that the first value of this vector is always interpreted as the constant.}
+Note that the first value of this vector is always interpreted as the constant.
+The coefficients must imply a stationary process. That is the case when the roots
+of \eqn{1 - \phi_1 - \cdots - \phi_{p_0}} lie outside the unit circle, or equivalently
+when \eqn{1 > sum_{i = 1}^{p_0} \phi_i}.}
 
 \item{phi_R1}{The same as \code{phi_R0}, but for Regime 1.}
 
@@ -26,12 +29,21 @@ residuals \eqn{\sigma_{(0)}^2} and \eqn{\sigma_{(1)}^2}. The residuals are sampl
 from a normal distribution in the current implementation, but note that the model
 is defined for any i.i.d. distribution with zero mean and finite variance.}
 
-\item{start_regime}{}
+\item{start_regime}{Which regime should be first when \code{z} starts in the hysteresis
+zone \eqn{r_0, r_1}, 0 or 1?}
 }
 \value{
 A list with \verb{$data} (an \code{hystar_data} object) and a
 \itemize{
-\item \verb{$data}, an \code{hystar_data} object, and
+\item \verb{$data}. A \code{data.frame} of class \code{hystar_data} (with a \code{plot()} method), containing
+\itemize{
+\item \code{y}, the outcome variable
+\item \code{z}, the threshold variable
+\item \code{H}, a logical vector that indicates at which time points the hysteresis
+effect is happening. Note that this vector starts with \code{NA}(s), since the first
+\eqn{\max\{p_0, p_1, d\}} values are not predicted in the HysTAR model.
+\item \code{R}, the regime indicator vector.
+}
 \item \verb{$true_values}, a list containing the parameter values that were used to
 generate the data.
 }
@@ -62,5 +74,8 @@ where
 Simulation of z. Why initial values are needed.
 }
 \examples{
-1
+z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
+sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_0 = c(0, .6), phi_1 = 1,
+resvar = c(1, 1))
+plot(sim$data)
 }

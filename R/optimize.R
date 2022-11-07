@@ -1,7 +1,7 @@
 optim_p <- function(y, x, z, eff, grid, p_options, p_select) {
   equivs <- vector(mode = "list", length = nrow(p_options))
 
-  for (i in 1:nrow(p_options)) {
+  for (i in seq_len(nrow(p_options))) {
     p0_sel <- p_options[i, "p0"]
     p1_sel <- p_options[i, "p1"]
     optim <- optim_grid(y, eff, x, z, p0_sel, p1_sel, grid)
@@ -57,14 +57,11 @@ select_min_d <- function(M) {
 }
 
 select_r <- function(M) {
-  dist <- apply(X = M[, 2:3, drop = FALSE], MARGIN = 1,
+  dist <- apply(X = M[, c("r0", "r1"), drop = FALSE], MARGIN = 1,
                 FUN = function(x) abs(x[1] - x[2]))
   # If there are multiple pairs that are the smallest,
   # which.min makes sure that only one is selected
   row_select <- which.min(dist)
   return(M[row_select, , drop = FALSE])
 }
-
-
-
 

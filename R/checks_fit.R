@@ -60,7 +60,7 @@ check_rz <- function(r, z) {
     stop("`r` is a vector, so the values of 'r' must be valid quantiles.",
          call. = FALSE)
 
-  if (matrix(r) && !all(min(z) <= r & r <= max(z)))
+  if (is.matrix(r) && (!all(min(z) <= r & r <= max(z))))
     stop(paste0("'r' is a matrix, so the values of 'r' must be in in ",
                 "the range of 'z'."), call. = FALSE)
 }

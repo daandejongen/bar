@@ -31,14 +31,14 @@ of the autoregressive order of Regime 0. Defaults to 1.}
 \item{p1}{Same as \code{p0}, but for regime 1.}
 
 \item{p_select}{Which information criterion should be minimized to select
-the orders p0 and p1. Choices:
+the orders \eqn{p_0} and \eqn{p_1} Choices:
 \itemize{
 \item "aic" (Akaike Information Criterion)
 \item "aicc" (Corrected Akaike Information Criterion)
 \item "bic" (default, Bayesian Information Criterion)
 }}
 
-\item{r}{A vector or a matrix with search values for \eqn{r_0, r_1}.
+\item{r}{A vector or a matrix with search values for \eqn{\hat{r}_0, \hat{r}_1}.
 Defaults to \code{c(.1, .9)}.
 \itemize{
 \item If \code{r} is a vector, its length must be 2, such that it represents two quantiles
@@ -61,7 +61,7 @@ If \code{FALSE}, all observed unique values of \code{z} between
 \code{quantile(z, r[1])} and \code{quantile(z, r[2])} will be considered.}
 }
 \value{
-An object of S3 class \code{hystar}, which is a list containing the following
+An object of S3 class \code{hystar}, which is a \code{list} containing the following
 items:
 \itemize{
 \item \verb{$data}. A \code{data.frame} of class \code{hystar_data}, containing
@@ -135,7 +135,12 @@ in \code{summary(hystar)}: a matrix with the SEs and p-values.
 in \code{print(hystar)}: in the model equations.
 }
 \examples{
-model <- hystar_fit(y = y, z = z, d = c(1, 3), p0 = 1:4, p1 = 2)
-summary(model)
+z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
+sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_0 = c(0, .6), phi_1 = 1,
+resvar = c(1, 1))
+model <- hystar_fit(y = sim$data$y, z = z)
 plot(model$data)
+summary(model)
+# What percentage of time points has a correctly predicted regime?
+mean(sim$data$R == model$data$R, na.rm = TRUE)
 }

@@ -12,15 +12,13 @@ check_hystar_sim_input <- function(z, r, d, phi_R0, phi_R1, resvar, start_regime
   return(start)
 }
 
-check_z_sim_input <- function(start_regime, n_switches, n_t, form, scale) {
-  check_start_regime(start_regime)
-  check_whole_nn(n_switches)
+check_z_sim_input <- function(n_t, n_switches, start_regime, start_hyst, range) {
   check_whole_nn(n_t)
+  check_whole_nn(n_switches)
   check_n_t_switches(n_t, n_switches)
-  form <- check_form(form)
-  check_scale(scale)
-
-  return(form)
+  check_start_regime(start_regime)
+  check_start_hyst(start_hyst)
+  check_range(range)
 }
 
 check_z <- function(z) {
@@ -98,30 +96,20 @@ check_start_regime <- function(start_regime) {
   }
 }
 
-check_form <- function(form) {
-  form <- tryCatch(
-    error = function(cond) {
-      stop("`form` must be 'cosine' or 'sine'",
-           call. = FALSE)
-    },
-    match.arg(
-      arg = form,
-      choices = c("cosine", "sine")
-    )
-  )
-
-  return(form)
+check_start_hyst <- function(start_hyst) {
+  if (!(start_hyst %in% c(TRUE, FALSE)))
+    stop(paste0("`starthyst` must be TRUE or FALSE"), call. = FALSE)
 }
 
-check_scale <- function(scale) {
-  if (!is.numeric(scale)) error_numeric(scale)
-  if (length(scale) != 2) {
-    stop(paste0("`scale` should be a vector of length 2.\n",
-                "You provided a vector of length ", length(scale), "."),
+check_range <- function(range) {
+  if (!is.numeric(range)) error_numeric(range)
+  if (length(range) != 2) {
+    stop(paste0("`range` should be a vector of length 2.\n",
+                "You provided a vector of length ", length(range), "."),
          call. = FALSE)
   }
-  if (scale[1] >= scale[2]) {
-    stop(paste0("`scale` should be a proper interval. \n",
+  if (range[1] >= range[2]) {
+    stop(paste0("`range` should be a proper interval. \n",
                 "Right now, the second value is not larger than the first."),
          call. = FALSE)
   }

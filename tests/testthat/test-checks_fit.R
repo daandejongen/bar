@@ -15,21 +15,8 @@ test_that("a matrix for r must have correct thresholds", {
   expect_error(check_r(r), "The second threshold value should")
 })
 
-test_that("`r_type` must be valid", {
-  expect_error(check_r_type("blabla"), "`r_type` must be one of")
-})
-
 test_that("`r` must be valid quantiles", {
   expect_error(check_rz(r = c(.2, 3),
-                        r_type = "quantile",
-                        z = 1), "`r_type` is quantile, so the values of")
+                        z = 1), "so the values of")
 })
-
-
-
-
-
-
-
-
 

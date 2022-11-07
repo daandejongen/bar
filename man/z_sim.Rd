@@ -4,29 +4,41 @@
 \alias{z_sim}
 \title{Simulate the threshold/control variable Z}
 \usage{
-z_sim(start_regime, n_switches, n_t, form = "cosine", scale = c(-1, 1))
+z_sim(n_t, n_switches, start_regime, start_hyst = FALSE, range = c(-1, 1))
 }
 \arguments{
-\item{start_regime}{a}
+\item{n_t}{The length of the simulated time series of \code{z}. Note that this will also
+be the length of \code{y}, when you feed \code{z} to \code{\link{hystar_sim}}}
 
-\item{n_switches}{a}
+\item{n_switches}{A scalar indicating the desired number of regime switches.
+It depends on the thresholds and the delay of the HysTAR model if this number
+is achieved, see Details.}
 
-\item{n_t}{a}
+\item{start_regime}{The starting regime of the HysTAR model, 0 or 1. You must specify the
+same starting regime in \code{\link{hystar_sim}}. Otherwise, \code{n_switches} may not be realized.}
 
-\item{form}{a}
+\item{start_hyst}{Logical, should \code{z} start in the hysteresis zone? Of course, this also
+depends on \code{r}, and \code{r} is not yet specified in this function. Rather, setting \code{start_hyst}
+to \code{TRUE} makes \code{z} start at in the middle of its range, which makes it easy to
+set the threshold values "around" the first values of \code{z}.}
 
-\item{scale}{a}
+\item{range}{A numeric vector of length 2 indicating the desired range (min, max) of \code{z}.}
 }
 \value{
-a
+A numeric vector of length \code{n_t}.
 }
 \description{
-blabla
+This is a function you can use to simulate time series data
+for a threshold variable of the HysTAR model. You could use this when you want
+to simulate data from the HysTAR model, but have not observed the threshold variable.
 }
 \details{
 The number of switches \code{n_switches} can differ ultimately based on r and d.
-and if starting regime is weird. (only for sine function)
+and if starting regime is weird (only for sine function).
+Values of \code{z} will have three digits.
 }
 \examples{
-1
+z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
+y <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_0 = c(0, .6), phi_1 = 1,
+resvar = c(1, 1))
 }

@@ -39,11 +39,11 @@
 #'     of the autoregressive order of Regime 0. Defaults to 1.
 #' @param p1 Same as `p0`, but for regime 1.
 #' @param p_select Which information criterion should be minimized to select
-#' the orders p0 and p1. Choices:
+#' the orders \eqn{p_0} and \eqn{p_1} Choices:
 #' * "aic" (Akaike Information Criterion)
 #' * "aicc" (Corrected Akaike Information Criterion)
 #' * "bic" (default, Bayesian Information Criterion)
-#' @param r A vector or a matrix with search values for \eqn{r_0, r_1}.
+#' @param r A vector or a matrix with search values for \eqn{\hat{r}_0, \hat{r}_1}.
 #' Defaults to `c(.1, .9)`.
 #' * If `r` is a vector, its length must be 2, such that it represents two quantiles
 #' within which the threshold value should be searched.
@@ -62,7 +62,7 @@
 #' If `FALSE`, all observed unique values of `z` between
 #' `quantile(z, r[1])` and `quantile(z, r[2])` will be considered.
 #'
-#' @return An object of S3 class `hystar`, which is a list containing the following
+#' @return An object of S3 class `hystar`, which is a `list` containing the following
 #' items:
 #' * `$data`. A `data.frame` of class `hystar_data`, containing
 #'     * `y`, the outcome variable
@@ -104,19 +104,22 @@
 #' @export
 #'
 #' @examples
-#' model <- hystar_fit(y = y, z = z, d = c(1, 3), p0 = 1:4, p1 = 2)
-#' summary(model)
+#' z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
+#' sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_0 = c(0, .6), phi_1 = 1,
+#' resvar = c(1, 1))
+#' model <- hystar_fit(y = sim$data$y, z = z)
 #' plot(model$data)
+#' summary(model)
+#' # What percentage of time points has a correctly predicted regime?
+#' mean(sim$data$R == model$data$R, na.rm = TRUE)
 hystar_fit <- function(y, z, d = 1L, p0 = 1L, p1 = 1L, p_select = "bic",
                        r = c(.1, .9), thin = TRUE) {
-
   check_input <- check_hystar_fit_input(y, z, d, p0, p1, p_select, r, thin)
-  p_select <- check_input[3]
+  p_select <- check_input
   eff <- time_eff(y, max(d), max(p0), max(p1))
   x <- create_x(y, eff, max(p0), max(p1))
   grid <- create_grid(z, r, d, eff, thin)
   p_options <- create_p_options(p0, p1)
-
   OPT <- optim_p(y, x, z, eff, grid, p_options, p_select)
   est <- OPT$est
   # We can discard the 4th column, "starts", because this will always have

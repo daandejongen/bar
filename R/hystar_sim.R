@@ -31,25 +31,39 @@
 #' @param d A number in \eqn{\{1, 2, \dots\}} representing the value of the delay parameter.
 #' @param phi_R0 A vector containing the constant and autoregressive parameters
 #' \eqn{(\phi_0^{(0)}, \phi_1^{(0)}, \dots, \phi_{p_0}^{(0)})} of Regime 0.
-#' Note that the first value of this vector is always interpreted as the constant.
+#' Note that the first value of this vector is \textit{always} interpreted as the constant.
+#' The coefficients must imply a stationary process. That is the case when the roots
+#' of \eqn{1 - \phi_1 - \cdots - \phi_{p_0}} lie outside the unit circle, or equivalently
+#' when \eqn{1 > \sum_{i = 1}^{p_0} \phi_i}.
 #' @param phi_R1 The same as `phi_R0`, but for Regime 1.
 #' @param resvar A numeric vector of length 2 representing the variances of the
 #' residuals \eqn{\sigma_{(0)}^2} and \eqn{\sigma_{(1)}^2}. The residuals are sampled
 #' from a normal distribution in the current implementation, but note that the model
 #' is defined for any i.i.d. distribution with zero mean and finite variance.
-#' @param start_regime
+#' @param start_regime A scalar 0 or 1 indicating which regime should be first when
+#' `z` starts in the hysteresis zone \eqn{(r_0, r_1]}?
 #'
-#' @return A list with `$data` (an `hystar_data` object) and a
+#' @return A list with elements
 #'
-#' * `$data`, an `hystar_data` object, and
+#' * `$data`. A `data.frame` of class `hystar_data` (with a `plot()` method), containing
+#'     * `y`, the outcome variable
+#'     * `z`, the threshold variable
+#'     * `H`, a logical vector that indicates at which time points the hysteresis
+#' effect is happening. Note that this vector starts with `NA`(s), since the first
+#' \eqn{d} time points have no values observed for `z`.
+#'     * `R`, the regime indicator vector.
+#'
 #' * `$true_values`, a list containing the parameter values that were used to
 #' generate the data.
 #'
 #' @export
 #'
 #' @examples
-#' 1
-hystar_sim <- function(z, r, d, phi_R0, phi_R1, resvar, start_regime = NULL) {
+#' z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
+#' sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_0 = c(0, .6), phi_1 = 1,
+#' resvar = c(1, 1))
+#' plot(sim$data)
+hystar_sim <- function(z, r, d, phi_R0, phi_R1, resvar = c(1, 1), start_regime = NULL) {
 
   start_regime <- check_hystar_sim_input(z, r, d, phi_R0, phi_R1, resvar, start_regime)
 

@@ -13,7 +13,6 @@ residuals.hystar <- function(object) {
   return(object$residuals)
 }
 
-
 #' @export
 confint.hystar <- function(object, parm, level = 0.95, ...) {
   if (missing(parm)) parm <- 1:length(object$coefficients)
@@ -28,7 +27,7 @@ confint.hystar <- function(object, parm, level = 0.95, ...) {
 
   CIs <- compute_CIs(coe, SEs, alpha = alpha)
 
-  return(CIs)
+  return(round(CIs, 3))
 }
 
 #' @export
