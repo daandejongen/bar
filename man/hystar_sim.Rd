@@ -2,80 +2,95 @@
 % Please edit documentation in R/hystar_sim.R
 \name{hystar_sim}
 \alias{hystar_sim}
-\title{Simulating data from the hysTAR model}
+\title{Simulate data from the hysTAR model}
 \usage{
 hystar_sim(z, r, d, phi_R0, phi_R1, resvar = c(1, 1), start_regime = NULL)
 }
 \arguments{
-\item{z}{A numeric vector representing the observed time series of the threshold
-variable. The length of \code{z} determines the length of the outcome time series \eqn{y_t}.
-When not provided, a \eqn{z_t} time series will be simulated, see Details.}
+\item{z}{A numeric vector representing the observed time series of the
+threshold variable. The length of \code{z} determines the length of the outcome
+time series \eqn{y_t}. You can simulate such a variable with \code{\link[=z_sim]{z_sim()}}.}
 
-\item{r}{A numeric vector of length 2, representing the threshold values \eqn{r_0} and \eqn{r_1}.}
+\item{r}{A numeric vector of length 2, representing the threshold values
+\eqn{r_0} and \eqn{r_1}.}
 
-\item{d}{A number in \eqn{\{1, 2, \dots\}} representing the value of the delay parameter.}
+\item{d}{A number in \eqn{\{1, 2, \dots\}} representing the value of the
+delay parameter.}
 
 \item{phi_R0}{A vector containing the constant and autoregressive parameters
 \eqn{(\phi_0^{(0)}, \phi_1^{(0)}, \dots, \phi_{p_0}^{(0)})} of Regime 0.
-Note that the first value of this vector is \textit{always} interpreted as the constant.
-The coefficients must imply a stationary process. That is the case when the roots
-of \eqn{1 - \phi_1 - \cdots - \phi_{p_0}} lie outside the unit circle, or equivalently
-when \eqn{1 > \sum_{i = 1}^{p_0} \phi_i}.}
+Note that the first value of this vector is \emph{always} interpreted as the
+constant. The coefficients must imply a stationary process. That is the
+case when the (complex) roots of \eqn{1 - \phi_1 - \cdots - \phi_{p_0}} lie
+on or outside the unit circle, or equivalently when \eqn{1 \ge \sum_{i =
+  1}^{p_0} \phi_i}.}
 
 \item{phi_R1}{The same as \code{phi_R0}, but for Regime 1.}
 
 \item{resvar}{A numeric vector of length 2 representing the variances of the
-residuals \eqn{\sigma_{(0)}^2} and \eqn{\sigma_{(1)}^2}. The residuals are sampled
-from a normal distribution in the current implementation, but note that the model
-is defined for any i.i.d. distribution with zero mean and finite variance.}
+residuals \eqn{\sigma_{(0)}^2} and \eqn{\sigma_{(1)}^2}. The residuals are
+sampled from a normal distribution in the current implementation, but note
+that the model is defined for any i.i.d. distribution with zero mean and
+finite variance.}
 
-\item{start_regime}{A scalar 0 or 1 indicating which regime should be first when
-\code{z} starts in the hysteresis zone \eqn{(r_0, r_1]}?}
+\item{start_regime}{A scalar 0 or 1 indicating which regime should be first
+when \code{z} starts in the hysteresis zone \eqn{(r_0, r_1]}?}
 }
 \value{
-A list with elements
+A list of class \code{hystar_sim} with elements
 \itemize{
-\item \verb{$data}. A \code{data.frame} of class \code{hystar_data} (with a \code{plot()} method), containing
+\item \verb{$data}, a \code{data.frame} with columns:
 \itemize{
 \item \code{y}, the outcome variable
 \item \code{z}, the threshold variable
-\item \code{H}, a logical vector that indicates at which time points the hysteresis
-effect is happening. Note that this vector starts with \code{NA}(s), since the first
-\eqn{d} time points have no values observed for \code{z}.
+\item \code{H}, a logical vector that indicates at which time
+points the hysteresis effect is happening. Note that this vector starts
+with \code{NA}(s), since the first \eqn{d} time points have no values observed
+for \eqn{z_{t-d}}.
 \item \code{R}, the regime indicator vector.
 }
-\item \verb{$true_values}, a list containing the parameter values that were used to
-generate the data.
+\item \verb{$r}, a numeric vector with the two threshold values,
+\item \verb{$d}, the delay parameter,
+\item \verb{$phi}, a numeric vector containing the coefficients. The names are such
+that \code{phi_R1_2} represents \eqn{\phi_{2}^{(1)}}, the second lag
+autoregressive coefficient in Regime 1,
+\item \verb{$orders}, a numeric vector containing the two orders, and
+\item \verb{$resvar}, a numeric vector with the residual variances of both regimes.
+}
+
+Implemented generics for the \code{hystar_sim} class:
+\itemize{
+\item \code{plot()}
+\item \code{summary()}
+\item \code{print()}
 }
 }
 \description{
-The hysTAR model is defined as:
+With this function, you can simulate observations from the
+hysTAR model, given the parameter values. The hysTAR model is defined as:
 
-\eqn{
-    y_t =
-    \begin{cases}
-    \phi_0^{(0)} + \phi_1^{(0)} y_{t-1} + \cdots + \phi_{p_0}^{(0)}
-    y_{t-p_0} + \sigma_{(0)} \varepsilon_t & \text{if}~R_{t} = 0 \\
-    \phi_0^{(1)} + \phi_1^{(1)} y_{t-1} + \cdots + \phi_{p_1}^{(1)}
-    y_{t-p_1} + \sigma_{(1)} \varepsilon_t & \text{if}~R_{t} = 1, \\
-    \end{cases}
-}
+\eqn{ y_t = \begin{cases} \phi_0^{(0)} + \phi_1^{(0)} y_{t-1} + \cdots +
+  \phi_{p_0}^{(0)} y_{t-p_0} + \sigma_{(0)} \varepsilon_t & \text{if}~R_{t} = 0
+  \\ \phi_0^{(1)} + \phi_1^{(1)} y_{t-1} + \cdots + \phi_{p_1}^{(1)} y_{t-p_1}
+  + \sigma_{(1)} \varepsilon_t & \text{if}~R_{t} = 1, \\ \end{cases} }
 
-where
-\eqn{
-    R_t = \begin{cases}
-    0 & \mathrm{if} \, z_{t-d} \in (-\infty, r_{0}] \\
-    R_{t-1} & \mathrm{if} \, z_{t-d} \in (r_0, r_1] \\
-    1 & \mathrm{if} \, z_{t-d} \in (r_1, \infty), \\
-    \end{cases}
-}
+with \eqn{ R_t = \begin{cases} 0 & \mathrm{if} \, z_{t-d} \in (-\infty,
+  r_{0}] \\ R_{t-1} & \mathrm{if} \, z_{t-d} \in (r_0, r_1] \\ 1 & \mathrm{if}
+  \, z_{t-d} \in (r_1, \infty), \\ \end{cases} }
+
+where \eqn{p_i} denotes the order of regime \eqn{i \in \{0,1\}} with
+coefficients \eqn{\phi_0^{(i)}, \dots, \phi_{p_i}^{(i)} \in (-1, 1)},
+\eqn{\sigma_{(i)}} is the standard deviation of the residuals, and \eqn{d \in
+  \{1, 2, \dots\}} is a delay parameter. The parameters of primary interest are
+the thresholds \eqn{r_0 \le r_1}.
 }
 \details{
-Simulation of z. Why initial values are needed.
+Simulation of z. Why initial values are needed. \code{\link[=hystar_fit]{hystar_fit()}}
 }
 \examples{
 z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
-sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_0 = c(0, .6), phi_1 = 1,
+sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
 resvar = c(1, 1))
-plot(sim$data)
+plot(sim)
+summary(sim)
 }

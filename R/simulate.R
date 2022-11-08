@@ -26,7 +26,7 @@
 #'
 #' @examples
 #' z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
-#' y <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_0 = c(0, .6), phi_1 = 1,
+#' y <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
 #' resvar = c(1, 1))
 z_sim <- function(n_t, n_switches,
                   start_regime, start_hyst = FALSE,

@@ -1,6 +1,6 @@
 #' @export
 #' @importFrom stats coef
-coef.hystar_fit <- function(object) {
+coef.hystar_fit <- function(object, ...) {
   M <- create_coe_matrix(object$coefficients,
                          object$orders[1],
                          object$orders[2])
@@ -9,7 +9,7 @@ coef.hystar_fit <- function(object) {
 
 #' @export
 #' @importFrom stats residuals
-residuals.hystar_fit <- function(object) {
+residuals.hystar_fit <- function(object, ...) {
   return(object$residuals)
 }
 
@@ -32,14 +32,14 @@ confint.hystar_fit <- function(object, parm, level = 0.95, ...) {
 
 #' @export
 #' @importFrom stats fitted
-fitted.hystar_fit <- function(object) {
+fitted.hystar_fit <- function(object, ...) {
   y <- object$data$y[object$eff]
   return(y - object$residuals)
 }
 
 #' @export
 #' @importFrom stats nobs
-nobs.hystar_fit <- function(object) {
+nobs.hystar_fit <- function(object, ...) {
   return(object$n)
 }
 

@@ -1,10 +1,18 @@
 #' @export
+#' @importFrom graphics abline
+#' @importFrom graphics axis
+#' @importFrom graphics legend
+#' @importFrom graphics par
+#' @importFrom graphics rect
+#' @importFrom graphics segments
 plot.hystar_fit <- function(x, y = NULL, ...) {
   plot_hystar(y = x$data$y,
               z = x$data$z,
               R = x$data$R,
               r = x$thresholds,
               k = sum(is.na(x$data$R)))
+
+  return()
 }
 
 #' @export
@@ -12,8 +20,10 @@ plot.hystar_sim <- function(x, y = NULL, ...) {
   plot_hystar(y = x$data$y,
               z = x$data$z,
               R = x$data$R,
-              r = x$true_values$r,
+              r = x$r,
               k = 0)
+
+  return()
 }
 
 plot_hystar <- function(y, z, R, r, k) {
@@ -25,6 +35,7 @@ plot_hystar <- function(y, z, R, r, k) {
   on.exit(par(old), add = TRUE)
   sw_pnts_mat <- get_sw_pnts_mat(R)
   make_zplot(time, z, r, R, k, col_reg1, sw_pnts_mat)
+  # Set top margin for the bottom plot (y) to zero
   par(mar = c(4.1, 4.1, 0, 2.1))
   make_yplot(time, y, R, k, col_reg1, sw_pnts_mat)
 }
@@ -69,8 +80,8 @@ rect_reg <- function(R, x, col_reg1, sw_pnts_mat) {
 }
 
 rect_ineff <- function(x, k) {
-  rect(xleft = 0, ybottom = get_minmax(x)[1],
-       xright = k, ytop = get_minmax(x)[2],
+  rect(xleft = 1, ybottom = get_minmax(x)[1],
+       xright = k + 1, ytop = get_minmax(x)[2],
        col = "#AA001137", border = NA)
 }
 
@@ -98,10 +109,11 @@ get_sw_pnts_mat <- function(R) {
 
   if (even) {
     if (start_with_1) points <- c(1, sw_pnts, n)
-    else points <- sw_pnts
-  } else {
+    if (!start_with_1) points <- sw_pnts
+  }
+  if (!even) {
     if (start_with_1) points <- c(1, sw_pnts)
-    else points <- c(sw_pnts, n)
+    if (!start_with_1) points <- c(sw_pnts, n)
   }
 
   sw_pnts_mat <- matrix(points, ncol = 2, byrow = TRUE)
@@ -115,13 +127,5 @@ get_sw_pnts <- function(R) {
   # point again (in which there can be no switch by definition).
   n <- length(R)
   return(which(c(FALSE, R[2:n] - R[1:(n-1)] != 0)))
-}
-
-#Deprecated
-make_Hplot <- function(H, height) {
-  sw_pnts_mat <- get_sw_pnts_mat(H)
-  segments(x0 = sw_pnts_mat[, 1], y0 = height,
-           x1 = sw_pnts_mat[, 2], y1 = height,
-           lwd = 15, col = "blue2", lend = "butt")
 }
 

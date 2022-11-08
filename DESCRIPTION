@@ -2,8 +2,9 @@ Package: hystar
 Title: Simulation And Least Squares Estimation of the hysteretic TAR Model
 Version: 0.0.9
 Authors@R: 
-    person("Daan", "de Jong", email = "d.dejong@uu.nl", role = c("aut", "cre"),
+    person("Daan", "de Jong", role = c("aut", "cre"), email = "d.dejong@uu.nl", 
            comment = c(ORCID = "0000-0001-6034-0136"))
+Maintainer: Daan de Jong <d.dejong@uu.nl>
 Description: The hysteretic threshold autoregressive (hysTAR) model describes a
     time series that follows one of two possible AR processes according to a
     hysteretic switching mechanism. With 'hystar', you can simulate data from
@@ -14,12 +15,13 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
 Imports: 
     Rcpp,
+    graphics,
     stats,
     utils
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://github.com/daandejongen/bar
-BugReports: https://github.com/daandejongen/bar/issues
+URL: https://github.com/daandejongen/bar/
+BugReports: https://github.com/daandejongen/bar/issues/
 LinkingTo: 
     Rcpp

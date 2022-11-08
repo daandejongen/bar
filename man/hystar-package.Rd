@@ -11,8 +11,8 @@ The hysteretic threshold autoregressive (hysTAR) model describes a time series t
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/daandejongen/bar}
-  \item Report bugs at \url{https://github.com/daandejongen/bar/issues}
+  \item \url{https://github.com/daandejongen/bar/}
+  \item Report bugs at \url{https://github.com/daandejongen/bar/issues/}
 }
 
 }

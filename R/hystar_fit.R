@@ -13,7 +13,7 @@
 #'     \end{cases}
 #' }
 #'
-#' where
+#' with
 #' \eqn{
 #'     R_t = \begin{cases}
 #'     0 & \mathrm{if} \, z_{t-d} \in (-\infty, r_{0}] \\
@@ -21,6 +21,12 @@
 #'     1 & \mathrm{if} \, z_{t-d} \in (r_1, \infty), \\
 #'     \end{cases}
 #' }
+#'
+#' where \eqn{p_i} denotes the order of regime \eqn{i \in \{0,1\}} with coefficients
+#' \eqn{\phi_0^{(i)}, \dots, \phi_{p_i}^{(i)} \in (-1, 1)}, \eqn{\sigma_{(i)}}
+#' is the standard deviation of the residuals, and \eqn{d \in \{1, 2, \dots\}}
+#' is a delay parameter. The parameters of primary interest are the
+#' thresholds \eqn{r_0 \le r_1}.
 #'
 #' @details
 #' Coefficient estimates are offered in various ways:
@@ -62,7 +68,7 @@
 #' If `FALSE`, all observed unique values of `z` between
 #' `quantile(z, r[1])` and `quantile(z, r[2])` will be considered.
 #'
-#' @return An object of S3 class `hystar`, which is a `list` containing the following
+#' @return An object of S3 class `hystar_fit`, which is a `list` containing the following
 #' items:
 #' * `$data`. A `data.frame` of class `hystar_data`, containing
 #'     * `y`, the outcome variable
@@ -85,15 +91,14 @@
 #' * `$n`, a named vector with the total effective observations and the
 #' effective obeservations in regime 0 and regime 1.
 #' * `$eff`, a vector with the time indicators of the effective observations.
-#' * `$equiv`, a matrix containing equivalent estimates for \eqn{d, p_0} and \eqn{p_1},
+#' * `$equiv`, a matrix containing equivalent estimates for the delay and thresholds,
 #' i.e., estimates that imply exactly the same regime indicator vector, and
 #' as a result the same minimal residual sum of squares.
 #'
-#' S3 methods:
-#' *  The `hystar_data` class has a `plot()` method.
+#' Implemented generics for the `hystar_fit` class:
+#' *  `plot()`
 #' * `summary()`, this also provides the p-values and standard errors for the
-#' estimates of
-#' \eqn{\phi_0^{(0)}, \dots, \phi_{p_0}^{(0)}, \phi_0^{(1)}, \dots, \phi_{p_1}^{(1)}}.
+#' estimates of the coefficients.
 #' * `print()`
 #' * `coef()`
 #' * `confint()`
@@ -105,10 +110,10 @@
 #'
 #' @examples
 #' z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
-#' sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_0 = c(0, .6), phi_1 = 1,
+#' sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
 #' resvar = c(1, 1))
 #' model <- hystar_fit(y = sim$data$y, z = z)
-#' plot(model$data)
+#' plot(model)
 #' summary(model)
 #' # What percentage of time points has a correctly predicted regime?
 #' mean(sim$data$R == model$data$R, na.rm = TRUE)

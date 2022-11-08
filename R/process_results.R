@@ -24,13 +24,11 @@ create_coe_matrix_SE_p <- function(coe, y, R, rv, p0, p1) {
   return(M)
 }
 
-
 # Helpers
 regname <- function(x) {
   names(x) <- paste0("Regime", 0:1)
   return(x)
 }
-
 
 split_coe <- function(coe, p0, p1) {
   # We are given one vector of coefficients, but from this only it is unclear
@@ -42,7 +40,6 @@ split_coe <- function(coe, p0, p1) {
 
   return(list(coe0 = coe[1:nc0], coe1 = coe[(nc0 + 1):(nc0 + nc1)]))
 }
-
 
 complete_shorter_coe <- function(coe0, coe1) {
   # When we want to present both vectors of coefficients (from both regimes)
