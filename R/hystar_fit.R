@@ -1,44 +1,16 @@
-#' Estimating the hysTAR model using least squares estimation
+#' Estimate the hysTAR model using conditional least squares estimation
 #'
 #' @description
-#' The hysTAR model is defined as:
+#' This function allows you to estimate the parameters of the hysteretic threshold
+#' autoregressive (hysTAR) model, see below.
 #'
-#' \eqn{
-#'     y_t =
-#'     \begin{cases}
-#'     \phi_0^{(0)} + \phi_1^{(0)} y_{t-1} + \cdots + \phi_{p_0}^{(0)}
-#'     y_{t-p_0} + \sigma_{(0)} \varepsilon_t & \text{if}~R_{t} = 0 \\
-#'     \phi_0^{(1)} + \phi_1^{(1)} y_{t-1} + \cdots + \phi_{p_1}^{(1)}
-#'     y_{t-p_1} + \sigma_{(1)} \varepsilon_t & \text{if}~R_{t} = 1, \\
-#'     \end{cases}
-#' }
+#' @inherit hystar_sim author
+#' @inheritSection hystar_sim The hysTAR model
+#' @inherit hystar_sim references
 #'
-#' with
-#' \eqn{
-#'     R_t = \begin{cases}
-#'     0 & \mathrm{if} \, z_{t-d} \in (-\infty, r_{0}] \\
-#'     R_{t-1} & \mathrm{if} \, z_{t-d} \in (r_0, r_1] \\
-#'     1 & \mathrm{if} \, z_{t-d} \in (r_1, \infty), \\
-#'     \end{cases}
-#' }
-#'
-#' where \eqn{p_i} denotes the order of regime \eqn{i \in \{0,1\}} with coefficients
-#' \eqn{\phi_0^{(i)}, \dots, \phi_{p_i}^{(i)} \in (-1, 1)}, \eqn{\sigma_{(i)}}
-#' is the standard deviation of the residuals, and \eqn{d \in \{1, 2, \dots\}}
-#' is a delay parameter. The parameters of primary interest are the
-#' thresholds \eqn{r_0 \le r_1}.
-#'
-#' @details
-#' Coefficient estimates are offered in various ways:
-#'     as the element of the `hystar` (list) object: a named vector.
-#'     in `coef(hystar)`: as a 2 x max(order)+1 matrix, only estimates.
-#'     in `summary(hystar)`: a matrix with the SEs and p-values.
-#'     in `print(hystar)`: in the model equations.
-#'
-#' @param y A numeric vector representing the outcome time series.
+#' @param y A numeric vector representing the outcome time series. Can be simulated
+#'     with [hystar_sim()].
 #' @param z A numeric vector representing the threshold time series.
-#'     If `z` = `y`, the model is a hysSETAR
-#'     (hysteretic self-exciting threshold autoregressive) model.
 #' @param d A numeric vector with one or more values for the search space
 #'     of the delay parameter. Defaults to 1.
 #' @param p0 A numeric vector with one or more values for the search space
@@ -68,7 +40,7 @@
 #' If `FALSE`, all observed unique values of `z` between
 #' `quantile(z, r[1])` and `quantile(z, r[2])` will be considered.
 #'
-#' @return An object of S3 class `hystar_fit`, which is a `list` containing the following
+#' @returns An object of S3 class `hystar_fit`, which is a `list` containing the following
 #' items:
 #' * `$data`. A `data.frame` of class `hystar_data`, containing
 #'     * `y`, the outcome variable
@@ -80,7 +52,7 @@
 #'
 #' * `$residuals`. Also accessible with the `residuals()` S3 method.
 #' * `$coefficients`, a named vector with the estimated coefficients.
-#' With the `residuals()` S3 method, the residuals are represented in a matrix.
+#' With the `coef()` S3 method, the coefficients are represented in a matrix.
 #' Use the `confint()` method to get the confidence intervals of the estimates.
 #' * `$delay`, a named scalar with the estimate for the delay parameter.
 #' * `$thresholds`, a named vector with the estimates of the tresholds.
@@ -108,15 +80,7 @@
 #'
 #' @export
 #'
-#' @examples
-#' z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
-#' sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
-#' resvar = c(1, 1))
-#' model <- hystar_fit(y = sim$data$y, z = z)
-#' plot(model)
-#' summary(model)
-#' # What percentage of time points has a correctly predicted regime?
-#' mean(sim$data$R == model$data$R, na.rm = TRUE)
+#' @inherit hystar_sim examples
 hystar_fit <- function(y, z, d = 1L, p0 = 1L, p1 = 1L, p_select = "bic",
                        r = c(.1, .9), thin = TRUE) {
   check_input <- check_hystar_fit_input(y, z, d, p0, p1, p_select, r, thin)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/hystar_fit.R
 \name{hystar_fit}
 \alias{hystar_fit}
-\title{Estimating the hysTAR model using least squares estimation}
+\title{Estimate the hysTAR model using conditional least squares estimation}
 \usage{
 hystar_fit(
   y,
@@ -16,11 +16,10 @@ hystar_fit(
 )
 }
 \arguments{
-\item{y}{A numeric vector representing the outcome time series.}
+\item{y}{A numeric vector representing the outcome time series. Can be simulated
+with \code{\link[=hystar_sim]{hystar_sim()}}.}
 
-\item{z}{A numeric vector representing the threshold time series.
-If \code{z} = \code{y}, the model is a hysSETAR
-(hysteretic self-exciting threshold autoregressive) model.}
+\item{z}{A numeric vector representing the threshold time series.}
 
 \item{d}{A numeric vector with one or more values for the search space
 of the delay parameter. Defaults to 1.}
@@ -75,7 +74,7 @@ effect is happening. Note that this vector starts with \code{NA}(s), since the f
 }
 \item \verb{$residuals}. Also accessible with the \code{residuals()} S3 method.
 \item \verb{$coefficients}, a named vector with the estimated coefficients.
-With the \code{residuals()} S3 method, the residuals are represented in a matrix.
+With the \code{coef()} S3 method, the coefficients are represented in a matrix.
 Use the \code{confint()} method to get the confidence intervals of the estimates.
 \item \verb{$delay}, a named scalar with the estimate for the delay parameter.
 \item \verb{$thresholds}, a named vector with the estimates of the tresholds.
@@ -105,47 +104,41 @@ estimates of the coefficients.
 }
 }
 \description{
+This function allows you to estimate the parameters of the hysteretic threshold
+autoregressive (hysTAR) model, see below.
+}
+\section{The hysTAR model}{
 The hysTAR model is defined as:
 
-\eqn{
-    y_t =
-    \begin{cases}
-    \phi_0^{(0)} + \phi_1^{(0)} y_{t-1} + \cdots + \phi_{p_0}^{(0)}
-    y_{t-p_0} + \sigma_{(0)} \varepsilon_t & \text{if}~R_{t} = 0 \\
-    \phi_0^{(1)} + \phi_1^{(1)} y_{t-1} + \cdots + \phi_{p_1}^{(1)}
-    y_{t-p_1} + \sigma_{(1)} \varepsilon_t & \text{if}~R_{t} = 1, \\
-    \end{cases}
+\eqn{ y_t = \begin{cases} \phi_0^{(0)} + \phi_1^{(0)} y_{t-1} + \cdots +
+  \phi_{p_0}^{(0)} y_{t-p_0} + \sigma_{(0)} \varepsilon_t & \text{if}~R_{t} = 0
+  \\ \phi_0^{(1)} + \phi_1^{(1)} y_{t-1} + \cdots + \phi_{p_1}^{(1)} y_{t-p_1}
+  + \sigma_{(1)} \varepsilon_t & \text{if}~R_{t} = 1, \\ \end{cases} }
+
+with \eqn{ R_t = \begin{cases} 0 & \mathrm{if} \, z_{t-d} \in (-\infty,
+  r_{0}] \\ R_{t-1} & \mathrm{if} \, z_{t-d} \in (r_0, r_1] \\ 1 & \mathrm{if}
+  \, z_{t-d} \in (r_1, \infty), \\ \end{cases} }
+
+where \eqn{p_i} denotes the order of regime \eqn{i \in \{0,1\}} with
+coefficients \eqn{\phi_0^{(i)}, \dots, \phi_{p_i}^{(i)} \in (-1, 1)},
+\eqn{\sigma_{(i)}} is the standard deviation of the residuals, and \eqn{d \in
+  \{1, 2, \dots\}} is a delay parameter. The parameters of primary interest are
+the thresholds \eqn{r_0 \le r_1}.
 }
 
-with
-\eqn{
-    R_t = \begin{cases}
-    0 & \mathrm{if} \, z_{t-d} \in (-\infty, r_{0}] \\
-    R_{t-1} & \mathrm{if} \, z_{t-d} \in (r_0, r_1] \\
-    1 & \mathrm{if} \, z_{t-d} \in (r_1, \infty), \\
-    \end{cases}
-}
-
-where \eqn{p_i} denotes the order of regime \eqn{i \in \{0,1\}} with coefficients
-\eqn{\phi_0^{(i)}, \dots, \phi_{p_i}^{(i)} \in (-1, 1)}, \eqn{\sigma_{(i)}}
-is the standard deviation of the residuals, and \eqn{d \in \{1, 2, \dots\}}
-is a delay parameter. The parameters of primary interest are the
-thresholds \eqn{r_0 \le r_1}.
-}
-\details{
-Coefficient estimates are offered in various ways:
-as the element of the \code{hystar} (list) object: a named vector.
-in \code{coef(hystar)}: as a 2 x max(order)+1 matrix, only estimates.
-in \code{summary(hystar)}: a matrix with the SEs and p-values.
-in \code{print(hystar)}: in the model equations.
-}
 \examples{
 z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
 sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
 resvar = c(1, 1))
-model <- hystar_fit(y = sim$data$y, z = z)
-plot(model)
-summary(model)
-# What percentage of time points has a correctly predicted regime?
-mean(sim$data$R == model$data$R, na.rm = TRUE)
+plot(sim)
+fit <- hystar_fit(y = sim$data$y, z = z)
+summary(fit)
+}
+\references{
+Li, Guodong, Bo Guan, Wai Keung Li, en Philip L. H. Yu.
+‘Hysteretic Autoregressive Time Series Models’. Biometrika 102, nr. 3
+(september 2015): 717–23.
+}
+\author{
+Daan de Jong.
 }

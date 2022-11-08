@@ -39,6 +39,9 @@ Values of \code{z} will have three digits.
 }
 \examples{
 z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
-y <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
+sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
 resvar = c(1, 1))
+plot(sim)
+fit <- hystar_fit(y = sim$data$y, z = z)
+summary(fit)
 }

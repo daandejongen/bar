@@ -21,13 +21,10 @@
 #' set the threshold values "around" the first values of `z`.
 #' @param range A numeric vector of length 2 indicating the desired range (min, max) of `z`.
 #'
-#' @return A numeric vector of length `n_t`.
+#' @returns A numeric vector of length `n_t`.
 #' @export
 #'
-#' @examples
-#' z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
-#' y <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
-#' resvar = c(1, 1))
+#' @inherit hystar_sim examples
 z_sim <- function(n_t, n_switches,
                   start_regime, start_hyst = FALSE,
                   range = c(-1, 1)) {

@@ -7,9 +7,8 @@
 hystar_sim(z, r, d, phi_R0, phi_R1, resvar = c(1, 1), start_regime = NULL)
 }
 \arguments{
-\item{z}{A numeric vector representing the observed time series of the
-threshold variable. The length of \code{z} determines the length of the outcome
-time series \eqn{y_t}. You can simulate such a variable with \code{\link[=z_sim]{z_sim()}}.}
+\item{z}{A numeric vector representing the observed threshold variable.
+You can simulate \code{z} with \code{\link[=z_sim]{z_sim()}}.}
 
 \item{r}{A numeric vector of length 2, representing the threshold values
 \eqn{r_0} and \eqn{r_1}.}
@@ -20,7 +19,7 @@ delay parameter.}
 \item{phi_R0}{A vector containing the constant and autoregressive parameters
 \eqn{(\phi_0^{(0)}, \phi_1^{(0)}, \dots, \phi_{p_0}^{(0)})} of Regime 0.
 Note that the first value of this vector is \emph{always} interpreted as the
-constant. The coefficients must imply a stationary process. That is the
+constant. The coefficients must imply a s tationary process. That is the
 case when the (complex) roots of \eqn{1 - \phi_1 - \cdots - \phi_{p_0}} lie
 on or outside the unit circle, or equivalently when \eqn{1 \ge \sum_{i =
   1}^{p_0} \phi_i}.}
@@ -39,7 +38,7 @@ when \code{z} starts in the hysteresis zone \eqn{(r_0, r_1]}?}
 \value{
 A list of class \code{hystar_sim} with elements
 \itemize{
-\item \verb{$data}, a \code{data.frame} with columns:
+\item \verb{$data}, a \code{data.frame} with \code{length(z)} rows and 4 columns:
 \itemize{
 \item \code{y}, the outcome variable
 \item \code{z}, the threshold variable
@@ -67,7 +66,13 @@ Implemented generics for the \code{hystar_sim} class:
 }
 \description{
 With this function, you can simulate observations from the
-hysTAR model, given the parameter values. The hysTAR model is defined as:
+hysTAR model, given its parameter values. See Section "The hysTAR model" below.
+}
+\details{
+Simulation of z. Why initial values are needed. \code{\link[=hystar_fit]{hystar_fit()}}
+}
+\section{The hysTAR model}{
+The hysTAR model is defined as:
 
 \eqn{ y_t = \begin{cases} \phi_0^{(0)} + \phi_1^{(0)} y_{t-1} + \cdots +
   \phi_{p_0}^{(0)} y_{t-p_0} + \sigma_{(0)} \varepsilon_t & \text{if}~R_{t} = 0
@@ -84,13 +89,20 @@ coefficients \eqn{\phi_0^{(i)}, \dots, \phi_{p_i}^{(i)} \in (-1, 1)},
   \{1, 2, \dots\}} is a delay parameter. The parameters of primary interest are
 the thresholds \eqn{r_0 \le r_1}.
 }
-\details{
-Simulation of z. Why initial values are needed. \code{\link[=hystar_fit]{hystar_fit()}}
-}
+
 \examples{
 z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
 sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
 resvar = c(1, 1))
 plot(sim)
-summary(sim)
+fit <- hystar_fit(y = sim$data$y, z = z)
+summary(fit)
+}
+\references{
+Li, Guodong, Bo Guan, Wai Keung Li, en Philip L. H. Yu.
+‘Hysteretic Autoregressive Time Series Models’. Biometrika 102, nr. 3
+(september 2015): 717–23.
+}
+\author{
+Daan de Jong.
 }
