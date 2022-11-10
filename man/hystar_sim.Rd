@@ -32,8 +32,11 @@ sampled from a normal distribution in the current implementation, but note
 that the model is defined for any i.i.d. distribution with zero mean and
 finite variance.}
 
-\item{start_regime}{A scalar 0 or 1 indicating which regime should be first
-when \code{z} starts in the hysteresis zone \eqn{(r_0, r_1]}?}
+\item{start_regime}{Optionally, a 0 or 1 that indicates which regime should be the
+first. Necessary if \code{z} starts in the hysteresis zone \eqn{(r_0, r_1]}.
+Note that if you simulated \code{z} with \code{z_sim()}, you need to use the starting regime
+that you used there. Otherwise, the number of switches that you specified in \code{z_sim()}
+will not be correct.}
 }
 \value{
 A list of class \code{hystar_sim} with elements
@@ -59,17 +62,21 @@ autoregressive coefficient in Regime 1,
 
 Implemented generics for the \code{hystar_sim} class:
 \itemize{
-\item \code{plot()}
-\item \code{summary()}
-\item \code{print()}
+\item \code{plot()} plots the \code{z} variable and the \code{y} variable above one another.
+Shading of the background visualizes the regimes. Thresholds are drawn as
+horizontal lines in the \code{z} plot.
+\item \code{summary()} gives an overview of the true parameter values that were used.
+\item \code{print()} prints the parameter values within the mathematical representation
+of the model. Note that the scalar multiplied with \code{e[t]} is the standard deviation
+of the residuals, \emph{not} the variance. See also the model definition above.
 }
 }
 \description{
 With this function, you can simulate observations from the
-hysTAR model, given its parameter values. See Section "The hysTAR model" below.
+hysTAR model, given its parameter values.
 }
 \details{
-Simulation of z. Why initial values are needed. \code{\link[=hystar_fit]{hystar_fit()}}
+To simulate \code{y}, 50 burn-in samples according the starting regime are used.
 }
 \section{The hysTAR model}{
 The hysTAR model is defined as:

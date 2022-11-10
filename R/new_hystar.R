@@ -31,3 +31,27 @@ new_hystar_fit <- function(y, x, z, eff, est, model, equiv) {
   return(hystar)
 }
 
+new_hystar_sim <- function(y, z, H, R, phi_R0, phi_R1, r, d, resvar, k) {
+  phi <- c(phi_R0, phi_R1)
+  p0 <- get_order(phi_R0)
+  p1 <- get_order(phi_R1)
+  names(phi) <- c(paste0("phi_R0_", 0:p0), paste0("phi_R1_", 0:p1))
+
+  data <- data.frame(y = y, z = z, H = c(rep(NA, k), H == -1L), R = R)
+
+  out <- structure(
+    list(data = data,
+         r = r,
+         d = d,
+         phi = phi,
+         orders = c(get_order(phi_R0), get_order(phi_R1)),
+         resvar = resvar),
+    class = "hystar_sim"
+  )
+
+  return(out)
+}
+
+
+
+

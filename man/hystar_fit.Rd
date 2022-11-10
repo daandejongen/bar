@@ -31,31 +31,25 @@ of the autoregressive order of Regime 0. Defaults to 1.}
 
 \item{p_select}{Which information criterion should be minimized to select
 the orders \eqn{p_0} and \eqn{p_1} Choices:
-\itemize{
-\item "aic" (Akaike Information Criterion)
-\item "aicc" (Corrected Akaike Information Criterion)
-\item "bic" (default, Bayesian Information Criterion)
-}}
+* "aic" (Akaike Information Criterion)
+* "aicc" (Corrected Akaike Information Criterion)
+* "bic" (default, Bayesian Information Criterion)}
 
 \item{r}{A vector or a matrix with search values for \eqn{\hat{r}_0, \hat{r}_1}.
 Defaults to \code{c(.1, .9)}.
-\itemize{
-\item If \code{r} is a vector, its length must be 2, such that it represents two quantiles
+* If \code{r} is a vector, its length must be 2, such that it represents two quantiles
 within which the threshold value should be searched.
-\item If \code{r} is a matrix, it must have two columns,
+* If \code{r} is a matrix, it must have two columns,
 such that each row represents a pair \eqn{r_0 \le r_1} to test.
 You can use a matrix with one row if you don't want to estimate
 the thresholds. Note that the values in these matrix are not quantiles,
-but directly values on the scale of \code{z}.
-}}
+but directly values on the scale of \code{z}.}
 
 \item{thin}{Logical, only relevant when \code{r} is a vector.
 If \code{TRUE} (default), the search values for \eqn{r} are
-\code{quantile(z, seq(r[1], r[2], by = .01))}.
-This drastically improves the speed without much
-cost of estimation precision.
-Note that this is a purely practical choice
-with no theoretical justification (yet).
+\code{quantile(z, seq(r[1], r[2], by = .01))}. This drastically improves the speed
+without much cost of estimation precision. Note that this is a purely practical
+choice with no theoretical justification (yet).
 If \code{FALSE}, all observed unique values of \code{z} between
 \code{quantile(z, r[1])} and \code{quantile(z, r[2])} will be considered.}
 }
@@ -92,10 +86,14 @@ as a result the same minimal residual sum of squares.
 
 Implemented generics for the \code{hystar_fit} class:
 \itemize{
-\item \code{plot()}
+\item \code{plot()} plots the \code{z} variable and the \code{y} variable above one another.
+Shading of the background visualizes the regimes. Thresholds are drawn as
+horizontal lines in the \code{z} plot.
 \item \code{summary()}, this also provides the p-values and standard errors for the
 estimates of the coefficients.
-\item \code{print()}
+\item \code{print()} prints the estimates within the mathematical representation of the model.
+Note that the scalar multiplied with \code{e[t]} is the standard deviation
+of the residuals, \emph{not} the variance. See also the model definition above.
 \item \code{coef()}
 \item \code{confint()}
 \item \code{residuals()}
@@ -105,7 +103,7 @@ estimates of the coefficients.
 }
 \description{
 This function allows you to estimate the parameters of the hysteretic threshold
-autoregressive (hysTAR) model, see below.
+autoregressive (hysTAR) model.
 }
 \section{The hysTAR model}{
 The hysTAR model is defined as:

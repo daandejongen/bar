@@ -12,7 +12,7 @@ plot.hystar_fit <- function(x, y = NULL, ...) {
               r = x$thresholds,
               k = sum(is.na(x$data$R)))
 
-  return()
+  invisible()
 }
 
 #' @export
@@ -23,7 +23,7 @@ plot.hystar_sim <- function(x, y = NULL, ...) {
               r = x$r,
               k = 0)
 
-  return()
+  invisible()
 }
 
 plot_hystar <- function(y, z, R, r, k) {
