@@ -1,6 +1,7 @@
 Package: hystar
 Title: Simulation and Estimation of the Hysteretic TAR Model
 Version: 0.0.9
+Date: 2022-11-10
 Authors@R: c(
     person(
         "Daan", "de Jong", 
