@@ -31,7 +31,8 @@ plot(fit)
 ```
 
 ## How to install?
-You can install the package by running `devtools::install_github("hystar")`.
+You can install the package by running 
+`devtools::install_github("daandejongen/hystar")`.
 (Make sure you have installed the devtools package with
 `install.packages("devtools")` and have loaded and attached it with
 `library(devtools)`.)
