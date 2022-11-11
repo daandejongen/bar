@@ -16,67 +16,79 @@ hystar_fit(
 )
 }
 \arguments{
-\item{y}{A numeric vector representing the outcome time series. Can be simulated
-with \code{\link[=hystar_sim]{hystar_sim()}}.}
+\item{y}{A numeric vector representing the time series. of the outcome variable.
+Can be simulated with \code{\link[=hystar_sim]{hystar_sim()}}.}
 
-\item{z}{A numeric vector representing the threshold time series.}
+\item{z}{A numeric vector representing the threshold time series.
+When you simulated \code{y} with \code{\link[=hystar_sim]{hystar_sim()}}, this should be the \code{z} variable
+you have used there.}
 
 \item{d}{A numeric vector with one or more values for the search space
-of the delay parameter. Defaults to 1.}
+of the delay parameter. Defaults to 1. Typically, d is not very large, so
+a reasonable search space might be 1, 2, ..., 5.}
 
 \item{p0}{A numeric vector with one or more values for the search space
 of the autoregressive order of Regime 0. Defaults to 1.}
 
-\item{p1}{Same as \code{p0}, but for regime 1.}
+\item{p1}{Same as \code{p0}, but for regime 1. Note that it does not need to be
+equal to \code{p0}.}
 
-\item{p_select}{Which information criterion should be minimized to select
-the orders \eqn{p_0} and \eqn{p_1} Choices:
-* "aic" (Akaike Information Criterion)
-* "aicc" (Corrected Akaike Information Criterion)
-* "bic" (default, Bayesian Information Criterion)}
+\item{p_select}{The information criterion that should be minimized to select
+the orders \eqn{p_0} and \eqn{p_1}. Choices:
+\itemize{
+\item \code{"aic"} (Akaike Information Criterion)
+\item \code{"aicc"} (Corrected Akaike Information Criterion)
+\item \code{"bic"} (default, Bayesian Information Criterion)
+}}
 
 \item{r}{A vector or a matrix with search values for \eqn{\hat{r}_0, \hat{r}_1}.
 Defaults to \code{c(.1, .9)}.
-* If \code{r} is a vector, its length must be 2, such that it represents two quantiles
-within which the threshold value should be searched.
-* If \code{r} is a matrix, it must have two columns,
+\itemize{
+\item A vector \code{r} must contain two values \eqn{a} and \eqn{b} in \eqn{[0, 1]}.
+The search space for the thresholds will be observed values of \code{z}
+between its \eqn{100a\%} and \eqn{100b\%} percentiles.
+\item A matrix \code{r} allows for a custom search. It must have two columns,
 such that each row represents a pair \eqn{r_0 \le r_1} to test.
 You can use a matrix with one row if you don't want to estimate
-the thresholds. Note that the values in these matrix are not quantiles,
-but directly values on the scale of \code{z}.}
+the thresholds. Note that the values in these matrix should be
+on the scale of \code{z}.
+}}
 
-\item{thin}{Logical, only relevant when \code{r} is a vector.
-If \code{TRUE} (default), the search values for \eqn{r} are
-\code{quantile(z, seq(r[1], r[2], by = .01))}. This drastically improves the speed
-without much cost of estimation precision. Note that this is a purely practical
-choice with no theoretical justification (yet).
-If \code{FALSE}, all observed unique values of \code{z} between
-\code{quantile(z, r[1])} and \code{quantile(z, r[2])} will be considered.}
+\item{thin}{\code{TRUE} (default) or \code{FALSE}. Only relevant when \code{r} is a vector.
+\itemize{
+\item If \code{TRUE} (default), the search space for the thresholds are the
+\eqn{100a\%, 100(a+0.01)\%, \dots, 100b\%} percentiles of \code{z}.
+This drastically reduces computation costs while keeping a reasonably large
+search space for the thresholds. Note that this is a purely practical
+choice with no theoretical justification.
+\item If \code{FALSE}, all observed unique values of \code{z} between
+the \eqn{100a\%} and \eqn{100b\%} percentiles of \code{z} will be considered.
+}}
 }
 \value{
 An object of S3 class \code{hystar_fit}, which is a \code{list} containing the following
 items:
 \itemize{
-\item \verb{$data}. A \code{data.frame} of class \code{hystar_data}, containing
+\item \verb{$data}. A \code{data.frame} containing
 \itemize{
 \item \code{y}, the outcome variable
 \item \code{z}, the threshold variable
 \item \code{H}, a logical vector that indicates at which time points the hysteresis
-effect is happening. Note that this vector starts with \code{NA}(s), since the first
-\eqn{\max\{p_0, p_1, d\}} values are not predicted in the HysTAR model.
+effect is happening. Note that this vector starts with \code{NA}(s), since not all
+values can be predicted in the HysTAR model. See Details.
 \item \code{R}, the regime indicator vector. (Also starts with \code{NA}(s).)
 }
-\item \verb{$residuals}. Also accessible with the \code{residuals()} S3 method.
-\item \verb{$coefficients}, a named vector with the estimated coefficients.
+\item \verb{$residuals}. \t Also accessible with the \code{residuals()} S3 method.
+\item \verb{$coefficients}, a vector with the estimated coefficients.
 With the \code{coef()} S3 method, the coefficients are represented in a matrix.
 Use the \code{confint()} method to get the confidence intervals of the estimates.
-\item \verb{$delay}, a named scalar with the estimate for the delay parameter.
-\item \verb{$thresholds}, a named vector with the estimates of the tresholds.
-\item \verb{$orders}, a named vector with the estimates of the orders.
-\item \verb{$resvar}, a named vector with the estimates of the residual variances.
+\item \verb{$delay}, a scalar with the estimate for the delay parameter.
+\item \verb{$thresholds}, a vector with the estimates of the tresholds.
+\item \verb{$orders}, a vector with the estimates of the orders.
+\item \verb{$resvar}, a vector with the estimates of the residual variances.
 \item \verb{$rss}, the minimized residual sum of squares.
-\item \verb{$ic}, a named vector with the aic, the corrected aic and the bic.
-\item \verb{$n}, a named vector with the total effective observations and the
+\item \verb{$ic}, a vector with the aic, the corrected aic and the bic.
+\item \verb{$n}, a vector with the total effective observations and the
 effective obeservations in regime 0 and regime 1.
 \item \verb{$eff}, a vector with the time indicators of the effective observations.
 \item \verb{$equiv}, a matrix containing equivalent estimates for the delay and thresholds,
@@ -105,6 +117,15 @@ of the residuals, \emph{not} the variance. See also the model definition above.
 This function allows you to estimate the parameters of the hysteretic threshold
 autoregressive (hysTAR) model.
 }
+\details{
+In regime 0, \eqn{y_{t}} is predicted by values up to \eqn{y_{t - p_0}}.
+This implies that the first \eqn{p_0} time points can not be predicted. E.g.,
+if \eqn{p_0 = 2}, \eqn{y_1} would miss a value from \eqn{y_{-1}}. Similarly, the
+value of the delay parameter implies that the regime is unknown for the first
+\eqn{d} time points. To ensure that the same data are used on all options for
+\code{d}, \code{p0} and \code{p1}, the first \code{max(d, p0, p1)} observations are discarded for
+estimation of the parameters.
+}
 \section{The hysTAR model}{
 The hysTAR model is defined as:
 
@@ -121,7 +142,8 @@ where \eqn{p_i} denotes the order of regime \eqn{i \in \{0,1\}} with
 coefficients \eqn{\phi_0^{(i)}, \dots, \phi_{p_i}^{(i)} \in (-1, 1)},
 \eqn{\sigma_{(i)}} is the standard deviation of the residuals, and \eqn{d \in
   \{1, 2, \dots\}} is a delay parameter. The parameters of primary interest are
-the thresholds \eqn{r_0 \le r_1}.
+the thresholds \eqn{r_0 \le r_1}. We let \eqn{t = 1, 2, ..., n}, where \eqn{n}
+is the number of observations.
 }
 
 \examples{
@@ -136,6 +158,9 @@ summary(fit)
 Li, Guodong, Bo Guan, Wai Keung Li, en Philip L. H. Yu.
 ‘Hysteretic Autoregressive Time Series Models’. Biometrika 102, nr. 3
 (september 2015): 717–23.
+
+Zhu, Ke, Philip L H Yu, en Wai Keung Li. ‘Testing for the Buffered
+Autoregressive Process’. Munich Personal RePEc Archive, (november 2013).
 }
 \author{
 Daan de Jong.

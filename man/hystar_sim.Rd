@@ -11,18 +11,20 @@ hystar_sim(z, r, d, phi_R0, phi_R1, resvar = c(1, 1), start_regime = NULL)
 You can simulate \code{z} with \code{\link[=z_sim]{z_sim()}}.}
 
 \item{r}{A numeric vector of length 2, representing the threshold values
-\eqn{r_0} and \eqn{r_1}.}
+\eqn{r_0} and \eqn{r_1}. The values must be inside the range of z, that is,
+larger than \code{min(z)} and smaller than \code{max(z)}. Otherwise, only one regime will
+be active so you might as well simulate an AR process, e.g. with \code{\link[=arima.sim]{arima.sim()}}.}
 
 \item{d}{A number in \eqn{\{1, 2, \dots\}} representing the value of the
-delay parameter.}
+delay parameter. It must be smaller than \code{length(z)}.}
 
 \item{phi_R0}{A vector containing the constant and autoregressive parameters
 \eqn{(\phi_0^{(0)}, \phi_1^{(0)}, \dots, \phi_{p_0}^{(0)})} of Regime 0.
 Note that the first value of this vector is \emph{always} interpreted as the
-constant. The coefficients must imply a s tationary process. That is the
-case when the (complex) roots of \eqn{1 - \phi_1 - \cdots - \phi_{p_0}} lie
-on or outside the unit circle, or equivalently when \eqn{1 \ge \sum_{i =
-  1}^{p_0} \phi_i}.}
+constant, so for an AR(1) process with no constant, you must use
+\code{phi_R0 = c(0, .5)}, for example. Both orders must be smaller than \code{length(z)}.
+For valid standard errors of the estimates in \code{\link[=hystar_fit]{hystar_fit()}}, the coefficients
+should imply that \code{y} is stationary, see Details.}
 
 \item{phi_R1}{The same as \code{phi_R0}, but for Regime 1.}
 
@@ -33,10 +35,12 @@ that the model is defined for any i.i.d. distribution with zero mean and
 finite variance.}
 
 \item{start_regime}{Optionally, a 0 or 1 that indicates which regime should be the
-first. Necessary if \code{z} starts in the hysteresis zone \eqn{(r_0, r_1]}.
-Note that if you simulated \code{z} with \code{z_sim()}, you need to use the starting regime
-that you used there. Otherwise, the number of switches that you specified in \code{z_sim()}
-will not be correct.}
+first, in case the \code{z} variable starts in the hysteresis zone.
+This is only necessary when you use your 'own' \code{z} variable
+AND \code{z} starts in the hysteresis zone.
+A vector \code{z} simulated with \code{\link[=z_sim]{z_sim()}} will contain information about if
+the start is hysteretic and what the starting regime is supposed to be
+(in the \code{attributes()} of \code{z}).}
 }
 \value{
 A list of class \code{hystar_sim} with elements
@@ -76,7 +80,14 @@ With this function, you can simulate observations from the
 hysTAR model, given its parameter values.
 }
 \details{
-To simulate \code{y}, 50 burn-in samples according the starting regime are used.
+Some details:
+\itemize{
+\item To simulate \code{y}, 50 burn-in samples according the starting regime are used.
+\item The coefficients imply a stationary process of \eqn{y_t} if
+\eqn{\sum_{i=1}^{p_0} \phi_i^{(0)} < 1} and
+\eqn{\sum_{i=1}^{p_1} \phi_i^{(1)} < 1}. See Zhu, Yu and Li (2013), p5.
+\item 
+}
 }
 \section{The hysTAR model}{
 The hysTAR model is defined as:
@@ -94,7 +105,8 @@ where \eqn{p_i} denotes the order of regime \eqn{i \in \{0,1\}} with
 coefficients \eqn{\phi_0^{(i)}, \dots, \phi_{p_i}^{(i)} \in (-1, 1)},
 \eqn{\sigma_{(i)}} is the standard deviation of the residuals, and \eqn{d \in
   \{1, 2, \dots\}} is a delay parameter. The parameters of primary interest are
-the thresholds \eqn{r_0 \le r_1}.
+the thresholds \eqn{r_0 \le r_1}. We let \eqn{t = 1, 2, ..., n}, where \eqn{n}
+is the number of observations.
 }
 
 \examples{
@@ -109,6 +121,9 @@ summary(fit)
 Li, Guodong, Bo Guan, Wai Keung Li, en Philip L. H. Yu.
 ‘Hysteretic Autoregressive Time Series Models’. Biometrika 102, nr. 3
 (september 2015): 717–23.
+
+Zhu, Ke, Philip L H Yu, en Wai Keung Li. ‘Testing for the Buffered
+Autoregressive Process’. Munich Personal RePEc Archive, (november 2013).
 }
 \author{
 Daan de Jong.

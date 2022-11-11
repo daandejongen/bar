@@ -21,7 +21,10 @@
 #' set the threshold values "around" the first values of `z`.
 #' @param range A numeric vector of length 2 indicating the desired range (min, max) of `z`.
 #'
-#' @returns A numeric vector of length `n_t`.
+#' @returns A numeric vector of length `n_t`. This vector has two attributes
+#' `"start_regime"` and `"start_hyst"` corresponding to the values you provided.
+#' These attributes are used by [hystar_sim()].
+#'
 #' @export
 #'
 #' @inherit hystar_sim examples
@@ -37,6 +40,9 @@ z_sim <- function(n_t, n_switches,
   # z is first magnified by its amplitude, then shifted
   amp <- (abs(range[2] - range[1])) / 2
   z <- z * amp + range[1] + amp
+
+  attr(z, "start_regime") <- start_regime
+  attr(z, "start_hyst") <- start_hyst
 
   return(z)
 }

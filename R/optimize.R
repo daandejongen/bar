@@ -5,14 +5,15 @@ optim_p <- function(y, x, z, eff, grid, p_options, p_select) {
     p0_sel <- p_options[i, "p0"]
     p1_sel <- p_options[i, "p1"]
     optim <- optim_grid(y, eff, x, z, p0_sel, p1_sel, grid)
-    est <- optim$est
     p_options[i, c("d", "r0", "r1", "s")] <- optim$est
     equivs[[i]] <- optim$equiv
     results <- run_model(y, x, z, eff, p0_sel, p1_sel,
-                         d_sel = est["d"], r0_sel = est["r0"],
-                         r1_sel = est["r1"], s_sel = est["s"],
+                         d_sel  = optim$est["d"],
+                         r0_sel = optim$est["r0"],
+                         r1_sel = optim$est["r1"],
+                         s_sel  = optim$est["s"],
                          return_HR = FALSE)
-    p_options[i, "ic"] <- results$ic[p_select]
+    p_options[i, "ic"] <- results$ic[[p_select]]
   }
   argmin <- which(p_options[, "ic"] == min(p_options[, "ic"]))
 
@@ -64,4 +65,22 @@ select_r <- function(M) {
   row_select <- which.min(dist)
   return(M[row_select, , drop = FALSE])
 }
+
+#' @importFrom utils combn
+create_p_options <- function(p0, p1) {
+  # We want to have every way to choose a value for p0 from 0, 1, ..., max_p0
+  # and a value for p1 from 0, 1, ..., max_p1.
+  p0_options <- rep(p0, each = length(p1))
+  p1_options <- rep(p1, times = length(p0))
+
+  p_mat <- matrix(c(p0_options, p1_options), ncol = 2)
+  colnames(p_mat) <-  c("p0", "p1")
+  drs_mat <- matrix(nrow = nrow(p_mat), ncol = 4)
+  colnames(drs_mat) <-  c("d", "r0", "r1", "s")
+  ic_mat <- matrix(nrow = nrow(p_mat), ncol = 1)
+  colnames(ic_mat) <-  "ic"
+
+  return(cbind(p_mat, drs_mat, ic_mat))
+}
+
 

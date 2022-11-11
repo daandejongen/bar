@@ -25,7 +25,9 @@ set the threshold values "around" the first values of \code{z}.}
 \item{range}{A numeric vector of length 2 indicating the desired range (min, max) of \code{z}.}
 }
 \value{
-A numeric vector of length \code{n_t}.
+A numeric vector of length \code{n_t}. This vector has two attributes
+\code{"start_regime"} and \code{"start_hyst"} corresponding to the values you provided.
+These attributes are used by \code{\link[=hystar_sim]{hystar_sim()}}.
 }
 \description{
 This is a function you can use to simulate time series data

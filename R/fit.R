@@ -10,14 +10,11 @@ fit <- function(y, X) {
 
 
 estimate_resvar <- function(R, res) {
-
   n0 <- sum(1-R)
   n1 <- sum(R)
   res0 <- res * (1-R)
   res1 <- res * R
-
   resvar <- c((res0 %*% res0) / n0, (res1 %*% res1) / n1)
-  names(resvar) <- paste0("Regime", 0:1)
 
   return(resvar)
 }

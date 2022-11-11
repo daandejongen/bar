@@ -41,7 +41,6 @@ test_that("switch point matrix is correct. Start 0, even switches", {
   expect_equal(get_sw_pnts_mat(R), exp_mat)
 })
 
-
 test_that("plot function does not return", {
   z <- z_sim(n_t = 50, n_switches = 3,
              start_regime = 1, start_hyst = TRUE,

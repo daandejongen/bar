@@ -21,6 +21,18 @@ lag_obs <- function(y, t, p) {
 }
 
 get_order <- function(coe) {
+  coe <- remove_trailing_zeros(coe)
   return(length(coe) - 1)
+}
+
+remove_trailing_zeros <- function(x, length_out = 1) {
+  last_is_zero <- x[length(x)] == 0
+
+  while (last_is_zero && length(x) > length_out) {
+    x <- x[-length(x)]
+    last_is_zero <- x[length(x)] == 0
+  }
+
+  return(x)
 }
 

@@ -19,7 +19,7 @@ test_that("printed formula of AR process is correct", {
 })
 
 test_that("summary and print do not return something", {
-  z <- z_sim(n_t = 50, n_switches = 3,
+  z <- z_sim(n_t = 200, n_switches = 3,
              start_regime = 1, start_hyst = TRUE,
              range = c(-1, 1))
   sim <- hystar_sim(z = z, r = c(-.5, .5), d = 5,

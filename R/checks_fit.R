@@ -3,9 +3,11 @@ check_hystar_fit_input <- function(y, z, d, p0, p1, p_select, r, thin) {
   check_whole_nn(d)
   check_whole_nn(p0)
   check_whole_nn(p1)
-  check_r(r)
+  check_r_fit(r)
   check_thin(thin)
   check_rz(r, z)
+  # p_select uses match.arg so the user can abbreviate,
+  # so we want to return that value.
   p_select <- check_p_select(p_select)
 
   return(p_select)
@@ -15,28 +17,23 @@ check_yz <- function(y, z) {
   if (!is.numeric(y)) error_numeric(y)
   if (!is.numeric(z)) error_numeric(z)
 
-  if (length(y) != length(z)) {
-    stop(paste0("`y` and `z` must be of equal length.\n",
-                "Currently, `y` has length ", length(y),
-                " and `z` has length ", length(z), "."),
+  if (length(y) != length(z))
+    stop(paste0("`y` and `z` must be of equal length.\nCurrently, `y` has ",
+                "length ", length(y), " and `z` has length ", length(z), "."),
          call. = FALSE)
-  }
 }
 
-check_r <- function(r) {
+check_r_fit <- function(r) {
   if (!is.numeric(r)) error_numeric(r)
 
   if (is.vector(r)) {
-    if (length(r) != 2) {
+    if (length(r) != 2)
       stop(paste0("If `r` is a vector, its length must be 2. You provided ",
-                  "a vector of length ", length(r), "."),
+                  "a vector of length ", length(r), "."), call. = FALSE)
+    if (r[1] >= r[2])
+      stop(paste0("If `r` is a vector, it must represent an interval.\n",
+                  "But, the second value of `r` is smaller than the first."),
            call. = FALSE)
-    }
-    if (r[1] >= r[2]) {
-      stop(paste0("If `r` is a vector, it must represent an interval. ",
-                  "However, the second value is now smaller than the first."),
-           call. = FALSE)
-    }
   }
 
   if (is.matrix(r)) {
@@ -44,7 +41,7 @@ check_r <- function(r) {
       stop(paste0("If `r` is a matrix, it must have 2 columns. \n You ",
                   "provided a matrix with ", ncol(r), " columns."),
            call. = FALSE)
-    if (! all(r[, 1] <= r[, 2]))
+    if (!all(r[, 1] <= r[, 2]))
       stop(paste0("The second threshold value should be always larger ",
                   "than or equal to the first."), call. = FALSE)
   }
@@ -52,7 +49,7 @@ check_r <- function(r) {
 
 check_thin <- function(thin) {
   if (!(thin %in% c(TRUE, FALSE)))
-    stop(paste0("`thin` must be TRUE or FALSE."), call. = FALSE)
+    stop("`thin` must be TRUE or FALSE.", call. = FALSE)
 }
 
 check_rz <- function(r, z) {
@@ -61,11 +58,14 @@ check_rz <- function(r, z) {
          call. = FALSE)
 
   if (is.matrix(r) && (!all(min(z) <= r & r <= max(z))))
-    stop(paste0("'r' is a matrix, so the values of 'r' must be in in ",
-                "the range of 'z'."), call. = FALSE)
+    stop(paste0("`r` is a matrix, so the values of `r` must be in in ",
+                "the range of `z`."), call. = FALSE)
 }
 
 check_p_select <- function(p_select) {
+  if (!is.character(p_select))
+    stop(paste0("`p_select` must be of type character."),
+         call. = FALSE)
   p_select <- tolower(p_select)
   choices <- c("aic", "aicc", "bic")
   p_select <- tryCatch(

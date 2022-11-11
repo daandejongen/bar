@@ -1,5 +1,11 @@
 # Simulation and Estimation of the Hysteretic TAR Model
 
+<!-- badges: start -->
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)]
+(https://lifecycle.r-lib.org/articles/stages.html#stable)
+
+<!-- badges: end -->
+
 The `hystar` package allows you to simulate and estimate the hysteretic
 threshold autoregressive (HysTAR) model. The package has three main functions:
 
@@ -34,9 +40,11 @@ The package will be submitted to CRAN in the near future.
 
 ## Cite this package
 If you have used this package in a study, please cite it with:
+
 De Jong, D. (2022). _hystar: Simulation and Estimation of the Hysteretic TAR Model_. R package version 0.0.9, <https://github.com/daandejongen/hystar/>.
 
 BibTeX:
+```
 @Manual{,
     title = {hystar: Simulation and Estimation of the Hysteretic TAR Model},
     author = {Daan {de Jong}},
@@ -44,6 +52,7 @@ BibTeX:
     note = {R package version 0.0.9},
     url = {https://github.com/daandejongen/hystar/},
   }
+```
 
 ## References
 The HysTAR model was originally proposed by Li, Guan, Li and Yu (2015). 

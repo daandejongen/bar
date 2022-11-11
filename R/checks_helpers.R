@@ -43,3 +43,9 @@ error_nonnegative <- function(x) {
   )
   stop(err)
 }
+
+
+
+
+
+

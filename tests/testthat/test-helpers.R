@@ -25,5 +25,24 @@ test_that("lagged observations are correct", {
 test_that("order is correct", {
   order <- get_order(coe = c(0, .4, .5))
   expect_equal(order, 2)
+
+  order <- get_order(coe = c(0, .5, 0, 0))
+  expect_equal(order, 1)
+
+  order <- get_order(coe = c(0, 0, 0, 0))
+  expect_equal(order, 0)
+})
+
+test_that("Trailing zeros are correctly removed.", {
+  # Note that by default we want to keep the first value,
+  # regardless of its value!
+  expect_equal(remove_trailing_zeros(c(1, 2, 0, 0)),
+               c(1, 2))
+
+  expect_equal(remove_trailing_zeros(c(0, 0, 1, 3)),
+               c(0, 0, 1, 3))
+
+  expect_equal(remove_trailing_zeros(c(0, 0, 0, 0)),
+               0)
 })
 
