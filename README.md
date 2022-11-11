@@ -1,7 +1,7 @@
 # Simulation and Estimation of the Hysteretic TAR Model
 
 <!-- badges: start -->
-`r lifecycle::badge("experimental")`
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 The `hystar` package allows you to simulate and estimate the hysteretic
