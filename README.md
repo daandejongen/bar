@@ -1,8 +1,8 @@
 # Simulation and Estimation of the Hysteretic TAR Model
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)]
-(https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-brightgreen.svg)]
+(https://lifecycle.r-lib.org/articles/stages.html#experimental)
 
 <!-- badges: end -->
 
