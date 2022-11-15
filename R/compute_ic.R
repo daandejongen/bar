@@ -1,9 +1,9 @@
 compute_ic <- function(rv, n0, n1, p0, p1) {
-  aic  <- compute_aic(rv, n0, n1, p0, p1)
-  aicc <- compute_aicc(rv, n0, n1, p0, p1)
-  bic  <- compute_bic(rv, n0, n1, p0, p1)
+  aic  <- unname(compute_aic(rv, n0, n1, p0, p1))
+  aicc <- unname(compute_aicc(rv, n0, n1, p0, p1))
+  bic  <- unname(compute_bic(rv, n0, n1, p0, p1))
 
-  return(list(aic = aic, aicc = aicc, bic = bic))
+  return(c(aic = aic, aicc = aicc, bic = bic))
 }
 
 compute_aic <- function(rv, n0, n1, p0, p1) {
@@ -14,7 +14,7 @@ compute_aic <- function(rv, n0, n1, p0, p1) {
 }
 
 compute_aicc <- function(rv, n0, n1, p0, p1) {
-  value <- n0*log(rv[1]) + 2L * n0 * (p0 + 2L) / (n0 - p0 - 3L) +
+  value <- n0 * log(rv[1]) + 2L * n0 * (p0 + 2L) / (n0 - p0 - 3L) +
     n1 * log(rv[2]) + 2L * n1 * (p1 + 2L) / (n1 - p1 - 3L)
 
   return(value)

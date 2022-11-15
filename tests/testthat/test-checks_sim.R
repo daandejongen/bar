@@ -1,5 +1,6 @@
 test_that("z should be numeric", {
-  expect_error(check_z("lalala"), "numeric")
+  expect_error(hystar_sim(z = "hi", r = c(1, 2), d = 1, phi_R0 = 1, phi_R1 = 1),
+               "numeric")
 })
 
 test_that("zero or negative residual variances are not allowed", {
@@ -41,55 +42,11 @@ test_that("you cannot request too many switches", {
 })
 
 test_that("When z is simulated with hysteresis,
-          r cannot make the start sure again.", {
+          a certain start will raise an error", {
   z <- z_sim(100, 5, start_regime = 0, start_hyst = TRUE)
 
   expect_error(hystar_sim(z = z, r = c(-.9, -.8), d = 1, phi_R0 = 0, phi_R1 = 0,
-                          resvar = c(1, 1), start_regime = 1),
-               "used an hysteretic start")
-})
-
-test_that("When z is simulated, start_regime must match,
-          and that the correct starting regime is used.", {
-
-  z1 <- z_sim(100, 5, start_regime = 0, start_hyst = TRUE)
-
-  expect_warning(
-    s0 <- hystar_sim(z = z1, r = c(-.5, .5), d = 1, phi_R0 = 0, phi_R1 = 0,
-                     resvar = c(1, 1), start_regime = 1),
-    "does not match"
-    )
-  expect_equal(s0$data$R[1], 0)
-
-  expect_warning(
-    s1 <- hystar_sim(z = z1, r = c(-.5, .5), d = 1, phi_R0 = 0, phi_R1 = 0,
-                     resvar = c(1, 1), start_regime = 0),
-    NA
-  )
-  expect_equal(s1$data$R[1], 0)
-
-  z2 <- z_sim(100, 5, start_regime = 0, start_hyst = FALSE)
-
-  expect_warning(
-    s2 <- hystar_sim(z = z2, r = c(-.5, .5), d = 1, phi_R0 = 0, phi_R1 = 0,
-                     resvar = c(1, 1), start_regime = 1),
-    "does not match"
-    )
-  expect_equal(s2$data$R[1], 0)
-
-  expect_warning(
-    s3 <- hystar_sim(z = z2, r = c(-.5, .5), d = 1, phi_R0 = 0, phi_R1 = 0,
-               resvar = c(1, 1)),
-    NA
-    )
-  expect_equal(s3$data$R[1], 0)
-
-  expect_warning(
-    s4 <- hystar_sim(z = z2, r = c(-.5, .5), d = 1, phi_R0 = 0, phi_R1 = 0,
-               resvar = c(1, 1), start_regime = 0),
-    NA
-    )
-  expect_equal(s4$data$R[1], 0)
+                          resvar = c(1, 1)), "an hysteretic start")
 })
 
 test_that("When z is not simulated, and there is no hysteresis,
@@ -125,7 +82,7 @@ test_that("start check will return inferred start if incorrect start was provide
           and warn that start_regime was ignored", {
   expect_warning(start <- check_hystar_sim_input(z = 1:5, r = c(2, 3), d = 1,
                                   phi_R0 = 0, phi_R1 = 0, resvar = c(1, 1),
-                                  start_regime = 9)
+                                  start_regime = 9)$start
   )
   expect_equal(start, 0)
 })

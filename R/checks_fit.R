@@ -14,6 +14,10 @@ check_hystar_fit_input <- function(y, z, d, p0, p1, p_select, r, thin) {
 }
 
 check_yz <- function(y, z) {
+  if (missing(y))
+    stop(paste0("Argument `y` is missing, with no default."), call. = FALSE)
+  if (missing(z))
+    stop(paste0("Argument `z` is missing, with no default."), call. = FALSE)
   if (!is.numeric(y)) error_numeric(y)
   if (!is.numeric(z)) error_numeric(z)
 

@@ -1,11 +1,11 @@
-#' Estimate the hysTAR model using conditional least squares estimation
+#' Estimate the HysTAR model using conditional least squares estimation
 #'
 #' @description
 #' This function allows you to estimate the parameters of the hysteretic threshold
-#' autoregressive (hysTAR) model.
+#' autoregressive (HysTAR) model.
 #'
 #' @inherit hystar_sim author
-#' @inheritSection hystar_sim The hysTAR model
+#' @inheritSection hystar_sim The HysTAR model
 #' @inherit hystar_sim references
 #' @inherit hystar_sim examples
 #'
@@ -63,7 +63,7 @@
 #' values can be predicted in the HysTAR model. See Details.
 #'     * `R`, the regime indicator vector. (Also starts with `NA`(s).)
 #'
-#' * `$residuals`. \t Also accessible with the `residuals()` S3 method.
+#' * `$residuals`. Also accessible with the `residuals()` S3 method.
 #' * `$coefficients`, a vector with the estimated coefficients.
 #' With the `coef()` S3 method, the coefficients are represented in a matrix.
 #' Use the `confint()` method to get the confidence intervals of the estimates.

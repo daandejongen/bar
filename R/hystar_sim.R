@@ -1,10 +1,10 @@
-#' Simulate data from the hysTAR model
+#' Simulate data from the HysTAR model
 #'
 #' @description With this function, you can simulate observations from the
-#'   hysTAR model, given its parameter values.
+#'   HysTAR model, given its parameter values.
 #'
-#' # The hysTAR model
-#' The hysTAR model is defined as:
+#' # The HysTAR model
+#' The HysTAR model is defined as:
 #'
 #'   \eqn{ y_t = \begin{cases} \phi_0^{(0)} + \phi_1^{(0)} y_{t-1} + \cdots +
 #'   \phi_{p_0}^{(0)} y_{t-p_0} + \sigma_{(0)} \varepsilon_t & \text{if}~R_{t} = 0
@@ -36,7 +36,6 @@
 #'   * The coefficients imply a stationary process of \eqn{y_t} if
 #'     \eqn{\sum_{i=1}^{p_0} \phi_i^{(0)} < 1} and
 #'     \eqn{\sum_{i=1}^{p_1} \phi_i^{(1)} < 1}. See Zhu, Yu and Li (2013), p5.
-#'   *
 #'
 #' @param z A numeric vector representing the observed threshold variable.
 #'   You can simulate `z` with [z_sim()].
@@ -44,7 +43,10 @@
 #'   \eqn{r_0} and \eqn{r_1}. The values must be inside the range of z, that is,
 #'   larger than `min(z)` and smaller than `max(z)`. Otherwise, only one regime will
 #'   be active so you might as well simulate an AR process, e.g. with [arima.sim()].
-#' @param d A number in \eqn{\{1, 2, \dots\}} representing the value of the
+#'   If you simulated `z` with `z_sim()` and `start_hyst = TRUE`, make sure to
+#'   set the threshold values around the middle of the range of `z`, otherwise,
+#'   the start will not be hysteretic.
+#' @param d A positive whole number representing the value of the
 #'   delay parameter. It must be smaller than `length(z)`.
 #' @param phi_R0 A vector containing the constant and autoregressive parameters
 #'   \eqn{(\phi_0^{(0)}, \phi_1^{(0)}, \dots, \phi_{p_0}^{(0)})} of Regime 0.
@@ -101,19 +103,21 @@
 #' sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
 #' resvar = c(1, 1))
 #' plot(sim)
-#' fit <- hystar_fit(y = sim$data$y, z = z)
+#' fit <- hystar_fit(y = sim$data$y, z = sim$data$z)
 #' summary(fit)
 hystar_sim <- function(z, r, d, phi_R0, phi_R1, resvar = c(1, 1), start_regime = NULL) {
 
-  start_regime <- check_hystar_sim_input(z, r, d, phi_R0, phi_R1, resvar, start_regime)
+  temp <- check_hystar_sim_input(z, r, d, phi_R0, phi_R1, resvar, start_regime)
+  z <- temp$z
+  start_regime <- temp$start
 
   phi_R0 <- remove_trailing_zeros(phi_R0)
   phi_R1 <- remove_trailing_zeros(phi_R1)
   p0 <- get_order(phi_R0)
   p1 <- get_order(phi_R1)
-  k <- n_ineff(p0, p1, d)
+  k <- max(p0, p1, d)
 
-  z_del <- z[time_del(y = z, d = d, p0, p1, d_sel = d)]
+  z_del <- z[(k + 1 - d):(length(z) - d)]
   H <- ts_hys(z_del, r0 = r[1], r1 = r[2])
   R <- c(rep(start_regime, times = k), ts_reg(H, start = start_regime))
   y <- y_sim(R, phi_R0, phi_R1, resvar)

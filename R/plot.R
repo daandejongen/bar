@@ -92,9 +92,11 @@ make_yplot <- function(time, y, R, k, col_reg1, sw_pnts_mat) {
          rect_ineff(x = y, k = k)
          ),
        xlab = "time", ylab = "y",
+       yaxt = "n",
        type = "l",
        lwd = 2.5,
        col = "grey25")
+  axis(side = 2, las = 2)
 }
 
 rect_reg <- function(R, x, col_reg1, sw_pnts_mat) {

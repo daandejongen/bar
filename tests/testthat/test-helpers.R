@@ -46,3 +46,25 @@ test_that("Trailing zeros are correctly removed.", {
                0)
 })
 
+test_that("z buffer is correctly removed, d > p.", {
+  z <- z_sim(n_t = 50, n_switches = 3, start_regime = 1, start_hyst = TRUE)
+  z_r <- remove_z_buffer(z, d = 3, p0 = 1, p1 = 2)
+  expect_equal(z_r[1], 0)
+  expect_equal(z_r[1:50], z[11:60])
+})
+
+test_that("z buffer is correctly removed, d < p.", {
+  z <- z_sim(n_t = 50, n_switches = 3, start_regime = 1, start_hyst = FALSE)
+  z_r <- remove_z_buffer(z, d = 2, p0 = 1, p1 = 5)
+  expect_equal(z_r[5 + 1 - 2], 1)
+})
+
+test_that("z buffer removal keeps original attributes.", {
+  z <- z_sim(30, 5, 1)
+  z_r <- remove_z_buffer(z, d = 2, p0 = 2, p1 = 1)
+
+  expect_equal(attributes(z), attributes(z_r))
+})
+
+
+

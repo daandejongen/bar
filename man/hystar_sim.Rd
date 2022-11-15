@@ -2,7 +2,7 @@
 % Please edit documentation in R/hystar_sim.R
 \name{hystar_sim}
 \alias{hystar_sim}
-\title{Simulate data from the hysTAR model}
+\title{Simulate data from the HysTAR model}
 \usage{
 hystar_sim(z, r, d, phi_R0, phi_R1, resvar = c(1, 1), start_regime = NULL)
 }
@@ -13,9 +13,12 @@ You can simulate \code{z} with \code{\link[=z_sim]{z_sim()}}.}
 \item{r}{A numeric vector of length 2, representing the threshold values
 \eqn{r_0} and \eqn{r_1}. The values must be inside the range of z, that is,
 larger than \code{min(z)} and smaller than \code{max(z)}. Otherwise, only one regime will
-be active so you might as well simulate an AR process, e.g. with \code{\link[=arima.sim]{arima.sim()}}.}
+be active so you might as well simulate an AR process, e.g. with \code{\link[=arima.sim]{arima.sim()}}.
+If you simulated \code{z} with \code{z_sim()} and \code{start_hyst = TRUE}, make sure to
+set the threshold values around the middle of the range of \code{z}, otherwise,
+the start will not be hysteretic.}
 
-\item{d}{A number in \eqn{\{1, 2, \dots\}} representing the value of the
+\item{d}{A positive whole number representing the value of the
 delay parameter. It must be smaller than \code{length(z)}.}
 
 \item{phi_R0}{A vector containing the constant and autoregressive parameters
@@ -31,7 +34,7 @@ should imply that \code{y} is stationary, see Details.}
 \item{resvar}{A numeric vector of length 2 representing the variances of the
 residuals \eqn{\sigma_{(0)}^2} and \eqn{\sigma_{(1)}^2}. The residuals are
 sampled from a normal distribution in the current implementation, but note
-that the model is defined for any i.i.d. distribution with zero mean and
+that the model is defined for any i.i.d. vector of residuals with zero mean and
 finite variance.}
 
 \item{start_regime}{Optionally, a 0 or 1 that indicates which regime should be the
@@ -77,7 +80,7 @@ of the residuals, \emph{not} the variance. See also the model definition above.
 }
 \description{
 With this function, you can simulate observations from the
-hysTAR model, given its parameter values.
+HysTAR model, given its parameter values.
 }
 \details{
 Some details:
@@ -86,11 +89,10 @@ Some details:
 \item The coefficients imply a stationary process of \eqn{y_t} if
 \eqn{\sum_{i=1}^{p_0} \phi_i^{(0)} < 1} and
 \eqn{\sum_{i=1}^{p_1} \phi_i^{(1)} < 1}. See Zhu, Yu and Li (2013), p5.
-\item 
 }
 }
-\section{The hysTAR model}{
-The hysTAR model is defined as:
+\section{The HysTAR model}{
+The HysTAR model is defined as:
 
 \eqn{ y_t = \begin{cases} \phi_0^{(0)} + \phi_1^{(0)} y_{t-1} + \cdots +
   \phi_{p_0}^{(0)} y_{t-p_0} + \sigma_{(0)} \varepsilon_t & \text{if}~R_{t} = 0
@@ -114,7 +116,7 @@ z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
 sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
 resvar = c(1, 1))
 plot(sim)
-fit <- hystar_fit(y = sim$data$y, z = z)
+fit <- hystar_fit(y = sim$data$y, z = sim$data$z)
 summary(fit)
 }
 \references{

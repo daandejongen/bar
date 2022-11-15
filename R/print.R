@@ -10,7 +10,7 @@ print.hystar_fit <- function(x, ...) {
                rv1 = round(x$resvar[2], 2),
                simfit = "fitted on")
 
-  return()
+  invisible()
 }
 
 #' @export
@@ -28,7 +28,7 @@ print.hystar_sim <- function(x, ...) {
                rv1 = round(x$resvar[2], 2),
                simfit = "that generated")
 
-  return()
+  invisible()
 }
 
 print_hystar <- function(n, d, r0, r1, coe0, coe1, rv0, rv1, simfit) {
@@ -43,7 +43,7 @@ print_hystar <- function(n, d, r0, r1, coe0, coe1, rv0, rv1, simfit) {
       " and e[t] ~ N(0, 1).\n"
   )
 
-  return()
+  invisible()
 }
 
 #' @export
@@ -84,7 +84,7 @@ summary.hystar_fit <- function(object, ...) {
 
   cat("\n")
 
-  return()
+  invisible()
 }
 
 #' @export
@@ -110,7 +110,7 @@ summary.hystar_sim <- function(object, ...) {
 
   cat("\n")
 
-  return()
+  invisible()
 }
 
 # Helpers

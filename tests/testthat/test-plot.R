@@ -49,7 +49,7 @@ test_that("plot function does not return", {
                     phi_R0 = c(0, .6), phi_R1 = c(1. -.3),
                     resvar = c(1, .9),
                     start_regime = 1)
-  fit <- hystar_fit(y = sim$data$y, z = z)
+  fit <- hystar_fit(y = sim$data$y, z = sim$data$z)
 
   expect_equal(plot(sim), NULL)
   expect_equal(plot(fit), NULL)

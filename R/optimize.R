@@ -13,7 +13,7 @@ optim_p <- function(y, x, z, eff, grid, p_options, p_select) {
                          r1_sel = optim$est["r1"],
                          s_sel  = optim$est["s"],
                          return_HR = FALSE)
-    p_options[i, "ic"] <- results$ic[[p_select]]
+    p_options[i, "ic"] <- results$ic[p_select]
   }
   argmin <- which(p_options[, "ic"] == min(p_options[, "ic"]))
 

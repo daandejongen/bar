@@ -7,12 +7,16 @@
 z_sim(n_t, n_switches, start_regime, start_hyst = FALSE, range = c(-1, 1))
 }
 \arguments{
-\item{n_t}{The length of the simulated time series of \code{z}. Note that this will also
-be the length of \code{y}, when you feed \code{z} to \code{\link{hystar_sim}}}
+\item{n_t}{The desired length of the simulated time series of \code{z}. The actual
+vector that is returned will contain 10 more time points, see Details.
+Note that \code{n_t} will also be the length of \code{y}, when you feed \code{z} to \code{\link{hystar_sim}}.}
 
 \item{n_switches}{A scalar indicating the desired number of regime switches.
-It depends on the thresholds and the delay of the HysTAR model if this number
-is achieved, see Details.}
+Basically, it is the number of times the variable moves to (and reaches) its
+minimum or to its maximum. If the thresholds are within the range of \code{z},
+as they should, this will guarantee the same number of regime switches when
+the delay parameter of the HysTAR model is greater or equal than the highest order.
+See Details.}
 
 \item{start_regime}{The starting regime of the HysTAR model, 0 or 1. You must specify the
 same starting regime in \code{\link{hystar_sim}}. Otherwise, \code{n_switches} may not be realized.}
@@ -31,19 +35,45 @@ These attributes are used by \code{\link[=hystar_sim]{hystar_sim()}}.
 }
 \description{
 This is a function you can use to simulate time series data
-for a threshold variable of the HysTAR model. You could use this when you want
-to simulate data from the HysTAR model, but have not observed the threshold variable.
+for a threshold variable of the HysTAR model. The time series is a (co)sine
+wave, such that thresholds are crossed in a predictable way.
+This function is designed to be used in combination with \code{hystar_sim()}.
 }
 \details{
-The number of switches \code{n_switches} can differ ultimately based on r and d.
-and if starting regime is weird (only for sine function).
-Values of \code{z} will have three digits.
+The first value of \code{y} that can be predicted in the HysTAR model is
+at time point \eqn{\max\{d, p\} + 1}, where \eqn{p = \max\{p_0, p_1\}}.
+This is because we need to observe \eqn{y_{t - p}} and \eqn{z_{t - d}}.
+So the first observed value of \code{z} that determines a regime
+is at time point \eqn{\max\{d, p\} + 1 - d}.
+To make sure that this time point corresponds to the start that you request,
+\code{z_sim()} starts with 10 extra time points. In this way, \code{\link{hystar_sim}} can
+select the appropriate time points, based on \code{d} and \code{p0}, \code{p1}.
 }
+\section{The HysTAR model}{
+The HysTAR model is defined as:
+
+\eqn{ y_t = \begin{cases} \phi_0^{(0)} + \phi_1^{(0)} y_{t-1} + \cdots +
+  \phi_{p_0}^{(0)} y_{t-p_0} + \sigma_{(0)} \varepsilon_t & \text{if}~R_{t} = 0
+  \\ \phi_0^{(1)} + \phi_1^{(1)} y_{t-1} + \cdots + \phi_{p_1}^{(1)} y_{t-p_1}
+  + \sigma_{(1)} \varepsilon_t & \text{if}~R_{t} = 1, \\ \end{cases} }
+
+with \eqn{ R_t = \begin{cases} 0 & \mathrm{if} \, z_{t-d} \in (-\infty,
+  r_{0}] \\ R_{t-1} & \mathrm{if} \, z_{t-d} \in (r_0, r_1] \\ 1 & \mathrm{if}
+  \, z_{t-d} \in (r_1, \infty), \\ \end{cases} }
+
+where \eqn{p_i} denotes the order of regime \eqn{i \in \{0,1\}} with
+coefficients \eqn{\phi_0^{(i)}, \dots, \phi_{p_i}^{(i)} \in (-1, 1)},
+\eqn{\sigma_{(i)}} is the standard deviation of the residuals, and \eqn{d \in
+  \{1, 2, \dots\}} is a delay parameter. The parameters of primary interest are
+the thresholds \eqn{r_0 \le r_1}. We let \eqn{t = 1, 2, ..., n}, where \eqn{n}
+is the number of observations.
+}
+
 \examples{
 z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
 sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
 resvar = c(1, 1))
 plot(sim)
-fit <- hystar_fit(y = sim$data$y, z = z)
+fit <- hystar_fit(y = sim$data$y, z = sim$data$z)
 summary(fit)
 }

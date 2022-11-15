@@ -2,7 +2,7 @@
 % Please edit documentation in R/hystar_fit.R
 \name{hystar_fit}
 \alias{hystar_fit}
-\title{Estimate the hysTAR model using conditional least squares estimation}
+\title{Estimate the HysTAR model using conditional least squares estimation}
 \usage{
 hystar_fit(
   y,
@@ -78,7 +78,7 @@ effect is happening. Note that this vector starts with \code{NA}(s), since not a
 values can be predicted in the HysTAR model. See Details.
 \item \code{R}, the regime indicator vector. (Also starts with \code{NA}(s).)
 }
-\item \verb{$residuals}. \t Also accessible with the \code{residuals()} S3 method.
+\item \verb{$residuals}. Also accessible with the \code{residuals()} S3 method.
 \item \verb{$coefficients}, a vector with the estimated coefficients.
 With the \code{coef()} S3 method, the coefficients are represented in a matrix.
 Use the \code{confint()} method to get the confidence intervals of the estimates.
@@ -115,7 +115,7 @@ of the residuals, \emph{not} the variance. See also the model definition above.
 }
 \description{
 This function allows you to estimate the parameters of the hysteretic threshold
-autoregressive (hysTAR) model.
+autoregressive (HysTAR) model.
 }
 \details{
 In regime 0, \eqn{y_{t}} is predicted by values up to \eqn{y_{t - p_0}}.
@@ -126,8 +126,8 @@ value of the delay parameter implies that the regime is unknown for the first
 \code{d}, \code{p0} and \code{p1}, the first \code{max(d, p0, p1)} observations are discarded for
 estimation of the parameters.
 }
-\section{The hysTAR model}{
-The hysTAR model is defined as:
+\section{The HysTAR model}{
+The HysTAR model is defined as:
 
 \eqn{ y_t = \begin{cases} \phi_0^{(0)} + \phi_1^{(0)} y_{t-1} + \cdots +
   \phi_{p_0}^{(0)} y_{t-p_0} + \sigma_{(0)} \varepsilon_t & \text{if}~R_{t} = 0
@@ -151,7 +151,7 @@ z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
 sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
 resvar = c(1, 1))
 plot(sim)
-fit <- hystar_fit(y = sim$data$y, z = z)
+fit <- hystar_fit(y = sim$data$y, z = sim$data$z)
 summary(fit)
 }
 \references{

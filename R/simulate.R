@@ -1,18 +1,30 @@
 #' Simulate the threshold/control variable Z
 #'
 #' @description This is a function you can use to simulate time series data
-#' for a threshold variable of the HysTAR model. You could use this when you want
-#' to simulate data from the HysTAR model, but have not observed the threshold variable.
+#' for a threshold variable of the HysTAR model. The time series is a (co)sine
+#' wave, such that thresholds are crossed in a predictable way.
+#' This function is designed to be used in combination with `hystar_sim()`.
 #'
-#' @details The number of switches `n_switches` can differ ultimately based on r and d.
-#' and if starting regime is weird (only for sine function).
-#' Values of `z` will have three digits.
+#' @details The first value of `y` that can be predicted in the HysTAR model is
+#' at time point \eqn{\max\{d, p\} + 1}, where \eqn{p = \max\{p_0, p_1\}}.
+#' This is because we need to observe \eqn{y_{t - p}} and \eqn{z_{t - d}}.
+#' So the first observed value of `z` that determines a regime
+#' is at time point \eqn{\max\{d, p\} + 1 - d}.
+#' To make sure that this time point corresponds to the start that you request,
+#' `z_sim()` starts with 10 extra time points. In this way, [`hystar_sim`] can
+#' select the appropriate time points, based on `d` and `p0`, `p1`.
 #'
-#' @param n_t The length of the simulated time series of `z`. Note that this will also
-#' be the length of `y`, when you feed `z` to [`hystar_sim`]
+#' @inheritSection hystar_sim The HysTAR model
+#'
+#' @param n_t The desired length of the simulated time series of `z`. The actual
+#' vector that is returned will contain 10 more time points, see Details.
+#' Note that `n_t` will also be the length of `y`, when you feed `z` to [`hystar_sim`].
 #' @param n_switches A scalar indicating the desired number of regime switches.
-#' It depends on the thresholds and the delay of the HysTAR model if this number
-#' is achieved, see Details.
+#' Basically, it is the number of times the variable moves to (and reaches) its
+#' minimum or to its maximum. If the thresholds are within the range of `z`,
+#' as they should, this will guarantee the same number of regime switches when
+#' the delay parameter of the HysTAR model is greater or equal than the highest order.
+#' See Details.
 #' @param start_regime The starting regime of the HysTAR model, 0 or 1. You must specify the
 #' same starting regime in [`hystar_sim`]. Otherwise, `n_switches` may not be realized.
 #' @param start_hyst Logical, should `z` start in the hysteresis zone? Of course, this also
@@ -48,10 +60,10 @@ z_sim <- function(n_t, n_switches,
 }
 
 simulate_cossin <- function(n_t, n_switches, start_regime, start_hyst) {
-  time <- 0:(n_t - 1L)
+  time <- -10:(n_t - 1L)
   valence <- if (start_regime == 1) 1L else -1L
   f <- if (start_hyst) function(x) -sin(x) else function (x) cos(x)
-  out <- valence * f(time * n_switches * pi / (n_t - 1))
+  out <- valence * f(time * n_switches * pi / n_t)
 
   return(round(out, 3))
 }
