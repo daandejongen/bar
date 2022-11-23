@@ -45,7 +45,6 @@ plot_hystar <- function(y, z, R, r, k, title) {
   # two row grid) and we don't want that.
   old <- par(mar = c(0, 4.1, 4.1, 2.1), mfrow = c(2, 1))
   on.exit(par(old), add = TRUE)
-
   # The switch points are needed for the background plot of
   # the regimes. It is made in such a way that we always make
   # background filled rectangles for Regime 1. The rectangles
@@ -55,6 +54,7 @@ plot_hystar <- function(y, z, R, r, k, title) {
   make_zplot(time, z, r, R, k, col_reg1, sw_pnts_mat, title)
   # Margin at top is set to zero so the plots will "touch".
   par(mar = c(4.1, 4.1, 0, 2.1))
+
   make_yplot(time, y, R, k, col_reg1, sw_pnts_mat)
 }
 

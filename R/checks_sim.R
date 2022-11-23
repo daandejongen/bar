@@ -16,8 +16,6 @@ check_hystar_sim_input <- function(z, r, d, phi_R0, phi_R1, resvar, start_regime
 }
 
 check_z_sim_input <- function(n_t, n_switches, start_regime, start_hyst, range) {
-  check_whole_nn(n_t)
-  check_whole_nn(n_switches)
   check_n_t_switches(n_t, n_switches)
   check_start_regime(start_regime)
   check_start_hyst(start_hyst)
@@ -118,6 +116,8 @@ check_n_t_switches <- function(n_t, n_switches) {
   if (n_switches >= n_t)
     stop(paste0(n_switches, " switches are not possible if the length of ",
                 "the time series is ", n_t, "."))
+  if (n_switches < 2)
+    stop(paste0("`n_switches` must be at least 2."), call. = FALSE)
 }
 
 check_start <- function(start_inferred, start_regime, z) {
