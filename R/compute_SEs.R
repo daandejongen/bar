@@ -49,6 +49,7 @@ compute_CIs <- function(coe, SEs, alpha) {
 }
 
 compute_acov_vec <- function(y, p) {
+  # Note that acov_vec contains the autocovs of lag 0, 1, ..., p - 1.
   n <- length(y)
   mean_y <- mean(y)
   acov <- numeric(p)
@@ -63,13 +64,27 @@ compute_acov_vec <- function(y, p) {
 }
 
 create_acov_mat <- function(acov_vec, y) {
-  # This function will return the matrix
-  # E[x_t x_t^T]
-  # where x_t = (1, y[t-1], ..., y[t-p])
-  n <- length(acov_vec) + 1L
-  A <- matrix(raw(), nrow = n, ncol = n)
-  M <- matrix(acov_vec[abs(col(A) - row(A)) + 1L], n, n)
-  M[1, 1:n] <- M[1:n, 1] <- c(1, rep(mean(y), times = length(acov_vec)))
+  # This function will return the (p+1) by (p+1) matrix
+  # 1 m m m m
+  # m E[x_t x_t^T]
+  # m
+  # m
+  #
+  # where x_t = (x_{t-1}, x_{t-2}, ..., x_{t-p})
+  # and m is the mean of y
+  m <- mean(y)
+
+  # Inner lower right part of the matrix, E[x_t x_t^T]
+  # note that acov_vec contains the autocovs of lag 0, 1, ..., p - 1.
+  p <- length(acov_vec)
+  A <- matrix(nrow = p, ncol = p)
+  A[] <- acov_vec[abs(col(A) - row(A)) + 1L] + m**2
+
+  # Outer part
+  M <- matrix(NA, nrow = p + 1, ncol = p + 1)
+  M[1, 1:(p + 1)] <- M[1:(p + 1), 1] <- c(1, rep(m, times = p))
+  # Filling inner part in outer part
+  M[2:(p + 1), 2:(p + 1)] <- A
 
   return(M)
 }
