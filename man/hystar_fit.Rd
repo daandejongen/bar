@@ -12,7 +12,7 @@ hystar_fit(
   p1 = 1L,
   p_select = "bic",
   r = c(0.1, 0.9),
-  thin = TRUE
+  thin = FALSE
 )
 }
 \arguments{

@@ -6,6 +6,9 @@ new_hystar_fit <- function(y, x, z, eff, est, model, equiv) {
   n <- c(length(eff), sum(1 - model$R), sum(model$R))
   names(n) <- c("used", paste0("regime", 0:1))
 
+  sig_time_series <- ifelse(model$R == 1, model$resvar[2], model$resvar[1])
+  standardized_residuals <- model$fit$res / sig_time_series
+
   NA_k <- rep(NA, times = length(y) - length(eff))
   data <- data.frame(y = y, z = z,
                      H = c(NA_k, model$H == -1),
@@ -14,6 +17,7 @@ new_hystar_fit <- function(y, x, z, eff, est, model, equiv) {
   hystar <- structure(
     list(data         = data,
          residuals    = model$fit$res,
+         residuals_st = standardized_residuals,
          coefficients = coe,
          delay        = est["d"],
          thresholds   = est[c("r0", "r1")],

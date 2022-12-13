@@ -1,5 +1,6 @@
 check_hystar_fit_input <- function(y, z, d, p0, p1, p_select, r, thin) {
   check_yz(y, z)
+  check_z(z)
   check_whole_nn(d)
   check_whole_nn(p0)
   check_whole_nn(p1)
@@ -21,9 +22,17 @@ check_yz <- function(y, z) {
   if (!is.numeric(y)) error_numeric(y)
   if (!is.numeric(z)) error_numeric(z)
 
+  if (any(is.na(y)) || any(is.na(z)))
+    stop(paste0("Both `y` and `z` cannot have missing values."))
+
   if (length(y) != length(z))
     stop(paste0("`y` and `z` must be of equal length.\nCurrently, `y` has ",
                 "length ", length(y), " and `z` has length ", length(z), "."),
+         call. = FALSE)
+
+  n_unique <- length(unique(z))
+  if (n_unique < 3)
+    stop(paste0("There are less than 3 unique values in `z`, namely ", n_unique),
          call. = FALSE)
 }
 

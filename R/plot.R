@@ -15,7 +15,8 @@ plot.hystar_fit <- function(x, y = NULL, ...) {
               R = x$data$R,
               r = x$thresholds,
               k = sum(is.na(x$data$R)),
-              title = "Fitted")
+              title = "Fitted",
+              ...)
 
   invisible()
 }
@@ -27,12 +28,13 @@ plot.hystar_sim <- function(x, y = NULL, ...) {
               R = x$data$R,
               r = x$r,
               k = 0,
-              title = "Simulated")
+              title = "Simulated",
+              ...)
 
   invisible()
 }
 
-plot_hystar <- function(y, z, R, r, k, title) {
+plot_hystar <- function(y, z, R, r, k, title, ...) {
   # The plot is built as follows: first a z plot is made
   # and then a y plot is made. The par() function makes
   # sure that they appear on top of each other.
@@ -62,7 +64,7 @@ make_zplot <- function(time, z, r, R, k, col_reg1, sw_pnts_mat, title) {
   plot(time, z,
        # panel.first ensures that the rectangles are at the background.
        panel.first = c(
-         rect_reg(R, x = z, col_reg1, sw_pnts_mat),
+         rect_reg(x = z, col_reg1, sw_pnts_mat),
          rect_ineff(x = z, k = k),
          abline(h = r, lty = 2, col = "black")
          ),
@@ -74,21 +76,21 @@ make_zplot <- function(time, z, r, R, k, col_reg1, sw_pnts_mat, title) {
        type = "l",
        lwd = 2.5,
        col = "grey25")
-  axis(side = 2, at = r, labels = c("r0", "r1"), las = 2)
+  axis(side = 2, at = r, labels = c("r0", "r1"), las = 2, cex = .5)
   regs <- paste0("Regime ", 0:1)
 
   # The legend depends on whether there are ineffective observations or not.
   # With no ineff obs, we only want the colors of the Regimes in the legend.
   names <- if (k > 0) c(regs, "Unpred.") else regs
   fills <- if (k > 0) c("white", col_reg1, "#AA001137") else c("white", col_reg1)
-  legend(x = get_minmax(time)[1], y = get_minmax(z)[2],
-         legend = names, fill = fills, bg = "grey95")
+  legend_up_lo <- if (R[!is.na(R)][1] == 1) "bottomleft" else "topleft"
+  legend(x = legend_up_lo, legend = names, fill = fills, bg = "grey95", cex = .6)
 }
 
 make_yplot <- function(time, y, R, k, col_reg1, sw_pnts_mat) {
   plot(time, y,
        panel.first = c(
-         rect_reg(R, x = y, col_reg1, sw_pnts_mat),
+         rect_reg(x = y, col_reg1, sw_pnts_mat),
          rect_ineff(x = y, k = k)
          ),
        xlab = "time", ylab = "y",
@@ -99,7 +101,7 @@ make_yplot <- function(time, y, R, k, col_reg1, sw_pnts_mat) {
   axis(side = 2, las = 2)
 }
 
-rect_reg <- function(R, x, col_reg1, sw_pnts_mat) {
+rect_reg <- function(x, col_reg1, sw_pnts_mat) {
   # We draw all the rectangles for Regime 1 at once.
   # The switch points matrix provide the x values and
   # we use the min and max (plus 4 percent) for the y values.

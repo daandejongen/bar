@@ -18,10 +18,10 @@
 #' estimation of the parameters.
 #'
 #' @param y A numeric vector representing the time series. of the outcome variable.
-#'     Can be simulated with [hystar_sim()].
+#'     Can be simulated with [hystar_sim()]. Can not have missing values.
 #' @param z A numeric vector representing the threshold time series.
 #'     When you simulated `y` with [hystar_sim()], this should be the `z` variable
-#'     you have used there.
+#'     you have used there. Can not have missing values.
 #' @param d A numeric vector with one or more values for the search space
 #'     of the delay parameter. Defaults to 1. Typically, d is not very large, so
 #'     a reasonable search space might be 1, 2, ..., 5.
@@ -97,7 +97,7 @@
 #'
 #' @export
 hystar_fit <- function(y, z, d = 1L, p0 = 1L, p1 = 1L, p_select = "bic",
-                       r = c(.1, .9), thin = TRUE) {
+                       r = c(.1, .9), thin = FALSE) {
   p_select <- check_hystar_fit_input(y, z, d, p0, p1, p_select, r, thin)
   eff <- time_eff(y, max(d), max(p0), max(p1))
   x <- create_x(y, eff, max(p0), max(p1))

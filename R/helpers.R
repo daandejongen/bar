@@ -55,3 +55,9 @@ is_z_simulated <- function(z) {
   return(out)
 }
 
+get_inter_means <- function(x) {
+  n <- length(x)
+  lag_mat <- matrix(c(x[1:(n - 1)], x[2:n]), nrow = 2, byrow = TRUE)
+  return(colMeans(lag_mat))
+}
+

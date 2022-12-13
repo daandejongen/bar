@@ -1,12 +1,9 @@
 test_that("search grid for r is correct", {
   z <- 1:3
   grid_r_actual <- create_grid_r(z, r = c(0, 1), thin = FALSE)
-  grid_r_expected <- matrix(c(1, 2,
-                              1, 3,
-                              2, 3,
-                              1, 1,
-                              2, 2,
-                              3, 3),
+  grid_r_expected <- matrix(c(1.5, 2.5,
+                              1.5, 1.5,
+                              2.5, 2.5),
                             ncol = 2, byrow = TRUE)
 
   expect_equal(grid_r_actual, grid_r_expected)
@@ -59,7 +56,7 @@ test_that("starts are correct", {
 test_that("z values are correct (with no thinning)", {
   z <- 1:10
   z_values <- get_z_values(z, r = c(.1, .9), thin = FALSE)
-  expect_equal(z_values, 2:9)
+  expect_equal(z_values, seq(2.5, 8.5, 1))
 })
 
 

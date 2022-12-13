@@ -44,3 +44,8 @@ test_that("p_select must be a valid choice", {
 })
 
 
+test_that("`z` must have at least three levels.", {
+  expect_error(hystar_fit(y = 1:10, z = c(rep(3, 5), rep(4, 5))),
+               "unique values")
+})
+

@@ -9,8 +9,8 @@ coef.hystar_fit <- function(object, ...) {
 
 #' @export
 #' @importFrom stats residuals
-residuals.hystar_fit <- function(object, ...) {
-  return(object$residuals)
+residuals.hystar_fit <- function(object, standardized = TRUE, ...) {
+  return(if (standardized) object$residuals_st else object$residuals)
 }
 
 #' @export

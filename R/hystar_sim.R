@@ -38,7 +38,7 @@
 #'     \eqn{\sum_{i=1}^{p_1} \phi_i^{(1)} < 1}. See Zhu, Yu and Li (2013), p5.
 #'
 #' @param z A numeric vector representing the observed threshold variable.
-#'   You can simulate `z` with [z_sim()].
+#'   You can simulate `z` with [z_sim()]. Can not have missing values.
 #' @param r A numeric vector of length 2, representing the threshold values
 #'   \eqn{r_0} and \eqn{r_1}. The values must be inside the range of z, that is,
 #'   larger than `min(z)` and smaller than `max(z)`. Otherwise, only one regime will

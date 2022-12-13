@@ -41,12 +41,14 @@ add_start <- function(grid, z, eff) {
 get_z_values <- function(z, r, thin) {
   if (thin) {
     qs <- seq(from = r[1], to = r[2], by = .01)
-    return(quantile(z, qs))
+    values <- quantile(z, qs)
   }
   if (!thin) {
     a <- quantile(z, r)
-    return(sort(unique(z[z >= a[1] & z <= a[2]])))
+    values <- sort(unique(z[z >= a[1] & z <= a[2]]))
   }
+
+  return(get_inter_means(values))
 }
 
 get_start <- function(g, z, eff) {
