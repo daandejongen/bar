@@ -24,7 +24,7 @@ thresholds.
 z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
 sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
                   resvar = c(1, 1))
-fit <- hystar_fit(y = sim$data$y, z = z)
+fit <- hystar_fit(y = sim$data$y, z = sim$data$z)
 plot(fit)
 ```
 

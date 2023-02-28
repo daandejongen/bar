@@ -32,9 +32,9 @@ test_that("thin must be TRUE or FALSE", {
 })
 
 test_that("p_select must be a valid choice", {
-  expect_error(hystar_fit(y = 1, z = 3, p_select = 1),
+  expect_error(hystar_fit(y = 1:10, z = 1:10, p_select = 1),
                "character")
-  expect_error(hystar_fit(y = 1, z = 3, p_select = "bla"),
+  expect_error(hystar_fit(y = 1:10, z = 1:10, p_select = "bla"),
                "aic")
   p_select <- check_hystar_fit_input(
     y = 1:4, z = 1:4, d = 1, p0 = 1, p1 = 1,

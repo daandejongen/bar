@@ -83,7 +83,8 @@
 #' Implemented generics for the `hystar_fit` class:
 #'   * `plot()` plots the `z` variable and the `y` variable above one another.
 #'   Shading of the background visualizes the regimes. Thresholds are drawn as
-#'   horizontal lines in the `z` plot.
+#'   horizontal lines in the `z` plot. You can provide regime_names (char vector of 2),
+#'   main (char vector of 1), xlab (char vector of 1) and ylab (char vector of 2).
 #' * `summary()`, this also provides the p-values and standard errors for the
 #' estimates of the coefficients.
 #' * `print()` prints the estimates within the mathematical representation of the model.

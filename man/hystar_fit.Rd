@@ -17,11 +17,11 @@ hystar_fit(
 }
 \arguments{
 \item{y}{A numeric vector representing the time series. of the outcome variable.
-Can be simulated with \code{\link[=hystar_sim]{hystar_sim()}}.}
+Can be simulated with \code{\link[=hystar_sim]{hystar_sim()}}. Can not have missing values.}
 
 \item{z}{A numeric vector representing the threshold time series.
 When you simulated \code{y} with \code{\link[=hystar_sim]{hystar_sim()}}, this should be the \code{z} variable
-you have used there.}
+you have used there. Can not have missing values.}
 
 \item{d}{A numeric vector with one or more values for the search space
 of the delay parameter. Defaults to 1. Typically, d is not very large, so
@@ -100,7 +100,8 @@ Implemented generics for the \code{hystar_fit} class:
 \itemize{
 \item \code{plot()} plots the \code{z} variable and the \code{y} variable above one another.
 Shading of the background visualizes the regimes. Thresholds are drawn as
-horizontal lines in the \code{z} plot.
+horizontal lines in the \code{z} plot. You can provide regime_names (char vector of 2),
+main (char vector of 1), xlab (char vector of 1) and ylab (char vector of 2).
 \item \code{summary()}, this also provides the p-values and standard errors for the
 estimates of the coefficients.
 \item \code{print()} prints the estimates within the mathematical representation of the model.

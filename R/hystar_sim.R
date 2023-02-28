@@ -90,7 +90,8 @@
 #'   Implemented generics for the `hystar_sim` class:
 #'   * `plot()` plots the `z` variable and the `y` variable above one another.
 #'   Shading of the background visualizes the regimes. Thresholds are drawn as
-#'   horizontal lines in the `z` plot.
+#'   horizontal lines in the `z` plot. You can provide regime_names (char vector of 2),
+#'   main (char vector of 1), xlab (char vector of 1) and ylab (char vector of 2).
 #'   * `summary()` gives an overview of the true parameter values that were used.
 #'   * `print()` prints the parameter values within the mathematical representation
 #'   of the model. Note that the scalar multiplied with `e[t]` is the standard deviation

@@ -8,7 +8,7 @@ hystar_sim(z, r, d, phi_R0, phi_R1, resvar = c(1, 1), start_regime = NULL)
 }
 \arguments{
 \item{z}{A numeric vector representing the observed threshold variable.
-You can simulate \code{z} with \code{\link[=z_sim]{z_sim()}}.}
+You can simulate \code{z} with \code{\link[=z_sim]{z_sim()}}. Can not have missing values.}
 
 \item{r}{A numeric vector of length 2, representing the threshold values
 \eqn{r_0} and \eqn{r_1}. The values must be inside the range of z, that is,
@@ -71,7 +71,8 @@ Implemented generics for the \code{hystar_sim} class:
 \itemize{
 \item \code{plot()} plots the \code{z} variable and the \code{y} variable above one another.
 Shading of the background visualizes the regimes. Thresholds are drawn as
-horizontal lines in the \code{z} plot.
+horizontal lines in the \code{z} plot. You can provide regime_names (char vector of 2),
+main (char vector of 1), xlab (char vector of 1) and ylab (char vector of 2).
 \item \code{summary()} gives an overview of the true parameter values that were used.
 \item \code{print()} prints the parameter values within the mathematical representation
 of the model. Note that the scalar multiplied with \code{e[t]} is the standard deviation
