@@ -5,38 +5,38 @@
 #' @importFrom graphics par
 #' @importFrom graphics rect
 #' @importFrom graphics segments
-plot.hystar_fit <- function(x, y = NULL, regime_names = c("Regime 0", "Regime 1"), ...) {
+plot.hystar_fit <- function(x, y = NULL,
+                            main = "Fitted HysTAR model", ...) {
   # Both the hystar_fit class and the hystar_sim class have a
   # plot method, but they both call plot_hystar().
-  # The difference is in the title of the plot and that
+  # The difference is in the main of the plot and that
   # hystar_sim has no ineffective observations (k).
   plot_hystar(y = x$data$y,
               z = x$data$z,
               R = x$data$R,
               r = x$thresholds,
               k = sum(is.na(x$data$R)),
-              title = "Fitted HysTAR model",
-              regime_names = regime_names,
+              main = main,
               ...)
 
   invisible()
 }
 
 #' @export
-plot.hystar_sim <- function(x, y = NULL, regime_names = c("Regime 0", "Regime 1"), ...) {
+plot.hystar_sim <- function(x, y = NULL,
+                            main = "Simulated HysTAR model", ...) {
   plot_hystar(y = x$data$y,
               z = x$data$z,
               R = x$data$R,
               r = x$r,
               k = 0,
-              title = "Simulated HysTAR model",
-              regime_names = regime_names,
+              main = main,
               ...)
 
   invisible()
 }
 
-plot_hystar <- function(y, z, R, r, k, title, regime_names, ...) {
+plot_hystar <- function(y, z, R, r, k, main, ...) {
   # The plot is built as follows: first a z plot is made
   # and then a y plot is made. The par() function makes
   # sure that they appear on top of each other.
@@ -55,14 +55,16 @@ plot_hystar <- function(y, z, R, r, k, title, regime_names, ...) {
   # are used in the z plot and the y plot.
   sw_pnts_mat <- get_sw_pnts_mat(R)
 
-  make_zplot(time, z, r, R, k, col_reg1, sw_pnts_mat, title, regime_names, ...)
+  make_zplot(time, z, r, R, k, col_reg1, sw_pnts_mat, main, ...)
   # Margin at top is set to zero so the plots will "touch".
   par(mar = c(4.1, 4.1, 0, 2.1))
 
   make_yplot(time, y, R, k, col_reg1, sw_pnts_mat, ...)
 }
 
-make_zplot <- function(time, z, r, R, k, col_reg1, sw_pnts_mat, title, regime_names, ...) {
+make_zplot <- function(time, z, r, R, k, col_reg1, sw_pnts_mat, main,
+                       regime_names = c("Regime 0", "Regime 1"),
+                       zlab = "z", ...) {
   args <- list(...)
 
   plot(time, z,
@@ -74,8 +76,8 @@ make_zplot <- function(time, z, r, R, k, col_reg1, sw_pnts_mat, title, regime_na
          ),
        # The x-axis is made eventually in the y plot. For the y-axis, we
        # only want the threshold values, those are made by axis().
-       main = if ("main" %in% names(args)) args$main else title,
-       ylab = if ("ylab" %in% names(args)) args$ylab[2] else "z",
+       main = main,
+       ylab = zlab,
        xaxt = "n", yaxt = "n",
        type = "l",
        lwd = 2.5,
@@ -90,7 +92,8 @@ make_zplot <- function(time, z, r, R, k, col_reg1, sw_pnts_mat, title, regime_na
   legend(x = legend_up_lo, legend = names, fill = fills, bg = "grey95", cex = .6)
 }
 
-make_yplot <- function(time, y, R, k, col_reg1, sw_pnts_mat, ...) {
+make_yplot <- function(time, y, R, k, col_reg1, sw_pnts_mat,
+                       xlab = "time", ylab = "y", ...) {
   args <- list(...)
 
   plot(time, y,
@@ -98,8 +101,8 @@ make_yplot <- function(time, y, R, k, col_reg1, sw_pnts_mat, ...) {
          rect_reg(x = y, col_reg1, sw_pnts_mat),
          rect_ineff(x = y, k = k)
          ),
-       xlab = if ("xlab" %in% names(args)) args$xlab else "time",
-       ylab = if ("ylab" %in% names(args)) args$ylab[1] else "y",
+       xlab = xlab,
+       ylab = ylab,
        yaxt = "n",
        type = "l",
        lwd = 2.5,

@@ -45,8 +45,9 @@ check_r_sim <- function(r, z) {
                 length(r), " values."),
          call. = FALSE)
 
-  if (r[1] >= r[2])
-    stop("The second threshold should be larger than the first.", call. = FALSE)
+  if (r[1] > r[2])
+    stop("The second threshold should be larger than or equal to the first.",
+         call. = FALSE)
 
   if (r[1] <= min(z) || r[2] >= max(z))
     stop(paste0("You must provide threshold values inside the range of `z`."),
