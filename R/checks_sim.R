@@ -73,12 +73,10 @@ check_zdp <- function(z, d, p0, p1) {
 
 check_resvar <- function(resvar) {
   if (!is.numeric(resvar)) error_numeric(resvar)
-
   if (length(resvar) != 2)
     stop(paste0("You must provide exactly one residual variance for ",
                 "each regime.\nYou provided ", length(resvar), " values."),
          call. = FALSE)
-
   if (!all(resvar > 0))
     stop("Values in 'resvar' should be postitive.", call. = FALSE)
 }

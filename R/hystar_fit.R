@@ -24,7 +24,7 @@
 #'     you have used there. Can not have missing values.
 #' @param d A numeric vector with one or more values for the search space
 #'     of the delay parameter. Defaults to 1. Typically, d is not very large, so
-#'     a reasonable search space might be 1, 2, ..., 5.
+#'     a reasonable search space might be 0, 1, 2, ..., 5.
 #' @param p0 A numeric vector with one or more values for the search space
 #'     of the autoregressive order of Regime 0. Defaults to 1.
 #' @param p1 Same as `p0`, but for regime 1. Note that it does not need to be
@@ -97,7 +97,7 @@
 #' * `nobs()`
 #'
 #' @export
-hystar_fit <- function(y, z, d = 1L, p0 = 1L, p1 = 1L, p_select = "bic",
+hystar_fit <- function(y, z, d = 0L, p0 = 1L, p1 = 1L, p_select = "aic",
                        r = c(.1, .9), thin = FALSE) {
   p_select <- check_hystar_fit_input(y, z, d, p0, p1, p_select, r, thin)
   eff <- time_eff(y, max(d), max(p0), max(p1))
