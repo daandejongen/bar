@@ -8,7 +8,8 @@ print.hystar_fit <- function(x, ...) {
                coe1 = round(coe$coe1, 2),
                rv0 = round(x$resvar[1], 2),
                rv1 = round(x$resvar[2], 2),
-               simfit = "fitted on")
+               simfit = "fitted on",
+               tar = x$tar)
 
   invisible()
 }
@@ -26,13 +27,15 @@ print.hystar_sim <- function(x, ...) {
                coe1 = round(coe$coe1, 2),
                rv0 = round(x$resvar[1], 2),
                rv1 = round(x$resvar[2], 2),
-               simfit = "that generated")
+               simfit = "that generated",
+               tar = x$tar)
 
   invisible()
 }
 
-print_hystar <- function(n, d, r0, r1, coe0, coe1, rv0, rv1, simfit) {
-  cat(paste0("hysTAR model ", simfit, " ", n, " observations."),
+print_hystar <- function(n, d, r0, r1, coe0, coe1, rv0, rv1, simfit, tar) {
+  model <- if (tar) "TAR model " else "HysTAR model "
+  cat(paste0(model, simfit, " ", n, " observations."),
       "\n\n",
       "if R[t] = 0:\n", make_formula(coe0, rv0),
       "\n\n",
@@ -59,7 +62,8 @@ summary.hystar_fit <- function(object, ...) {
   res_stat <- round(quantile(object$residuals, c(0, .25, .5, .75, 1)), 3)
   names(res_stat) <- c("min", "1q", "median", "3q", "max")
 
-  cat(paste0("hysTAR model fitted on ", n[1], " observations,",
+  model <- if (object$tar) "TAR model " else "HysTAR model "
+  cat(paste0(model, "fitted on ", n[1], " observations,",
              " of which\n", n[2], " observations in regime 0 and\n",
              n[3], " observations in regime 1.\n")
   )

@@ -38,7 +38,7 @@ test_that("p_select must be a valid choice", {
                "aic")
   p_select <- check_hystar_fit_input(
     y = 1:4, z = 1:4, d = 1, p0 = 1, p1 = 1,
-    p_select = "aic", r = c(.8, .9), thin = TRUE
+    p_select = "aic", r = c(.8, .9), thin = TRUE, tar = FALSE
     )
   expect_equal(p_select, "aic")
 })

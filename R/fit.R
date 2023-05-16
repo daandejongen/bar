@@ -8,7 +8,6 @@ fit <- function(y, X) {
               res = res[ , 1, drop = TRUE]))
 }
 
-
 estimate_resvar <- function(R, res) {
   n0 <- sum(1-R)
   n1 <- sum(R)
@@ -18,7 +17,3 @@ estimate_resvar <- function(R, res) {
 
   return(resvar)
 }
-
-
-
-

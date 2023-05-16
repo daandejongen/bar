@@ -53,7 +53,7 @@ compute_acov_vec <- function(y, p) {
   n <- length(y)
   mean_y <- mean(y)
   acov <- numeric(p)
-  for (i in 0:(p - 1)) {
+  for (i in 0:(p-1)) {
     y_    <- y[(i + 1):n] # delete first i obs from y
     y_lag <- y[1:(n - i)] # delete last i obs from y
     # Compute the autocovariance at lag i (note we always divide by n)
@@ -73,16 +73,21 @@ create_acov_mat <- function(acov_vec, y) {
   # where x_t = (x_{t-1}, x_{t-2}, ..., x_{t-p})
   # and m is the mean of y
   m <- mean(y)
-
-  # Inner lower right part of the matrix, E[x_t x_t^T]
-  # note that acov_vec contains the autocovs of lag 0, 1, ..., p - 1.
   p <- length(acov_vec)
-  A <- matrix(nrow = p, ncol = p)
-  A[] <- acov_vec[abs(col(A) - row(A)) + 1L] + m**2
 
   # Outer part
   M <- matrix(NA, nrow = p + 1, ncol = p + 1)
   M[1, 1:(p + 1)] <- M[1:(p + 1), 1] <- c(1, rep(m, times = p))
+
+  if (p == 0) {
+    return(M)
+  }
+
+  # Inner lower right part of the matrix, E[x_t x_t^T]
+  # note that acov_vec contains the autocovs of lag 0, 1, ..., p - 1.
+  A <- matrix(nrow = p, ncol = p)
+  A[] <- acov_vec[abs(col(A) - row(A)) + 1L] + m**2
+
   # Filling inner part in outer part
   M[2:(p + 1), 2:(p + 1)] <- A
 

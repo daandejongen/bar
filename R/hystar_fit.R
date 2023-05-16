@@ -52,6 +52,9 @@
 #'     choice with no theoretical justification.
 #' * If `FALSE`, all observed unique values of `z` between
 #'     the \eqn{100a\%} and \eqn{100b\%} percentiles of `z` will be considered.
+#' @param tar `TRUE` or `FALSE` (default). Choose `TRUE` if you want to fit a traditional
+#'     2-regime threshold autoregressive (TAR) model. In this model,
+#'     there is only one threshold (or equivalently, a HysTAR model with \eqn{r_0 = r_1}).
 #'
 #' @returns An object of S3 class `hystar_fit`, which is a `list` containing the following
 #' items:
@@ -68,7 +71,7 @@
 #' With the `coef()` S3 method, the coefficients are represented in a matrix.
 #' Use the `confint()` method to get the confidence intervals of the estimates.
 #' * `$delay`, a scalar with the estimate for the delay parameter.
-#' * `$thresholds`, a vector with the estimates of the tresholds.
+#' * `$thresholds`, a vector with the estimates of the thresholds.
 #' * `$orders`, a vector with the estimates of the orders.
 #' * `$resvar`, a vector with the estimates of the residual variances.
 #' * `$rss`, the minimized residual sum of squares.
@@ -97,12 +100,12 @@
 #' * `nobs()`
 #'
 #' @export
-hystar_fit <- function(y, z, d = 0L, p0 = 1L, p1 = 1L, p_select = "aic",
-                       r = c(.1, .9), thin = FALSE) {
-  p_select <- check_hystar_fit_input(y, z, d, p0, p1, p_select, r, thin)
+hystar_fit <- function(y, z, d = 0L, p0 = 1L, p1 = 1L, p_select = "bic",
+                       r = c(.1, .9), thin = FALSE, tar = FALSE) {
+  p_select <- check_hystar_fit_input(y, z, d, p0, p1, p_select, r, thin, tar)
   eff <- time_eff(y, max(d), max(p0), max(p1))
   x <- create_x(y, eff, max(p0), max(p1))
-  grid <- create_grid(z, r, d, eff, thin)
+  grid <- create_grid(z, r, d, eff, thin, tar)
   p_options <- create_p_options(p0, p1)
   OPT <- optim_p(y, x, z, eff, grid, p_options, p_select)
   est <- OPT$est
@@ -113,7 +116,7 @@ hystar_fit <- function(y, z, d = 0L, p0 = 1L, p1 = 1L, p_select = "aic",
   model <- run_model(y, x, z, eff, est["p0"], est["p1"],
                      est["d"], est["r0"], est["r1"], est["s"],
                      return_HR = TRUE)
-  hystar <- new_hystar_fit(y, x, z, eff, est, model, equiv)
+  hystar <- new_hystar_fit(y, x, z, eff, est, model, equiv, tar)
 
   return(hystar)
 }

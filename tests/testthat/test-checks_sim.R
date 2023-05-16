@@ -17,12 +17,6 @@ test_that("Thresholds should be within the range of z.", {
                "inside the range of `z`")
 })
 
-test_that("The second treshold should be larger than the first", {
-  expect_error(hystar_sim(z = 1:10, r = c(2, 2), d = 1,
-                          phi_R0 = 1, phi_R1 = 2),
-               "should be larger than the first")
-})
-
 test_that("Delay or regime order cannot be too large", {
   expect_error(hystar_sim(z = 1:3, r = c(2, 2.2), d = 3,
                           phi_R0 = 1, phi_R1 = 2),

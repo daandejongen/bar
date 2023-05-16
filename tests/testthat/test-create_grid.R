@@ -1,6 +1,6 @@
 test_that("search grid for r is correct", {
   z <- 1:3
-  grid_r_actual <- create_grid_r(z, r = c(0, 1), thin = FALSE)
+  grid_r_actual <- create_grid_r(z, r = c(0, 1), thin = FALSE, tar = FALSE)
   grid_r_expected <- matrix(c(1.5, 2.5,
                               1.5, 1.5,
                               2.5, 2.5),

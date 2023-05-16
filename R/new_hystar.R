@@ -1,4 +1,4 @@
-new_hystar_fit <- function(y, x, z, eff, est, model, equiv) {
+new_hystar_fit <- function(y, x, z, eff, est, model, equiv, tar) {
 
   coe <- model$fit$coe
   names(coe) <- c(paste0("R0_phi", 0:est["p0"]), paste0("R1_phi", 0:est["p1"]))
@@ -27,7 +27,8 @@ new_hystar_fit <- function(y, x, z, eff, est, model, equiv) {
          ic           = model$ic,
          n            = n,
          eff          = eff,
-         equiv_pars   = equiv
+         equiv_pars   = equiv,
+         tar          = tar
          ),
     class = "hystar_fit"
     )
@@ -49,7 +50,8 @@ new_hystar_sim <- function(y, z, H, R, phi_R0, phi_R1, r, d, resvar, k) {
          d = d,
          phi = phi,
          orders = c(get_order(phi_R0), get_order(phi_R1)),
-         resvar = resvar),
+         resvar = resvar,
+         tar = r[1] == r[2]),
     class = "hystar_sim"
   )
 

@@ -18,7 +18,7 @@ create_coe_matrix_SE_p <- function(coe, y, R, rv, p0, p1) {
   p_values <- compute_p_values(coe, SEs)
 
   M <- matrix(c(coe, SEs, p_values), ncol = 3, byrow = FALSE)
-  rownames(M) <- c(paste0("R0_phi", 0:p0), paste0("R1_phi", 0:p1))
+  rownames(M) <- c(paste0("phi_0", 0:p0), paste0("phi_1", 0:p1))
   colnames(M) <- c("est", "SE", "p")
 
   return(M)

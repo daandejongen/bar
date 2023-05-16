@@ -1,5 +1,5 @@
-create_grid <- function(z, r, d, eff, thin) {
-  grid <- if (is.matrix(r)) r else create_grid_r(z, r, thin)
+create_grid <- function(z, r, d, eff, thin, tar) {
+  grid <- if (is.matrix(r)) r else create_grid_r(z, r, thin, tar)
   grid <- add_d(d, grid)
   grid <- add_start(grid, z, eff)
   colnames(grid) <- c("d", "r0", "r1", "s")
@@ -8,13 +8,19 @@ create_grid <- function(z, r, d, eff, thin) {
 }
 
 #' @importFrom utils combn
-create_grid_r <- function(z, r, thin) {
+create_grid_r <- function(z, r, thin, tar) {
   z_values <- get_z_values(z, r, thin)
-  r_neq <- t(combn(z_values, 2))
   r_eq  <- matrix(z_values, nrow = length(z_values), ncol = 2, byrow = FALSE)
-  grid <- rbind(r_neq, r_eq)
 
-  return(grid)
+  if (tar) {
+    return(r_eq)
+  }
+
+  if (!tar) {
+    r_neq <- t(combn(z_values, 2))
+    grid <- rbind(r_neq, r_eq)
+    return(grid)
+  }
 }
 
 add_d <- function(d, grid) {

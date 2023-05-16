@@ -6,17 +6,22 @@
 #' @importFrom graphics rect
 #' @importFrom graphics segments
 plot.hystar_fit <- function(x, y = NULL,
-                            main = "Fitted HysTAR model", ...) {
+                            main = "Fitted HysTAR model",
+                            show_legend = TRUE,
+                            ...) {
   # Both the hystar_fit class and the hystar_sim class have a
   # plot method, but they both call plot_hystar().
   # The difference is in the main of the plot and that
   # hystar_sim has no ineffective observations (k).
+
   plot_hystar(y = x$data$y,
               z = x$data$z,
               R = x$data$R,
               r = x$thresholds,
               k = sum(is.na(x$data$R)),
               main = main,
+              show_legend = show_legend,
+              tar = x$tar,
               ...)
 
   invisible()
@@ -24,19 +29,24 @@ plot.hystar_fit <- function(x, y = NULL,
 
 #' @export
 plot.hystar_sim <- function(x, y = NULL,
-                            main = "Simulated HysTAR model", ...) {
+                            main = "Simulated HysTAR model",
+                            show_legend = TRUE,
+                            ...) {
+
   plot_hystar(y = x$data$y,
               z = x$data$z,
               R = x$data$R,
               r = x$r,
               k = 0,
               main = main,
+              show_legend = show_legend,
+              tar = x$tar,
               ...)
 
   invisible()
 }
 
-plot_hystar <- function(y, z, R, r, k, main, ...) {
+plot_hystar <- function(y, z, R, r, k, main, show_legend, tar, ...) {
   # The plot is built as follows: first a z plot is made
   # and then a y plot is made. The par() function makes
   # sure that they appear on top of each other.
@@ -55,7 +65,7 @@ plot_hystar <- function(y, z, R, r, k, main, ...) {
   # are used in the z plot and the y plot.
   sw_pnts_mat <- get_sw_pnts_mat(R)
 
-  make_zplot(time, z, r, R, k, col_reg1, sw_pnts_mat, main, ...)
+  make_zplot(time, z, r, R, k, col_reg1, sw_pnts_mat, main, show_legend, ...)
   # Margin at top is set to zero so the plots will "touch".
   par(mar = c(4.1, 4.1, 0, 2.1))
 
@@ -63,7 +73,7 @@ plot_hystar <- function(y, z, R, r, k, main, ...) {
 }
 
 make_zplot <- function(time, z, r, R, k, col_reg1, sw_pnts_mat, main,
-                       regime_names = c("Regime 0", "Regime 1"),
+                       show_legend, regime_names = c("Regime 0", "Regime 1"),
                        zlab = "z", ...) {
   args <- list(...)
 
@@ -89,7 +99,8 @@ make_zplot <- function(time, z, r, R, k, col_reg1, sw_pnts_mat, main,
   names <- if (k > 0) c(regime_names, "Unpred.") else regime_names
   fills <- if (k > 0) c("white", col_reg1, "#AA001137") else c("white", col_reg1)
   legend_up_lo <- if (R[!is.na(R)][1] == 1) "bottomleft" else "topleft"
-  legend(x = legend_up_lo, legend = names, fill = fills, bg = "grey95", cex = .6)
+  if (show_legend)
+    legend(x = legend_up_lo, legend = names, fill = fills, bg = "grey95", cex = .6)
 }
 
 make_yplot <- function(time, y, R, k, col_reg1, sw_pnts_mat,

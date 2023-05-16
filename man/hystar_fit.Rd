@@ -7,12 +7,13 @@
 hystar_fit(
   y,
   z,
-  d = 1L,
+  d = 0L,
   p0 = 1L,
   p1 = 1L,
   p_select = "bic",
   r = c(0.1, 0.9),
-  thin = FALSE
+  thin = FALSE,
+  tar = FALSE
 )
 }
 \arguments{
@@ -25,7 +26,7 @@ you have used there. Can not have missing values.}
 
 \item{d}{A numeric vector with one or more values for the search space
 of the delay parameter. Defaults to 1. Typically, d is not very large, so
-a reasonable search space might be 1, 2, ..., 5.}
+a reasonable search space might be 0, 1, 2, ..., 5.}
 
 \item{p0}{A numeric vector with one or more values for the search space
 of the autoregressive order of Regime 0. Defaults to 1.}
@@ -64,6 +65,10 @@ choice with no theoretical justification.
 \item If \code{FALSE}, all observed unique values of \code{z} between
 the \eqn{100a\%} and \eqn{100b\%} percentiles of \code{z} will be considered.
 }}
+
+\item{tar}{\code{TRUE} or \code{FALSE} (default). Choose \code{TRUE} if you want to fit a traditional
+2-regime threshold autoregressive (TAR) model. In this model,
+there is only one threshold (or equivalently, a HysTAR model with \eqn{r_0 = r_1}).}
 }
 \value{
 An object of S3 class \code{hystar_fit}, which is a \code{list} containing the following
@@ -83,7 +88,7 @@ values can be predicted in the HysTAR model. See Details.
 With the \code{coef()} S3 method, the coefficients are represented in a matrix.
 Use the \code{confint()} method to get the confidence intervals of the estimates.
 \item \verb{$delay}, a scalar with the estimate for the delay parameter.
-\item \verb{$thresholds}, a vector with the estimates of the tresholds.
+\item \verb{$thresholds}, a vector with the estimates of the thresholds.
 \item \verb{$orders}, a vector with the estimates of the orders.
 \item \verb{$resvar}, a vector with the estimates of the residual variances.
 \item \verb{$rss}, the minimized residual sum of squares.
