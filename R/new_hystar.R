@@ -1,4 +1,4 @@
-new_hystar_fit <- function(y, x, z, eff, est, model, equiv, tar) {
+new_hystar_fit <- function(y, x, z, eff, est, model, equiv, tar, r_search) {
 
   coe <- model$fit$coe
   names(coe) <- c(paste0("R0_phi", 0:est["p0"]), paste0("R1_phi", 0:est["p1"]))
@@ -28,6 +28,7 @@ new_hystar_fit <- function(y, x, z, eff, est, model, equiv, tar) {
          n            = n,
          eff          = eff,
          equiv_pars   = equiv,
+         r_search     = r_search,
          tar          = tar
          ),
     class = "hystar_fit"

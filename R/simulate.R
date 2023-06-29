@@ -25,8 +25,7 @@
 #' as they should, this will guarantee the same number of regime switches when
 #' the delay parameter of the HysTAR model is greater or equal than the highest order.
 #' See Details.
-#' @param start_regime The starting regime of the HysTAR model, 0 or 1. You must specify the
-#' same starting regime in [`hystar_sim`]. Otherwise, `n_switches` may not be realized.
+#' @param start_regime The starting regime of the HysTAR model, 0 (default) or 1.
 #' @param start_hyst Logical, should `z` start in the hysteresis zone? Of course, this also
 #' depends on `r`, and `r` is not yet specified in this function. Rather, setting `start_hyst`
 #' to `TRUE` makes `z` start at in the middle of its range, which makes it easy to
@@ -41,7 +40,7 @@
 #'
 #' @inherit hystar_sim examples
 z_sim <- function(n_t, n_switches,
-                  start_regime, start_hyst = FALSE,
+                  start_regime = 0, start_hyst = FALSE,
                   range = c(-1, 1)) {
 
   check_z_sim_input(n_t, n_switches, start_regime, start_hyst, range)

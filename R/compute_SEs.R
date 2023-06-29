@@ -53,14 +53,22 @@ compute_acov_vec <- function(y, p) {
   n <- length(y)
   mean_y <- mean(y)
   acov <- numeric(p)
-  for (i in 0:(p-1)) {
-    y_    <- y[(i + 1):n] # delete first i obs from y
-    y_lag <- y[1:(n - i)] # delete last i obs from y
-    # Compute the autocovariance at lag i (note we always divide by n)
-    acov[i + 1] <- sum((y_ - mean_y) * (y_lag - mean_y)) / n
+
+  if (p > 0) {
+    for (i in 0:(p-1)) {
+      y_    <- y[(i + 1):n] # delete first i obs from y
+      y_lag <- y[1:(n - i)] # delete last i obs from y
+      # Compute the autocovariance at lag i (note we always divide by n)
+      acov[i + 1] <- sum((y_ - mean_y) * (y_lag - mean_y)) / n
+    }
+
+    return(acov)
   }
 
-  return(acov)
+  if (p == 0) {
+    return(NULL)
+  }
+
 }
 
 create_acov_mat <- function(acov_vec, y) {

@@ -4,7 +4,7 @@
 \alias{z_sim}
 \title{Simulate the threshold/control variable Z}
 \usage{
-z_sim(n_t, n_switches, start_regime, start_hyst = FALSE, range = c(-1, 1))
+z_sim(n_t, n_switches, start_regime = 0, start_hyst = FALSE, range = c(-1, 1))
 }
 \arguments{
 \item{n_t}{The desired length of the simulated time series of \code{z}. The actual
@@ -18,8 +18,7 @@ as they should, this will guarantee the same number of regime switches when
 the delay parameter of the HysTAR model is greater or equal than the highest order.
 See Details.}
 
-\item{start_regime}{The starting regime of the HysTAR model, 0 or 1. You must specify the
-same starting regime in \code{\link{hystar_sim}}. Otherwise, \code{n_switches} may not be realized.}
+\item{start_regime}{The starting regime of the HysTAR model, 0 (default) or 1.}
 
 \item{start_hyst}{Logical, should \code{z} start in the hysteresis zone? Of course, this also
 depends on \code{r}, and \code{r} is not yet specified in this function. Rather, setting \code{start_hyst}
@@ -52,10 +51,10 @@ select the appropriate time points, based on \code{d} and \code{p0}, \code{p1}.
 \section{The HysTAR model}{
 The HysTAR model is defined as:
 
-\eqn{ y_t = \begin{cases} \phi_0^{(0)} + \phi_1^{(0)} y_{t-1} + \cdots +
-  \phi_{p_0}^{(0)} y_{t-p_0} + \sigma_{(0)} \varepsilon_t & \text{if}~R_{t} = 0
-  \\ \phi_0^{(1)} + \phi_1^{(1)} y_{t-1} + \cdots + \phi_{p_1}^{(1)} y_{t-p_1}
-  + \sigma_{(1)} \varepsilon_t & \text{if}~R_{t} = 1, \\ \end{cases} }
+\eqn{ y_t = \begin{cases} \phi_{00} + \phi_{01} y_{t-1} + \cdots +
+  \phi_{0 p_0} y_{t-p_0} + \sigma_{0} \varepsilon_t & \text{if}~R_{t} = 0
+  \\ \phi_{10} + \phi_{11} y_{t-1} + \cdots + \phi_{p_1 1} y_{t-p_1}
+  + \sigma_{1} \varepsilon_t & \text{if}~R_{t} = 1, \\ \end{cases} }
 
 with \eqn{ R_t = \begin{cases} 0 & \mathrm{if} \, z_{t-d} \in (-\infty,
   r_{0}] \\ R_{t-1} & \mathrm{if} \, z_{t-d} \in (r_0, r_1] \\ 1 & \mathrm{if}

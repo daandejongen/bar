@@ -24,7 +24,7 @@ check_yz <- function(y, z) {
   if (!is.numeric(z)) error_numeric(z)
 
   if (any(is.na(y)) || any(is.na(z)))
-    stop(paste0("Both `y` and `z` cannot have missing values."))
+    stop(paste0("`y` and `z` cannot have missing values."))
 
   if (length(y) != length(z))
     stop(paste0("`y` and `z` must be of equal length.\nCurrently, `y` has ",

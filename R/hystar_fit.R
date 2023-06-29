@@ -17,7 +17,7 @@
 #' `d`, `p0` and `p1`, the first `max(d, p0, p1)` observations are discarded for
 #' estimation of the parameters.
 #'
-#' @param y A numeric vector representing the time series. of the outcome variable.
+#' @param y A numeric vector representing the time series of the outcome variable.
 #'     Can be simulated with [hystar_sim()]. Can not have missing values.
 #' @param z A numeric vector representing the threshold time series.
 #'     When you simulated `y` with [hystar_sim()], this should be the `z` variable
@@ -82,6 +82,8 @@
 #' * `$equiv`, a matrix containing equivalent estimates for the delay and thresholds,
 #' i.e., estimates that imply exactly the same regime indicator vector, and
 #' as a result the same minimal residual sum of squares.
+#' * `$r_search`, a vector with the \eqn{r}-values that were considered.
+#' * `$tar`, Logical: `TRUE` if a TAR model was fitted.
 #'
 #' Implemented generics for the `hystar_fit` class:
 #'   * `plot()` plots the `z` variable and the `y` variable above one another.
@@ -106,6 +108,7 @@ hystar_fit <- function(y, z, d = 0L, p0 = 1L, p1 = 1L, p_select = "bic",
   eff <- time_eff(y, max(d), max(p0), max(p1))
   x <- create_x(y, eff, max(p0), max(p1))
   grid <- create_grid(z, r, d, eff, thin, tar)
+  r_search <- unique(grid[, c("r0", "r1")])
   p_options <- create_p_options(p0, p1)
   OPT <- optim_p(y, x, z, eff, grid, p_options, p_select)
   est <- OPT$est
@@ -116,7 +119,7 @@ hystar_fit <- function(y, z, d = 0L, p0 = 1L, p1 = 1L, p_select = "bic",
   model <- run_model(y, x, z, eff, est["p0"], est["p1"],
                      est["d"], est["r0"], est["r1"], est["s"],
                      return_HR = TRUE)
-  hystar <- new_hystar_fit(y, x, z, eff, est, model, equiv, tar)
+  hystar <- new_hystar_fit(y, x, z, eff, est, model, equiv, tar, r_search)
 
   return(hystar)
 }

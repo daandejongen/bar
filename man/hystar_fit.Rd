@@ -17,7 +17,7 @@ hystar_fit(
 )
 }
 \arguments{
-\item{y}{A numeric vector representing the time series. of the outcome variable.
+\item{y}{A numeric vector representing the time series of the outcome variable.
 Can be simulated with \code{\link[=hystar_sim]{hystar_sim()}}. Can not have missing values.}
 
 \item{z}{A numeric vector representing the threshold time series.
@@ -99,6 +99,8 @@ effective obeservations in regime 0 and regime 1.
 \item \verb{$equiv}, a matrix containing equivalent estimates for the delay and thresholds,
 i.e., estimates that imply exactly the same regime indicator vector, and
 as a result the same minimal residual sum of squares.
+\item \verb{$r_search}, a vector with the \eqn{r}-values that were considered.
+\item \verb{$tar}, Logical: \code{TRUE} if a TAR model was fitted.
 }
 
 Implemented generics for the \code{hystar_fit} class:
@@ -135,10 +137,10 @@ estimation of the parameters.
 \section{The HysTAR model}{
 The HysTAR model is defined as:
 
-\eqn{ y_t = \begin{cases} \phi_0^{(0)} + \phi_1^{(0)} y_{t-1} + \cdots +
-  \phi_{p_0}^{(0)} y_{t-p_0} + \sigma_{(0)} \varepsilon_t & \text{if}~R_{t} = 0
-  \\ \phi_0^{(1)} + \phi_1^{(1)} y_{t-1} + \cdots + \phi_{p_1}^{(1)} y_{t-p_1}
-  + \sigma_{(1)} \varepsilon_t & \text{if}~R_{t} = 1, \\ \end{cases} }
+\eqn{ y_t = \begin{cases} \phi_{00} + \phi_{01} y_{t-1} + \cdots +
+  \phi_{0 p_0} y_{t-p_0} + \sigma_{0} \varepsilon_t & \text{if}~R_{t} = 0
+  \\ \phi_{10} + \phi_{11} y_{t-1} + \cdots + \phi_{p_1 1} y_{t-p_1}
+  + \sigma_{1} \varepsilon_t & \text{if}~R_{t} = 1, \\ \end{cases} }
 
 with \eqn{ R_t = \begin{cases} 0 & \mathrm{if} \, z_{t-d} \in (-\infty,
   r_{0}] \\ R_{t-1} & \mathrm{if} \, z_{t-d} \in (r_0, r_1] \\ 1 & \mathrm{if}
