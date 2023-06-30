@@ -1,9 +1,3 @@
-test_that("unequal length of y and z throws error", {
-  y <- numeric(1)
-  z <- numeric(2)
-  expect_error(check_yz(y, z), "must be of equal length")
-})
-
 test_that("a vector for r must be of correct length (2)", {
   expect_error(check_r_fit(r = 1:3), "its length must be 2")
 })
@@ -32,12 +26,12 @@ test_that("thin must be TRUE or FALSE", {
 })
 
 test_that("p_select must be a valid choice", {
-  expect_error(hystar_fit(y = 1:10, z = 1:10, p_select = 1),
+  expect_error(hystar_fit(data.frame(y = 1:10, z = 1:10), p_select = 1),
                "character")
-  expect_error(hystar_fit(y = 1:10, z = 1:10, p_select = "bla"),
+  expect_error(hystar_fit(data.frame(y = 1:10, z = 1:10), p_select = "bla"),
                "aic")
   p_select <- check_hystar_fit_input(
-    y = 1:4, z = 1:4, d = 1, p0 = 1, p1 = 1,
+    z = 1:4, d = 1, p0 = 1, p1 = 1,
     p_select = "aic", r = c(.8, .9), thin = TRUE, tar = FALSE
     )
   expect_equal(p_select, "aic")
@@ -45,7 +39,9 @@ test_that("p_select must be a valid choice", {
 
 
 test_that("`z` must have at least three levels.", {
-  expect_error(hystar_fit(y = 1:10, z = c(rep(3, 5), rep(4, 5))),
-               "unique values")
+  expect_error(hystar_fit(data.frame(y = 1:10,
+                                     z = c(rep(3, 5), rep(4, 5))
+                                     )
+                          ), "unique values")
 })
 

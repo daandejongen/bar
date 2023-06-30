@@ -5,24 +5,35 @@
 \title{Estimate the HysTAR model using conditional least squares estimation}
 \usage{
 hystar_fit(
-  y,
-  z,
+  data,
+  r = c(0.1, 0.9),
   d = 0L,
   p0 = 1L,
   p1 = 1L,
   p_select = "bic",
-  r = c(0.1, 0.9),
   thin = FALSE,
   tar = FALSE
 )
 }
 \arguments{
-\item{y}{A numeric vector representing the time series of the outcome variable.
-Can be simulated with \code{\link[=hystar_sim]{hystar_sim()}}. Can not have missing values.}
+\item{data}{a vector, matrix or data.frame containing the outcome variable
+\eqn{y} in the first column and the threshold variable \eqn{z} in the second.
+Other columns are ignored.
+A vector, is taken to be both the outcome and control variable,
+so, in that case, a self-exciting HysTAR is fitted.}
 
-\item{z}{A numeric vector representing the threshold time series.
-When you simulated \code{y} with \code{\link[=hystar_sim]{hystar_sim()}}, this should be the \code{z} variable
-you have used there. Can not have missing values.}
+\item{r}{A vector or a matrix with search values for \eqn{\hat{r}_0, \hat{r}_1}.
+Defaults to \code{c(.1, .9)}.
+\itemize{
+\item A vector \code{r} must contain two values \eqn{a} and \eqn{b} in \eqn{[0, 1]}.
+The search space for the thresholds will be observed values of \code{z}
+between its \eqn{100a\%} and \eqn{100b\%} percentiles.
+\item A matrix \code{r} allows for a custom search. It must have two columns,
+such that each row represents a pair \eqn{r_0 \le r_1} to test.
+You can use a matrix with one row if you don't want to estimate
+the thresholds. Note that the values in these matrix should be
+on the scale of \code{z}.
+}}
 
 \item{d}{A numeric vector with one or more values for the search space
 of the delay parameter. Defaults to 1. Typically, d is not very large, so
@@ -40,19 +51,6 @@ the orders \eqn{p_0} and \eqn{p_1}. Choices:
 \item \code{"aic"} (Akaike Information Criterion)
 \item \code{"aicc"} (Corrected Akaike Information Criterion)
 \item \code{"bic"} (default, Bayesian Information Criterion)
-}}
-
-\item{r}{A vector or a matrix with search values for \eqn{\hat{r}_0, \hat{r}_1}.
-Defaults to \code{c(.1, .9)}.
-\itemize{
-\item A vector \code{r} must contain two values \eqn{a} and \eqn{b} in \eqn{[0, 1]}.
-The search space for the thresholds will be observed values of \code{z}
-between its \eqn{100a\%} and \eqn{100b\%} percentiles.
-\item A matrix \code{r} allows for a custom search. It must have two columns,
-such that each row represents a pair \eqn{r_0 \le r_1} to test.
-You can use a matrix with one row if you don't want to estimate
-the thresholds. Note that the values in these matrix should be
-on the scale of \code{z}.
 }}
 
 \item{thin}{\code{TRUE} (default) or \code{FALSE}. Only relevant when \code{r} is a vector.
@@ -139,18 +137,18 @@ The HysTAR model is defined as:
 
 \eqn{ y_t = \begin{cases} \phi_{00} + \phi_{01} y_{t-1} + \cdots +
   \phi_{0 p_0} y_{t-p_0} + \sigma_{0} \varepsilon_t & \text{if}~R_{t} = 0
-  \\ \phi_{10} + \phi_{11} y_{t-1} + \cdots + \phi_{p_1 1} y_{t-p_1}
+  \\ \phi_{10} + \phi_{11} y_{t-1} + \cdots + \phi_{1 p_1} y_{t-p_1}
   + \sigma_{1} \varepsilon_t & \text{if}~R_{t} = 1, \\ \end{cases} }
 
 with \eqn{ R_t = \begin{cases} 0 & \mathrm{if} \, z_{t-d} \in (-\infty,
   r_{0}] \\ R_{t-1} & \mathrm{if} \, z_{t-d} \in (r_0, r_1] \\ 1 & \mathrm{if}
   \, z_{t-d} \in (r_1, \infty), \\ \end{cases} }
 
-where \eqn{p_i} denotes the order of regime \eqn{i \in \{0,1\}} with
-coefficients \eqn{\phi_0^{(i)}, \dots, \phi_{p_i}^{(i)} \in (-1, 1)},
-\eqn{\sigma_{(i)}} is the standard deviation of the residuals, and \eqn{d \in
-  \{1, 2, \dots\}} is a delay parameter. The parameters of primary interest are
-the thresholds \eqn{r_0 \le r_1}. We let \eqn{t = 1, 2, ..., n}, where \eqn{n}
+where \eqn{p_j} denotes the order of regime \eqn{j \in \{0,1\}} with
+coefficients \eqn{\phi_{j0}, \dots, \phi_{j p_j \in (-1, 1)}},
+\eqn{\sigma_{j}} is the standard deviation of the residuals, and \eqn{d \in
+  \{0, 1, 2, \dots\}} is a delay parameter. The parameters of primary interest are
+the thresholds \eqn{r_0 \le r_1}. We let \eqn{t = 0, 1, 2, ..., T}, where \eqn{T}
 is the number of observations.
 }
 
@@ -159,7 +157,7 @@ z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
 sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
 resvar = c(1, 1))
 plot(sim)
-fit <- hystar_fit(y = sim$data$y, z = sim$data$z)
+fit <- hystar_fit(sim$data)
 summary(fit)
 }
 \references{

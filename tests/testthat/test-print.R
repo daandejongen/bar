@@ -26,7 +26,7 @@ test_that("summary and print do not return something", {
                     phi_R0 = c(0, .6), phi_R1 = c(1. -.3),
                     resvar = c(1, .9),
                     start_regime = 1)
-  fit <- hystar_fit(y = sim$data$y, z = sim$data$z)
+  fit <- hystar_fit(sim$data)
 
   expect_equal(summary(sim), NULL)
   expect_equal(summary(fit), NULL)

@@ -1,6 +1,4 @@
-check_hystar_fit_input <- function(y, z, d, p0, p1, p_select, r, thin, tar) {
-  check_yz(y, z)
-  check_z(z)
+check_hystar_fit_input <- function(z, d, p0, p1, p_select, r, thin, tar) {
   check_whole_nn(d)
   check_whole_nn(p0)
   check_whole_nn(p1)
@@ -15,26 +13,34 @@ check_hystar_fit_input <- function(y, z, d, p0, p1, p_select, r, thin, tar) {
   return(p_select)
 }
 
-check_yz <- function(y, z) {
-  if (missing(y))
-    stop(paste0("Argument `y` is missing, with no default."), call. = FALSE)
-  if (missing(z))
-    stop(paste0("Argument `z` is missing, with no default."), call. = FALSE)
-  if (!is.numeric(y)) error_numeric(y)
-  if (!is.numeric(z)) error_numeric(z)
+check_data <- function(data) {
+  if (missing(data))
+    stop(paste0("Argument `data` is missing, with no default."), call. = FALSE)
 
-  if (any(is.na(y)) || any(is.na(z)))
-    stop(paste0("`y` and `z` cannot have missing values."))
+  if (is.vector(data)) {
+    data <- matrix(rep(data, times = 2), ncol = 2, byrow = FALSE)
+  }
 
-  if (length(y) != length(z))
-    stop(paste0("`y` and `z` must be of equal length.\nCurrently, `y` has ",
-                "length ", length(y), " and `z` has length ", length(z), "."),
+  if (is.data.frame(data)) {
+    data <- as.matrix(data)
+  }
+
+  if (!is.matrix(data))
+    stop(paste0("`data` should be a vector, matrix or data.frame. ",
+                "You provided an object of class ", class(data)),
          call. = FALSE)
 
-  n_unique <- length(unique(z))
+  data <- data[, c(1, 2)]
+
+  if (!is.numeric(data)) error_numeric(data)
+
+  if (any(is.na(data)))
+    stop(paste0("`data` cannot have missing values."))
+
+  n_unique <- length(unique(data[, 2]))
   if (n_unique < 3)
-    stop(paste0("There are less than 3 unique values in `z`, namely ", n_unique),
-         call. = FALSE)
+    stop(paste0("There are fewer than 3 unique values of ",
+                "the control variable, namely: ", n_unique), call. = FALSE)
 }
 
 check_r_fit <- function(r, tar) {

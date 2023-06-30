@@ -17,11 +17,21 @@
 #' `d`, `p0` and `p1`, the first `max(d, p0, p1)` observations are discarded for
 #' estimation of the parameters.
 #'
-#' @param y A numeric vector representing the time series of the outcome variable.
-#'     Can be simulated with [hystar_sim()]. Can not have missing values.
-#' @param z A numeric vector representing the threshold time series.
-#'     When you simulated `y` with [hystar_sim()], this should be the `z` variable
-#'     you have used there. Can not have missing values.
+#' @param data a vector, matrix or data.frame containing the outcome variable
+#' \eqn{y} in the first column and the threshold variable \eqn{z} in the second.
+#' Other columns are ignored.
+#' A vector, is taken to be both the outcome and control variable,
+#' so, in that case, a self-exciting HysTAR is fitted.
+#' @param r A vector or a matrix with search values for \eqn{\hat{r}_0, \hat{r}_1}.
+#'     Defaults to `c(.1, .9)`.
+#' * A vector `r` must contain two values \eqn{a} and \eqn{b} in \eqn{[0, 1]}.
+#'     The search space for the thresholds will be observed values of `z`
+#'     between its \eqn{100a\%} and \eqn{100b\%} percentiles.
+#' * A matrix `r` allows for a custom search. It must have two columns,
+#'     such that each row represents a pair \eqn{r_0 \le r_1} to test.
+#'     You can use a matrix with one row if you don't want to estimate
+#'     the thresholds. Note that the values in these matrix should be
+#'     on the scale of `z`.
 #' @param d A numeric vector with one or more values for the search space
 #'     of the delay parameter. Defaults to 1. Typically, d is not very large, so
 #'     a reasonable search space might be 0, 1, 2, ..., 5.
@@ -34,16 +44,6 @@
 #' * `"aic"` (Akaike Information Criterion)
 #' * `"aicc"` (Corrected Akaike Information Criterion)
 #' * `"bic"` (default, Bayesian Information Criterion)
-#' @param r A vector or a matrix with search values for \eqn{\hat{r}_0, \hat{r}_1}.
-#'     Defaults to `c(.1, .9)`.
-#' * A vector `r` must contain two values \eqn{a} and \eqn{b} in \eqn{[0, 1]}.
-#'     The search space for the thresholds will be observed values of `z`
-#'     between its \eqn{100a\%} and \eqn{100b\%} percentiles.
-#' * A matrix `r` allows for a custom search. It must have two columns,
-#'     such that each row represents a pair \eqn{r_0 \le r_1} to test.
-#'     You can use a matrix with one row if you don't want to estimate
-#'     the thresholds. Note that the values in these matrix should be
-#'     on the scale of `z`.
 #' @param thin `TRUE` (default) or `FALSE`. Only relevant when `r` is a vector.
 #' * If `TRUE` (default), the search space for the thresholds are the
 #'     \eqn{100a\%, 100(a+0.01)\%, \dots, 100b\%} percentiles of `z`.
@@ -102,13 +102,20 @@
 #' * `nobs()`
 #'
 #' @export
-hystar_fit <- function(y, z, d = 0L, p0 = 1L, p1 = 1L, p_select = "bic",
-                       r = c(.1, .9), thin = FALSE, tar = FALSE) {
-  p_select <- check_hystar_fit_input(y, z, d, p0, p1, p_select, r, thin, tar)
+hystar_fit <- function(data, r = c(.1, .9), d = 0L, p0 = 1L, p1 = 1L, p_select = "bic",
+                       thin = FALSE, tar = FALSE) {
+  check_data(data)
+  if (is.vector(data)) {
+    y <- z <- data
+  } else {
+    y <- data[, 1]
+    z <- data[, 2]
+  }
+  p_select <- check_hystar_fit_input(z, d, p0, p1, p_select, r, thin, tar)
   eff <- time_eff(y, max(d), max(p0), max(p1))
   x <- create_x(y, eff, max(p0), max(p1))
   grid <- create_grid(z, r, d, eff, thin, tar)
-  r_search <- unique(grid[, c("r0", "r1")])
+  r_search <- unique(as.vector(grid[, c("r0", "r1")]))
   p_options <- create_p_options(p0, p1)
   OPT <- optim_p(y, x, z, eff, grid, p_options, p_select)
   est <- OPT$est

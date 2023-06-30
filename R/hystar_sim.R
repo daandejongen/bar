@@ -16,7 +16,7 @@
 #'   \, z_{t-d} \in (r_1, \infty), \\ \end{cases} }
 #'
 #'   where \eqn{p_j} denotes the order of regime \eqn{j \in \{0,1\}} with
-#'   coefficients \eqn{\phi_{j0}}, \dots, \phi_{j p_j \in (-1, 1)},
+#'   coefficients \eqn{\phi_{j0}, \dots, \phi_{j p_j \in (-1, 1)}},
 #'   \eqn{\sigma_{j}} is the standard deviation of the residuals, and \eqn{d \in
 #'   \{0, 1, 2, \dots\}} is a delay parameter. The parameters of primary interest are
 #'   the thresholds \eqn{r_0 \le r_1}. We let \eqn{t = 0, 1, 2, ..., T}, where \eqn{T}
@@ -104,7 +104,7 @@
 #' sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
 #' resvar = c(1, 1))
 #' plot(sim)
-#' fit <- hystar_fit(y = sim$data$y, z = sim$data$z)
+#' fit <- hystar_fit(sim$data)
 #' summary(fit)
 hystar_sim <- function(z, r, d, phi_R0, phi_R1, resvar = c(1, 1), start_regime = NULL) {
 
