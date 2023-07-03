@@ -1,37 +1,31 @@
 Package: hystar
-Title: Simulation and Estimation of the Hysteretic TAR Model
+Title: Fit the Hysteretic TAR Model to Time Series Data
 Version: 1.0.0
 Date: 2022-11-10
 Authors@R: c(
-    person(
-        "Daan", "de Jong", 
-        role = c("aut", "cre"), 
-        email = "d.dejong@uu.nl", 
-        comment = c(ORCID = "0000-0001-6034-0136")
-        ),
-    person(
-        "European Research Council", 
-        role = "fnd"
-        )
-    )
+    person("Daan", "de Jong", 
+           email = "daandejong94@gmail.com", 
+           role = c("aut", "cre", "cph"),
+           comment = c(ORCID = "0000-0001-6034-0136")),
+    person("European Research Council", role = "fnd")
+  )
 Maintainer: Daan de Jong <d.dejong@uu.nl>
-Description: Simulates data from and estimates parameters of the hysteretic
-    threshold autoregressive (HysTAR) model. Estimation is implemented using 
-    the conditional least squares method. See Li, Guan, Li and Yu (2015) 
-    <doi:10.1093/biomet/asv017> for details about the model.
+Description: Estimate parameters of the hysteretic threshold autoregressive
+    (HysTAR) model, using conditional least squares.
+    In addition, you can generate time series data from the HysTAR model.
+    See Li, Guan, Li and Yu (2015), doi:10.1093/biomet/asv017, for details.
 License: MIT + file LICENSE
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+URL: https://github.com/daandejongen/hystar/
+BugReports: https://github.com/daandejongen/hystar/issues/
 Imports: 
-    Rcpp,
     graphics,
+    Rcpp,
     stats,
     utils
 Suggests: 
     testthat (>= 3.0.0)
-Config/testthat/edition: 3
-URL: https://github.com/daandejongen/hystar/
-BugReports: https://github.com/daandejongen/hystar/issues/
 LinkingTo: 
     Rcpp
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.0

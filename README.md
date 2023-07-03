@@ -20,26 +20,20 @@ The hystar package also has a `plot()` method that combines the
 threshold and outcome variable in one figure and visualizes the regimes and 
 thresholds.
 
-## An example
+## Install
+You can install the `hystar`-package via CRAN by running:
+`install.packages("hystar")`
+
+## Use
 ```
-z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
-sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
-                  resvar = c(1, 1))
-fit <- hystar_fit(y = sim$data$y, z = sim$data$z)
+z <- z_sim(n_t = 200, n_switches = 5)
+sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1)
+fit <- hystar_fit(sim$data)
 plot(fit)
 ```
 
-## How to install?
-You can install the package by running 
-`devtools::install_github("daandejongen/hystar")`.
-(Make sure you have installed the devtools package with
-`install.packages("devtools")` and have loaded and attached it with
-`library(devtools)`.)
-
-The package will be submitted to CRAN in the near future.
-
-## Cite this package
-If you have used this package in a study, please cite it with:
+## Cite
+If you have used this package for an academic publication, please cite it with:
 
 De Jong, D. (2022). _hystar: Simulation and Estimation of the Hysteretic TAR Model_. R package version 0.0.9, <https://github.com/daandejongen/hystar/>.
 
@@ -58,7 +52,3 @@ BibTeX:
 The HysTAR model was originally proposed by Li, Guan, Li and Yu (2015). 
 
 Li, Guodong, Bo Guan, Wai Keung Li, en Philip L. H. Yu. ‘Hysteretic Autoregressive Time Series Models’. Biometrika 102, nr. 3 (september 2015): 717–23.
-
-Currently, I am working on a paper that introduces the HysTAR model into
-a psychological context.
-

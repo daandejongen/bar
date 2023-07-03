@@ -4,9 +4,9 @@
 \name{hystar-package}
 \alias{hystar}
 \alias{hystar-package}
-\title{hystar: Simulation and Estimation of the Hysteretic TAR Model}
+\title{hystar: Fit the Hysteretic TAR Model to Time Series Data}
 \description{
-Simulates data from and estimates parameters of the hysteretic threshold autoregressive (HysTAR) model. Estimation is implemented using the conditional least squares method. See Li, Guan, Li and Yu (2015) \doi{10.1093/biomet/asv017} for details about the model.
+Estimate parameters of the hysteretic threshold autoregressive (HysTAR) model, using conditional least squares. In addition, you can generate time series data from the HysTAR model. See Li, Guan, Li and Yu (2015), doi:10.1093/biomet/asv017, for details.
 }
 \seealso{
 Useful links:
@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Daan de Jong \email{d.dejong@uu.nl} (\href{https://orcid.org/0000-0001-6034-0136}{ORCID})
+\strong{Maintainer}: Daan de Jong \email{daandejong94@gmail.com} (\href{https://orcid.org/0000-0001-6034-0136}{ORCID}) [copyright holder]
 
 Other contributors:
 \itemize{
