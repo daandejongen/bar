@@ -7,13 +7,13 @@
 #' The HysTAR model is defined as:
 #'
 #'   \eqn{ y_t = \begin{cases} \phi_{00} + \phi_{01} y_{t-1} + \cdots +
-#'   \phi_{0 p_0} y_{t-p_0} + \sigma_{0} \varepsilon_t & \text{if}~R_{t} = 0
-#'   \\ \phi_{10} + \phi_{11} y_{t-1} + \cdots + \phi_{1 p_1} y_{t-p_1}
-#'   + \sigma_{1} \varepsilon_t & \text{if}~R_{t} = 1, \\ \end{cases} }
+#'   \phi_{0 p_0} y_{t-p_0} + \sigma_{0} \epsilon_{t} \quad \mathrm{if}~R_{t} = 0 \\
+#'   \phi_{10} + \phi_{11} y_{t-1} + \cdots + \phi_{1 p_1} y_{t-p_1} + \sigma_{1} \epsilon_{t}
+#'   \quad \mathrm{if}~R_{t} = 1, \\ \end{cases} }
 #'
-#'   with \eqn{ R_t = \begin{cases} 0 & \mathrm{if} \, z_{t-d} \in (-\infty,
-#'   r_{0}] \\ R_{t-1} & \mathrm{if} \, z_{t-d} \in (r_0, r_1] \\ 1 & \mathrm{if}
-#'   \, z_{t-d} \in (r_1, \infty), \\ \end{cases} }
+#'   with \eqn{ R_t = \begin{cases} 0 \quad \quad \mathrm{if} \, z_{t-d} \in (-\infty, r_{0}] \\
+#'   R_{t-1} \quad \mathrm{if} \, z_{t-d} \in (r_0, r_1] \\ 1 \quad \quad \mathrm{if} \, z_{t-d}
+#'   \in (r_1, \infty), \\ \end{cases} }
 #'
 #'   where \eqn{p_j} denotes the order of regime \eqn{j \in \{0,1\}} with
 #'   coefficients \eqn{\phi_{j0}, \dots, \phi_{j p_j \in (-1, 1)}},
@@ -101,8 +101,7 @@
 #'
 #' @examples
 #' z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
-#' sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1,
-#' resvar = c(1, 1))
+#' sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1)
 #' plot(sim)
 #' fit <- hystar_fit(sim$data)
 #' summary(fit)

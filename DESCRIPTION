@@ -1,7 +1,7 @@
 Package: hystar
-Title: Fit the Hysteretic TAR Model to Time Series Data
+Title: Fit the Hysteretic Threshold Autoregressive Model
 Version: 1.0.0
-Date: 2022-11-10
+Date: 2023-07-03
 Authors@R: c(
     person("Daan", "de Jong", 
            email = "daandejong94@gmail.com", 
@@ -9,11 +9,11 @@ Authors@R: c(
            comment = c(ORCID = "0000-0001-6034-0136")),
     person("European Research Council", role = "fnd")
   )
-Maintainer: Daan de Jong <d.dejong@uu.nl>
+Maintainer: Daan de Jong <daandejong94@gmail.com>
 Description: Estimate parameters of the hysteretic threshold autoregressive
     (HysTAR) model, using conditional least squares.
     In addition, you can generate time series data from the HysTAR model.
-    See Li, Guan, Li and Yu (2015), doi:10.1093/biomet/asv017, for details.
+    For details, see Li, Guan, Li and Yu (2015) <doi:10.1093/biomet/asv017>.
 License: MIT + file LICENSE
 URL: https://github.com/daandejongen/hystar/
 BugReports: https://github.com/daandejongen/hystar/issues/

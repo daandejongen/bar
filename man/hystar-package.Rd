@@ -4,9 +4,9 @@
 \name{hystar-package}
 \alias{hystar}
 \alias{hystar-package}
-\title{hystar: Fit the Hysteretic TAR Model to Time Series Data}
+\title{hystar: Fit the Hysteretic Threshold Autoregressive Model}
 \description{
-Estimate parameters of the hysteretic threshold autoregressive (HysTAR) model, using conditional least squares. In addition, you can generate time series data from the HysTAR model. See Li, Guan, Li and Yu (2015), doi:10.1093/biomet/asv017, for details.
+Estimate parameters of the hysteretic threshold autoregressive (HysTAR) model, using conditional least squares. In addition, you can generate time series data from the HysTAR model. For details, see Li, Guan, Li and Yu (2015) \doi{10.1093/biomet/asv017}.
 }
 \seealso{
 Useful links:
