@@ -6,7 +6,7 @@
 <!-- badges: end -->
 
 The `hystar` package allows you to simulate and estimate the hysteretic
-threshold autoregressive (HysTAR) model. The package has three main functions:
+threshold autoregressive (HysTAR) model. The package has three main functions: 
 
 * `z_sim` simulates a treshold variable. You can choose how many times the
 system will switch between regimes,
