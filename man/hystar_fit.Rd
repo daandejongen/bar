@@ -120,8 +120,7 @@ of the residuals, \emph{not} the variance. See also the model definition above.
 }
 }
 \description{
-This function allows you to estimate the parameters of the hysteretic threshold
-autoregressive (HysTAR) model.
+Estimate the parameters of the hysteretic threshold autoregressive (HysTAR) model.
 }
 \details{
 In regime 0, \eqn{y_{t}} is predicted by values up to \eqn{y_{t - p_0}}.

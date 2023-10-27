@@ -21,7 +21,7 @@ test_that("confint method output has correct dimensions", {
 
 test_that("n obs is correct", {
   e <- c(199, sum(1 - fit$data$R, na.rm = TRUE), sum(fit$data$R, na.rm = TRUE))
-  names(e) <- c("used", "regime0", "regime1")
+  names(e) <- c("n_used", "n_regime0", "n_regime1")
   expect_equal(nobs(fit), e)
 })
 
