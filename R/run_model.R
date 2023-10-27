@@ -11,6 +11,7 @@ run_model <- function(y, x, z, eff,
   X <- create_X(x, p0_sel, p1_sel, R)
   fit <- fit(y_eff, X)
   resvar <- estimate_resvar(R, fit$res)
+  names(resvar) <- c("sigma2_0", "sigma2_1")
   ic <- compute_ic(resvar, n0, n1, p0_sel, p1_sel)
   SEs <- compute_SEs(y_eff, R, resvar, p0_sel, p1_sel)
 
