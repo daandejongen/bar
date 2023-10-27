@@ -1,6 +1,5 @@
 run_model <- function(y, x, z, eff,
-                      p0_sel, p1_sel, d_sel, r0_sel, r1_sel, s_sel,
-                      return_HR) {
+                      p0_sel, p1_sel, d_sel, r0_sel, r1_sel, s_sel, return_HR = TRUE) {
   y_eff <- y[eff]
   z_del <- z[eff - d_sel]
 
@@ -13,10 +12,12 @@ run_model <- function(y, x, z, eff,
   fit <- fit(y_eff, X)
   resvar <- estimate_resvar(R, fit$res)
   ic <- compute_ic(resvar, n0, n1, p0_sel, p1_sel)
+  SEs <- compute_SEs(y_eff, R, resvar, p0_sel, p1_sel)
 
   if (return_HR) {
-    return(list(fit = fit, resvar = resvar, ic = ic, H = H, R = R))
+    return(list(fit = fit, SEs = SEs, resvar = resvar, ic = ic, H = H, R = R))
   } else {
-    return(list(fit = fit, resvar = resvar, ic = ic))
+    return(list(fit = fit, SEs = SEs, resvar = resvar, ic = ic))
   }
+
 }

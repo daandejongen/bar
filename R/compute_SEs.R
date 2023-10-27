@@ -8,7 +8,7 @@ compute_SEs <- function(y, R, rv, p0, p1) {
   S1 <- solve(S1) * rv[2]
 
   variances <- c(diag(S0), diag(S1))
-  coenames <- c(paste0("R0_phi", 0:p0), paste0("R1_phi", 0:p1))
+  coenames <- c(paste0("phi0", 0:p0), paste0("phi1", 0:p1))
 
   # For small N, there can be problems with positive semi-definiteness(?)
   if (!all(variances > 0)) {

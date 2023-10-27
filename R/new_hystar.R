@@ -1,13 +1,13 @@
 new_hystar_fit <- function(y, x, z, eff, est, model, equiv, tar, r_search) {
 
   coe <- model$fit$coe
-  names(coe) <- c(paste0("R0_phi", 0:est["p0"]), paste0("R1_phi", 0:est["p1"]))
+  names(coe) <- c(paste0("phi0", 0:est["p0"]), paste0("phi1", 0:est["p1"]))
 
   n <- c(length(eff), sum(1 - model$R), sum(model$R))
-  names(n) <- c("used", paste0("regime", 0:1))
+  names(n) <- c("n_used", "n_regime0", "n_regime1")
 
-  sig_time_series <- ifelse(model$R == 1, model$resvar[2], model$resvar[1])
-  standardized_residuals <- model$fit$res / sig_time_series
+  sigma_time_series <- ifelse(model$R == 1, model$resvar[2], model$resvar[1])
+  standardized_residuals <- model$fit$res / sigma_time_series
 
   NA_k <- rep(NA, times = length(y) - length(eff))
   data <- data.frame(y = y, z = z,
@@ -19,6 +19,7 @@ new_hystar_fit <- function(y, x, z, eff, est, model, equiv, tar, r_search) {
          residuals    = model$fit$res,
          residuals_st = standardized_residuals,
          coefficients = coe,
+         st_errors    = model$SEs,
          delay        = est["d"],
          thresholds   = est[c("r0", "r1")],
          orders       = est[c("p0", "p1")],

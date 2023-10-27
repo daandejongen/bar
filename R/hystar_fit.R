@@ -1,8 +1,7 @@
 #' Estimate the HysTAR model using conditional least squares estimation
 #'
 #' @description
-#' This function allows you to estimate the parameters of the hysteretic threshold
-#' autoregressive (HysTAR) model.
+#' Estimate the parameters of the hysteretic threshold autoregressive (HysTAR) model.
 #'
 #' @inherit hystar_sim author
 #' @inheritSection hystar_sim The HysTAR model
@@ -124,8 +123,7 @@ hystar_fit <- function(data, r = c(.1, .9), d = 0L, p0 = 1L, p1 = 1L, p_select =
   # residual sum of squared residuals.
   equiv <- OPT$equiv[, 1:3]
   model <- run_model(y, x, z, eff, est["p0"], est["p1"],
-                     est["d"], est["r0"], est["r1"], est["s"],
-                     return_HR = TRUE)
+                     est["d"], est["r0"], est["r1"], est["s"])
   hystar <- new_hystar_fit(y, x, z, eff, est, model, equiv, tar, r_search)
 
   return(hystar)

@@ -26,3 +26,6 @@ compute_bic <- function(rv, n0, n1, p0, p1) {
 
   return(value)
 }
+
+
+
