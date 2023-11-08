@@ -1,4 +1,12 @@
-compute_SEs <- function(y, R, rv, p0, p1) {
+compute_SEs <- function(X, rv, p0, p1) {
+  phi_variances <- diag(solve(t(X) %*% X)) *
+    c(rep(rv[1], times = p0 + 1), rep(rv[2], times = p1 + 1))
+  names(phi_variances) <- c(paste0("se_phi0", 0:p0), paste0("se_phi1", 0:p1))
+
+  return(sqrt(phi_variances))
+}
+
+compute_SEs_dep <- function(y, R, rv, p0, p1) {
   # From Li, Guan, Li and Yu (2015)
   # We first need the autocovariance matrix up to order p.
   S0 <- create_acov_mat(compute_acov_vec(y * (1L - R), p0), y)
@@ -48,7 +56,7 @@ compute_CIs <- function(coe, SEs, alpha) {
   return(M)
 }
 
-compute_acov_vec <- function(y, p) {
+compute_acov_vec_dep <- function(y, p) {
   # Note that acov_vec contains the autocovs of lag 0, 1, ..., p - 1.
   n <- length(y)
   mean_y <- mean(y)
@@ -71,7 +79,7 @@ compute_acov_vec <- function(y, p) {
 
 }
 
-create_acov_mat <- function(acov_vec, y) {
+create_acov_mat_dep <- function(acov_vec, y) {
   # This function will return the (p+1) by (p+1) matrix
   # 1 m m m m
   # m E[x_t x_t^T]

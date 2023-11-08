@@ -54,7 +54,7 @@ print_hystar <- function(n, d, r0, r1, coe0, coe1, rv0, rv1, simfit, tar) {
 summary.hystar_fit <- function(object, ...) {
   n <- unname(object$n)
   coe <- create_coe_matrix_SE_p(coe = object$coefficients,
-                                y = object$data$y[object$eff],
+                                SEs = object$SEs,
                                 R = object$data$R[object$eff],
                                 rv = object$resvar,
                                 p0 = object$orders[1],

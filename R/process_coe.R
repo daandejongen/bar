@@ -13,8 +13,7 @@ create_coe_matrix <- function(coe, p0, p1) {
 }
 
 
-create_coe_matrix_SE_p <- function(coe, y, R, rv, p0, p1) {
-  SEs <- compute_SEs(y, R, rv, p0, p1)
+create_coe_matrix_SE_p <- function(coe, SEs, R, rv, p0, p1) {
   p_values <- compute_p_values(coe, SEs)
 
   M <- matrix(c(coe, SEs, p_values), ncol = 3, byrow = FALSE)
