@@ -1,7 +1,7 @@
 compute_SEs <- function(X, rv, p0, p1) {
   phi_variances <- diag(solve(t(X) %*% X)) *
     c(rep(rv[1], times = p0 + 1), rep(rv[2], times = p1 + 1))
-  names(phi_variances) <- c(paste0("se_phi0", 0:p0), paste0("se_phi1", 0:p1))
+  names(phi_variances) <- c(paste0("SE_phi0", 0:p0), paste0("SE_phi1", 0:p1))
 
   return(sqrt(phi_variances))
 }
