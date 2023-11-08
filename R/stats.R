@@ -17,7 +17,7 @@ residuals.hystar_fit <- function(object, standardized = TRUE, ...) {
 confint.hystar_fit <- function(object, parm, level = 0.95, ...) {
   if (missing(parm)) parm <- 1:length(object$coefficients)
   coe <- object$coefficients[parm]
-  SEs <- object$SEs
+  SEs <- object$st_errors
 
   alpha <- 1 - level
 
