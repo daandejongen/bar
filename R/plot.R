@@ -92,8 +92,9 @@ make_zplot <- function(time, z, r, R, k, col_reg1, sw_pnts_mat, main,
        yaxt = "n",
        type = "l",
        lwd = 2.5,
-       col = "grey25")
-  axis(side = 2, at = r, labels = r, las = 2, cex = .5)
+       col = "grey25",
+       ...)
+  axis(side = 2, at = r, labels = r, las = 2, ...)
 
   # The legend depends on whether there are ineffective observations or not.
   # With no ineff obs, we only want the colors of the Regimes in the legend.
@@ -118,8 +119,9 @@ make_yplot <- function(time, y, R, k, col_reg1, sw_pnts_mat,
        yaxt = "n",
        type = "l",
        lwd = 2.5,
-       col = "grey25")
-  axis(side = 2, las = 2)
+       col = "grey25",
+       ...)
+  axis(side = 2, las = 2, ...)
 }
 
 rect_reg <- function(x, col_reg1, sw_pnts_mat) {
