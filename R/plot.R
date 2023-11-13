@@ -88,11 +88,12 @@ make_zplot <- function(time, z, r, R, k, col_reg1, sw_pnts_mat, main,
        # only want the threshold values, those are made by axis().
        main = main,
        ylab = zlab,
-       xaxt = "n", yaxt = "n",
+       xaxt = "n",
+       yaxt = "n",
        type = "l",
        lwd = 2.5,
        col = "grey25")
-  axis(side = 2, at = r, labels = c("r0", "r1"), las = 2, cex = .5)
+  axis(side = 2, at = r, labels = r, las = 2, cex = .5)
 
   # The legend depends on whether there are ineffective observations or not.
   # With no ineff obs, we only want the colors of the Regimes in the legend.
