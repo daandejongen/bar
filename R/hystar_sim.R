@@ -79,7 +79,7 @@
 #'        with `NA`(s), since the first \eqn{d} time points have no values observed
 #'        for \eqn{z_{t-d}}.
 #'        * `R`, the regime indicator vector.
-#'   * `$r`, a numeric vector with the two threshold values,
+#'   * `$thresholds`, a numeric vector with the two threshold values,
 #'   * `$d`, the delay parameter,
 #'   * `$phi`, a numeric vector containing the coefficients. The names are such
 #'   that `phi_R1_2` represents \eqn{\phi_{2}^{(1)}}, the second lag

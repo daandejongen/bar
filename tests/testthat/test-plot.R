@@ -1,7 +1,7 @@
 test_that("switch points are correct", {
   R <- c(0, 1, 1, 0, 1, 0, 0, 0, 1)
   exp <- c(2, 4, 5, 6, 9)
-  expect_equal(get_sw_pnts(R), exp)
+  expect_equal(get_switch_points(R), exp)
 })
 
 test_that("switch point matrix is correct. Start 1, uneven switches", {
@@ -10,7 +10,7 @@ test_that("switch point matrix is correct. Start 1, uneven switches", {
   exp_mat <- matrix(c(1, 2,
                       3, 4),
                     ncol = 2, byrow = TRUE)
-  expect_equal(get_sw_pnts_mat(R), exp_mat)
+  expect_equal(get_switch_points_matrix(R), exp_mat)
 })
 
 test_that("switch point matrix is correct. Start 1, even switches", {
@@ -20,7 +20,7 @@ test_that("switch point matrix is correct. Start 1, even switches", {
                       3, 4,
                       5, 6), # 6 is the last time point
                     ncol = 2, byrow = TRUE)
-  expect_equal(get_sw_pnts_mat(R), exp_mat)
+  expect_equal(get_switch_points_matrix(R), exp_mat)
 })
 
 test_that("switch point matrix is correct. Start 0, uneven switches", {
@@ -29,7 +29,7 @@ test_that("switch point matrix is correct. Start 0, uneven switches", {
   exp_mat <- matrix(c(2, 3,
                       4, 6), # 6 is the last time point
                     ncol = 2, byrow = TRUE)
-  expect_equal(get_sw_pnts_mat(R), exp_mat)
+  expect_equal(get_switch_points_matrix(R), exp_mat)
 })
 
 test_that("switch point matrix is correct. Start 0, even switches", {
@@ -38,7 +38,7 @@ test_that("switch point matrix is correct. Start 0, even switches", {
   exp_mat <- matrix(c(2, 3,
                       4, 5),
                     ncol = 2, byrow = TRUE)
-  expect_equal(get_sw_pnts_mat(R), exp_mat)
+  expect_equal(get_switch_points_matrix(R), exp_mat)
 })
 
 test_that("plot function does not return", {

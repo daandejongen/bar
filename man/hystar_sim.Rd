@@ -58,7 +58,7 @@ with \code{NA}(s), since the first \eqn{d} time points have no values observed
 for \eqn{z_{t-d}}.
 \item \code{R}, the regime indicator vector.
 }
-\item \verb{$r}, a numeric vector with the two threshold values,
+\item \verb{$thresholds}, a numeric vector with the two threshold values,
 \item \verb{$d}, the delay parameter,
 \item \verb{$phi}, a numeric vector containing the coefficients. The names are such
 that \code{phi_R1_2} represents \eqn{\phi_{2}^{(1)}}, the second lag

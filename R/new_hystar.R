@@ -48,7 +48,7 @@ new_hystar_sim <- function(y, z, H, R, phi_R0, phi_R1, r, d, resvar, k) {
 
   out <- structure(
     list(data = data,
-         r = r,
+         thresholds = r,
          d = d,
          phi = phi,
          orders = c(get_order(phi_R0), get_order(phi_R1)),

@@ -1,161 +1,167 @@
 #' @export
-#' @importFrom graphics abline
-#' @importFrom graphics axis
-#' @importFrom graphics legend
-#' @importFrom graphics par
-#' @importFrom graphics rect
-#' @importFrom graphics segments
-plot.hystar_fit <- function(x, y = NULL,
-                            main = "Fitted HysTAR model",
-                            show_legend = TRUE,
-                            ...) {
-  # Both the hystar_fit class and the hystar_sim class have a
-  # plot method, but they both call plot_hystar().
-  # The difference is in the main of the plot and that
-  # hystar_sim has no ineffective observations (k).
-
-  plot_hystar(y = x$data$y,
-              z = x$data$z,
-              R = x$data$R,
-              r = x$thresholds,
-              k = sum(is.na(x$data$R)),
-              main = main,
-              show_legend = show_legend,
-              tar = x$tar,
-              ...)
-
+plot.hystar_fit <- function(x, y = NULL, main = "Fitted HysTAR model", ...) {
+  plot_hystar(hystar_object = x, main = main, ...)
   invisible()
 }
 
 #' @export
-plot.hystar_sim <- function(x, y = NULL,
-                            main = "Simulated HysTAR model",
-                            show_legend = TRUE,
-                            ...) {
-
-  plot_hystar(y = x$data$y,
-              z = x$data$z,
-              R = x$data$R,
-              r = x$r,
-              k = 0,
-              main = main,
-              show_legend = show_legend,
-              tar = x$tar,
-              ...)
-
+plot.hystar_sim <- function(x, y = NULL, main = "Simulated HysTAR model", ...) {
+  plot_hystar(hystar_object = x, main = main, ...)
   invisible()
 }
 
-plot_hystar <- function(y, z, R, r, k, main, show_legend, tar, ...) {
-  # The plot is built as follows: first a z plot is made
-  # and then a y plot is made. The par() function makes
-  # sure that they appear on top of each other.
-  col_reg1 <- "grey80"
-  time <- 1:length(y)
-
-  # Set bottom margin for the top plot (z) to zero.
-  # If you don't use on.exit(), the changes to the options
-  # of the user will persist (so new plots will follow this
-  # two row grid) and we don't want that.
-  old <- par(mar = c(0, 4.1, 4.1, 2.1), mfrow = c(2, 1))
+#' @importFrom graphics par
+plot_hystar <- function(hystar_object,
+                        main,
+                        regimes_name_color = c("Regime 0" = "white",
+                                               "Regime 1" = "grey85",
+                                               "Unknown" = "#AA001137"),
+                        ...) {
+  old <- par(mfrow = c(2, 1))
   on.exit(par(old), add = TRUE)
-  # The switch points are needed for the background plot of
-  # the regimes. It is made in such a way that we always make
-  # background filled rectangles for Regime 1. The rectangles
-  # are used in the z plot and the y plot.
-  sw_pnts_mat <- get_sw_pnts_mat(R)
-
-  make_zplot(time, z, r, R, k, col_reg1, sw_pnts_mat, main, show_legend, ...)
-  # Margin at top is set to zero so the plots will "touch".
-  par(mar = c(4.1, 4.1, 0, 2.1))
-
-  make_yplot(time, y, R, k, col_reg1, sw_pnts_mat, ...)
+  plot_z(hystar_object, main, regimes_name_color, ...)
+  plot_y(hystar_object, regimes_name_color, ...)
 }
 
-make_zplot <- function(time, z, r, R, k, col_reg1, sw_pnts_mat, main,
-                       show_legend, regime_names = c("Regime 0", "Regime 1"),
-                       zlab = "z", ...) {
-  args <- list(...)
-
-  plot(time, z,
-       # panel.first ensures that the rectangles are at the background.
-       panel.first = c(
-         rect_reg(x = z, col_reg1, sw_pnts_mat),
-         rect_ineff(x = z, k = k),
-         abline(h = r, lty = 2, col = "black")
-         ),
-       # The x-axis is made eventually in the y plot. For the y-axis, we
-       # only want the threshold values, those are made by axis().
-       main = main,
-       ylab = zlab,
-       xaxt = "n",
-       yaxt = "n",
-       type = "l",
-       lwd = 2.5,
-       col = "grey25",
-       ...)
-  axis(side = 2, at = r, labels = r, las = 2, ...)
-
-  # The legend depends on whether there are ineffective observations or not.
-  # With no ineff obs, we only want the colors of the Regimes in the legend.
-  names <- if (k > 0) c(regime_names, "Unpred.") else regime_names
-  fills <- if (k > 0) c("white", col_reg1, "#AA001137") else c("white", col_reg1)
-  legend_up_lo <- if (R[!is.na(R)][1] == 1) "bottomleft" else "topleft"
+#' @importFrom graphics axis
+plot_z <- function(hystar_object,
+                   main,
+                   regimes_name_color,
+                   zlab = "z",
+                   color_z = "grey25",
+                   line_type_z = 1,
+                   line_width_z = 2.5,
+                   show_legend = TRUE,
+                   ...) {
+  old <- par(mar = c(0, 4.1, 4.1, 2.1))
+  on.exit(par(old), add = TRUE)
+  plot(
+    x = hystar_object$data$z,
+    panel.first = c(
+      plot_background_z(hystar_object, regimes_name_color),
+      plot_threshold_lines(thresholds = hystar_object$thresholds, ...)
+    ),
+    type = "l",
+    col = color_z,
+    lty = line_type_z,
+    lwd = line_width_z,
+    xaxt = "n", xlab = "n",
+    yaxt = "n", ylab = zlab,
+    main = main
+  )
+  axis(side = 2, at = hystar_object$thresholds, labels = hystar_object$thresholds, las = 0)
   if (show_legend)
-    legend(x = legend_up_lo, legend = names, fill = fills, bg = "grey95", cex = .6)
+    plot_legend(hystar_object = hystar_object, regimes_name_color = regimes_name_color)
 }
 
-make_yplot <- function(time, y, R, k, col_reg1, sw_pnts_mat,
-                       xlab = "time", ylab = "y", ...) {
-  args <- list(...)
-
-  plot(time, y,
-       panel.first = c(
-         rect_reg(x = y, col_reg1, sw_pnts_mat),
-         rect_ineff(x = y, k = k)
-         ),
+plot_y <- function(hystar_object,
+                   regimes_name_color,
+                   xlab = "time", ylab = "y",
+                   color_y = "grey25",
+                   line_type_y = 1,
+                   line_width_y = 2.5,
+                   ...) {
+  old <- par(mar = c(4.1, 4.1, 0, 2.1))
+  on.exit(par(old), add = TRUE)
+  plot(x = hystar_object$data$y,
+       panel.first = plot_background_y(hystar_object, regimes_name_color),
+       type = "l",
        xlab = xlab,
        ylab = ylab,
-       yaxt = "n",
-       type = "l",
-       lwd = 2.5,
-       col = "grey25",
-       ...)
-  axis(side = 2, las = 2, ...)
+       col = color_y,
+       lty = line_type_y,
+       lwd = line_width_y
+  )
 }
 
-rect_reg <- function(x, col_reg1, sw_pnts_mat) {
-  # We draw all the rectangles for Regime 1 at once.
-  # The switch points matrix provide the x values and
-  # we use the min and max (plus 4 percent) for the y values.
-  ybottom <- rep(get_minmax(x)[1], times = nrow(sw_pnts_mat))
-  ytop    <- rep(get_minmax(x)[2], times = nrow(sw_pnts_mat))
-  rect(sw_pnts_mat[, 1], ybottom, sw_pnts_mat[, 2], ytop,
-       col = col_reg1,
-       border = NA)
+# Helpers -------------------------------------------------------------------------------
+
+#' @importFrom graphics legend
+plot_legend <- function(hystar_object, regimes_name_color) {
+  n_unknown <- sum(is.na(hystar_object$data$R))
+  if (n_unknown == 0) regimes_name_color <- regimes_name_color[-3]
+  starting_regime <- hystar_object$data$R[!is.na(hystar_object$data$R)][1]
+  legend_position <- if (starting_regime == 1) "bottomleft" else "topleft"
+  legend(
+    x = legend_position,
+    legend = names(regimes_name_color),
+    fill = regimes_name_color,
+    bg = "grey95",
+    cex = .6
+  )
 }
 
-rect_ineff <- function(x, k) {
-  # k + 1 is the first effective observation, so the rectangle must
-  # stop there.
-  rect(xleft = 1, ybottom = get_minmax(x)[1],
-       xright = k + 1, ytop = get_minmax(x)[2],
-       col = "#AA001137", border = NA)
+plot_background_z <- function(hystar_object, regimes_name_color) {
+  plot_background(hystar_object, regimes_name_color, type = "z")
 }
 
-get_minmax <- function(x) {
+plot_background_y <- function(hystar_object, regimes_name_color) {
+  plot_background(hystar_object, regimes_name_color, type = "y")
+}
+
+#' @importFrom graphics rect
+plot_background <- function(hystar_object, regimes_name_color, type) {
+  # We draw all the rectangles for the background color of Regime 1 at once.
+  switch_points_matrix <- get_switch_points_matrix(regime_series = hystar_object$data$R)
+  time_series <- if (type == "y") hystar_object$data$y else hystar_object$data$z
+  plot_region_borders <- get_plot_region_borders(time_series = time_series)
+  # Background coloring for regime 0
+  rect(
+    xleft = plot_region_borders["xleft"],
+    ybottom = plot_region_borders["ybottom"],
+    xright = plot_region_borders["xright"],
+    ytop = plot_region_borders["ytop"],
+    col = regimes_name_color[[1]],
+    border = NA
+  )
+  # Background coloring for regime 1
+  rect(
+    xleft = switch_points_matrix[, 1],
+    ybottom = rep(plot_region_borders["ybottom"], times = nrow(switch_points_matrix)),
+    xright = switch_points_matrix[, 2],
+    ytop = rep(plot_region_borders["ytop"], times = nrow(switch_points_matrix)),
+    col = regimes_name_color[[2]],
+    border = NA
+  )
+  # Background for the unknown regimes:
+  # k + 1 is the first effective observation, so the rectangle must stop there.
+  # only needed for hystar_fit object
+  k <- sum(is.na(hystar_object$data$R))
+  if (k > 0) {
+    rect(
+      xleft = 1,
+      ybottom = plot_region_borders["ybottom"],
+      xright = k + 1,
+      ytop = plot_region_borders["ytop"],
+      col = regimes_name_color[[3]],
+      border = NA
+    )
+  }
+}
+
+#' @importFrom graphics abline
+plot_threshold_lines <- function(thresholds,
+                                 line_type_thresholds = 2,
+                                 line_width_thresholds = 1,
+                                 color_thresholds = "black",
+                                 ...) {
+  abline(h = thresholds,
+         lty = line_type_thresholds,
+         lwd = line_width_thresholds,
+         col = color_thresholds)
+}
+
+get_plot_region_borders <- function(time_series) {
   # When drawing the rectangles for regimes, we want them to cover
   # the whole y axis. By default, R adds 4% of the plotted range
   # to the max value to avoid plotting it at the border.
-  min <- min(x)
-  max <- max(x)
-  dist <- max - min
-
-  return(c(min - dist*.04,
-           max + dist*.04))
+  return(c(xleft = 1 - 0.04 * (length(time_series) - 1),
+           ybottom = min(time_series) - 0.04 * (max(time_series) - min(time_series)),
+           xright = length(time_series) + 0.04 * (length(time_series) - 1),
+           ytop = max(time_series) + (max(time_series) - min(time_series)) * .04))
 }
 
-get_sw_pnts_mat <- function(R) {
+get_switch_points_matrix <- function(regime_series) {
   # This function will return a matrix with two columns, the first column
   # represents time points where Regime 1 starts (again) and the second
   # column represents values where it stops. The tricky thing is that we
@@ -172,28 +178,25 @@ get_sw_pnts_mat <- function(R) {
   #  1  5
   # 10 15
   # 20 25
-  n <- length(R)
-  sw_pnts <- get_sw_pnts(R)
-  n_sw <- length(sw_pnts)
+  n <- length(regime_series)
+  switch_points <- get_switch_points(regime_series)
+  n_sw <- length(switch_points)
   even <- n_sw %% 2 == 0
-  starts_with_1 <- R[!is.na(R)][1] == TRUE
-
+  starts_with_1 <- regime_series[!is.na(regime_series)][1] == TRUE
   # These correspond to the four cases above.
   if (even) {
-    if (starts_with_1)  points <- c(1, sw_pnts, n)
-    if (!starts_with_1) points <- sw_pnts
+    if (starts_with_1)  points <- c(1, switch_points, n)
+    if (!starts_with_1) points <- switch_points
   }
   if (!even) {
-    if (starts_with_1)  points <- c(1, sw_pnts)
-    if (!starts_with_1) points <- c(sw_pnts, n)
+    if (starts_with_1)  points <- c(1, switch_points)
+    if (!starts_with_1) points <- c(switch_points, n)
   }
 
-  sw_pnts_mat <- matrix(points, ncol = 2, byrow = TRUE)
-
-  return(sw_pnts_mat)
+  return(matrix(points, ncol = 2, byrow = TRUE))
 }
 
-get_sw_pnts <- function(R) {
+get_switch_points <- function(regime_series) {
   # Where are switches from 0 (1) to 1 (0)?
   # We define a switch point as the time point where R is different
   # from R at the previous time point.
@@ -202,8 +205,8 @@ get_sw_pnts <- function(R) {
   # We compute S[t] = R[t] - R[t-1] and see were this is nonzero.
   # We use the lagged version of R, so we add the first time
   # point again (in which there can be no switch by definition).
-  n <- length(R)
-  S <- R[2:n] - R[1:(n-1)]
+  n <- length(regime_series)
+  S <- regime_series[2:n] - regime_series[1:(n-1)]
   # Note that we have a vector that is one value too short, because
   # we lagged R. At the first time point, there can be no switch,
   # so we add that to the start.
@@ -211,4 +214,3 @@ get_sw_pnts <- function(R) {
 
   return(sw_points)
 }
-

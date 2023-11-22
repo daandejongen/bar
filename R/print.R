@@ -21,8 +21,8 @@ print.hystar_sim <- function(x, ...) {
                    x$orders[2])
   print_hystar(n = nrow(x$data),
                d = x$d,
-               r0 = x$r[1],
-               r1 = x$r[2],
+               r0 = x$thresholds[1],
+               r1 = x$thresholds[2],
                coe0 = round(coe$coe0, 2),
                coe1 = round(coe$coe1, 2),
                rv0 = round(x$resvar[1], 2),
@@ -101,7 +101,7 @@ summary.hystar_sim <- function(object, ...) {
   )
 
   cat("\nTresholds:\n")
-  print(object$r)
+  print(object$thresholds)
 
   cat("\nDelay:\n")
   print(object$d)
