@@ -6,6 +6,8 @@
 \alias{hystar-package}
 \title{hystar: Fit the Hysteretic Threshold Autoregressive Model}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Estimate parameters of the hysteretic threshold autoregressive (HysTAR) model, using conditional least squares. In addition, you can generate time series data from the HysTAR model. For details, see Li, Guan, Li and Yu (2015) \doi{10.1093/biomet/asv017}.
 }
 \seealso{

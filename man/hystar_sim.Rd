@@ -4,7 +4,15 @@
 \alias{hystar_sim}
 \title{Simulate data from the HysTAR model}
 \usage{
-hystar_sim(z, r, d, phi_R0, phi_R1, resvar = c(1, 1), start_regime = NULL)
+hystar_sim(
+  z,
+  r = c(-0.5, 0.5),
+  d = 0,
+  phi_R0 = c(0, 0.5),
+  phi_R1 = c(2, 0.5),
+  resvar = c(1, 1),
+  start_regime = NULL
+)
 }
 \arguments{
 \item{z}{A numeric vector representing the observed threshold variable.
@@ -113,9 +121,9 @@ is the number of observations.
 }
 
 \examples{
-z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
-sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1)
-fit <- hystar_fit(sim$data)
+simulated_control_variable <- z_sim()
+simulated_hystar_model <- hystar_sim(simulated_control_variable)
+fitted_hystar_model <- hystar_fit(simulated_hystar$data)
 }
 \references{
 Li, Guodong, Bo Guan, Wai Keung Li, en Philip L. H. Yu.

@@ -39,7 +39,8 @@
 #' @export
 #'
 #' @inherit hystar_sim examples
-z_sim <- function(n_t, n_switches,
+z_sim <- function(n_t = 100,
+                  n_switches = 2,
                   start_regime = 0, start_hyst = FALSE,
                   range = c(-1, 1)) {
 

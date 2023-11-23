@@ -20,21 +20,24 @@ The hystar package also has a `plot()` method that combines the
 threshold and outcome variable in one figure and visualizes the regimes and 
 thresholds.
 
-## Install
-You can install the `hystar`-package via CRAN by running:
-`install.packages("hystar")`
+## Installation
+
+`install.packages("hystar")` for the CRAN version.
+
+`devtools::install_github("daandejongen/hystar")` for the development version.
 
 ## Use
 ```
-z <- z_sim(n_t = 200, n_switches = 5)
-sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1)
-fit <- hystar_fit(sim$data)
+control_variable <- z_sim()
+simulated_hystar_model <- hystar_sim(z = z)
+fitted_hystar_model <- hystar_fit(simulated_hystar_model$data)
 ```
 
 ## Cite
+
 If you have used this package for an academic publication, please cite it with:
 
-De Jong, D. (2022). _hystar: Simulation and Estimation of the Hysteretic TAR Model_. R package version 0.0.9, <https://github.com/daandejongen/hystar/>.
+De Jong, D. (2022). _hystar: Simulation and Estimation of the Hysteretic TAR Model_. R package version 1.0.0, <https://github.com/daandejongen/hystar/>.
 
 BibTeX:
 ```
@@ -42,7 +45,7 @@ BibTeX:
     title = {hystar: Simulation and Estimation of the Hysteretic TAR Model},
     author = {Daan {de Jong}},
     year = {2022},
-    note = {R package version 0.0.9},
+    note = {R package version 1.0.0},
     url = {https://github.com/daandejongen/hystar/},
   }
 ```

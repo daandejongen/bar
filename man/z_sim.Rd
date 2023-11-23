@@ -4,7 +4,13 @@
 \alias{z_sim}
 \title{Simulate the threshold/control variable Z}
 \usage{
-z_sim(n_t, n_switches, start_regime = 0, start_hyst = FALSE, range = c(-1, 1))
+z_sim(
+  n_t = 100,
+  n_switches = 2,
+  start_regime = 0,
+  start_hyst = FALSE,
+  range = c(-1, 1)
+)
 }
 \arguments{
 \item{n_t}{The desired length of the simulated time series of \code{z}. The actual
@@ -69,7 +75,7 @@ is the number of observations.
 }
 
 \examples{
-z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
-sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1)
-fit <- hystar_fit(sim$data)
+simulated_control_variable <- z_sim()
+simulated_hystar_model <- hystar_sim(simulated_control_variable)
+fitted_hystar_model <- hystar_fit(simulated_hystar$data)
 }
