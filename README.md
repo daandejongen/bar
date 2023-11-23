@@ -29,7 +29,6 @@ You can install the `hystar`-package via CRAN by running:
 z <- z_sim(n_t = 200, n_switches = 5)
 sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1)
 fit <- hystar_fit(sim$data)
-plot(fit)
 ```
 
 ## Cite

@@ -102,9 +102,7 @@
 #' @examples
 #' z <- z_sim(n_t = 200, n_switches = 5, start_regime = 1)
 #' sim <- hystar_sim(z = z, r = c(-.5, .5), d = 2, phi_R0 = c(0, .6), phi_R1 = 1)
-#' plot(sim)
 #' fit <- hystar_fit(sim$data)
-#' summary(fit)
 hystar_sim <- function(z, r, d, phi_R0, phi_R1, resvar = c(1, 1), start_regime = NULL) {
 
   temp <- check_hystar_sim_input(z, r, d, phi_R0, phi_R1, resvar, start_regime)

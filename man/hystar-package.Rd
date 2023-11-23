@@ -12,6 +12,7 @@ Estimate parameters of the hysteretic threshold autoregressive (HysTAR) model, u
 Useful links:
 \itemize{
   \item \url{https://github.com/daandejongen/hystar/}
+  \item \url{https://daandejongen.github.io/hystar/}
   \item Report bugs at \url{https://github.com/daandejongen/hystar/issues/}
 }
 
