@@ -136,40 +136,7 @@ is the number of observations.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu">z_sim</span><span class="op">(</span>n_t <span class="op">=</span> <span class="fl">200</span>, n_switches <span class="op">=</span> <span class="fl">5</span>, start_regime <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="hystar_sim.html">hystar_sim</a></span><span class="op">(</span>z <span class="op">=</span> <span class="va">z</span>, r <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">.5</span>, <span class="fl">.5</span><span class="op">)</span>, d <span class="op">=</span> <span class="fl">2</span>, phi_R0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.6</span><span class="op">)</span>, phi_R1 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="z_sim-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="hystar_fit.html">hystar_fit</a></span><span class="op">(</span><span class="va">sim</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> HysTAR model fitted on 199 observations, of which</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 94 observations in regime 0 and</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 105 observations in regime 1.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated thresholds:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     r0     r1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.555  0.619 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated delay:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated model coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          est    SE     p</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phi_00 0.052 0.099 0.598</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phi_01 0.529 0.087 0.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phi_10 1.014 0.132 0.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phi_11 0.027 0.092 0.773</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated residual variances:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sigma2_0 sigma2_1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    0.893    0.880 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Residuals: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    min     1q median     3q    max </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.523 -0.583 -0.052  0.599  3.305 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Information criteria:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        aic       aicc        bic </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -12.008215 -11.503924   3.583551 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
