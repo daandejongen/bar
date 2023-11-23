@@ -15,7 +15,8 @@ Description: Estimate parameters of the hysteretic threshold autoregressive
     In addition, you can generate time series data from the HysTAR model.
     For details, see Li, Guan, Li and Yu (2015) <doi:10.1093/biomet/asv017>.
 License: MIT + file LICENSE
-URL: https://github.com/daandejongen/hystar/
+URL: https://github.com/daandejongen/hystar/,
+    https://daandejongen.github.io/hystar/
 BugReports: https://github.com/daandejongen/hystar/issues/
 Imports: 
     graphics,
@@ -23,9 +24,12 @@ Imports:
     stats,
     utils
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 LinkingTo: 
     Rcpp
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
+VignetteBuilder: knitr
