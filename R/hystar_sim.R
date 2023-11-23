@@ -102,7 +102,7 @@
 #' @examples
 #' simulated_control_variable <- z_sim()
 #' simulated_hystar_model <- hystar_sim(simulated_control_variable)
-#' fitted_hystar_model <- hystar_fit(simulated_hystar$data)
+#' fitted_hystar_model <- hystar_fit(simulated_hystar_model$data)
 hystar_sim <- function(z,
                        r = c(-0.5, 0.5),
                        d = 0,

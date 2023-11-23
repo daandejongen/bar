@@ -77,5 +77,5 @@ is the number of observations.
 \examples{
 simulated_control_variable <- z_sim()
 simulated_hystar_model <- hystar_sim(simulated_control_variable)
-fitted_hystar_model <- hystar_fit(simulated_hystar$data)
+fitted_hystar_model <- hystar_fit(simulated_hystar_model$data)
 }
