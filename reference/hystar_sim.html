@@ -54,7 +54,15 @@ HysTAR model, given its parameter values.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hystar_sim</span><span class="op">(</span><span class="va">z</span>, <span class="va">r</span>, <span class="va">d</span>, <span class="va">phi_R0</span>, <span class="va">phi_R1</span>, resvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, start_regime <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hystar_sim</span><span class="op">(</span></span>
+<span>  <span class="va">z</span>,</span>
+<span>  r <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>  d <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  phi_R0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>  phi_R1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>  resvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  start_regime <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -178,9 +186,10 @@ Autoregressive Process’. Munich Personal RePEc Archive, (november 2013).</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="z_sim.html">z_sim</a></span><span class="op">(</span>n_t <span class="op">=</span> <span class="fl">200</span>, n_switches <span class="op">=</span> <span class="fl">5</span>, start_regime <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu">hystar_sim</span><span class="op">(</span>z <span class="op">=</span> <span class="va">z</span>, r <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">.5</span>, <span class="fl">.5</span><span class="op">)</span>, d <span class="op">=</span> <span class="fl">2</span>, phi_R0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.6</span><span class="op">)</span>, phi_R1 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="hystar_fit.html">hystar_fit</a></span><span class="op">(</span><span class="va">sim</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">simulated_control_variable</span> <span class="op">&lt;-</span> <span class="fu"><a href="z_sim.html">z_sim</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">simulated_hystar_model</span> <span class="op">&lt;-</span> <span class="fu">hystar_sim</span><span class="op">(</span><span class="va">simulated_control_variable</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fitted_hystar_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="hystar_fit.html">hystar_fit</a></span><span class="op">(</span><span class="va">simulated_hystar</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'simulated_hystar' not found</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

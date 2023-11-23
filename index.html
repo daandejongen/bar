@@ -89,28 +89,29 @@
 </ul>
 <p>The hystar package also has a <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> method that combines the threshold and outcome variable in one figure and visualizes the regimes and thresholds.</p>
 <div class="section level2">
-<h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the <code>hystar</code>-package via CRAN by running: <code>install.packages("hystar")</code></p>
+<p><code>install.packages("hystar")</code> for the CRAN version.</p>
+<p><code>devtools::install_github("daandejongen/hystar")</code> for the development version.</p>
 </div>
 <div class="section level2">
 <h2 id="use">Use<a class="anchor" aria-label="anchor" href="#use"></a>
 </h2>
-<pre><code><span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/z_sim.html">z_sim</a></span><span class="op">(</span>n_t <span class="op">=</span> <span class="fl">200</span>, n_switches <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hystar_sim.html">hystar_sim</a></span><span class="op">(</span>z <span class="op">=</span> <span class="va">z</span>, r <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">.5</span>, <span class="fl">.5</span><span class="op">)</span>, d <span class="op">=</span> <span class="fl">2</span>, phi_R0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.6</span><span class="op">)</span>, phi_R1 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hystar_fit.html">hystar_fit</a></span><span class="op">(</span><span class="va">sim</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span></code></pre>
+<pre><code><span><span class="va">control_variable</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/z_sim.html">z_sim</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">simulated_hystar_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hystar_sim.html">hystar_sim</a></span><span class="op">(</span>z <span class="op">=</span> <span class="va">z</span><span class="op">)</span></span>
+<span><span class="va">fitted_hystar_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hystar_fit.html">hystar_fit</a></span><span class="op">(</span><span class="va">simulated_hystar_model</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="cite">Cite<a class="anchor" aria-label="anchor" href="#cite"></a>
 </h2>
 <p>If you have used this package for an academic publication, please cite it with:</p>
-<p>De Jong, D. (2022). <em>hystar: Simulation and Estimation of the Hysteretic TAR Model</em>. R package version 0.0.9, <a href="https://github.com/daandejongen/hystar/" class="external-link uri">https://github.com/daandejongen/hystar/</a>.</p>
+<p>De Jong, D. (2022). <em>hystar: Simulation and Estimation of the Hysteretic TAR Model</em>. R package version 1.0.0, <a href="https://github.com/daandejongen/hystar/" class="external-link uri">https://github.com/daandejongen/hystar/</a>.</p>
 <p>BibTeX:</p>
 <pre><code>@Manual{,
     title = {hystar: Simulation and Estimation of the Hysteretic TAR Model},
     author = {Daan {de Jong}},
     year = {2022},
-    note = {R package version 0.0.9},
+    note = {R package version 1.0.0},
     url = {https://github.com/daandejongen/hystar/},
   }</code></pre>
 </div>
