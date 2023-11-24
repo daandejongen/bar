@@ -2,3 +2,9 @@ url: https://daandejongen.github.io/hystar/, https://dplyr.tidyverse.org
 template:
   bootstrap: 5
 
+reference:
+- title: Functions
+- contents:
+  - hystar_fit
+  - hystar_sim
+  - z_sim

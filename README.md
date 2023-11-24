@@ -56,6 +56,4 @@ For more information, see the [`hystar` website](https://daandejongen.github.io/
 
 ## Scientific resources
 
-The HysTAR model was originally proposed by [Li, Guan, Li and Yu (2015)](https://academic.oup.com/biomet/article-abstract/102/3/717/2365298?login=false). 
-
-Li, Guodong, Bo Guan, Wai Keung Li, en Philip L. H. Yu. ‘Hysteretic Autoregressive Time Series Models’. Biometrika 102, nr. 3 (september 2015): 717–23.
+The HysTAR model was originally proposed by [Li, Guan, Li and Yu (2015)](https://academic.oup.com/biomet/article-abstract/102/3/717/2365298?login=false).
