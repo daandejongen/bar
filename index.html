@@ -91,7 +91,7 @@
 <ul>
 <li><p><code>hystar_fit</code>, to estimate the HysTAR parameters with the conditional least squares method,</p></li>
 <li><p><code>z_sim</code>, to simulate a threshold variable,</p></li>
-<li><p><code>hystar_sim</code>, to simulate an outcome variable</p></li>
+<li><p><code>hystar_sim</code>, to simulate an outcome variable.</p></li>
 </ul>
 <p>Results from the time series analysis can be assessed with the standard methods in R, like <code>plot</code>, <code>summary</code> and <code>print</code>. Additionally, you can extract the predictive residuals with the <code>residuals</code>-method for further analysis.</p>
 </div>
@@ -106,34 +106,34 @@
 <span><span class="va">fitted_hystar_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hystar_fit.html">hystar_fit</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">simulated_hystar_model</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fitted_hystar_model</span><span class="op">)</span></span>
 <span><span class="co">#&gt; HysTAR model fitted on 99 observations, of which</span></span>
-<span><span class="co">#&gt; 50 observations in regime 0 and</span></span>
-<span><span class="co">#&gt; 49 observations in regime 1.</span></span>
+<span><span class="co">#&gt; 49 observations in regime 0 and</span></span>
+<span><span class="co">#&gt; 50 observations in regime 1.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated thresholds:</span></span>
 <span><span class="co">#&gt;     r0     r1 </span></span>
-<span><span class="co">#&gt; -0.509  0.562 </span></span>
+<span><span class="co">#&gt; -0.509  0.509 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated delay:</span></span>
 <span><span class="co">#&gt; 0 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated model coefficients:</span></span>
-<span><span class="co">#&gt;          est    SE     p</span></span>
-<span><span class="co">#&gt; phi_00 0.068 0.142 0.634</span></span>
-<span><span class="co">#&gt; phi_01 0.553 0.093 0.000</span></span>
-<span><span class="co">#&gt; phi_10 3.038 0.535 0.000</span></span>
-<span><span class="co">#&gt; phi_11 0.256 0.131 0.051</span></span>
+<span><span class="co">#&gt;           est    SE     p</span></span>
+<span><span class="co">#&gt; phi_00 -0.123 0.104 0.238</span></span>
+<span><span class="co">#&gt; phi_01  0.358 0.096 0.000</span></span>
+<span><span class="co">#&gt; phi_10  1.996 0.396 0.000</span></span>
+<span><span class="co">#&gt; phi_11  0.478 0.104 0.000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated residual variances:</span></span>
 <span><span class="co">#&gt; sigma2_0 sigma2_1 </span></span>
-<span><span class="co">#&gt;    0.955    0.857 </span></span>
+<span><span class="co">#&gt;    0.534    0.900 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Residuals: </span></span>
 <span><span class="co">#&gt;    min     1q median     3q    max </span></span>
-<span><span class="co">#&gt; -2.379 -0.645  0.005  0.580  2.655 </span></span>
+<span><span class="co">#&gt; -1.837 -0.562 -0.083  0.512  2.059 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Information criteria:</span></span>
 <span><span class="co">#&gt;       aic      aicc       bic </span></span>
-<span><span class="co">#&gt;  2.104235  3.159307 13.515765</span></span></code></pre></div>
+<span><span class="co">#&gt; -23.98109 -22.92602 -12.56956</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
@@ -203,6 +203,7 @@
 <ul class="list-unstyled">
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://github.com/daandejongen/hystar/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/daandejongen/hystar/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://app.codecov.io/gh/daandejongen/hystar?branch=master" class="external-link"><img src="https://codecov.io/gh/daandejongen/hystar/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>
 
