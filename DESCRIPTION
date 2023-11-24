@@ -1,6 +1,6 @@
 Package: hystar
 Title: Fit the Hysteretic Threshold Autoregressive Model
-Version: 1.1.0
+Version: 1.2.0
 Date: 2023-07-03
 Authors@R: c(
     person("Daan", "de Jong", 
