@@ -84,49 +84,85 @@
 </div>
 <!-- badges: start -->
 
-<p>The <a href="https://cran.r-project.org/web/packages/hystar/index.html" class="external-link"><code>hystar</code></a> package allows you to simulate and estimate the hysteretic threshold autoregressive (HysTAR) model. The package has three main functions:</p>
-<ul>
-<li><p><code>z_sim</code> simulates a threshold variable. You can choose how many times the system will switch between regimes,</p></li>
-<li><p><code>hystar_sim</code> simulates an outcome variable according to the HysTAR model,</p></li>
-<li><p><code>hystar_fit</code> estimates the model parameters with the conditional least squares method.</p></li>
-</ul>
-<p>The hystar package also has a <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> method that combines the threshold and outcome variable in one figure and visualizes the regimes and thresholds.</p>
 <div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p><code>install.packages("hystar")</code> for the <a href="https://cran.r-project.org/web/packages/hystar/index.html" class="external-link">CRAN</a> version.</p>
-<p><code>devtools::install_github("daandejongen/hystar")</code> for the development version.</p>
+<p>The R-package <a href="https://cran.r-project.org/package=hystar" class="external-link"><code>hystar</code></a> package allows you to simulate and estimate the hysteretic threshold autoregressive (HysTAR) model. It comes with three functions:</p>
+<ul>
+<li><p><code>hystar_fit</code>, to estimate the HysTAR parameters with the conditional least squares method,</p></li>
+<li><p><code>z_sim</code>, to simulate a threshold variable,</p></li>
+<li><p><code>hystar_sim</code>, to simulate an outcome variable</p></li>
+</ul>
+<p>Results from the time series analysis can be assessed with the standard methods in R, like <code>plot</code>, <code>summary</code> and <code>print</code>. Additionally, you can extract the predictive residuals with the <code>residuals</code>-method for further analysis.</p>
 </div>
 <div class="section level2">
 <h2 id="use">Use<a class="anchor" aria-label="anchor" href="#use"></a>
 </h2>
-<pre><code><span><span class="va">control_variable</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/z_sim.html">z_sim</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">simulated_hystar_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hystar_sim.html">hystar_sim</a></span><span class="op">(</span>z <span class="op">=</span> <span class="va">z</span><span class="op">)</span></span>
-<span><span class="va">fitted_hystar_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hystar_fit.html">hystar_fit</a></span><span class="op">(</span><span class="va">simulated_hystar_model</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span></code></pre>
+<p>A minimal example:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/daandejongen/hystar/" class="external-link">hystar</a></span><span class="op">)</span></span>
+<span><span class="va">control_variable</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/z_sim.html">z_sim</a></span><span class="op">(</span>n_t <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+<span><span class="va">simulated_hystar_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hystar_sim.html">hystar_sim</a></span><span class="op">(</span>z <span class="op">=</span> <span class="va">control_variable</span><span class="op">)</span></span>
+<span><span class="va">fitted_hystar_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hystar_fit.html">hystar_fit</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">simulated_hystar_model</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fitted_hystar_model</span><span class="op">)</span></span>
+<span><span class="co">#&gt; HysTAR model fitted on 99 observations, of which</span></span>
+<span><span class="co">#&gt; 50 observations in regime 0 and</span></span>
+<span><span class="co">#&gt; 49 observations in regime 1.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Estimated thresholds:</span></span>
+<span><span class="co">#&gt;     r0     r1 </span></span>
+<span><span class="co">#&gt; -0.509  0.562 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Estimated delay:</span></span>
+<span><span class="co">#&gt; 0 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Estimated model coefficients:</span></span>
+<span><span class="co">#&gt;          est    SE     p</span></span>
+<span><span class="co">#&gt; phi_00 0.068 0.142 0.634</span></span>
+<span><span class="co">#&gt; phi_01 0.553 0.093 0.000</span></span>
+<span><span class="co">#&gt; phi_10 3.038 0.535 0.000</span></span>
+<span><span class="co">#&gt; phi_11 0.256 0.131 0.051</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Estimated residual variances:</span></span>
+<span><span class="co">#&gt; sigma2_0 sigma2_1 </span></span>
+<span><span class="co">#&gt;    0.955    0.857 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residuals: </span></span>
+<span><span class="co">#&gt;    min     1q median     3q    max </span></span>
+<span><span class="co">#&gt; -2.379 -0.645  0.005  0.580  2.655 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Information criteria:</span></span>
+<span><span class="co">#&gt;       aic      aicc       bic </span></span>
+<span><span class="co">#&gt;  2.104235  3.159307 13.515765</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
+</h2>
+<p>For the current <a href="https://cran.r-project.org/package=hystar" class="external-link">CRAN release</a> (1.0.0):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"hystar"</span>)</span></code></pre></div>
+<p>For the development version (1.2.0.9000):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"daandejongen/hystar"</span>)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="cite">Cite<a class="anchor" aria-label="anchor" href="#cite"></a>
 </h2>
-<p>If you have used this package for an academic publication, please cite it with:</p>
+<p>If you have used this package for an scientific publication, please cite it with:</p>
 <p>De Jong, D. (2022). <em>hystar: Simulation and Estimation of the Hysteretic TAR Model</em>. R package version 1.2.0, <a href="https://github.com/daandejongen/hystar/" class="external-link uri">https://github.com/daandejongen/hystar/</a>.</p>
 <p>BibTeX:</p>
-<pre><code>@Manual{,
-    title = {hystar: Simulation and Estimation of the Hysteretic TAR Model},
-    author = {Daan {de Jong}},
-    year = {2022},
-    note = {R package version 1.2.0},
-    url = {https://github.com/daandejongen/hystar/},
-  }</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Manual{,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    title <span class="ot">=</span> {hystar<span class="sc">:</span> Simulation and Estimation of the Hysteretic TAR Model},</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    author <span class="ot">=</span> {Daan {de Jong}},</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2022</span>},</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    note <span class="ot">=</span> {R package version <span class="dv">1</span>.<span class="fl">2.0</span>},</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>daandejongen<span class="sc">/</span>hystar<span class="sc">/</span>},</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="more-information">More information<a class="anchor" aria-label="anchor" href="#more-information"></a>
+<h2 id="get-more-info">Get more info<a class="anchor" aria-label="anchor" href="#get-more-info"></a>
 </h2>
 <p>For more information, see the <a href="https://daandejongen.github.io/hystar/" class="external-link"><code>hystar</code> website</a>.</p>
-</div>
-<div class="section level2">
-<h2 id="scientific-resources">Scientific resources<a class="anchor" aria-label="anchor" href="#scientific-resources"></a>
-</h2>
-<p>The HysTAR model was originally proposed by <a href="https://academic.oup.com/biomet/article-abstract/102/3/717/2365298?login=false" class="external-link">Li, Guan, Li and Yu (2015)</a>.</p>
+<p>If you want to read more, see the paper with the original proposal of the HysTAR model in Biometrika (<a href="https://academic.oup.com/biomet/article-abstract/102/3/717/2365298?login=false" class="external-link">Li, Guan, Li and Yu (2015)</a>).</p>
+<p>If you need something more accessible, I am working on a paper about using the HysTAR model in psychological research. There, I also explain in more detail what hysteresis is.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
