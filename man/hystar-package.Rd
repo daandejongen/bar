@@ -20,10 +20,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Daan de Jong \email{daandejong94@gmail.com} (\href{https://orcid.org/0000-0001-6034-0136}{ORCID}) [copyright holder]
+\strong{Maintainer}: Daan de Jong \email{daandejong94@gmail.com} (\href{https://orcid.org/0000-0001-6034-0136}{ORCID})
 
 Other contributors:
 \itemize{
+  \item Utrecht University [copyright holder]
   \item European Research Council [funder]
 }
 
