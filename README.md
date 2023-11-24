@@ -8,6 +8,8 @@
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/daandejongen/hystar/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/daandejongen/hystar/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/daandejongen/hystar/branch/master/graph/badge.svg)](https://app.codecov.io/gh/daandejongen/hystar?branch=master)
 <!-- badges: end -->
 
 ## Overview
@@ -21,7 +23,7 @@ autoregressive (HysTAR) model. It comes with three functions:
 
 - `z_sim`, to simulate a threshold variable,
 
-- `hystar_sim`, to simulate an outcome variable
+- `hystar_sim`, to simulate an outcome variable.
 
 Results from the time series analysis can be assessed with the standard
 methods in R, like `plot`, `summary` and `print`. Additionally, you can
@@ -39,34 +41,34 @@ simulated_hystar_model <- hystar_sim(z = control_variable)
 fitted_hystar_model <- hystar_fit(data = simulated_hystar_model$data)
 summary(fitted_hystar_model)
 #> HysTAR model fitted on 99 observations, of which
-#> 50 observations in regime 0 and
-#> 49 observations in regime 1.
+#> 49 observations in regime 0 and
+#> 50 observations in regime 1.
 #> 
 #> Estimated thresholds:
 #>     r0     r1 
-#> -0.509  0.562 
+#> -0.509  0.509 
 #> 
 #> Estimated delay:
 #> 0 
 #> 
 #> Estimated model coefficients:
-#>          est    SE     p
-#> phi_00 0.068 0.142 0.634
-#> phi_01 0.553 0.093 0.000
-#> phi_10 3.038 0.535 0.000
-#> phi_11 0.256 0.131 0.051
+#>           est    SE     p
+#> phi_00 -0.123 0.104 0.238
+#> phi_01  0.358 0.096 0.000
+#> phi_10  1.996 0.396 0.000
+#> phi_11  0.478 0.104 0.000
 #> 
 #> Estimated residual variances:
 #> sigma2_0 sigma2_1 
-#>    0.955    0.857 
+#>    0.534    0.900 
 #> 
 #> Residuals: 
 #>    min     1q median     3q    max 
-#> -2.379 -0.645  0.005  0.580  2.655 
+#> -1.837 -0.562 -0.083  0.512  2.059 
 #> 
 #> Information criteria:
 #>       aic      aicc       bic 
-#>  2.104235  3.159307 13.515765
+#> -23.98109 -22.92602 -12.56956
 ```
 
 ## Install
