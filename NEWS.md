@@ -2,7 +2,7 @@
 
 # `hystar` 1.2.0
 
-* More options to customize the graphs from the `plot()`-method for R-objects of class `hystar_fit` and `hystar_sim`:
+* More options to *customize* the graphs from the `plot()`-method for R-objects of class `hystar_fit` and `hystar_sim`:
 
   - the colors of the background and lines
   
@@ -18,5 +18,5 @@
 
 # `hystar` 1.0.0
 
-* First CRAN release!
+* First CRAN release! 🎉
 

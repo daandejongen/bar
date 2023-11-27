@@ -18,12 +18,12 @@ The R-package [`hystar`](https://cran.r-project.org/package=hystar)
 package allows you to simulate and estimate the hysteretic threshold
 autoregressive (HysTAR) model. It comes with three functions:
 
-- `hystar_fit`, to estimate the HysTAR parameters with the conditional
-  least squares method,
+- `hystar_fit`, to *estimate* the HysTAR parameters with the
+  *conditional least squares* method,
 
-- `z_sim`, to simulate a threshold variable,
+- `z_sim`, to simulate a *threshold variable*,
 
-- `hystar_sim`, to simulate an outcome variable.
+- `hystar_sim`, to simulate an *outcome variable*.
 
 Results from the time series analysis can be assessed with the standard
 methods in R, like `plot`, `summary` and `print`. Additionally, you can
@@ -41,34 +41,34 @@ simulated_hystar_model <- hystar_sim(z = control_variable)
 fitted_hystar_model <- hystar_fit(data = simulated_hystar_model$data)
 summary(fitted_hystar_model)
 #> HysTAR model fitted on 99 observations, of which
-#> 49 observations in regime 0 and
-#> 50 observations in regime 1.
+#> 44 observations in regime 0 and
+#> 55 observations in regime 1.
 #> 
 #> Estimated thresholds:
 #>     r0     r1 
-#> -0.509  0.509 
+#> -0.509  0.218 
 #> 
 #> Estimated delay:
 #> 0 
 #> 
 #> Estimated model coefficients:
 #>           est    SE     p
-#> phi_00 -0.123 0.104 0.238
-#> phi_01  0.358 0.096 0.000
-#> phi_10  1.996 0.396 0.000
-#> phi_11  0.478 0.104 0.000
+#> phi_00 -0.153 0.131 0.244
+#> phi_01  0.507 0.111 0.000
+#> phi_10  1.312 0.325 0.000
+#> phi_11  0.612 0.092 0.000
 #> 
 #> Estimated residual variances:
 #> sigma2_0 sigma2_1 
-#>    0.534    0.900 
+#>    0.751    1.073 
 #> 
 #> Residuals: 
 #>    min     1q median     3q    max 
-#> -1.837 -0.562 -0.083  0.512  2.059 
+#> -2.359 -0.803 -0.009  0.633  2.250 
 #> 
 #> Information criteria:
 #>       aic      aicc       bic 
-#> -23.98109 -22.92602 -12.56956
+#>  3.236331  4.306919 14.610899
 ```
 
 ## Install
