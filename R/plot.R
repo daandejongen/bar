@@ -50,8 +50,8 @@ plot_z <- function(hystar_object,
     main = main
   )
   axis(side = 2,
-       at = round(hystar_object$thresholds, 2),
-       labels = hystar_object$thresholds,
+       at = hystar_object$thresholds, 2,
+       labels = round(hystar_object$thresholds, 2),
        las = 0)
   if (show_legend)
     plot_legend(hystar_object = hystar_object, regimes_name_color = regimes_name_color)
