@@ -35,13 +35,20 @@ get_optims <- function(y, eff, x, z, p0, p1, grid) {
   prev <- rep(-9L, times = length(eff))
 
   for (i in 1:nrow(grid)) {
+    message("\rsearching delay, r0, r1 for p0 = ", p0, " and p1 = ", p1,
+            ". ", round(100 * i / nrow(grid), 0), "%", appendLF = FALSE)
+    #message("Searching delay, r0, r1: ",
+    #        paste(grid[i, "d"], round(grid[i, "r0"], 2), round(grid[i, "r1"], 2),
+    #              sep = ", "),
+    #        "\r", appendLF = FALSE)
     H <- ts_hys(z[eff - grid[i, "d"]], grid[i, "r0"], grid[i, "r1"])
     R <- ts_reg(H, start = grid[i, "s"])
     if (all(R == prev)) {
       results[i] <- results[i-1]
     } else {
       X <- create_X(x, p0, p1, R)
-      results[i] <- fit(y[eff], X)$rss
+      results[i] <- Inf
+      try(results[i] <- fit(y[eff], X)$rss, silent = TRUE)
     }
     prev <- R
   }

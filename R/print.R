@@ -34,7 +34,7 @@ print.hystar_sim <- function(x, ...) {
 }
 
 print_hystar <- function(n, d, r0, r1, coe0, coe1, rv0, rv1, simfit, tar) {
-  model <- if (tar) "TAR model " else "HysTAR model "
+  model <- if (tar) "\nTAR model " else "\nHysTAR model "
   cat(paste0(model, simfit, " ", n, " observations."),
       "\n\n",
       "if R[t] = 0:\n", make_formula(coe0, rv0),
