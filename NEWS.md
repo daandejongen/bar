@@ -1,6 +1,4 @@
-# hystar 1.2.1
-
-# `hystar` development version
+# `hystar` 1.2.1.9000 (development version)
 
 # `hystar` 1.2.1
 
