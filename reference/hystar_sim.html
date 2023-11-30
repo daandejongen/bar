@@ -12,7 +12,7 @@ HysTAR model, given its parameter values."><meta property="og:image" content="ht
     
     <a class="navbar-brand me-2" href="../index.html">hystar</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -192,826 +192,826 @@ Autoregressive Process’. Munich Personal RePEc Archive, (november 2013).</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">simulated_control_variable</span> <span class="op">&lt;-</span> <span class="fu"><a href="z_sim.html">z_sim</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">simulated_hystar_model</span> <span class="op">&lt;-</span> <span class="fu">hystar_sim</span><span class="op">(</span><span class="va">simulated_control_variable</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fitted_hystar_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="hystar_fit.html">hystar_fit</a></span><span class="op">(</span><span class="va">simulated_hystar_model</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 0%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 0%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 0%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 0%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 1%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 1%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 1%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 1%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 1%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 1%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 1%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 1%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 2%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 2%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 2%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 2%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 2%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 2%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 2%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 2%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 3%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 3%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 3%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 3%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 3%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 3%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 3%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 3%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 4%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 4%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 4%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 4%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 4%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 4%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 4%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 4%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 5%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 5%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 5%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 5%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 5%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 5%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 5%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 5%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 5%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 6%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 6%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 6%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 6%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 6%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 6%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 6%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 6%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 7%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 7%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 7%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 7%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 7%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 7%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 7%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 7%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 8%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 8%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 8%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 8%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 8%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 8%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 8%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 8%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 9%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 9%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 9%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 9%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 9%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 9%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 9%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 9%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 10%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 10%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 10%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 10%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 10%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 10%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 10%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 10%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 10%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 11%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 11%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 11%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 11%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 11%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 11%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 11%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 11%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 12%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 12%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 12%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 12%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 12%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 12%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 12%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 12%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 13%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 13%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 13%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 13%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 13%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 13%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 13%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 13%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 14%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 14%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 14%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 14%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 14%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 14%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 14%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 14%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 15%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 15%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 15%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 15%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 15%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 15%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 15%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 15%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 15%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 16%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 16%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 16%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 16%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 16%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 16%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 16%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 16%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 17%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 17%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 17%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 17%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 17%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 17%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 17%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 17%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 18%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 18%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 18%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 18%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 18%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 18%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 18%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 18%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 19%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 19%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 19%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 19%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 19%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 19%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 19%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 19%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 20%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 20%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 20%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 20%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 20%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 20%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 20%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 20%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 20%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 21%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 21%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 21%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 21%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 21%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 21%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 21%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 21%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 22%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 22%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 22%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 22%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 22%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 22%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 22%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 22%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 23%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 23%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 23%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 23%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 23%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 23%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 23%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 23%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 24%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 24%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 24%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 24%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 24%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 24%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 24%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 24%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 25%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 25%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 25%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 25%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 25%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 25%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 25%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 25%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 25%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 26%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 26%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 26%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 26%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 26%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 26%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 26%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 26%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 27%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 27%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 27%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 27%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 27%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 27%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 27%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 27%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 28%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 28%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 28%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 28%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 28%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 28%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 28%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 28%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 29%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 29%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 29%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 29%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 29%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 29%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 29%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 29%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 30%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 30%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 30%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 30%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 30%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 30%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 30%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 30%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 30%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 31%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 31%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 31%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 31%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 31%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 31%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 31%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 31%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 32%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 32%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 32%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 32%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 32%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 32%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 32%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 32%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 33%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 33%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 33%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 33%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 33%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 33%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 33%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 33%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 34%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 34%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 34%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 34%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 34%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 34%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 34%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 34%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 35%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 35%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 35%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 35%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 35%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 35%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 35%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 35%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 35%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 36%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 36%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 36%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 36%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 36%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 36%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 36%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 36%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 37%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 37%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 37%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 37%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 37%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 37%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 37%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 37%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 38%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 38%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 38%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 38%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 38%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 38%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 38%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 38%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 39%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 39%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 39%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 39%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 39%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 39%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 39%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 39%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 40%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 40%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 40%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 40%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 40%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 40%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 40%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 40%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 40%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 41%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 41%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 41%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 41%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 41%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 41%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 41%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 41%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 42%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 42%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 42%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 42%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 42%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 42%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 42%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 42%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 43%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 43%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 43%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 43%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 43%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 43%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 43%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 43%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 44%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 44%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 44%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 44%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 44%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 44%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 44%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 44%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 45%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 45%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 45%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 45%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 45%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 45%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 45%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 45%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 45%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 46%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 46%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 46%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 46%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 46%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 46%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 46%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 46%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 47%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 47%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 47%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 47%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 47%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 47%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 47%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 47%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 48%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 48%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 48%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 48%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 48%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 48%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 48%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 48%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 49%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 49%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 49%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 49%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 49%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 49%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 49%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 49%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 50%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 51%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 51%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 51%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 51%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 51%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 51%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 51%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 51%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 52%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 52%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 52%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 52%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 52%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 52%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 52%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 52%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 53%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 53%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 53%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 53%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 53%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 53%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 53%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 53%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 54%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 54%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 54%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 54%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 54%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 54%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 54%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 54%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 55%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 55%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 55%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 55%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 55%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 55%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 55%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 55%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 55%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 56%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 56%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 56%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 56%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 56%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 56%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 56%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 56%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 57%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 57%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 57%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 57%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 57%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 57%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 57%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 57%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 58%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 58%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 58%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 58%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 58%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 58%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 58%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 58%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 59%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 59%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 59%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 59%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 59%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 59%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 59%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 59%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 60%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 60%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 60%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 60%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 60%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 60%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 60%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 60%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 60%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 61%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 61%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 61%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 61%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 61%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 61%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 61%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 61%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 62%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 62%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 62%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 62%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 62%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 62%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 62%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 62%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 63%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 63%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 63%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 63%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 63%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 63%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 63%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 63%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 64%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 64%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 64%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 64%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 64%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 64%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 64%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 64%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 65%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 65%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 65%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 65%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 65%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 65%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 65%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 65%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 65%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 66%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 66%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 66%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 66%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 66%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 66%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 66%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 66%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 67%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 67%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 67%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 67%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 67%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 67%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 67%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 67%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 68%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 68%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 68%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 68%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 68%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 68%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 68%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 68%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 69%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 69%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 69%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 69%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 69%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 69%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 69%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 69%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 70%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 70%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 70%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 70%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 70%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 70%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 70%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 70%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 70%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 71%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 71%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 71%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 71%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 71%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 71%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 71%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 71%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 72%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 72%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 72%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 72%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 72%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 72%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 72%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 72%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 73%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 73%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 73%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 73%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 73%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 73%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 73%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 73%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 74%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 74%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 74%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 74%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 74%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 74%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 74%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 74%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 75%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 75%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 75%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 75%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 75%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 75%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 75%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 75%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 75%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 76%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 76%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 76%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 76%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 76%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 76%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 76%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 76%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 77%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 77%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 77%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 77%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 77%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 77%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 77%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 77%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 78%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 78%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 78%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 78%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 78%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 78%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 78%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 78%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 79%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 79%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 79%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 79%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 79%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 79%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 79%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 79%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 80%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 80%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 80%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 80%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 80%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 80%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 80%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 80%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 80%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 81%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 81%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 81%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 81%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 81%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 81%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 81%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 81%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 82%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 82%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 82%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 82%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 82%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 82%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 82%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 82%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 83%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 83%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 83%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 83%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 83%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 83%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 83%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 83%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 84%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 84%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 84%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 84%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 84%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 84%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 84%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 84%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 85%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 85%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 85%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 85%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 85%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 85%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 85%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 85%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 85%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 86%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 86%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 86%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 86%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 86%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 86%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 86%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 86%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 87%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 87%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 87%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 87%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 87%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 87%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 87%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 87%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 88%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 88%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 88%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 88%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 88%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 88%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 88%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 88%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 89%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 89%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 89%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 89%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 89%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 89%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 89%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 89%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 90%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 90%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 90%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 90%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 90%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 90%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 90%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 90%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 90%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 91%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 91%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 91%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 91%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 91%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 91%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 91%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 91%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 92%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 92%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 92%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 92%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 92%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 92%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 92%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 92%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 93%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 93%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 93%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 93%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 93%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 93%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 93%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 93%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 94%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 94%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 94%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 94%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 94%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 94%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 94%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 94%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 95%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 95%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 95%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 95%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 95%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 95%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 95%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 95%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 95%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 96%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 96%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 96%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 96%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 96%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 96%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 96%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 96%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 97%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 97%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 97%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 97%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 97%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 97%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 97%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 97%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 98%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 98%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 98%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 98%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 98%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 98%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 98%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 98%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 99%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 99%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 99%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 99%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 99%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 99%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 99%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 99%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 100%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 100%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 100%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 100%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> searching delay, r0, r1 for p0 = 1 and p1 = 1. 100%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 0%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 0%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 0%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 0%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 1%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 1%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 1%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 1%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 1%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 1%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 1%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 1%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 2%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 2%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 2%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 2%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 2%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 2%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 2%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 2%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 3%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 3%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 3%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 3%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 3%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 3%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 3%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 3%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 4%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 4%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 4%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 4%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 4%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 4%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 4%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 4%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 5%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 5%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 5%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 5%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 5%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 5%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 5%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 5%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 5%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 6%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 6%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 6%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 6%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 6%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 6%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 6%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 6%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 7%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 7%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 7%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 7%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 7%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 7%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 7%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 7%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 8%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 8%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 8%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 8%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 8%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 8%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 8%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 8%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 9%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 9%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 9%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 9%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 9%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 9%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 9%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 9%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 10%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 10%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 10%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 10%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 10%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 10%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 10%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 10%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 10%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 11%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 11%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 11%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 11%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 11%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 11%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 11%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 11%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 12%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 12%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 12%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 12%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 12%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 12%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 12%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 12%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 13%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 13%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 13%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 13%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 13%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 13%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 13%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 13%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 14%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 14%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 14%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 14%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 14%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 14%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 14%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 14%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 15%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 15%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 15%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 15%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 15%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 15%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 15%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 15%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 15%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 16%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 16%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 16%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 16%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 16%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 16%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 16%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 16%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 17%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 17%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 17%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 17%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 17%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 17%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 17%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 17%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 18%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 18%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 18%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 18%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 18%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 18%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 18%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 18%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 19%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 19%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 19%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 19%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 19%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 19%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 19%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 19%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 20%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 20%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 20%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 20%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 20%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 20%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 20%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 20%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 20%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 21%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 21%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 21%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 21%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 21%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 21%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 21%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 21%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 22%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 22%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 22%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 22%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 22%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 22%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 22%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 22%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 23%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 23%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 23%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 23%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 23%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 23%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 23%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 23%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 24%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 24%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 24%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 24%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 24%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 24%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 24%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 24%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 25%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 25%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 25%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 25%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 25%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 25%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 25%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 25%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 25%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 26%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 26%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 26%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 26%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 26%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 26%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 26%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 26%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 27%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 27%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 27%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 27%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 27%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 27%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 27%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 27%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 28%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 28%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 28%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 28%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 28%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 28%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 28%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 28%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 29%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 29%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 29%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 29%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 29%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 29%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 29%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 29%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 30%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 30%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 30%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 30%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 30%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 30%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 30%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 30%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 30%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 31%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 31%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 31%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 31%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 31%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 31%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 31%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 31%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 32%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 32%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 32%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 32%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 32%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 32%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 32%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 32%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 33%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 33%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 33%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 33%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 33%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 33%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 33%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 33%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 34%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 34%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 34%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 34%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 34%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 34%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 34%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 34%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 35%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 35%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 35%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 35%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 35%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 35%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 35%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 35%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 35%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 36%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 36%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 36%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 36%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 36%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 36%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 36%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 36%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 37%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 37%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 37%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 37%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 37%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 37%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 37%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 37%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 38%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 38%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 38%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 38%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 38%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 38%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 38%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 38%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 39%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 39%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 39%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 39%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 39%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 39%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 39%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 39%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 40%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 40%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 40%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 40%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 40%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 40%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 40%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 40%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 40%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 41%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 41%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 41%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 41%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 41%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 41%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 41%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 41%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 42%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 42%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 42%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 42%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 42%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 42%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 42%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 42%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 43%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 43%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 43%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 43%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 43%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 43%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 43%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 43%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 44%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 44%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 44%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 44%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 44%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 44%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 44%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 44%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 45%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 45%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 45%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 45%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 45%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 45%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 45%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 45%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 45%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 46%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 46%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 46%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 46%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 46%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 46%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 46%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 46%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 47%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 47%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 47%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 47%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 47%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 47%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 47%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 47%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 48%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 48%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 48%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 48%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 48%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 48%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 48%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 48%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 49%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 49%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 49%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 49%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 49%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 49%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 49%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 49%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 50%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 50%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 50%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 50%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 50%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 50%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 50%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 50%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 50%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 51%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 51%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 51%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 51%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 51%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 51%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 51%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 51%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 52%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 52%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 52%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 52%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 52%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 52%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 52%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 52%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 53%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 53%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 53%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 53%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 53%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 53%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 53%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 53%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 54%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 54%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 54%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 54%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 54%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 54%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 54%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 54%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 55%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 55%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 55%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 55%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 55%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 55%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 55%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 55%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 55%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 56%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 56%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 56%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 56%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 56%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 56%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 56%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 56%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 57%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 57%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 57%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 57%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 57%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 57%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 57%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 57%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 58%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 58%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 58%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 58%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 58%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 58%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 58%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 58%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 59%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 59%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 59%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 59%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 59%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 59%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 59%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 59%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 60%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 60%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 60%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 60%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 60%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 60%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 60%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 60%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 60%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 61%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 61%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 61%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 61%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 61%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 61%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 61%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 61%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 62%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 62%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 62%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 62%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 62%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 62%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 62%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 62%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 63%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 63%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 63%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 63%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 63%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 63%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 63%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 63%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 64%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 64%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 64%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 64%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 64%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 64%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 64%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 64%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 65%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 65%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 65%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 65%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 65%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 65%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 65%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 65%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 65%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 66%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 66%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 66%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 66%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 66%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 66%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 66%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 66%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 67%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 67%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 67%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 67%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 67%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 67%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 67%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 67%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 68%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 68%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 68%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 68%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 68%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 68%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 68%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 68%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 69%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 69%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 69%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 69%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 69%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 69%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 69%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 69%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 70%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 70%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 70%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 70%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 70%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 70%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 70%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 70%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 70%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 71%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 71%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 71%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 71%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 71%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 71%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 71%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 71%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 72%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 72%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 72%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 72%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 72%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 72%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 72%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 72%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 73%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 73%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 73%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 73%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 73%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 73%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 73%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 73%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 74%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 74%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 74%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 74%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 74%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 74%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 74%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 74%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 75%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 75%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 75%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 75%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 75%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 75%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 75%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 75%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 75%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 76%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 76%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 76%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 76%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 76%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 76%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 76%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 76%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 77%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 77%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 77%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 77%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 77%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 77%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 77%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 77%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 78%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 78%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 78%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 78%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 78%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 78%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 78%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 78%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 79%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 79%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 79%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 79%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 79%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 79%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 79%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 79%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 80%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 80%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 80%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 80%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 80%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 80%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 80%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 80%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 80%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 81%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 81%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 81%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 81%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 81%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 81%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 81%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 81%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 82%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 82%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 82%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 82%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 82%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 82%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 82%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 82%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 83%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 83%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 83%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 83%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 83%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 83%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 83%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 83%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 84%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 84%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 84%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 84%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 84%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 84%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 84%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 84%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 85%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 85%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 85%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 85%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 85%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 85%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 85%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 85%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 85%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 86%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 86%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 86%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 86%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 86%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 86%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 86%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 86%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 87%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 87%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 87%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 87%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 87%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 87%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 87%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 87%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 88%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 88%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 88%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 88%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 88%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 88%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 88%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 88%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 89%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 89%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 89%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 89%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 89%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 89%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 89%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 89%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 90%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 90%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 90%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 90%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 90%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 90%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 90%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 90%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 90%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 91%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 91%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 91%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 91%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 91%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 91%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 91%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 91%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 92%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 92%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 92%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 92%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 92%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 92%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 92%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 92%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 93%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 93%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 93%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 93%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 93%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 93%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 93%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 93%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 94%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 94%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 94%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 94%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 94%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 94%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 94%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 94%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 95%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 95%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 95%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 95%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 95%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 95%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 95%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 95%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 95%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 96%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 96%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 96%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 96%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 96%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 96%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 96%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 96%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 97%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 97%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 97%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 97%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 97%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 97%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 97%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 97%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 98%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 98%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 98%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 98%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 98%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 98%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 98%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 98%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 99%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 99%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 99%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 99%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 99%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 99%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 99%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 99%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 100%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 100%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 100%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 100%</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> estimating delay, r0, r1 for p0 = 1 and p1 = 1. Progress: 100%</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
