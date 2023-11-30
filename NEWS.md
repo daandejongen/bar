@@ -6,6 +6,8 @@
 
 * Added user-feedback about the progress of the estimation when running `hystar_fit()`
 
+* Added the change-point information criterion
+
 # `hystar` 1.2.0
 
 * More options to *customize* the graphs from the `plot()`-method for R-objects of class `hystar_fit` and `hystar_sim`:
