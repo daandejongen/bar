@@ -10,7 +10,7 @@ hystar_fit(
   d = 0L,
   p0 = 1L,
   p1 = 1L,
-  p_select = "bic",
+  p_select = c("bic", "aic", "aicc", "aiccp"),
   thin = FALSE,
   tar = FALSE
 )
@@ -48,9 +48,10 @@ equal to \code{p0}.}
 \item{p_select}{The information criterion that should be minimized to select
 the orders \eqn{p_0} and \eqn{p_1}. Choices:
 \itemize{
+\item \code{"bic"} (default, Bayesian Information Criterion)
 \item \code{"aic"} (Akaike Information Criterion)
 \item \code{"aicc"} (Corrected Akaike Information Criterion)
-\item \code{"bic"} (default, Bayesian Information Criterion)
+\item \code{"aiccp"} (Change-point Akaike Information Criterion)
 }}
 
 \item{thin}{\code{TRUE} (default) or \code{FALSE}. Only relevant when \code{r} is a vector.

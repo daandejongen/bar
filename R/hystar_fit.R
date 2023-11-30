@@ -40,9 +40,10 @@
 #'     equal to `p0`.
 #' @param p_select The information criterion that should be minimized to select
 #'     the orders \eqn{p_0} and \eqn{p_1}. Choices:
+#' * `"bic"` (default, Bayesian Information Criterion)
 #' * `"aic"` (Akaike Information Criterion)
 #' * `"aicc"` (Corrected Akaike Information Criterion)
-#' * `"bic"` (default, Bayesian Information Criterion)
+#' * `"aiccp"` (Change-point Akaike Information Criterion)
 #' @param thin `TRUE` (default) or `FALSE`. Only relevant when `r` is a vector.
 #' * If `TRUE` (default), the search space for the thresholds are the
 #'     \eqn{100a\%, 100(a+0.01)\%, \dots, 100b\%} percentiles of `z`.
@@ -101,8 +102,13 @@
 #' * `nobs()`
 #'
 #' @export
-hystar_fit <- function(data, r = c(.1, .9), d = 0L, p0 = 1L, p1 = 1L, p_select = "bic",
-                       thin = FALSE, tar = FALSE) {
+hystar_fit <- function(data,
+                       r = c(.1, .9),
+                       d = 0L,
+                       p0 = 1L, p1 = 1L,
+                       p_select = c("bic", "aic", "aicc", "aiccp"),
+                       thin = FALSE,
+                       tar = FALSE) {
   check_data(data)
   if (is.vector(data)) {
     y <- z <- data
@@ -110,6 +116,7 @@ hystar_fit <- function(data, r = c(.1, .9), d = 0L, p0 = 1L, p1 = 1L, p_select =
     y <- data[, 1]
     z <- data[, 2]
   }
+
   p_select <- check_hystar_fit_input(z, d, p0, p1, p_select, r, thin, tar)
   eff <- time_eff(y, max(d), max(p0), max(p1))
   x <- create_x(y, eff, max(p0), max(p1))

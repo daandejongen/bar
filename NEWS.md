@@ -1,5 +1,7 @@
 # `hystar` 1.2.1.9000 (development version)
 
+* Default argument for `p_select` in `hystar_fit()` now shows all four options. The new default is `p_select = c("bic", "aic", "aicc", "aiccp")`, and the first option `"bic"` is taken when the user doesn't provide the argument.
+
 # `hystar` 1.2.1
 
 * Added a welcome message with a logo and first directions for help.

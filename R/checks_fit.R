@@ -30,7 +30,7 @@ check_data <- function(data) {
                 "You provided an object of class ", class(data)),
          call. = FALSE)
 
-  data <- data[, c(1, 2)]
+  data <- data[, c(1, 2), drop = FALSE]
 
   if (!is.numeric(data)) error_numeric(data)
 
@@ -97,11 +97,12 @@ check_rz <- function(r, z) {
 }
 
 check_p_select <- function(p_select) {
+  if (length(p_select) > 1) p_select <- p_select[1]
   if (!is.character(p_select))
     stop(paste0("`p_select` must be of type character."),
          call. = FALSE)
   p_select <- tolower(p_select)
-  choices <- c("aic", "aicc", "bic")
+  choices <- c("aic", "aicc", "bic", "aiccp")
   p_select <- tryCatch(
     error = function(cond) {
       stop(paste0("'p_select' must be one of these: ",

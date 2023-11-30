@@ -108,7 +108,8 @@ hystar_sim <- function(z,
                        d = 0,
                        phi_R0 = c(0, .5),
                        phi_R1 = c(2, .5),
-                       resvar = c(1, 1), start_regime = NULL) {
+                       resvar = c(1, 1),
+                       start_regime = NULL) {
 
   temp <- check_hystar_sim_input(z, r, d, phi_R0, phi_R1, resvar, start_regime)
   z <- temp$z

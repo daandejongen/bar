@@ -25,6 +25,10 @@ test_that("thin must be TRUE or FALSE", {
   expect_error(check_thin("a"), "TRUE or FALSE")
 })
 
+test_that("tar must be TRUE or FALSE", {
+  expect_error(check_tar(2), "TRUE or FALSE")
+})
+
 test_that("p_select must be a valid choice", {
   expect_error(hystar_fit(data.frame(y = 1:10, z = 1:10), p_select = 1),
                "character")

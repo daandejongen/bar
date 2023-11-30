@@ -1,5 +1,5 @@
 .onAttach <- function(libname, pkgname) {
-hystar_string <- "
+packageStartupMessage("
    __            __
   / /_ __ ______/ /_________
  / _  / // (_ -/  _/ _  / __\\
@@ -9,9 +9,7 @@ hystar_string <- "
 Estimation and simulation of the HysTAR Model.
 For function help, run `?hystar_fit`, `?hystar_sim` or `?z_sim`.
 For more information, run `hystar_info()` (opens a URL in your browser).
-"
-
-packageStartupMessage(hystar_string)
+")
 }
 
 #' Get more information about the hystar package
@@ -23,7 +21,7 @@ packageStartupMessage(hystar_string)
 #' @importFrom utils browseURL
 hystar_info <- function() {
   browseURL("https://daandejongen.github.io/hystar/")
-  return(NULL)
+  invisible(NULL)
 }
 
 

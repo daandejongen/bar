@@ -1,22 +1,30 @@
 #' @export
 plot.hystar_fit <- function(x, y = NULL, main = "Fitted HysTAR model", ...) {
   plot_hystar(hystar_object = x, main = main, ...)
-  return(NULL)
+  invisible(NULL)
 }
 
 #' @export
 plot.hystar_sim <- function(x, y = NULL, main = "Simulated HysTAR model", ...) {
   plot_hystar(hystar_object = x, main = main, ...)
-  return(NULL)
+  invisible(NULL)
 }
 
 #' @importFrom graphics par
 plot_hystar <- function(hystar_object,
                         main,
-                        regimes_name_color = c("Regime 0" = "white",
-                                               "Regime 1" = "grey85",
-                                               "Unknown" = "#AA001137"),
+                        name_regime0 = "Regime 0",
+                        name_regime1 = "Regime 1",
+                        color_regime0 = "white",
+                        color_regime1 = "grey85",
                         ...) {
+
+  regimes_name_color <- c(name_regime0 = name_regime0,
+                          color_regime0 = color_regime0,
+                          name_regime1 = name_regime1,
+                          color_regime1 = color_regime1,
+                          name_regime_unknown = "Unknown",
+                          color_regime_unknown = "#AA001137")
   old <- par(mfrow = c(2, 1))
   on.exit(par(old), add = TRUE)
   plot_z(hystar_object, main, regimes_name_color, ...)
@@ -82,13 +90,13 @@ plot_y <- function(hystar_object,
 #' @importFrom graphics legend
 plot_legend <- function(hystar_object, regimes_name_color) {
   n_unknown <- sum(is.na(hystar_object$data$R))
-  if (n_unknown == 0) regimes_name_color <- regimes_name_color[-3]
+  if (n_unknown == 0) regimes_name_color <- regimes_name_color[-c(5, 6)]
   starting_regime <- hystar_object$data$R[!is.na(hystar_object$data$R)][1]
   legend_position <- if (starting_regime == 1) "bottomleft" else "topleft"
   legend(
     x = legend_position,
-    legend = names(regimes_name_color),
-    fill = regimes_name_color,
+    legend = regimes_name_color[c("name_regime0", "name_regime1")],
+    fill = regimes_name_color[c("color_regime0", "color_regime1")],
     bg = "grey95",
     cex = .6
   )
@@ -114,7 +122,7 @@ plot_background <- function(hystar_object, regimes_name_color, type) {
     ybottom = plot_region_borders["ybottom"],
     xright = plot_region_borders["xright"],
     ytop = plot_region_borders["ytop"],
-    col = regimes_name_color[[1]],
+    col = regimes_name_color["color_regime0"],
     border = NA
   )
   # Background coloring for regime 1
@@ -123,7 +131,7 @@ plot_background <- function(hystar_object, regimes_name_color, type) {
     ybottom = rep(plot_region_borders["ybottom"], times = nrow(switch_points_matrix)),
     xright = switch_points_matrix[, 2],
     ytop = rep(plot_region_borders["ytop"], times = nrow(switch_points_matrix)),
-    col = regimes_name_color[[2]],
+    col = regimes_name_color["color_regime1"],
     border = NA
   )
   # Background for the unknown regimes:
@@ -136,7 +144,7 @@ plot_background <- function(hystar_object, regimes_name_color, type) {
       ybottom = plot_region_borders["ybottom"],
       xright = k + 1,
       ytop = plot_region_borders["ytop"],
-      col = regimes_name_color[[3]],
+      col = regimes_name_color["color_regime_unknown"],
       border = NA
     )
   }
