@@ -110,7 +110,7 @@ hystar_sim <- function(z,
                        phi_R1 = c(2, .5),
                        resvar = c(1, 1),
                        start_regime = NULL) {
-
+  call <- match.call()
   temp <- check_hystar_sim_input(z, r, d, phi_R0, phi_R1, resvar, start_regime)
   z <- temp$z
   start_regime <- temp$start
@@ -126,7 +126,7 @@ hystar_sim <- function(z,
   R <- c(rep(start_regime, times = k), ts_reg(H, start = start_regime))
   y <- y_sim(R, phi_R0, phi_R1, resvar)
 
-  out <- new_hystar_sim(y, z, H, R, phi_R0, phi_R1, r, d, resvar, k)
+  out <- new_hystar_sim(y, z, H, R, phi_R0, phi_R1, r, d, resvar, k, call)
 
   return(out)
 }

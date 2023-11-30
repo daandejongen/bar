@@ -1,3 +1,42 @@
+#' @title Plot method of the `hystar_fit` class
+#'
+#' @description Plots the time series of the control variable `z` and
+#' the outcome variable `y` on top of each other, with background colors
+#' indicating the regimes.
+#'
+#' @usage plot(hystar_fit_object)
+#'
+#' @param x an object of class `hystar_fit`
+#' @param y not needed
+#' @param main title of the plot
+#' @param ... further arguments passed to `plot()`, see Details.
+#'
+#' @details You can specify the following additional parameters (with defaults):
+#' Names:
+#' * `name_regime0 = "Regime 0"`
+#' * `name_regime1 = "Regime 1"`
+#' * `name_regime_unknown = "Unknown"`
+#' * `zlab = "z"`, label of the y-axis in the z-plot
+#' * `ylab = "y"`, label of the y-axis in the y-plot
+#' * `xlab = "x"`, label of the x-axis
+#'
+#' Colors:
+#' * `color_regime0 = "white"`
+#' * `color_regime0 = "grey85"`
+#' * `color_regime_unknown = "AA001137"`
+#' * `color_z = "grey25"`
+#' * `color_y = "grey25"`
+#'
+#' Lines:
+#' * `line_type_z = 1`
+#' * `line_width_z = 2.5`
+#' * `line_type_y = 1`
+#' * `line_width_y = 2.5`
+#'
+#' Other:
+#' * `show_legend = TRUE`
+#'
+#' @return NULL
 #' @export
 plot.hystar_fit <- function(x, y = NULL, main = "Fitted HysTAR model", ...) {
   plot_hystar(hystar_object = x, main = main, ...)
@@ -17,14 +56,17 @@ plot_hystar <- function(hystar_object,
                         name_regime1 = "Regime 1",
                         color_regime0 = "white",
                         color_regime1 = "grey85",
+                        name_regime_unknown = "Unknown",
+                        color_regime_unknown = "#AA001137",
                         ...) {
 
   regimes_name_color <- c(name_regime0 = name_regime0,
                           color_regime0 = color_regime0,
                           name_regime1 = name_regime1,
                           color_regime1 = color_regime1,
-                          name_regime_unknown = "Unknown",
-                          color_regime_unknown = "#AA001137")
+                          name_regime_unknown = name_regime_unknown,
+                          color_regime_unknown = color_regime_unknown)
+
   old <- par(mfrow = c(2, 1))
   on.exit(par(old), add = TRUE)
   plot_z(hystar_object, main, regimes_name_color, ...)

@@ -2,6 +2,10 @@
 
 * Default argument for `p_select` in `hystar_fit()` now shows all four options. The new default is `p_select = c("bic", "aic", "aicc", "aiccp")`, and the first option `"bic"` is taken when the user doesn't provide the argument.
 
+* Not necessary to provide all regime names and colors, can all be specified separately
+
+* Added `call` to `hystar_sim` and `hystar_fit` objects. Call now also printed in `print` method.
+
 # `hystar` 1.2.1
 
 * Added a welcome message with a logo and first directions for help.

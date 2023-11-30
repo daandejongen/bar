@@ -9,7 +9,8 @@ print.hystar_fit <- function(x, ...) {
                rv0 = round(x$resvar[1], 2),
                rv1 = round(x$resvar[2], 2),
                simfit = "fitted on",
-               tar = x$tar)
+               tar = x$tar,
+               call = x$call)
 
   invisible()
 }
@@ -28,15 +29,17 @@ print.hystar_sim <- function(x, ...) {
                rv0 = round(x$resvar[1], 2),
                rv1 = round(x$resvar[2], 2),
                simfit = "that generated",
-               tar = x$tar)
+               tar = x$tar,
+               call = x$call)
 
   invisible()
 }
 
-print_hystar <- function(n, d, r0, r1, coe0, coe1, rv0, rv1, simfit, tar) {
+print_hystar <- function(n, d, r0, r1, coe0, coe1, rv0, rv1, simfit, tar, call) {
   model <- if (tar) "\nTAR model " else "\nHysTAR model "
   cat(paste0(model, simfit, " ", n, " observations."),
       "\n\n",
+      "call: ", deparse(call), "\n\n",
       "if R[t] = 0:\n", make_formula(coe0, rv0),
       "\n\n",
       "if R[t] = 1:\n", make_formula(coe1, rv1),

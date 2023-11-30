@@ -109,6 +109,7 @@ hystar_fit <- function(data,
                        p_select = c("bic", "aic", "aicc", "aiccp"),
                        thin = FALSE,
                        tar = FALSE) {
+  call <- match.call()
   check_data(data)
   if (is.vector(data)) {
     y <- z <- data
@@ -131,7 +132,7 @@ hystar_fit <- function(data,
   equiv <- OPT$equiv[, 1:3]
   model <- run_model(y, x, z, eff, est["p0"], est["p1"],
                      est["d"], est["r0"], est["r1"], est["s"], tar)
-  hystar <- new_hystar_fit(y, x, z, eff, est, model, equiv, tar, r_search)
+  hystar <- new_hystar_fit(y, x, z, eff, est, model, equiv, tar, r_search, call)
 
   return(hystar)
 }

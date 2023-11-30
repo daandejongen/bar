@@ -1,4 +1,4 @@
-new_hystar_fit <- function(y, x, z, eff, est, model, equiv, tar, r_search) {
+new_hystar_fit <- function(y, x, z, eff, est, model, equiv, tar, r_search, call) {
 
   coe <- model$fit$coe
   names(coe) <- c(paste0("phi0", 0:est["p0"]), paste0("phi1", 0:est["p1"]))
@@ -30,7 +30,8 @@ new_hystar_fit <- function(y, x, z, eff, est, model, equiv, tar, r_search) {
          eff          = eff,
          equiv_pars   = equiv,
          r_search     = r_search,
-         tar          = tar
+         tar          = tar,
+         call         = call
          ),
     class = "hystar_fit"
     )
@@ -38,7 +39,7 @@ new_hystar_fit <- function(y, x, z, eff, est, model, equiv, tar, r_search) {
   return(hystar)
 }
 
-new_hystar_sim <- function(y, z, H, R, phi_R0, phi_R1, r, d, resvar, k) {
+new_hystar_sim <- function(y, z, H, R, phi_R0, phi_R1, r, d, resvar, k, call) {
   phi <- c(phi_R0, phi_R1)
   p0 <- get_order(phi_R0)
   p1 <- get_order(phi_R1)
@@ -53,7 +54,8 @@ new_hystar_sim <- function(y, z, H, R, phi_R0, phi_R1, r, d, resvar, k) {
          phi = phi,
          orders = c(get_order(phi_R0), get_order(phi_R1)),
          resvar = resvar,
-         tar = r[1] == r[2]),
+         tar = r[1] == r[2],
+         call = call),
     class = "hystar_sim"
   )
 
