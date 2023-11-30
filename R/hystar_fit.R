@@ -116,14 +116,14 @@ hystar_fit <- function(data, r = c(.1, .9), d = 0L, p0 = 1L, p1 = 1L, p_select =
   grid <- create_grid(z, r, d, eff, thin, tar)
   r_search <- unique(as.vector(grid[, c("r0", "r1")]))
   p_options <- create_p_options(p0, p1)
-  OPT <- optim_p(y, x, z, eff, grid, p_options, p_select)
+  OPT <- optim_p(y, x, z, eff, grid, p_options, p_select, tar)
   est <- OPT$est
   # We can discard the 4th column, "starts", because this will always have
   # the same value. A different start value would always result in a different
   # residual sum of squared residuals.
   equiv <- OPT$equiv[, 1:3]
   model <- run_model(y, x, z, eff, est["p0"], est["p1"],
-                     est["d"], est["r0"], est["r1"], est["s"])
+                     est["d"], est["r0"], est["r1"], est["s"], tar)
   hystar <- new_hystar_fit(y, x, z, eff, est, model, equiv, tar, r_search)
 
   return(hystar)

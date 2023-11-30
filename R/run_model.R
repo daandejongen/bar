@@ -1,5 +1,6 @@
 run_model <- function(y, x, z, eff,
-                      p0_sel, p1_sel, d_sel, r0_sel, r1_sel, s_sel, return_HR = TRUE) {
+                      p0_sel, p1_sel, d_sel, r0_sel, r1_sel, s_sel, tar,
+                      return_HR = TRUE) {
   y_eff <- y[eff]
   z_del <- z[eff - d_sel]
 
@@ -12,7 +13,7 @@ run_model <- function(y, x, z, eff,
   fit <- fit(y_eff, X)
   resvar <- estimate_resvar(R, fit$res)
   names(resvar) <- c("sigma2_0", "sigma2_1")
-  ic <- compute_ic(resvar, n0, n1, p0_sel, p1_sel)
+  ic <- compute_ic(resvar, n0, n1, p0_sel, p1_sel, tar)
   SEs <- compute_SEs(X, resvar, p0_sel, p1_sel)
 
   if (return_HR) {

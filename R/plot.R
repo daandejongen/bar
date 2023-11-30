@@ -1,13 +1,13 @@
 #' @export
 plot.hystar_fit <- function(x, y = NULL, main = "Fitted HysTAR model", ...) {
   plot_hystar(hystar_object = x, main = main, ...)
-  invisible()
+  return(NULL)
 }
 
 #' @export
 plot.hystar_sim <- function(x, y = NULL, main = "Simulated HysTAR model", ...) {
   plot_hystar(hystar_object = x, main = main, ...)
-  invisible()
+  return(NULL)
 }
 
 #' @importFrom graphics par

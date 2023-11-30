@@ -1,4 +1,4 @@
-optim_p <- function(y, x, z, eff, grid, p_options, p_select) {
+optim_p <- function(y, x, z, eff, grid, p_options, p_select, tar) {
   equivs <- vector(mode = "list", length = nrow(p_options))
 
   for (i in seq_len(nrow(p_options))) {
@@ -12,6 +12,7 @@ optim_p <- function(y, x, z, eff, grid, p_options, p_select) {
                          r0_sel = optim$est["r0"],
                          r1_sel = optim$est["r1"],
                          s_sel  = optim$est["s"],
+                         tar,
                          return_HR = FALSE)
     p_options[i, "ic"] <- results$ic[p_select]
   }
@@ -35,8 +36,8 @@ get_optims <- function(y, eff, x, z, p0, p1, grid) {
   prev <- rep(-9L, times = length(eff))
 
   for (i in 1:nrow(grid)) {
-    message("\rsearching delay, r0, r1 for p0 = ", p0, " and p1 = ", p1,
-            ". ", round(100 * i / nrow(grid), 0), "%", appendLF = FALSE)
+    message("\restimating delay, r0, r1 for p0 = ", p0, " and p1 = ", p1,
+            ". Progress: ", round(100 * i / nrow(grid), 0), "%", appendLF = FALSE)
     #message("Searching delay, r0, r1: ",
     #        paste(grid[i, "d"], round(grid[i, "r0"], 2), round(grid[i, "r1"], 2),
     #              sep = ", "),

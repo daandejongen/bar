@@ -1,5 +1,11 @@
 # `hystar` development version
 
+# `hystar` 1.2.1
+
+* Added a welcome message with a logo and first directions for help.
+
+* Added user-feedback about the progress of the estimation when running `hystar_fit()`
+
 # `hystar` 1.2.0
 
 * More options to *customize* the graphs from the `plot()`-method for R-objects of class `hystar_fit` and `hystar_sim`:

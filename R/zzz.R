@@ -14,10 +14,16 @@ For more information, run `hystar_info()` (opens a URL in your browser).
 packageStartupMessage(hystar_string)
 }
 
+#' Get more information about the hystar package
+#'
+#' @description directs you to the hystar website
+#' https://daandejongen.github.io/hystar/index.html
+#' @return Nothing
 #' @export
 #' @importFrom utils browseURL
 hystar_info <- function() {
-  browseURL("https://daandejongen.github.io/hystar/index.html")
+  browseURL("https://daandejongen.github.io/hystar/")
+  return(NULL)
 }
 
 
