@@ -19,10 +19,13 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
-  <a class="nav-link" href="../articles/hystar.html">Get started</a>
-</li>
-<li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/hystar_plot.html">Plotting hystar objects</a>
+  </div>
 </li>
 <li class="active nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -50,7 +53,9 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.1.9000" id="hystar-1219000-development-version">
 <code>hystar</code> 1.2.1.9000 (development version)<a class="anchor" aria-label="anchor" href="#hystar-1219000-development-version"></a></h2>
-<ul><li>Default argument for <code>p_select</code> in <code><a href="../reference/hystar_fit.html">hystar_fit()</a></code> now shows all four options. The new default is <code>p_select = c("bic", "aic", "aicc", "aiccp")</code>, and the first option <code>"bic"</code> is taken when the user doesn’t provide the argument.</li>
+<ul><li><p>Default argument for <code>p_select</code> in <code><a href="../reference/hystar_fit.html">hystar_fit()</a></code> now shows all four options. The new default is <code>p_select = c("bic", "aic", "aicc", "aiccp")</code>, and the first option <code>"bic"</code> is taken when the user doesn’t provide the argument.</p></li>
+<li><p>Not necessary to provide all regime names and colors, can all be specified separately</p></li>
+<li><p>Added <code>call</code> to <code>hystar_sim</code> and <code>hystar_fit</code> objects. Call now also printed in <code>print</code> method.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.1" id="hystar-121">
