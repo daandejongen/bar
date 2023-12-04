@@ -1,0 +1,67 @@
+---
+title: "Plotting hystar objects"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{hystar}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Plot method of the `hystar_fit` and `hystar_sim` class
+
+Plots the time series of the control variable `z` and
+the outcome variable `y` on top of each other, with background colors
+indicating the regimes. Simply call the `plot()` argument on an
+object of class `hystar_fit` or `hystar_sim`.
+
+## Example
+```{r, eval = FALSE}
+simulated_hystar <- hystar_sim(z = z_sim())
+plot(simulated_hystar)
+```
+
+## Parameters
+
+You can specify the following additional parameters (with defaults):
+
+Names:
+
+* `name_regime0 = "Regime 0"`
+
+* `name_regime1 = "Regime 1"`
+
+* `name_regime_unknown = "Unknown"`
+
+* `zlab = "z"`, label of the y-axis in the z-plot
+
+* `ylab = "y"`, label of the y-axis in the y-plot
+
+* `xlab = "x"`, label of the x-axis
+
+ Colors:
+ 
+ * `color_regime0 = "white"`
+ 
+ * `color_regime0 = "grey85"`
+ 
+ * `color_regime_unknown = "AA001137"`
+ 
+ * `color_z = "grey25"`
+ 
+ * `color_y = "grey25"`
+
+ Lines:
+ 
+ * `line_type_z = 1`
+ 
+ * `line_width_z = 2.5`
+ 
+ * `line_type_y = 1`
+ 
+ * `line_width_y = 2.5`
+
+ Other:
+ 
+ * `show_legend = TRUE`
+
+
