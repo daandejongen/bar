@@ -50,6 +50,7 @@
 <ul><li><p>Default argument for <code>p_select</code> in <code><a href="../reference/hystar_fit.html">hystar_fit()</a></code> now shows all four options. The new default is <code>p_select = c("bic", "aic", "aicc", "aiccp")</code>, and the first option <code>"bic"</code> is taken when the user doesn’t provide the argument.</p></li>
 <li><p>Not necessary to provide all regime names and colors, can all be specified separately</p></li>
 <li><p>Added <code>call</code> to <code>hystar_sim</code> and <code>hystar_fit</code> objects. Call now also printed in <code>print</code> method.</p></li>
+<li><p>The user-feedback about the progress is now not shown by default, but can be requested by setting the <code>show_progress</code> argument in <code><a href="../reference/hystar_fit.html">hystar_fit()</a></code> to <code>TRUE</code>. This is because <code>knitr</code> did not handle the <code>appendLF = FALSE</code> argument (ensuring progress gets printed on the same line each iteration, and not on a new line) of the <code><a href="https://rdrr.io/r/base/message.html" class="external-link">message()</a></code>-function well (that prints the progress-feedback); as a result, the print of <code><a href="../reference/hystar_fit.html">hystar_fit()</a></code> in my example on github and on the website was veeery long.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.1" id="hystar-121">
