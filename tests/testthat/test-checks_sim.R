@@ -3,6 +3,36 @@ test_that("z should be numeric", {
                "numeric")
 })
 
+test_that("z must be present", {
+  expect_error(hystar_sim(),
+               "`z` is missing")
+})
+
+test_that("r must be numeric", {
+  expect_error(hystar_sim(1:10, r = c("a", "b")),
+               "numeric")
+})
+
+test_that("r must be length 2", {
+  expect_error(hystar_sim(1:10, r = 1:3),
+               "two threshold values")
+})
+
+test_that("r must be a proper interval", {
+  expect_error(hystar_sim(1:10, r = c(4, 2)),
+               "second threshold should be larger")
+})
+
+test_that("p cannot exceed d + 10", {
+  expect_error(hystar_sim(1:100, r = c(5, 6), phi_R0 = rep(.01, times = 15), d = 3),
+               "maximum order can not be")
+})
+
+test_that("residual variances must be numeric", {
+  expect_error(hystar_sim(-5:100, resvar = c(TRUE, TRUE)))
+})
+
+
 test_that("zero or negative residual variances are not allowed", {
   expect_error(check_resvar(c(0, 2)))
 })
@@ -90,5 +120,18 @@ test_that("range input must be valid", {
   expect_error(z_sim(100, 4, 1, FALSE, c(3, 1), "not larger than the first"))
   expect_error(z_sim(100, 4, 1, FALSE, 3, "a vector of length 2"))
 })
+
+test_that("phi must be numeric", {
+  expect_error(hystar_sim(-5:10, phi_R0 = c(), "at least 1 value"))
+})
+
+test_that("there must be more than 1 switch", {
+  expect_error(z_sim(n_switches = 1), "must be at least 2")
+})
+
+test_that("start regime in hystar_sim matches that in z_sim", {
+  expect_warning(hystar_sim(z_sim(start_regime = 0), start_regime = 1), "does not match")
+})
+
 
 
