@@ -56,9 +56,10 @@ test_that("Delay or regime order cannot be too large", {
                "than the length of `z`")
 })
 
-test_that("delay must be numeric", {
-  expect_error(hystar_sim(1:10, d = "1"),
-               "numeric")
+test_that("delay must be numeric, whole and nonnegative", {
+  expect_error(check_d("1"), "numeric")
+  expect_error(check_d(.6), "whole")
+  expect_error(check_d(-10), "nonnegative")
 })
 
 test_that("unit root or explosive simulation throws warning", {
@@ -154,5 +155,12 @@ test_that("range must be an interval", {
   expect_error(z_sim(range = c(1, 1)), "a proper interval")
 })
 
-
+test_that("n_t and n_switches must be correct", {
+  expect_error(check_n_t_switches("a", 100), "numeric")
+  expect_error(check_n_t_switches(.3, 100), "whole")
+  expect_error(check_n_t_switches(-1, 100), "nonnegative")
+  expect_error(check_n_t_switches(5, "100"), "numeric")
+  expect_error(check_n_t_switches(5, .5), "whole")
+  expect_error(check_n_t_switches(5, -5), "nonnegative")
+})
 
