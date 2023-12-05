@@ -59,7 +59,8 @@
 <span>  p1 <span class="op">=</span> <span class="fl">1L</span>,</span>
 <span>  p_select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bic"</span>, <span class="st">"aic"</span>, <span class="st">"aicc"</span>, <span class="st">"aiccp"</span><span class="op">)</span>,</span>
 <span>  thin <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  tar <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  tar <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  show_progress <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -126,6 +127,12 @@ the \(100a\%\) and \(100b\%\) percentiles of <code>z</code> will be considered.<
 <dd><p><code>TRUE</code> or <code>FALSE</code> (default). Choose <code>TRUE</code> if you want to fit a traditional
 2-regime threshold autoregressive (TAR) model. In this model,
 there is only one threshold (or equivalently, a HysTAR model with \(r_0 = r_1\)).</p></dd>
+
+
+<dt>show_progress</dt>
+<dd><p><code>TRUE</code> or <code>FALSE</code> (default). Do you want to be updated on the
+progress of the estimation algorithm? This can be desirable when the number
+of time points, or the search space of <code>d</code>, <code>p0</code> or <code>p1</code>, are large.</p></dd>
 
 </dl></div>
     <div class="section level2">
