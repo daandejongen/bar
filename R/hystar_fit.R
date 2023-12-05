@@ -122,7 +122,7 @@ hystar_fit <- function(data,
     z <- data[, 2]
   }
 
-  p_select <- check_hystar_fit_input(z, d, p0, p1, p_select, r, thin, tar)
+  p_select <- check_hystar_fit_input(z, d, p0, p1, p_select, r, thin, tar, show_progress)
   eff <- time_eff(y, max(d), max(p0), max(p1))
   x <- create_x(y, eff, max(p0), max(p1))
   grid <- create_grid(z, r, d, eff, thin, tar)

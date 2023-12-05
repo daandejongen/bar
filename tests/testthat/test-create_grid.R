@@ -59,10 +59,16 @@ test_that("z values are correct (with no thinning)", {
   expect_equal(z_values, seq(2.5, 8.5, 1))
 })
 
+test_that("tar = TRUE makes sure that r_search is a TAR search", {
+  grid <- create_grid_r(1:10, r = c(.1, .4), thin = FALSE, tar = TRUE)
+  expect_true(all(grid[, 1] == grid[, 2]))
+})
 
 
-
-
+test_that("thin works", {
+  grid <- create_grid_r(1:10, r = c(.1, .2), thin = TRUE, tar = TRUE)
+  expect_equal(nrow(grid), 10)
+})
 
 
 

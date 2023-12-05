@@ -23,12 +23,6 @@ create_coe_matrix_SE_p <- function(coe, SEs, R, rv, p0, p1) {
   return(M)
 }
 
-# Helpers
-regname <- function(x) {
-  names(x) <- paste0("Regime", 0:1)
-  return(x)
-}
-
 split_coe <- function(coe, p0, p1) {
   # We are given one vector of coefficients, but from this only it is unclear
   # where the coefficients of regime 0 stop and regime 1 starts.

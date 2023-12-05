@@ -31,7 +31,8 @@ check_z <- function(z) {
 
 check_d <- function(d) {
   if (!is.numeric(d)) error_numeric(d)
-  check_whole_nn(d)
+  if (!is_whole(d))   error_whole(d)
+  if (!all(d >= 0))  error_nonnegative(d)
 }
 
 check_r_sim <- function(r, z) {
@@ -73,8 +74,7 @@ check_resvar <- function(resvar) {
     stop(paste0("You must provide exactly one residual variance for ",
                 "each regime.\nYou provided ", length(resvar), " values."),
          call. = FALSE)
-  if (!all(resvar > 0))
-    stop("Values in 'resvar' should be postitive.", call. = FALSE)
+  if (!all(resvar > 0)) error_nonnegative(resvar)
 }
 
 check_phi <- function(phi, R01) {
@@ -103,8 +103,12 @@ check_phi <- function(phi, R01) {
 }
 
 check_n_t_switches <- function(n_t, n_switches) {
-  check_whole_nn(n_t)
-  check_whole_nn(n_switches)
+  if (!is.numeric(n_t))        error_numeric(n_t)
+  if (!is_whole(n_t))          error_whole(n_t)
+  if (n_t <= 0)                error_nonnegative(n_t)
+  if (!is.numeric(n_switches)) error_numeric(n_switches)
+  if (!is_whole(n_switches))   error_whole(n_switches)
+  if (n_switches <= 0)         error_nonnegative(n_switches)
   if (n_switches >= n_t)
     stop(paste0(n_switches, " switches are not possible if the length of ",
                 "the time series is ", n_t, "."))

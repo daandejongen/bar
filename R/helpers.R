@@ -37,7 +37,6 @@ remove_trailing_zeros <- function(x, length_out = 1) {
 }
 
 remove_z_buffer <- function(z, d, p0, p1) {
-  if (!is.numeric(z)) error_numeric(z)
   if (!is_z_simulated(z)) return(z)
   p <- if (attr(z, "start_regime") == 1) p1 else p0
   start <- 11 - max(p, d) + d

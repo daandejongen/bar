@@ -20,8 +20,7 @@ For more information, run `hystar_info()` (opens a URL in your browser).
 #' @export
 #' @importFrom utils browseURL
 hystar_info <- function() {
-  browseURL("https://daandejongen.github.io/hystar/")
-  invisible(NULL)
+  browseURL("https://daandejongen.github.io/hystar/"); invisible(NULL)
 }
 
 

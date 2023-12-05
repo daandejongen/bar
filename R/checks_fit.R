@@ -1,11 +1,12 @@
-check_hystar_fit_input <- function(z, d, p0, p1, p_select, r, thin, tar) {
-  check_whole_nn(d)
-  check_whole_nn(p0)
-  check_whole_nn(p1)
+check_hystar_fit_input <- function(z, d, p0, p1, p_select, r, thin, tar, show_progress) {
+  check_d(d)
+  check_p0(p0)
+  check_p1(p1)
   check_r_fit(r, tar)
   check_thin(thin)
   check_tar(tar)
   check_rz(r, z)
+  check_show_progress(show_progress)
   # p_select uses match.arg so the user can abbreviate,
   # so we want to return that value.
   p_select <- check_p_select(p_select)
@@ -43,6 +44,18 @@ check_data <- function(data) {
                 "the control variable, namely: ", n_unique), call. = FALSE)
 }
 
+check_p0 <- function(p0) {
+  if (!is.numeric(p0)) error_numeric(p0)
+  if (!is_whole(p0))   error_whole(p0)
+  if (!all(p0 >= 0))   error_nonnegative(p0)
+}
+
+check_p1 <- function(p1) {
+  if (!is.numeric(p1)) error_numeric(p1)
+  if (!is_whole(p1))   error_whole(p1)
+  if (!all(p1 >= 0))   error_nonnegative(p1)
+}
+
 check_r_fit <- function(r, tar) {
   if (!is.numeric(r)) error_numeric(r)
 
@@ -77,8 +90,15 @@ check_r_fit <- function(r, tar) {
 }
 
 check_thin <- function(thin) {
-  if (!(thin %in% c(TRUE, FALSE)))
-    stop("`thin` must be TRUE or FALSE.", call. = FALSE)
+  if (!(thin %in% c(TRUE, FALSE))) error_logical(thin)
+}
+
+check_tar <- function(tar) {
+  if (!(tar %in% c(TRUE, FALSE))) error_logical(tar)
+}
+
+check_show_progress <- function(show_progress) {
+  if (!(show_progress %in% c(TRUE, FALSE))) error_logical(show_progress)
 }
 
 check_tar <- function(tar) {

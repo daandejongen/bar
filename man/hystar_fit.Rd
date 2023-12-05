@@ -12,7 +12,8 @@ hystar_fit(
   p1 = 1L,
   p_select = c("bic", "aic", "aicc", "aiccp"),
   thin = FALSE,
-  tar = FALSE
+  tar = FALSE,
+  show_progress = FALSE
 )
 }
 \arguments{
@@ -68,6 +69,10 @@ the \eqn{100a\%} and \eqn{100b\%} percentiles of \code{z} will be considered.
 \item{tar}{\code{TRUE} or \code{FALSE} (default). Choose \code{TRUE} if you want to fit a traditional
 2-regime threshold autoregressive (TAR) model. In this model,
 there is only one threshold (or equivalently, a HysTAR model with \eqn{r_0 = r_1}).}
+
+\item{show_progress}{\code{TRUE} or \code{FALSE} (default). Do you want to be updated on the
+progress of the estimation algorithm? This can be desirable when the number
+of time points, or the search space of \code{d}, \code{p0} or \code{p1}, are large.}
 }
 \value{
 An object of S3 class \code{hystar_fit}, which is a \code{list} containing the following

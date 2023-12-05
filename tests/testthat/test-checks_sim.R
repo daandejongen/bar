@@ -34,7 +34,7 @@ test_that("residual variances must be numeric", {
 
 
 test_that("zero or negative residual variances are not allowed", {
-  expect_error(check_resvar(c(0, 2)))
+  expect_error(check_resvar(c(0, 2)), "nonnegative")
 })
 
 test_that("there should be 2 resvars", {
@@ -54,6 +54,11 @@ test_that("Delay or regime order cannot be too large", {
   expect_error(hystar_sim(z = 1:3, r = c(2, 2.2), d = 1,
                           phi_R0 = 1, phi_R1 = c(0, .1, .1, .1)),
                "than the length of `z`")
+})
+
+test_that("delay must be numeric", {
+  expect_error(hystar_sim(1:10, d = "1"),
+               "numeric")
 })
 
 test_that("unit root or explosive simulation throws warning", {
@@ -121,8 +126,8 @@ test_that("range input must be valid", {
   expect_error(z_sim(100, 4, 1, FALSE, 3, "a vector of length 2"))
 })
 
-test_that("phi must be numeric", {
-  expect_error(hystar_sim(-5:10, phi_R0 = c(), "at least 1 value"))
+test_that("phi contains values", {
+  expect_error(hystar_sim(-5:10, phi_R0 = numeric(0)), "at least 1 value")
 })
 
 test_that("there must be more than 1 switch", {

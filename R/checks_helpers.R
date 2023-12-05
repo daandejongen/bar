@@ -3,12 +3,6 @@ is_whole <- function(x, tol = .Machine$double.eps) {
   return(whole)
 }
 
-check_whole_nn <- function(x) {
-  if (!is.numeric(x)) error_numeric(x)
-  if (!is_whole(x))   error_whole(x)
-  if (!all(x >= 0))   error_nonnegative(x)
-}
-
 error_whole <- function(x) {
   err <- structure(
     list(
@@ -44,7 +38,18 @@ error_nonnegative <- function(x) {
   stop(err)
 }
 
-
+error_logical <- function(x) {
+  err <- structure(
+    list(
+      message = paste0("`", substitute(x), "` must be TRUE or FALSE ",
+                       "You provided an object of type ",
+                       typeof(x), ". Namely: `", x, "`."),
+      call = NULL
+    ),
+    class = c("not_logical", "error", "condition")
+  )
+  stop(err)
+}
 
 
 

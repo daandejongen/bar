@@ -68,6 +68,10 @@ test_that("`r` must be in the range of `z`", {
                         z = 1:10), "range")
 })
 
+test_that("`r` must be numeric", {
+  expect_error(hystar_fit(hystar_sim(z_sim()$data, r = c("a", "b"))))
+})
+
 test_that("thin must be TRUE or FALSE", {
   expect_error(check_thin("a"), "TRUE or FALSE")
 })
@@ -76,23 +80,38 @@ test_that("tar must be TRUE or FALSE", {
   expect_error(check_tar(2), "TRUE or FALSE")
 })
 
+test_that("show_progress must be TRUE or FALSE", {
+  expect_error(check_show_progress(2), "TRUE or FALSE")
+})
+
 test_that("p_select must be a valid choice", {
-  expect_error(hystar_fit(data.frame(y = 1:10, z = 1:10), p_select = 1),
+  expect_error(hystar_fit(1:100, p_select = 1),
                "character")
   expect_error(hystar_fit(data.frame(y = 1:10, z = 1:10), p_select = "bla"),
                "aic")
   p_select <- check_hystar_fit_input(
     z = 1:4, d = 1, p0 = 1, p1 = 1,
-    p_select = "aic", r = c(.8, .9), thin = TRUE, tar = FALSE
+    p_select = "aic", r = c(.8, .9), thin = TRUE, tar = FALSE, show_progress = TRUE
     )
   expect_equal(p_select, "aic")
 })
-
 
 test_that("`z` must have at least three levels.", {
   expect_error(hystar_fit(data.frame(y = 1:10,
                                      z = c(rep(3, 5), rep(4, 5))
                                      )
                           ), "unique values")
+})
+
+test_that("things run normally with certain arguments off-default", {
+  expect_no_error({
+    hystar_fit(hystar_sim(z_sim())$data, show_progress = TRUE)
+  })
+})
+
+test_that("fit throws no errors with certain off-default settings", {
+  expect_no_error({
+    hystar_fit(1:100, show_progress = TRUE)
+  })
 })
 
