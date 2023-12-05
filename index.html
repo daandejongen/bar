@@ -51,12 +51,6 @@
 <li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
-<li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/hystar_plot.html">Plotting hystar objects</a>
-  </div>
-</li>
 <li class="nav-item">
   <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
@@ -90,11 +84,11 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>The R-package <a href="https://cran.r-project.org/package=hystar" class="external-link"><code>hystar</code></a> package allows you to simulate and estimate the hysteretic threshold autoregressive (HysTAR) model. It comes with three functions:</p>
+<p>With the R-package <a href="https://cran.r-project.org/package=hystar" class="external-link"><code>hystar</code></a>, you can simulate data from the hysteretic threshold autoregressive (HysTAR) model, and estimate its parameters. It comes with three functions:</p>
 <ul>
-<li><p><code>hystar_fit</code>, to <em>estimate</em> the HysTAR parameters with the <em>conditional least squares</em> method,</p></li>
-<li><p><code>z_sim</code>, to simulate a <em>threshold variable</em>,</p></li>
-<li><p><code>hystar_sim</code>, to simulate an <em>outcome variable</em>.</p></li>
+<li><p><code>hystar_fit</code>, to <strong>estimate</strong> the HysTAR parameters with the <strong>conditional least squares</strong> method, using your own data or simulated data,</p></li>
+<li><p><code>z_sim</code>, to simulate a <strong>threshold variable</strong>,</p></li>
+<li><p><code>hystar_sim</code>, to simulate an <strong>outcome variable</strong>.</p></li>
 </ul>
 <p>Results from the time series analysis can be assessed with the standard methods in R, like <code>plot</code>, <code>summary</code> and <code>print</code>. Additionally, you can extract the predictive residuals with the <code>residuals</code>-method for further analysis.</p>
 </div>
@@ -104,39 +98,49 @@
 <p>A minimal example:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/daandejongen/hystar/" class="external-link">hystar</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;    __            __</span></span>
+<span><span class="co">#&gt;   / /_ __ ______/ /_________</span></span>
+<span><span class="co">#&gt;  / _  / // (_ -/  _/ _  / __\</span></span>
+<span><span class="co">#&gt; /_//_/\_, /___)\__/\_,_/_/</span></span>
+<span><span class="co">#&gt;      /___/             1.2.0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Estimation and simulation of the HysTAR Model.</span></span>
+<span><span class="co">#&gt; For function help, run `?hystar_fit`, `?hystar_sim` or `?z_sim`.</span></span>
+<span><span class="co">#&gt; For more information, run `hystar_info()` (opens a URL in your browser).</span></span>
 <span><span class="va">control_variable</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/z_sim.html">z_sim</a></span><span class="op">(</span>n_t <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="va">simulated_hystar_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hystar_sim.html">hystar_sim</a></span><span class="op">(</span>z <span class="op">=</span> <span class="va">control_variable</span><span class="op">)</span></span>
 <span><span class="va">fitted_hystar_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hystar_fit.html">hystar_fit</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">simulated_hystar_model</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fitted_hystar_model</span><span class="op">)</span></span>
 <span><span class="co">#&gt; HysTAR model fitted on 99 observations, of which</span></span>
-<span><span class="co">#&gt; 44 observations in regime 0 and</span></span>
-<span><span class="co">#&gt; 55 observations in regime 1.</span></span>
+<span><span class="co">#&gt; 49 observations in regime 0 and</span></span>
+<span><span class="co">#&gt; 50 observations in regime 1.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated thresholds:</span></span>
 <span><span class="co">#&gt;     r0     r1 </span></span>
-<span><span class="co">#&gt; -0.509  0.218 </span></span>
+<span><span class="co">#&gt; -0.509  0.509 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated delay:</span></span>
 <span><span class="co">#&gt; 0 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated model coefficients:</span></span>
-<span><span class="co">#&gt;           est    SE     p</span></span>
-<span><span class="co">#&gt; phi_00 -0.153 0.131 0.244</span></span>
-<span><span class="co">#&gt; phi_01  0.507 0.111 0.000</span></span>
-<span><span class="co">#&gt; phi_10  1.312 0.325 0.000</span></span>
-<span><span class="co">#&gt; phi_11  0.612 0.092 0.000</span></span>
+<span><span class="co">#&gt;          est    SE     p</span></span>
+<span><span class="co">#&gt; phi_00 0.258 0.178 0.148</span></span>
+<span><span class="co">#&gt; phi_01 0.529 0.102 0.000</span></span>
+<span><span class="co">#&gt; phi_10 2.546 0.448 0.000</span></span>
+<span><span class="co">#&gt; phi_11 0.380 0.109 0.000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated residual variances:</span></span>
 <span><span class="co">#&gt; sigma2_0 sigma2_1 </span></span>
-<span><span class="co">#&gt;    0.751    1.073 </span></span>
+<span><span class="co">#&gt;    1.319    1.031 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Residuals: </span></span>
 <span><span class="co">#&gt;    min     1q median     3q    max </span></span>
-<span><span class="co">#&gt; -2.359 -0.803 -0.009  0.633  2.250 </span></span>
+<span><span class="co">#&gt; -2.163 -0.797 -0.118  0.739  2.890 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Information criteria:</span></span>
-<span><span class="co">#&gt;       aic      aicc       bic </span></span>
-<span><span class="co">#&gt;  3.236331  4.306919 14.610899</span></span></code></pre></div>
+<span><span class="co">#&gt;      bic      aic     aicc    aiccp </span></span>
+<span><span class="co">#&gt; 38.52329 27.11176 28.16683 39.11176</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
