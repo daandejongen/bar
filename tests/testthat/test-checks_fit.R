@@ -1,3 +1,31 @@
+test_that("users should provide data", {
+  expect_error(hystar_fit(),
+               "Argument `data` is missing, with no default.")
+})
+
+test_that("data must be numeric", {
+  expect_error(hystar_fit(data.frame(letters, letters)),
+               "numeric")
+})
+
+test_that("data must be a vector, matrix or df", {
+  expect_error(hystar_fit(mean),
+               "vector, matrix or data.frame")
+})
+
+test_that("data cannot have missings", {
+  expect_error(hystar_fit(c(1:20, NA)),
+               "not have missing values")
+})
+
+test_that("r must be numeric", {
+  expect_error(check_r_fit(letters), "numeric")
+})
+
+test_that("r must be a proper interval", {
+  expect_error(check_r_fit(c(3, 2)), "interval")
+})
+
 test_that("a vector for r must be of correct length (2)", {
   expect_error(check_r_fit(r = 1:3), "its length must be 2")
 })
@@ -7,6 +35,20 @@ test_that("a matrix for r must have correct thresholds", {
                 2, 1),
               nrow = 2, byrow = TRUE)
   expect_error(check_r_fit(r), "The second threshold value should")
+})
+
+test_that("a matrix for r must have correct thresholds if TAR is specified", {
+  r <- matrix(c(1, 2,
+                3, 3),
+              nrow = 2, byrow = TRUE)
+  expect_error(check_r_fit(r, tar = TRUE), "TAR")
+})
+
+test_that("user is notified that they are fitting a TAR model", {
+  r <- matrix(c(2, 2,
+                3, 3),
+              nrow = 2, byrow = TRUE)
+  expect_warning(check_r_fit(r, tar = FALSE), "TAR")
 })
 
 test_that("a matrix for r must have correct dimensions (n by 2)", {
@@ -19,6 +61,11 @@ test_that("a matrix for r must have correct dimensions (n by 2)", {
 test_that("`r` must be valid quantiles", {
   expect_error(check_rz(r = c(.2, 3),
                         z = 1), "so the values of")
+})
+
+test_that("`r` must be in the range of `z`", {
+  expect_error(check_rz(r = matrix(c(2, 20), nrow = 1),
+                        z = 1:10), "range")
 })
 
 test_that("thin must be TRUE or FALSE", {

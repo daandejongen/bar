@@ -6,6 +6,8 @@
 
 * Added `call` to `hystar_sim` and `hystar_fit` objects. Call now also printed in `print` method.
 
+* The user-feedback about the progress is now not shown by default, but can be requested by setting the `show_progress` argument in `hystar_fit()` to `TRUE`. This is because `knitr` did not handle the `appendLF = FALSE` argument (ensuring progress gets printed on the same line each iteration, and not on a new line) of the `message()`-function well (that prints the progress-feedback); as a result, the print of `hystar_fit()` in my example on github and on the website was veeery long.
+
 # `hystar` 1.2.1
 
 * Added a welcome message with a logo and first directions for help.
