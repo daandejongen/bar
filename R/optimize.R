@@ -1,10 +1,10 @@
-optim_p <- function(y, x, z, eff, grid, p_options, p_select, tar) {
+optim_p <- function(y, x, z, eff, grid, p_options, p_select, tar, show_progress) {
   equivs <- vector(mode = "list", length = nrow(p_options))
 
   for (i in seq_len(nrow(p_options))) {
     p0_sel <- p_options[i, "p0"]
     p1_sel <- p_options[i, "p1"]
-    optim <- optim_grid(y, eff, x, z, p0_sel, p1_sel, grid)
+    optim <- optim_grid(y, eff, x, z, p0_sel, p1_sel, grid, show_progress)
     p_options[i, c("d", "r0", "r1", "s")] <- optim$est
     equivs[[i]] <- optim$equiv
     results <- run_model(y, x, z, eff, p0_sel, p1_sel,
@@ -23,25 +23,22 @@ optim_p <- function(y, x, z, eff, grid, p_options, p_select, tar) {
   )
 }
 
-optim_grid <- function(y, eff, x, z, p0, p1, grid) {
-  optims <- get_optims(y, eff, x, z, p0, p1, grid)
+optim_grid <- function(y, eff, x, z, p0, p1, grid, show_progress) {
+  optims <- get_optims(y, eff, x, z, p0, p1, grid, show_progress)
   optims_d <- select_min_d(optims)
   optims_r <- select_r(optims_d)
 
   return(list(est = optims_r[, , drop = TRUE], equiv = optims))
 }
 
-get_optims <- function(y, eff, x, z, p0, p1, grid) {
+get_optims <- function(y, eff, x, z, p0, p1, grid, show_progress) {
   results <- numeric(nrow(grid))
   prev <- rep(-9L, times = length(eff))
 
   for (i in 1:nrow(grid)) {
-    message("\restimating delay, r0, r1 for p0 = ", p0, " and p1 = ", p1,
-            ". Progress: ", round(100 * i / nrow(grid), 0), "%", appendLF = FALSE)
-    #message("Searching delay, r0, r1: ",
-    #        paste(grid[i, "d"], round(grid[i, "r0"], 2), round(grid[i, "r1"], 2),
-    #              sep = ", "),
-    #        "\r", appendLF = FALSE)
+    if (show_progress)
+      message("\restimating delay, r0, r1 for p0 = ", p0, " and p1 = ", p1,
+              ". Progress: ", round(100 * i / nrow(grid), 0), "%", appendLF = FALSE)
     H <- ts_hys(z[eff - grid[i, "d"]], grid[i, "r0"], grid[i, "r1"])
     R <- ts_reg(H, start = grid[i, "s"])
     if (all(R == prev)) {

@@ -14,16 +14,18 @@ coverage](https://codecov.io/gh/daandejongen/hystar/branch/master/graph/badge.sv
 
 ## Overview
 
-The R-package [`hystar`](https://cran.r-project.org/package=hystar)
-package allows you to simulate and estimate the hysteretic threshold
-autoregressive (HysTAR) model. It comes with three functions:
+With the R-package
+[`hystar`](https://cran.r-project.org/package=hystar), you can simulate
+data from the hysteretic threshold autoregressive (HysTAR) model, and
+estimate its parameters. It comes with three functions:
 
-- `hystar_fit`, to *estimate* the HysTAR parameters with the
-  *conditional least squares* method,
+- `hystar_fit`, to **estimate** the HysTAR parameters with the
+  **conditional least squares** method, using your own data or simulated
+  data,
 
-- `z_sim`, to simulate a *threshold variable*,
+- `z_sim`, to simulate a **threshold variable**,
 
-- `hystar_sim`, to simulate an *outcome variable*.
+- `hystar_sim`, to simulate an **outcome variable**.
 
 Results from the time series analysis can be assessed with the standard
 methods in R, like `plot`, `summary` and `print`. Additionally, you can
@@ -36,39 +38,49 @@ A minimal example:
 
 ``` r
 library(hystar)
+#> 
+#>    __            __
+#>   / /_ __ ______/ /_________
+#>  / _  / // (_ -/  _/ _  / __\
+#> /_//_/\_, /___)\__/\_,_/_/
+#>      /___/             1.2.0
+#> 
+#> Estimation and simulation of the HysTAR Model.
+#> For function help, run `?hystar_fit`, `?hystar_sim` or `?z_sim`.
+#> For more information, run `hystar_info()` (opens a URL in your browser).
 control_variable <- z_sim(n_t = 100)
 simulated_hystar_model <- hystar_sim(z = control_variable)
 fitted_hystar_model <- hystar_fit(data = simulated_hystar_model$data)
 summary(fitted_hystar_model)
 #> HysTAR model fitted on 99 observations, of which
-#> 44 observations in regime 0 and
-#> 55 observations in regime 1.
+#> 49 observations in regime 0 and
+#> 50 observations in regime 1.
 #> 
 #> Estimated thresholds:
 #>     r0     r1 
-#> -0.509  0.218 
+#> -0.509  0.509 
 #> 
 #> Estimated delay:
 #> 0 
 #> 
 #> Estimated model coefficients:
-#>           est    SE     p
-#> phi_00 -0.153 0.131 0.244
-#> phi_01  0.507 0.111 0.000
-#> phi_10  1.312 0.325 0.000
-#> phi_11  0.612 0.092 0.000
+#>          est    SE     p
+#> phi_00 0.258 0.178 0.148
+#> phi_01 0.529 0.102 0.000
+#> phi_10 2.546 0.448 0.000
+#> phi_11 0.380 0.109 0.000
 #> 
 #> Estimated residual variances:
 #> sigma2_0 sigma2_1 
-#>    0.751    1.073 
+#>    1.319    1.031 
 #> 
 #> Residuals: 
 #>    min     1q median     3q    max 
-#> -2.359 -0.803 -0.009  0.633  2.250 
+#> -2.163 -0.797 -0.118  0.739  2.890 
 #> 
 #> Information criteria:
-#>       aic      aicc       bic 
-#>  3.236331  4.306919 14.610899
+#>      bic      aic     aicc    aiccp 
+#> 38.52329 27.11176 28.16683 39.11176
 ```
 
 ## Install

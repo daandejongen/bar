@@ -23,14 +23,13 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-The R-package [`hystar`](https://cran.r-project.org/package=hystar) package allows you to simulate and estimate the hysteretic
-threshold autoregressive (HysTAR) model. It comes with three functions: 
+With the R-package [`hystar`](https://cran.r-project.org/package=hystar), you can simulate data from the hysteretic threshold autoregressive (HysTAR) model, and estimate its parameters. It comes with three functions: 
 
-* `hystar_fit`, to *estimate* the HysTAR parameters with the *conditional least squares* method,
+* `hystar_fit`, to **estimate** the HysTAR parameters with the **conditional least squares** method, using your own data or simulated data,
 
-* `z_sim`, to simulate a *threshold variable*,
+* `z_sim`, to simulate a **threshold variable**,
 
-* `hystar_sim`, to simulate an *outcome variable*.
+* `hystar_sim`, to simulate an **outcome variable**.
 
 Results from the time series analysis can be assessed with the standard methods in R, like `plot`, `summary` and `print`. Additionally, you can extract the predictive residuals with the `residuals`-method for further analysis.
 

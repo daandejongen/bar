@@ -55,6 +55,9 @@
 #' @param tar `TRUE` or `FALSE` (default). Choose `TRUE` if you want to fit a traditional
 #'     2-regime threshold autoregressive (TAR) model. In this model,
 #'     there is only one threshold (or equivalently, a HysTAR model with \eqn{r_0 = r_1}).
+#' @param show_progress `TRUE` or `FALSE` (default). Do you want to be updated on the
+#'     progress of the estimation algorithm? This can be desirable when the number
+#'     of time points, or the search space of `d`, `p0` or `p1`, are large.
 #'
 #' @returns An object of S3 class `hystar_fit`, which is a `list` containing the following
 #' items:
@@ -108,7 +111,8 @@ hystar_fit <- function(data,
                        p0 = 1L, p1 = 1L,
                        p_select = c("bic", "aic", "aicc", "aiccp"),
                        thin = FALSE,
-                       tar = FALSE) {
+                       tar = FALSE,
+                       show_progress = FALSE) {
   call <- match.call()
   check_data(data)
   if (is.vector(data)) {
@@ -124,7 +128,7 @@ hystar_fit <- function(data,
   grid <- create_grid(z, r, d, eff, thin, tar)
   r_search <- unique(as.vector(grid[, c("r0", "r1")]))
   p_options <- create_p_options(p0, p1)
-  OPT <- optim_p(y, x, z, eff, grid, p_options, p_select, tar)
+  OPT <- optim_p(y, x, z, eff, grid, p_options, p_select, tar, show_progress)
   est <- OPT$est
   # We can discard the 4th column, "starts", because this will always have
   # the same value. A different start value would always result in a different
