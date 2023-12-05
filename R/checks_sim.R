@@ -9,7 +9,6 @@ check_hystar_sim_input <- function(z, r, d, phi_R0, phi_R1, resvar, start_regime
   check_zdp(z, d, p0, p1)
   check_resvar(resvar)
   check_r_sim(r, z)
-  check_start_regime_hystar_sim(start_regime)
   start_inferred <- get_start(g = c(d, r[1], r[2]), z, time_eff(z, d, p0, p1))
   start <- check_start(start_inferred, start_regime, z)
 
@@ -18,7 +17,7 @@ check_hystar_sim_input <- function(z, r, d, phi_R0, phi_R1, resvar, start_regime
 
 check_z_sim_input <- function(n_t, n_switches, start_regime, start_hyst, range) {
   check_n_t_switches(n_t, n_switches)
-  check_start_regime_z_sim(start_regime)
+  check_start_regime(start_regime)
   check_start_hyst(start_hyst)
   check_range(range)
 }
@@ -162,13 +161,7 @@ check_start <- function(start_inferred, start_regime, z) {
   }
 }
 
-check_start_regime_hystar_sim <- function(start_regime) {
-  if (is.null(start_regime)) return()
-  if (! (start_regime %in% c(0, 1)))
-    stop("'start_regime' must be 0 or 1.", call. = FALSE)
-}
-
-check_start_regime_z_sim <- function(start_regime) {
+check_start_regime <- function(start_regime) {
   if (! (start_regime %in% c(0, 1)))
     stop("'start_regime' must be 0 or 1.", call. = FALSE)
 }

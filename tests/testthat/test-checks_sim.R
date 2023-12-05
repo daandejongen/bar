@@ -133,5 +133,21 @@ test_that("start regime in hystar_sim matches that in z_sim", {
   expect_warning(hystar_sim(z_sim(start_regime = 0), start_regime = 1), "does not match")
 })
 
+test_that("start regime must be 0 or 1", {
+  expect_error(z_sim(start_regime = 2), "must be 0 or 1")
+})
+
+test_that("range must be numeric", {
+  expect_error(z_sim(range = letters), "numeric")
+})
+
+test_that("range must contain exactly two values", {
+  expect_error(z_sim(range = 1:3), "of length 2")
+})
+
+test_that("range must be an interval", {
+  expect_error(z_sim(range = c(1, 1)), "a proper interval")
+})
+
 
 
