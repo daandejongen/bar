@@ -115,3 +115,13 @@ test_that("fit throws no errors with certain off-default settings", {
   })
 })
 
+test_that("orders are checked correctly", {
+  expect_error(check_p0("a"), "numeric")
+  expect_error(check_p0(.4), "whole")
+  expect_error(check_p0(-1), "nonnegative")
+  expect_error(check_p1("a"), "numeric")
+  expect_error(check_p1(.4), "whole")
+  expect_error(check_p1(-1), "nonnegative")
+})
+
+
