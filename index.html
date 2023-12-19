@@ -113,34 +113,34 @@
 <span><span class="va">fitted_hystar_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/hystar_fit.html">hystar_fit</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">simulated_hystar_model</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fitted_hystar_model</span><span class="op">)</span></span>
 <span><span class="co">#&gt; HysTAR model fitted on 99 observations, of which</span></span>
-<span><span class="co">#&gt; 49 observations in regime 0 and</span></span>
-<span><span class="co">#&gt; 50 observations in regime 1.</span></span>
+<span><span class="co">#&gt; 51 observations in regime 0 and</span></span>
+<span><span class="co">#&gt; 48 observations in regime 1.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated thresholds:</span></span>
 <span><span class="co">#&gt;     r0     r1 </span></span>
-<span><span class="co">#&gt; -0.509  0.509 </span></span>
+<span><span class="co">#&gt; -0.454  0.562 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated delay:</span></span>
 <span><span class="co">#&gt; 0 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated model coefficients:</span></span>
 <span><span class="co">#&gt;          est    SE     p</span></span>
-<span><span class="co">#&gt; phi_00 0.258 0.178 0.148</span></span>
-<span><span class="co">#&gt; phi_01 0.529 0.102 0.000</span></span>
-<span><span class="co">#&gt; phi_10 2.546 0.448 0.000</span></span>
-<span><span class="co">#&gt; phi_11 0.380 0.109 0.000</span></span>
+<span><span class="co">#&gt; phi_00 0.314 0.156 0.045</span></span>
+<span><span class="co">#&gt; phi_01 0.346 0.106 0.001</span></span>
+<span><span class="co">#&gt; phi_10 1.882 0.435 0.000</span></span>
+<span><span class="co">#&gt; phi_11 0.538 0.108 0.000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimated residual variances:</span></span>
 <span><span class="co">#&gt; sigma2_0 sigma2_1 </span></span>
-<span><span class="co">#&gt;    1.319    1.031 </span></span>
+<span><span class="co">#&gt;    1.009    1.097 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Residuals: </span></span>
 <span><span class="co">#&gt;    min     1q median     3q    max </span></span>
-<span><span class="co">#&gt; -2.163 -0.797 -0.118  0.739  2.890 </span></span>
+<span><span class="co">#&gt; -2.639 -0.676  0.014  0.823  2.532 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Information criteria:</span></span>
 <span><span class="co">#&gt;      bic      aic     aicc    aiccp </span></span>
-<span><span class="co">#&gt; 38.52329 27.11176 28.16683 39.11176</span></span></code></pre></div>
+<span><span class="co">#&gt; 28.28185 16.87277 17.92886 28.87277</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="install">Install<a class="anchor" aria-label="anchor" href="#install"></a>
@@ -167,9 +167,8 @@
 <div class="section level2">
 <h2 id="get-more-info">Get more info<a class="anchor" aria-label="anchor" href="#get-more-info"></a>
 </h2>
-<p>For more information, see the <a href="https://daandejongen.github.io/hystar/" class="external-link"><code>hystar</code> website</a>.</p>
-<p>If you want to read more, see the paper with the original proposal of the HysTAR model in Biometrika (<a href="https://academic.oup.com/biomet/article-abstract/102/3/717/2365298?login=false" class="external-link">Li, Guan, Li and Yu (2015)</a>).</p>
-<p>If you need something more accessible, I am working on a paper about using the HysTAR model in psychological research. There, I also explain in more detail what hysteresis is.</p>
+<p>For more information about the package, see the <a href="https://daandejongen.github.io/hystar/" class="external-link"><code>hystar</code> website</a>.</p>
+<p>If you want to read more about the HysTAR model itself, see the paper with the original proposal of the HysTAR model in Biometrika (<a href="https://academic.oup.com/biomet/article-abstract/102/3/717/2365298?login=false" class="external-link">Li, Guan, Li and Yu (2015)</a>). Or, for a mathematically more accessible introduction, see <a href="https://osf.io/preprints/psyarxiv/zrcft" class="external-link">the paper</a> (pre-print) I wrote about detecting hysteresis with the HysTAR model in psychological time series.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
