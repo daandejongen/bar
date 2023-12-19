@@ -78,8 +78,6 @@ BibTeX:
 
 ## Get more info
 
-For more information, see the [`hystar` website](https://daandejongen.github.io/hystar/).
+For more information about the package, see the [`hystar` website](https://daandejongen.github.io/hystar/).
 
-If you want to read more, see the paper with the original proposal of the HysTAR model in Biometrika ([Li, Guan, Li and Yu (2015)](https://academic.oup.com/biomet/article-abstract/102/3/717/2365298?login=false)).
-
-If you need something more accessible, I am working on a paper about using the HysTAR model in psychological research. There, I also explain in more detail what hysteresis is.
+If you want to read more about the HysTAR model itself, see the paper with the original proposal of the HysTAR model in Biometrika ([Li, Guan, Li and Yu (2015)](https://academic.oup.com/biomet/article-abstract/102/3/717/2365298?login=false)). Or, for a mathematically more accessible introduction, see [the paper](https://osf.io/preprints/psyarxiv/zrcft) (pre-print) I wrote about detecting hysteresis with the HysTAR model in psychological time series.

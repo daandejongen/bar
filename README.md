@@ -53,34 +53,34 @@ simulated_hystar_model <- hystar_sim(z = control_variable)
 fitted_hystar_model <- hystar_fit(data = simulated_hystar_model$data)
 summary(fitted_hystar_model)
 #> HysTAR model fitted on 99 observations, of which
-#> 49 observations in regime 0 and
-#> 50 observations in regime 1.
+#> 51 observations in regime 0 and
+#> 48 observations in regime 1.
 #> 
 #> Estimated thresholds:
 #>     r0     r1 
-#> -0.509  0.509 
+#> -0.454  0.562 
 #> 
 #> Estimated delay:
 #> 0 
 #> 
 #> Estimated model coefficients:
 #>          est    SE     p
-#> phi_00 0.258 0.178 0.148
-#> phi_01 0.529 0.102 0.000
-#> phi_10 2.546 0.448 0.000
-#> phi_11 0.380 0.109 0.000
+#> phi_00 0.314 0.156 0.045
+#> phi_01 0.346 0.106 0.001
+#> phi_10 1.882 0.435 0.000
+#> phi_11 0.538 0.108 0.000
 #> 
 #> Estimated residual variances:
 #> sigma2_0 sigma2_1 
-#>    1.319    1.031 
+#>    1.009    1.097 
 #> 
 #> Residuals: 
 #>    min     1q median     3q    max 
-#> -2.163 -0.797 -0.118  0.739  2.890 
+#> -2.639 -0.676  0.014  0.823  2.532 
 #> 
 #> Information criteria:
 #>      bic      aic     aicc    aiccp 
-#> 38.52329 27.11176 28.16683 39.11176
+#> 28.28185 16.87277 17.92886 28.87277
 ```
 
 ## Install
@@ -115,13 +115,14 @@ BibTeX:
 
 ## Get more info
 
-For more information, see the [`hystar`
+For more information about the package, see the [`hystar`
 website](https://daandejongen.github.io/hystar/).
 
-If you want to read more, see the paper with the original proposal of
-the HysTAR model in Biometrika ([Li, Guan, Li and Yu
+If you want to read more about the HysTAR model itself, see the paper
+with the original proposal of the HysTAR model in Biometrika ([Li, Guan,
+Li and Yu
 (2015)](https://academic.oup.com/biomet/article-abstract/102/3/717/2365298?login=false)).
-
-If you need something more accessible, I am working on a paper about
-using the HysTAR model in psychological research. There, I also explain
-in more detail what hysteresis is.
+Or, for a mathematically more accessible introduction, see [the
+paper](https://osf.io/preprints/psyarxiv/zrcft) (pre-print) I wrote
+about detecting hysteresis with the HysTAR model in psychological time
+series.
